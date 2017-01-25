@@ -1,0 +1,8 @@
+/vendor/
+/node_modules/
+/.idea/
+/thinkphp
+/.settings
+/.project
+/.buildpath
+/composer.lock
