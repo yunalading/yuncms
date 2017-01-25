@@ -1,0 +1,35 @@
+{
+  "name": "2898117012/yuncms",
+  "description": "YunCMS",
+  "type": "project",
+  "license": "Apache-2.0",
+  "homepage": "http://www.yunalading.com",
+  "authors": [
+    {
+      "name": "jabber",
+      "email": "2898117012@qq.com"
+    }
+  ],
+  "require": {
+    "php": "^5.5.9",
+    "topthink/framework": "*"
+  },
+  "require-dev": {
+    "topthink/think-testing": "^1.0"
+  },
+  "extra": {
+    "think-path": "thinkphp"
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "http://pkg.phpcomposer.com/repo/packagist/"
+    },
+    {
+      "packagist": false
+    }
+  ]
+}
