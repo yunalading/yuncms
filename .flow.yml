@@ -1,0 +1,7 @@
+flows:
+  - names: yuncms
+    language: php
+    version: 5.5.32
+    env:
+      - FLOW_PROJECT_PATH=./
+      - DB=mysql
