@@ -14,6 +14,6 @@ use app\common\controller\AdminBaseController;
 
 class Index extends AdminBaseController {
     public function index() {
-        echo "Admin";
+        return view();
     }
 }

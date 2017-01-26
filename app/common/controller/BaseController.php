@@ -11,8 +11,8 @@
 
 namespace app\common\controller;
 
-use think\Controller;
+abstract class BaseController {
+    public function __construct() {
 
-abstract class BaseController extends Controller {
-
+    }
 }
