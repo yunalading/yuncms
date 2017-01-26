@@ -51,6 +51,9 @@ YunCMS是基于ThinkPHP框架的一套CMS系统，方便用户快速建立企业
 # 安装部署
 详情请查看[INSTALL.md](INSTALL.md)
 
+# 二次开发
+详情请查看 [DEVELOP.md](DEVELOP.md)
+
 # 开源协议
 YunCMS遵循Apache2开源协议发布。Apache Licence是著名的非盈利开源组织Apache采用的协议，该协议和BSD类似，鼓励代码共享和尊重原作者的著作权，同样允许代码修改，再作为开源或商业软件发布。
 
