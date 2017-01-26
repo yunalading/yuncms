@@ -1,15 +1,15 @@
 <?php
 // +----------------------------------------------------------------------
-// | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
+// | YunCMS
 // +----------------------------------------------------------------------
-// | Copyright (c) 2006-2015 http://thinkphp.cn All rights reserved.
+// | Copyright (c) 2006-2016 http://www.yunalading.com All rights reserved.
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: yunwuxin <448901948@qq.com>
+// | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
-namespace tests;
-
-class TestCase extends \think\testing\TestCase {
-    protected $baseUrl = 'http://localhost';
-}
+return [
+    'name' => 'yuncms',
+    'version' => '1.0.0',
+    'theme' => 'default'
+];

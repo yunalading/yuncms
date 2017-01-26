@@ -9,10 +9,10 @@
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
 
-
 namespace app\common\controller;
 
+abstract class BaseController {
+    public function __construct() {
 
-class BaseController {
-
+    }
 }

@@ -10,11 +10,10 @@
 // +----------------------------------------------------------------------
 namespace app\home\controller;
 
-use think\Request;
+use app\common\controller\HomeBaseController;
 
-class Index {
+class Index extends HomeBaseController {
     public function index() {
-        $request = Request::instance();
-        echo $request->module();
+        return view();
     }
 }

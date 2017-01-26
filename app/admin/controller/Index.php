@@ -10,8 +10,10 @@
 // +----------------------------------------------------------------------
 namespace app\admin\controller;
 
-class Index {
+use app\common\controller\AdminBaseController;
+
+class Index extends AdminBaseController {
     public function index() {
-        echo "Admin";
+        return view();
     }
 }
