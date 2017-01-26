@@ -8,11 +8,8 @@
 // +----------------------------------------------------------------------
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
-
-namespace app\common\controller;
-
-use think\Controller;
-
-abstract class BaseController extends Controller {
-
-}
+return [
+    'name' => 'yuncms',
+    'version' => '1.0.0',
+    'theme' => 'default'
+];

@@ -9,10 +9,10 @@
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
 
+
 namespace app\common\controller;
 
-use think\Controller;
 
-abstract class BaseController extends Controller {
+abstract class HomeBaseController extends BaseController {
 
 }
