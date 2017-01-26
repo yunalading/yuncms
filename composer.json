@@ -12,7 +12,8 @@
   ],
   "require": {
     "php": "^5.5.9",
-    "topthink/framework": "*"
+    "topthink/framework": "*",
+    "overtrue/wechat": "^3.2"
   },
   "require-dev": {
     "topthink/think-testing": "^1.0"
