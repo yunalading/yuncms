@@ -12,6 +12,6 @@ namespace app\install\controller;
 
 class Index {
     public function index() {
-        echo 'install';
+        return view();
     }
 }
