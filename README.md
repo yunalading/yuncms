@@ -1,4 +1,4 @@
-<h1><a href="http://www.yunalading.com/" title="YunCMS 官网"><img style="float: left" width="240" src="docs/images/logo.png" alt="YunCMS Logo"/></a></h1>
+<h1><a href="http://www.yunalading.com/" title="YunCMS 官网"><img style="margin:auto" width="500" src="docs/images/logo.png" alt="YunCMS Logo"/></a></h1>
 
 YunCMS是基于ThinkPHP框架的一套CMS系统，方便用户快速建立企业网站，门户网站，个人博客或其他系统的内容管理系统。
 
