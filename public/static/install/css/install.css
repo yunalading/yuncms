@@ -14557,8 +14557,8 @@ tbody.am-collapse.am-in {
   vertical-align: bottom;
 }
 .header .version {
-  margin-left: 1rem;
-  color: #dedede;
+  float: right;
+  color: #3cc3fc;
 }
 .license-box .license {
   margin: 2rem 0;
@@ -14567,6 +14567,11 @@ tbody.am-collapse.am-in {
   padding: 1rem;
   overflow-y: scroll;
 }
+@media only screen and (max-width: 640px) {
+  .license-box .license {
+    height: 26rem;
+  }
+}
 .footer {
   border-top: 1px solid #dedede;
   margin-top: 2rem;
@@ -14574,4 +14579,9 @@ tbody.am-collapse.am-in {
 }
 .footer p {
   text-align: center;
+}
+@media only screen and (max-width: 640px) {
+  .footer {
+    margin-top: 0;
+  }
 }
