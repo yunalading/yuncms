@@ -10,7 +10,9 @@
 // +----------------------------------------------------------------------
 namespace app\install\controller;
 
-class Index {
+use app\common\controller\InstallBaseController;
+
+class Index extends InstallBaseController {
     public function index() {
         return view();
     }

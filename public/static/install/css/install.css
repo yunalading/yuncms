@@ -1,4 +1,4 @@
-/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-01-29"A"04:01:11 UTC */
+/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-01-30"A"01:01:42 UTC */
 /* ==========================================================================
    Component: Base
  ============================================================================ */
@@ -14557,8 +14557,8 @@ tbody.am-collapse.am-in {
   vertical-align: bottom;
 }
 .header .version {
-  margin-left: 1rem;
-  color: #dedede;
+  float: right;
+  color: #3cc3fc;
 }
 .license-box .license {
   margin: 2rem 0;
@@ -14567,6 +14567,36 @@ tbody.am-collapse.am-in {
   padding: 1rem;
   overflow-y: scroll;
 }
+@media only screen and (max-width: 640px) {
+  .license-box .license {
+    height: 26rem;
+  }
+}
+.license-box .license h1 {
+  text-align: center;
+  font-size: 1.8rem;
+}
+.license-box .license h3 {
+  margin: 1rem 0;
+}
+.license-box .license p {
+  font-size: 1.4rem;
+  margin: 0;
+  margin-top: 0.3rem;
+  text-indent: 2em;
+}
+.license-box .license .sample-temple {
+  margin-top: 1rem;
+  background-color: #3e5163;
+  border-radius: 5px;
+  color: #ffffff;
+  padding: 1rem;
+  font-size: 1.4rem;
+}
+.license-box .license .sample-temple p {
+  text-indent: 0;
+  margin: 1rem 0;
+}
 .footer {
   border-top: 1px solid #dedede;
   margin-top: 2rem;
@@ -14574,4 +14604,9 @@ tbody.am-collapse.am-in {
 }
 .footer p {
   text-align: center;
+}
+@media only screen and (max-width: 640px) {
+  .footer {
+    margin-top: 0;
+  }
 }
