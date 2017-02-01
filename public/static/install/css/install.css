@@ -1,4 +1,4 @@
-/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-01-30"A"01:01:42 UTC */
+/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-02-01"P"14:02:37 UTC */
 /* ==========================================================================
    Component: Base
  ============================================================================ */
@@ -4597,8 +4597,8 @@ a.am-close:hover {
 ============================================================================= */
 @font-face {
   font-family: 'FontAwesome';
-  src: url('../fonts/fontawesome-webfont.eot?v=4.6.3');
-  src: url('../fonts/fontawesome-webfont.eot?#iefix&v=4.6.3') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff2?v=4.6.3') format('woff2'), url('../fonts/fontawesome-webfont.woff?v=4.6.3') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=4.6.3') format('truetype');
+  src: url('/static/common/amazeui/fonts/fontawesome-webfont.eot?v=4.6.3');
+  src: url('/static/common/amazeui/fonts/fontawesome-webfont.eot?#iefix&v=4.6.3') format('embedded-opentype'), url('/static/common/amazeui/fonts/fontawesome-webfont.woff2?v=4.6.3') format('woff2'), url('/static/common/amazeui/fonts/fontawesome-webfont.woff?v=4.6.3') format('woff'), url('/static/common/amazeui/fonts/fontawesome-webfont.ttf?v=4.6.3') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -14553,12 +14553,18 @@ tbody.am-collapse.am-in {
   padding: 1rem 0;
 }
 .header .logo {
-  width: 180px;
+  width: 200px;
   vertical-align: bottom;
 }
+@media only screen and (max-width: 640px) {
+  .header .logo {
+    width: 180px;
+  }
+}
 .header .version {
-  float: right;
-  color: #3cc3fc;
+  margin-left: 1rem;
+  font-size: 1.4rem;
+  color: #dedede;
 }
 .license-box .license {
   margin: 2rem 0;
@@ -14574,7 +14580,7 @@ tbody.am-collapse.am-in {
 }
 .license-box .license h1 {
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 2rem;
 }
 .license-box .license h3 {
   margin: 1rem 0;
@@ -14587,9 +14593,8 @@ tbody.am-collapse.am-in {
 }
 .license-box .license .sample-temple {
   margin-top: 1rem;
-  background-color: #3e5163;
+  background-color: #dedede;
   border-radius: 5px;
-  color: #ffffff;
   padding: 1rem;
   font-size: 1.4rem;
 }
