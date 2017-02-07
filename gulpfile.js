@@ -118,6 +118,9 @@ gulp.task('watch',function(){
 
     gulp.watch(['./frontend/install/js/**/*.js'],['build:install-js']);
     gulp.watch(['./frontend/install/less/**/*.less'],['build:install-less']);
+
+    gulp.watch(['./frontend/common/js/**/*.js'],['build:install-js','build:admin-js','build:home-js']);
+    gulp.watch(['./frontend/common/less/**/*.less'],['build:install-less','build:admin-less','build:home-less']);
 });
 
 gulp.task('default',['copy:common','build','watch']);
