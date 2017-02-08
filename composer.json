@@ -13,7 +13,8 @@
   "require": {
     "php": "^5.5.9",
     "topthink/framework": "*",
-    "overtrue/wechat": "^3.2"
+    "overtrue/wechat": "^3.2",
+    "hightman/xunsearch": "^1.4"
   },
   "require-dev": {
     "topthink/think-testing": "^1.0"
