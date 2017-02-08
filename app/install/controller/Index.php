@@ -8,24 +8,60 @@
 // +----------------------------------------------------------------------
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
+
 namespace app\install\controller;
 
 use app\common\controller\InstallBaseController;
+use think\App;
+use think\view\driver\Think;
 
+/**
+ * Class Index
+ * @package app\install\controller
+ */
 class Index extends InstallBaseController {
+    /**
+     * 首页
+     * @return \think\response\View
+     */
     public function index() {
         return view();
     }
-    public function step1(){
+
+    /**
+     *
+     * @return \think\response\View
+     */
+    public function step1() {
         return view();
     }
-    public function step2(){
+
+    /**
+     * @return \think\response\View
+     */
+    public function step2() {
         return view();
     }
-    public function step3(){
+
+    /**
+     * @return \think\response\View
+     */
+    public function step3() {
         return view();
     }
-    public function step4(){
+
+    /**
+     * @return \think\response\View
+     */
+    public function step4() {
+        return view();
+    }
+
+    /**
+     *
+     * @return \think\response\View
+     */
+    public function message() {
         return view();
     }
 }
