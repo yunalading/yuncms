@@ -8,12 +8,15 @@
 // +----------------------------------------------------------------------
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
-namespace app\home\controller;
 
-use app\common\controller\HomeBaseController;
 
-class Index extends HomeBaseController {
-    public function index() {
-        return "ThinkPHP";
+namespace tests\core\enum;
+
+use app\core\enum\UserStateEnum;
+use tests\TestCase;
+
+class UserStateEnumTest extends TestCase {
+    public function testState() {
+        $this->assertNotEquals(UserStateEnum::BY,UserStateEnum::HI,'Not Equals');
     }
 }

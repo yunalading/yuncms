@@ -8,12 +8,19 @@
 // +----------------------------------------------------------------------
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
-namespace app\home\controller;
 
-use app\common\controller\HomeBaseController;
 
-class Index extends HomeBaseController {
-    public function index() {
-        return "ThinkPHP";
-    }
+namespace app\core\enum;
+
+use app\core\Enum;
+
+/**
+ * Class UserStateEnum
+ * @package app\core\enum
+ */
+class UserStateEnum extends Enum {
+    const HI = "Hi";
+    const BY = "By";
+    const NUMBER = 1;
+    const __default = self::BY;
 }

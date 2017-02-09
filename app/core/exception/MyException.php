@@ -10,12 +10,8 @@
 // +----------------------------------------------------------------------
 
 
-namespace app\core\enum;
+namespace app\core\exception;
 
-/**
- * Class AdminUserState 管理员用户状态
- * @package app\core\enum
- */
-class AdminUserStateEnum {
+class Exception extends \think\Exception {
 
 }
