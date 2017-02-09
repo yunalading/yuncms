@@ -19,5 +19,8 @@ use app\core\Enum;
  * @package app\core\enum
  */
 class UserStateEnum extends Enum {
-    
+    const HI = "Hi";
+    const BY = "By";
+    const NUMBER = 1;
+    const __default = self::BY;
 }
