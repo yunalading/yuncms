@@ -9,5 +9,6 @@
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
 return [
-
+    'dispatch_success_tmpl' => APP_PATH . 'admin' . DS . 'view' . DS . 'dispatch_jump.html',
+    'dispatch_error_tmpl' => APP_PATH . 'admin' . DS . 'view' . DS . 'dispatch_jump.html',
 ];

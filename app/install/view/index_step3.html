@@ -66,13 +66,63 @@
         </div>
     </div>
 </div>
-<div class="">
+<div class="install-form">
     <div class="am-container">
-        <div>
-            <form class="am-form" method="post" action="/index.php/install/index/step4">
+        <div class="center-form">
+            <form class="am-form" method="post" action="/index.php/install/index/step4" data-am-validator>
+                <fieldset>
+                    <legend>数据库信息</legend>
+                    <div class="am-form-group">
+                        <label>数据库服务器<span>(请填写数据库服务器IP或域名)</span></label>
+                        <input type="text" class="am-form-field am-radius" value="localhost" placeholder="请填写数据库服务器IP或域名" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>数据库名<span>(请填写数据库名称)</span></label>
+                        <input type="text" class="am-form-field am-radius" value="yuncms" placeholder="请填写数据库名称" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>数据库用户名<span>(请填写数据库用户名)</span></label>
+                        <input type="text" class="am-form-field am-radius" value="root" placeholder="请填写数据库用户名" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>数据库密码<span>(请填写数据库密码)</span></label>
+                        <input type="text" class="am-form-field am-radius" placeholder="请填写数据库密码" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>数据库表前缀<span>(请填写表前缀)</span></label>
+                        <input type="text" class="am-form-field am-radius" value="yc_" placeholder="请填写表前缀" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>数据库端口<span>(请填写数据库端口号)</span></label>
+                        <input type="number" class="am-form-field am-radius" value="3306" placeholder="请填写数据库端口号" required>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>网站信息</legend>
+                    <div class="am-form-group">
+                        <label>站点名称<span>(请填写网站名称)</span></label>
+                        <input type="text" class="am-form-field am-radius" placeholder="请填写网站名称" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>管理员帐号<span>(请填写管理员账号)</span></label>
+                        <input type="text" class="am-form-field am-radius" placeholder="请填写管理员账号" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>管理员密码<span>(请填写管理员密码不少于6个字符)</span></label>
+                        <input type="password" class="am-form-field am-radius" id="admin-pwd" placeholder="请填写管理员密码" required minlength="6">
+                    </div>
+                    <div class="am-form-group">
+                        <label>确认密码<span>(请重新输入管理员密码)</span></label>
+                        <input type="password" class="am-form-field am-radius" placeholder="请重新输入管理员密码" data-equal-to="#admin-pwd" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>管理员邮箱<span>(请填写管理员邮箱)</span></label>
+                        <input type="email" class="am-form-field am-radius" placeholder="请填写管理员邮箱" required>
+                    </div>
+                </fieldset>
                 <p class="am-text-center am-margin-top-xl">
                     <a href="/index.php/install/index/step2" class="am-btn am-btn-primary am-radius">上一步</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button type="submit" class="am-btn am-btn-primary am-radius">下一步</button>
+                    <button type="submit" class="am-btn am-btn-primary am-radius">确定安装</button>
                 </p>
             </form>
         </div>
@@ -80,7 +130,8 @@
 </div>
 <footer class="footer">
     <div class="am-container">
-        <p>© 2017 <a target="_blank" href="http://www.yunalading.com">YunAlaDing</a> , Inc. Licensed Apacle license 2.0.</p>
+        <p>© 2017 <a target="_blank" href="http://www.yunalading.com">YunAlaDing</a> , Inc. Licensed Apacle license 2.0.
+        </p>
     </div>
 </footer>
 <!--[if (gte IE 9)|!(IE)]><!-->

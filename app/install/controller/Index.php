@@ -54,14 +54,11 @@ class Index extends InstallBaseController {
      * @return \think\response\View
      */
     public function step4() {
-        return view();
+        echo $this->fetch('step4');
+        flush_out();
     }
 
-    /**
-     *
-     * @return \think\response\View
-     */
-    public function message() {
+    public function complete() {
         return view();
     }
 }
