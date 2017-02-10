@@ -55,7 +55,11 @@ class Index extends AdminBaseController {
               $this->assign('errors',$errors);
               return $this->fetch();
           }
-          $aid=Db::name('admin_user')->where('aname',$aname)->value('aid');//设置了前缀用name,table方法需要带上前缀
+          $adminusermodel = new AdminUserModel();
+          //$aid=Db::name('admin_user')->where('aname',$aname)->value('aid');//设置了前缀用name,table方法需要带上前缀
+          $where['aname']=$aname;
+          $field="aid";
+          $aid=$adminusermodel->getOne($field,$where);
           if($aid<1){
               session('islogin', 0);
               $errors['msg']="您输入的用户不存在！";
@@ -63,9 +67,8 @@ class Index extends AdminBaseController {
               $this->assign('errors',$errors);
               return $this->fetch();
           }
-          //$admin_user=Db::table('ghq_admin_user')->where('aid',1)->find();
-          //助手函数需加入第三个参数才和Db::table或Db::name一样是单例模式，否则每次都要连接一下数据库
-          $admin_user=db('admin_user',[],false)->where('aid',$aid)->find();
+          $wheres['aid']=$aid;
+          $admin_user=$adminusermodel->getRow($wheres);
           //验证用户密码是否输入正确
           $md_password=md5($input['password'].$admin_user['salt']);
           if($md_password != $admin_user['password']){
@@ -78,8 +81,14 @@ class Index extends AdminBaseController {
           session('islogin', 1);
           session('aname', $aname);
           session('aid', $aid);
-          session('user_auth.uid', $aid);//权限验证使用
+          //session('user_auth.uid', $aid);//权限验证使用
           //更新最后登陆时间和ip
+          $data['lasttime']=time();
+          $data['lastip']='192.168.3.6';
+          $update=$adminusermodel->autoupdate($data,$wheres);
+          echo $update;
+          die();
+
           return $this->redirect('Index/index');
       }
       //\think\Cache::clear(); //清空缓存
