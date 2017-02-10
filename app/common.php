@@ -12,14 +12,6 @@
 // 应用公共文件
 
 /**
- * 输出缓冲
- */
-function flush_out() {
-    ob_flush();
-    flush();
-}
-
-/**
  * 检查是否安装
  * @return bool
  */

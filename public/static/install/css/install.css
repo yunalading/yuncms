@@ -1,4 +1,4 @@
-/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-02-10"A"09:02:27 UTC */
+/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-02-10"A"11:02:08 UTC */
 /* ==========================================================================
    Component: Base
  ============================================================================ */
@@ -14714,7 +14714,7 @@ tbody.am-collapse.am-in {
   display: inline-block;
 }
 .install-load {
-  margin: 8rem 0 14rem;
+  margin: 8rem 0 10rem;
 }
 .install-load .loading {
   text-align: center;
@@ -14722,9 +14722,9 @@ tbody.am-collapse.am-in {
 .install-load .loading i {
   font-size: 8rem;
   color: #3cc3fc;
-  display: block;
 }
 .install-load .loading span {
+  display: block;
   color: #3e5163;
 }
 .complete-page {
