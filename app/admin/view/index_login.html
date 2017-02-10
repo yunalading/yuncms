@@ -179,6 +179,13 @@
 
 <block name="full-header"></block>
 
+{present name="errors"}
+  <script>
+      alert('{$errors.msg}');
+  </script>
+{else /}
+{/present}
+
 <block name="full-container">
     <!-- 背景 -->
     <div id="particles-js" class="background"></div>
@@ -192,7 +199,7 @@
         <h4>后台管理登录</h4>
         <form class="login-form" action="" method="post">
             <div class="form-group">
-                <input type="text" required="required" class="form-control" name="username" autocomplete="off">
+                <input type="text" required="required" class="form-control" name="aname" autocomplete="off">
                 <label class="form-label">账　号</label>
             </div>
             <div class="form-group">
@@ -200,9 +207,11 @@
                 <label class="form-label">密　码</label>
             </div>
             <div class="form-group">
-                <input type="password" required="required" class="form-control" name="password">
+                <input type="text" required="required" class="form-control" name="captcha">
                 <label class="form-label">验证码</label>
             </div>
+            <input type="hidden" name="__token__" value="{$Request.token}" />
+            <div><img src="{:captcha_src()}" alt="captcha" onclick="this.src='{:captcha_src()}?'+Math.random()" /></div>
             <button type="submit" class="floating-btn ajax-post hidden-xs"  target-form="login-form">
                 <i class="icon-arrow"></i>
             </button>
