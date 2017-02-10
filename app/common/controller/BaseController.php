@@ -11,8 +11,10 @@
 
 namespace app\common\controller;
 
-abstract class BaseController {
-    public function __construct() {
+use think\Controller;
 
+abstract class BaseController extends Controller {
+    public function __construct() {
+        parent::__construct();
     }
 }
