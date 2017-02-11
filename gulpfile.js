@@ -31,96 +31,159 @@ var banner = [
     $.util.date(Date.now(), dateFormat) + ' */ \n'
 ].join(' | ');
 
-gulp.task('build:admin-js',function () {
-    gulp.src('./frontend/admin/js/admin.js').pipe(sourcemaps.init()).pipe(browserify()).pipe($.header(banner,{pkg:pkg,ver:''})).pipe($.plumber({errorHandler:function(err){
-        console.log(err);
-        this.emit('end');
-    }})).pipe(jshint()).pipe(gulp.dest('./public/static/admin/js')).pipe(uglify()).pipe($.rename({
+gulp.task('build:core-js', function () {
+    gulp.src('./frontend/core/js/core.js').pipe(sourcemaps.init()).pipe(browserify()).pipe($.header(banner, {
+        pkg: pkg,
+        ver: ''
+    })).pipe($.plumber({
+        errorHandler: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    })).pipe(jshint()).pipe(gulp.dest('./public/static/core/js')).pipe(uglify()).pipe($.rename({
+        'suffix': '.min',
+        'extname': '.js'
+    })).pipe(sourcemaps.write('./')).pipe(gulp.dest('./public/static/core/js'));
+});
+
+gulp.task('build:core-less', function () {
+    gulp.src('./frontend/core/less/core.less').pipe(sourcemaps.init()).pipe($.header(banner, {
+        pkg: pkg,
+        ver: ''
+    })).pipe($.plumber({
+        errorHandler: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    })).pipe($.less()).pipe($.autoprefixer({browsers: config.AUTOPREFIXER_BROWSERS})).pipe(gulp.dest('./public/static/core/css')).pipe(minify()).pipe($.rename({
+        'suffix': '.min',
+        'extname': '.css'
+    })).pipe(sourcemaps.write('./')).pipe(gulp.dest('./public/static/core/css'));
+});
+
+gulp.task('build:admin-js', function () {
+    gulp.src('./frontend/admin/js/admin.js').pipe(sourcemaps.init()).pipe(browserify()).pipe($.header(banner, {
+        pkg: pkg,
+        ver: ''
+    })).pipe($.plumber({
+        errorHandler: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    })).pipe(jshint()).pipe(gulp.dest('./public/static/admin/js')).pipe(uglify()).pipe($.rename({
         'suffix': '.min',
         'extname': '.js'
     })).pipe(sourcemaps.write('./')).pipe(gulp.dest('./public/static/admin/js'));
 });
 
-gulp.task('build:admin-less',function () {
-    gulp.src('./frontend/admin/less/admin.less').pipe(sourcemaps.init()).pipe($.header(banner,{pkg:pkg,ver:''})).pipe($.plumber({errorHandler:function (err) {
-        console.log(err);
-        this.emit('end');
-    }})).pipe($.less()).pipe($.autoprefixer({browsers:config.AUTOPREFIXER_BROWSERS})).pipe(gulp.dest('./public/static/admin/css')).pipe(minify()).pipe($.rename({
+gulp.task('build:admin-less', function () {
+    gulp.src('./frontend/admin/less/admin.less').pipe(sourcemaps.init()).pipe($.header(banner, {
+        pkg: pkg,
+        ver: ''
+    })).pipe($.plumber({
+        errorHandler: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    })).pipe($.less()).pipe($.autoprefixer({browsers: config.AUTOPREFIXER_BROWSERS})).pipe(gulp.dest('./public/static/admin/css')).pipe(minify()).pipe($.rename({
         'suffix': '.min',
         'extname': '.css'
     })).pipe(sourcemaps.write('./')).pipe(gulp.dest('./public/static/admin/css'));
 });
 
-gulp.task('build:home-js',function () {
-    gulp.src('./frontend/home/**/js/home.js').pipe(sourcemaps.init()).pipe(browserify()).pipe($.header(banner,{pkg:pkg,ver:''})).pipe($.plumber({errorHandler:function(err){
-        console.log(err);
-        this.emit('end');
-    }})).pipe(jshint()).pipe(gulp.dest('./public/static/home')).pipe(uglify()).pipe($.rename({
+gulp.task('build:home-js', function () {
+    gulp.src('./frontend/home/**/js/home.js').pipe(sourcemaps.init()).pipe(browserify()).pipe($.header(banner, {
+        pkg: pkg,
+        ver: ''
+    })).pipe($.plumber({
+        errorHandler: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    })).pipe(jshint()).pipe(gulp.dest('./public/static/home')).pipe(uglify()).pipe($.rename({
         'suffix': '.min',
         'extname': '.js'
     })).pipe(sourcemaps.write('./')).pipe(gulp.dest('./public/static/home'));
 });
 
-gulp.task('build:home-less',function () {
-    gulp.src('./frontend/home/**/less/home.less').pipe(sourcemaps.init()).pipe($.header(banner,{pkg:pkg,ver:''})).pipe($.plumber({errorHandler:function (err) {
-        console.log(err);
-        this.emit('end');
-    }})).pipe($.less()).pipe($.autoprefixer({browsers:config.AUTOPREFIXER_BROWSERS})).pipe($.rename(function (path) {
-        path.dirname = path.dirname.replace('less','css');
+gulp.task('build:home-less', function () {
+    gulp.src('./frontend/home/**/less/home.less').pipe(sourcemaps.init()).pipe($.header(banner, {
+        pkg: pkg,
+        ver: ''
+    })).pipe($.plumber({
+        errorHandler: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    })).pipe($.less()).pipe($.autoprefixer({browsers: config.AUTOPREFIXER_BROWSERS})).pipe($.rename(function (path) {
+        path.dirname = path.dirname.replace('less', 'css');
     })).pipe(gulp.dest('./public/static/home')).pipe(minify()).pipe($.rename({
         'suffix': '.min',
         'extname': '.css'
     })).pipe(sourcemaps.write('./')).pipe(gulp.dest('./public/static/home'));
 });
 
-gulp.task('build:install-js',function () {
-    gulp.src('./frontend/install/js/install.js').pipe(sourcemaps.init()).pipe(browserify()).pipe($.header(banner,{pkg:pkg,ver:''})).pipe($.plumber({errorHandler:function(err){
-        console.log(err);
-        this.emit('end');
-    }})).pipe(jshint()).pipe(gulp.dest('./public/static/install/js')).pipe(uglify()).pipe($.rename({
+gulp.task('build:install-js', function () {
+    gulp.src('./frontend/install/js/install.js').pipe(sourcemaps.init()).pipe(browserify()).pipe($.header(banner, {
+        pkg: pkg,
+        ver: ''
+    })).pipe($.plumber({
+        errorHandler: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    })).pipe(jshint()).pipe(gulp.dest('./public/static/install/js')).pipe(uglify()).pipe($.rename({
         'suffix': '.min',
         'extname': '.js'
     })).pipe(sourcemaps.write('./')).pipe(gulp.dest('./public/static/install/js'));
 });
 
-gulp.task('build:install-less',function () {
-    gulp.src('./frontend/install/less/install.less').pipe(sourcemaps.init()).pipe($.header(banner,{pkg:pkg,ver:''})).pipe($.plumber({errorHandler:function (err) {
-        console.log(err);
-        this.emit('end');
-    }})).pipe($.less()).pipe($.autoprefixer({browsers:config.AUTOPREFIXER_BROWSERS})).pipe(gulp.dest('./public/static/install/css')).pipe(minify()).pipe($.rename({
+gulp.task('build:install-less', function () {
+    gulp.src('./frontend/install/less/install.less').pipe(sourcemaps.init()).pipe($.header(banner, {
+        pkg: pkg,
+        ver: ''
+    })).pipe($.plumber({
+        errorHandler: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    })).pipe($.less()).pipe($.autoprefixer({browsers: config.AUTOPREFIXER_BROWSERS})).pipe(gulp.dest('./public/static/install/css')).pipe(minify()).pipe($.rename({
         'suffix': '.min',
         'extname': '.css'
     })).pipe(sourcemaps.write('./')).pipe(gulp.dest('./public/static/install/css'));
 });
 
-gulp.task('copy:jquery',function () {
+gulp.task('copy:jquery', function () {
     gulp.src('./node_modules/jquery/dist/**/*').pipe(gulp.dest('./public/static/common/jquery'));
 });
 
-gulp.task('copy:handlebars',function(){
+gulp.task('copy:handlebars', function () {
     gulp.src('./node_modules/handlebars/dist/**/*').pipe(gulp.dest('./public/static/common/handlebars'));
 });
 
-gulp.task('copy:amazeui',function () {
+gulp.task('copy:amazeui', function () {
     gulp.src('./node_modules/amazeui/dist/**/*').pipe(gulp.dest('./public/static/common/amazeui'));
 });
 
-gulp.task('copy:common',['copy:jquery','copy:handlebars','copy:amazeui']);
+gulp.task('copy:common', ['copy:jquery', 'copy:handlebars', 'copy:amazeui']);
 
-gulp.task('build',['build:admin-js','build:home-js','build:install-js','build:admin-less','build:home-less','build:install-less']);
+gulp.task('build', ['build:core-js', 'build:admin-js', 'build:home-js', 'build:install-js', 'build:core-less', 'build:admin-less', 'build:home-less', 'build:install-less']);
 
-gulp.task('watch',function(){
-    gulp.watch(['./frontend/admin/js/**/*.js'],['build:admin-js']);
-    gulp.watch(['./frontend/admin/less/**/*.less'],['build:admin-less']);
+gulp.task('watch', function () {
+    gulp.watch(['./frontend/core/js/**/*.js'], ['build:core-js']);
+    gulp.watch(['./frontend/core/less/**/*.less'], ['build:core-less']);
 
-    gulp.watch(['./frontend/home/**/js/**/*.js'],['build:home-js']);
-    gulp.watch(['./frontend/home/**/less/**/*.less'],['build:home-less']);
+    gulp.watch(['./frontend/admin/js/**/*.js'], ['build:admin-js']);
+    gulp.watch(['./frontend/admin/less/**/*.less'], ['build:admin-less']);
 
-    gulp.watch(['./frontend/install/js/**/*.js'],['build:install-js']);
-    gulp.watch(['./frontend/install/less/**/*.less'],['build:install-less']);
+    gulp.watch(['./frontend/home/**/js/**/*.js'], ['build:home-js']);
+    gulp.watch(['./frontend/home/**/less/**/*.less'], ['build:home-less']);
 
-    gulp.watch(['./frontend/common/js/**/*.js'],['build:install-js','build:admin-js','build:home-js']);
-    gulp.watch(['./frontend/common/less/**/*.less'],['build:install-less','build:admin-less','build:home-less']);
+    gulp.watch(['./frontend/install/js/**/*.js'], ['build:install-js']);
+    gulp.watch(['./frontend/install/less/**/*.less'], ['build:install-less']);
+
+    gulp.watch(['./frontend/common/js/**/*.js'], ['build:core-js', 'build:install-js', 'build:admin-js', 'build:home-js']);
+    gulp.watch(['./frontend/common/less/**/*.less'], ['build:core-less', 'build:install-less', 'build:admin-less', 'build:home-less']);
 });
 
-gulp.task('default',['copy:common','build','watch']);
+gulp.task('default', ['copy:common', 'build', 'watch']);
