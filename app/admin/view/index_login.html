@@ -1,6 +1,5 @@
-<extend name="Public/layout"/>
+{__NOLAYOUT__}
 
-<block name="style">
     <style type="text/css">
         .background {
             position: absolute;
@@ -175,9 +174,8 @@
             }
         }
     </style>
-</block>
 
-<block name="full-header"></block>
+
 
 {present name="errors"}
   <script>
@@ -186,7 +184,7 @@
 {else /}
 {/present}
 
-<block name="full-container">
+
     <!-- 背景 -->
     <div id="particles-js" class="background"></div>
     <!-- 登陆框 -->
@@ -206,15 +204,18 @@
                 <input type="password" required="required" class="form-control" name="password">
                 <label class="form-label">密　码</label>
             </div>
+
+            {if condition="$config['captcha']==1"}
             <div class="form-group">
                 <input type="text" required="required" class="form-control" name="captcha">
                 <label class="form-label">验证码</label>
             </div>
-            <input type="hidden" name="__token__" value="{$Request.token}" />
             <div><img src="{:captcha_src()}" alt="captcha" onclick="this.src='{:captcha_src()}?'+Math.random()" /></div>
+            {else /}
+            {/if}
+            <input type="hidden" name="__token__" value="{$Request.token}" />
             <button type="submit" class="floating-btn ajax-post hidden-xs"  target-form="login-form">
                 <i class="icon-arrow"></i>
             </button>
         </form>
     </div>
-</block>

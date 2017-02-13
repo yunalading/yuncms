@@ -38,4 +38,9 @@ return [
   'user_administrator' => 1,//管理员的默认id,始终是最大权限
   //'admin_group_id' => 3,//管理员组的默认id
   'develop_mode'  =>  'false',//菜单里面开发者模式
+  'template'  =>  [
+    'layout_on'     =>  true,
+    'layout_name'   =>  'layout',
+    'view_depr'    => '_',
+  ],
 ];

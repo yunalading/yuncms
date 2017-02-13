@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>首页｜lyadmin后台管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="author" content="lyadmin">
+    <meta name="keywords" content="">
+    <meta name="description" content="yuncms">
+    <meta name="generator" content="CoreThink">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="lyadmin">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="apple-touch-icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/logo.png">
+    <link rel="stylesheet" type="text/css" href="/static/libs/lyui/dist/css/lyui.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/admin_cqh.css">
+
+    <!--[if lt IE 9]>
+        <script src="http://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+        <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/static/libs/jquery/1.x/jquery.min.js"></script>
+</head>
+<body class="admin_index_index">
+    <div class="clearfix full-header">
+
+    <!-- 顶部导航 -->
+    <div class="navbar navbar-default navbar-fixed-top main-nav" role="navigation">
+        <div class="container-fluid">
+            <div>
+                <div class="navbar-header navbar-header-default">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-top">
+                        <span class="sr-only">切换导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    {if condition="$config.logo neq '' "}
+                    <a class="navbar-brand" target="_blank" href="{:U('admin/index/index')}">
+                        <img class="logo img-responsive" src="{$config.logo}">
+                    </a>
+                    {else /}
+                    <a class="navbar-brand" target="_blank" href="{:U('admin/index/index')}">
+                        <span>yuncms</span>
+                    </a>
+                    {/if}
+                </div>
+                <div class="navbar-header navbar-header-inverse">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-top">
+                        <span class="sr-only">切换导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    {if condition="$config.logo neq '' "}
+                    <a class="navbar-brand" target="_blank" href="{:U('admin/index/index')}">
+                        <img class="logo img-responsive" src="{$config.logo}">
+                    </a>
+                    {else /}
+                    <a class="navbar-brand" target="_blank" href="{:U('admin/index/index')}">
+                        <span>yuncms</span>
+                    </a>
+                    {/if}
+                </div>
+                <div class="collapse navbar-collapse navbar-collapse-top">
+                    <ul class="nav navbar-nav">
+                        <!-- 主导航 -->
+                        <li class="active"><a href="{:U('admin/index/index')}"><i class="fa fa-home"></i>首页</a></li>
+                        <li ><a href="{:U('admin/system/index')}" target=""><i class="fa fa fa-cog"></i><span>系统</span></a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{:U('admin/index/removeRuntime')}" style="border: 0;text-align: left" class="btn ajax-get no-refresh"><i class="fa fa-trash"></i> 清空缓存</a></li>
+                        <li><a target="_blank" href="/"><i class="fa fa-external-link"></i> 打开前台</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-user"></i>
+                                {$Think.session.aname ?? '未登录'}
+                                 <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a target="_blank" href="/"><i class="fa fa-external-link"></i> 打开前台</a></li>
+                                <li><a href="{:U('admin/index/removeRuntime')}" style="border: 0;text-align: left" class="btn ajax-get no-refresh"><i class="fa fa-trash"></i> 清空缓存</a></li>
+                                <li><a href="{:U('admin/index/logout')}" class="ajax-get"><i class="fa fa-sign-out"></i> 退出</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="clearfix full-container" id="full-container">
+    <input type="hidden" name="check_version_url" value="{:U('admin/update/checkVersion')}">
+
+    <div class="container-fluid with-top-navbar" style="height: 100%;overflow: hidden;">
+        <div class="row" style="height: 100%;">

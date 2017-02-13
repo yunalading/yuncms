@@ -11,11 +11,13 @@
 namespace app\admin\controller;
 use think\Request;
 use think\Validate;
+use think\Cache;
 use app\common\controller\AdminBaseController;
 use app\admin\model\AdminUserModel;
 
 class Index extends AdminBaseController {
     public function index() {
+        //print_r($this->config);//系统配置项
         return view();
     }
     public function test(){
@@ -31,19 +33,33 @@ class Index extends AdminBaseController {
       $input=Request::instance()->post();
       if($input){
           $aname=trim($input['aname']);
-          $rules = [
-              'aname'  => 'require|max:25|token',
-              'password' => 'require|min:6',
-              'captcha'=>'require|captcha',
-          ];
-          $msg = [
-              'aname.require' => '用户名必须填写',
-              'aname.max'     => '用户名最多不能超过25个字符',
-              'password.require' => '登录密码必须填写',
-              'password.alphaDash' => '密码最少6位',
-              'captcha.require' => '验证码必须填写',
-              'captcha.captcha' => '验证码输入错误',
-          ];
+          if($config['captcha']==1){
+            $rules = [
+                'aname'  => 'require|max:25|token',
+                'password' => 'require|min:6',
+                'captcha'=>'require|captcha',
+            ];
+            $msg = [
+                'aname.require' => '用户名必须填写',
+                'aname.max'     => '用户名最多不能超过25个字符',
+                'password.require' => '登录密码必须填写',
+                'password.alphaDash' => '密码最少6位',
+                'captcha.require' => '验证码必须填写',
+                'captcha.captcha' => '验证码输入错误',
+            ];
+          }else{
+            $rules = [
+                'aname'  => 'require|max:25|token',
+                'password' => 'require|min:6',
+            ];
+            $msg = [
+                'aname.require' => '用户名必须填写',
+                'aname.max'     => '用户名最多不能超过25个字符',
+                'password.require' => '登录密码必须填写',
+                'password.alphaDash' => '密码最少6位',
+            ];
+          }
+
           $validate = new Validate($rules,$msg);
           $result   = $validate->check($input);
           if(!$result){
@@ -84,15 +100,36 @@ class Index extends AdminBaseController {
           //session('user_auth.uid', $aid);//权限验证使用
           //更新最后登陆时间和ip
           $data['lasttime']=time();
-          $data['lastip']='192.168.3.6';
-          $update=$adminusermodel->autoupdate($data,$wheres);
-          echo $update;
-          die();
-
+          $data['lastip']=request()->ip();
+          $adminusermodel->autoupdate($data,$wheres);
           return $this->redirect('Index/index');
       }
       //\think\Cache::clear(); //清空缓存
-      $this->view->engine->layout(false);
+      //$this->view->engine->layout(false);
       return $this->fetch();
     }
+    /**
+     * 删除缓存
+     * @author 【chenqianhao】<68527761@qq.com>
+     */
+    public function removeRuntime()
+    {
+        $result = Cache::clear();
+        if ($result) {
+            echo "缓存清理成功";
+        } else {
+            echo "缓存清理失败";
+        }
+    }
+
+    /**
+     * 退出登录
+     * @author [chenqianhao] <68527761@qq.com>
+     */
+    public function logout() {
+        session(null);
+        //$this->redirect('/');
+        return $this->redirect('admin/index/login');
+    }
+
 }

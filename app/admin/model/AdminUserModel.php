@@ -8,7 +8,6 @@
 // +----------------------------------------------------------------------
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
-
 namespace app\admin\model;
 use app\common\model\BaseModel;
 use think\Db;
@@ -18,10 +17,10 @@ class AdminUserModel extends BaseModel
     protected $tableName='admin_user';
     /**
      * 根据条件获取指定的一个值
-     * $where [array] 条件
-     * $field 查查询的字段
+     * @param $where [array] 条件
+     * @param $field 查查询的字段
      * @return string
-     * @Author [chenqianhao] <68527761@qq.com>
+     * @author [chenqianhao] <68527761@qq.com>
      */
     public function getOne($field,$where=array())
     {
@@ -34,9 +33,9 @@ class AdminUserModel extends BaseModel
     }
     /**
      * 根据条件获取指定的一组数据
-     * $where [array] 条件
+     * @param $where [array] 条件
      * @return array|null
-     * @Author [chenqianhao] <68527761@qq.com>
+     * @author [chenqianhao] <68527761@qq.com>
      */
     public function getRow($where)
     {
@@ -47,16 +46,18 @@ class AdminUserModel extends BaseModel
     }
     /**
      * 根据条件获更新数据数据
-     * $data 要更新的字段和值组成的二元数组
-     * $where [array] 条件
+     * @param $data 要更新的字段和值组成的二元数组
+     * @param $where [array] 条件
      * @return int 影响的条数
-     * @Author [chenqianhao] <68527761@qq.com>
+     * @author [chenqianhao] <68527761@qq.com>
      */
     public function autoupdate($data,$where)
     {
        $update=Db::table(Config::get('database.prefix').$this->tableName)->where($where)->update($data);
        return $update;
     }
+
+
 
 
 

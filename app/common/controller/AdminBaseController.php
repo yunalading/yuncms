@@ -8,8 +8,6 @@
 // +----------------------------------------------------------------------
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
-
-
 namespace app\common\controller;
 use think\Db;
 use \app\core\adminauth\Auth;
@@ -20,12 +18,16 @@ use app\admin\model\ConfigModel;
  *  @author [chenqianhao] <68527761@qq.com>
  */
 abstract class AdminBaseController extends BaseController {
+    protected $config;
     public function __construct() {
         parent::__construct();
         $request = request();
         $url=strtolower($request->module()).'/'.strtolower($request->controller()).'/'.strtolower($request->action());
         if (!$this->isLogin() and !in_array($url, array('admin/index/login', 'admin/index/logout', 'admin/index/verify'))){
             $this->redirect('admin/index/login');
+        }else{
+          //获取系统配置
+          $this->getconfigall();
         }
         if (!in_array($url, array('admin/index/login', 'admin/index/logout', 'admin/index/verify'))) {
             // 是否是超级管理员
@@ -83,8 +85,8 @@ abstract class AdminBaseController extends BaseController {
      */
     public  function is_administrator($uid = null) {
         //$uid = is_null($uid) ? $this->isLogin() : $uid;
-        $uid = is_null($uid) ? session('user_auth.uid') : $uid;
-        return $uid && (intval($uid) === config('user_administrator'));
+        $uid = is_null($uid) ? session('aid') : $uid;
+        return $uid && (intval($uid) === config('authorization.user_administrator'));
     }
     /**
      * 权限检测
@@ -190,6 +192,8 @@ abstract class AdminBaseController extends BaseController {
                 }
             }
         }
+        // echo '<pre>';
+        // print_r($menu);
         $this->assign('menus', $menu);
     }
 
@@ -200,7 +204,7 @@ abstract class AdminBaseController extends BaseController {
      */
     protected function getconfigall() {
       $Mconfig = new ConfigModel();
-      $config=$Mconfig->getAllConfig();
+      $config=$this->config=$Mconfig->getAllConfig();
       $this->assign('config', $config);
       return $config;
     }

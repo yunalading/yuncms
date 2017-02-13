@@ -39,7 +39,7 @@ CREATE TABLE `yc_admin_user` (
   UNIQUE KEY `管理员用户名` (`aname`),
   UNIQUE KEY `管理员邮箱` (`email`),
   UNIQUE KEY `管理员手机号` (`phone`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='管理员用户';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='管理员用户';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,6 +48,7 @@ CREATE TABLE `yc_admin_user` (
 
 LOCK TABLES `yc_admin_user` WRITE;
 /*!40000 ALTER TABLE `yc_admin_user` DISABLE KEYS */;
+INSERT INTO `yc_admin_user` VALUES (1,'admin','45a1a3e33cf2739383ee9cd6e512e8a4',3306,'68527761@qq.com','18671418772','',1486964432,'127.0.0.1',0,0,1486707687);
 /*!40000 ALTER TABLE `yc_admin_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -309,7 +310,8 @@ CREATE TABLE `yc_config` (
   `QQ` int(15) unsigned zerofill NOT NULL DEFAULT '000000000000000',
   `keyword` varchar(100) NOT NULL DEFAULT '' COMMENT '网站关键字',
   `description` varchar(255) NOT NULL DEFAULT '' COMMENT '网站描述，网站简介',
-  `logo` varchar(50) NOT NULL DEFAULT '' COMMENT '网站的logo'
+  `logo` varchar(50) NOT NULL DEFAULT '' COMMENT '网站的logo',
+  `captcha` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否开启后台登录验证码0关闭1开启'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='网站配置表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -319,6 +321,7 @@ CREATE TABLE `yc_config` (
 
 LOCK TABLES `yc_config` WRITE;
 /*!40000 ALTER TABLE `yc_config` DISABLE KEYS */;
+INSERT INTO `yc_config` VALUES ('','http://www.yuncms.com','','','','','',000000000000000,'','','/static/images/logo.png',0);
 /*!40000 ALTER TABLE `yc_config` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -377,6 +380,43 @@ CREATE TABLE `yc_links` (
 LOCK TABLES `yc_links` WRITE;
 /*!40000 ALTER TABLE `yc_links` DISABLE KEYS */;
 /*!40000 ALTER TABLE `yc_links` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `yc_menu`
+--
+
+DROP TABLE IF EXISTS `yc_menu`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `yc_menu` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '菜单ID',
+  `title` varchar(50) NOT NULL DEFAULT '' COMMENT '标题',
+  `type` varchar(10) NOT NULL DEFAULT 'admin' COMMENT '菜单类别（admin后台，user会员中心）',
+  `icon` varchar(50) NOT NULL DEFAULT '' COMMENT '分类图标',
+  `pid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '上级分类ID',
+  `sort` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '排序（同级有效）',
+  `url` char(255) NOT NULL DEFAULT '' COMMENT '链接地址',
+  `hide` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否隐藏',
+  `tip` varchar(255) NOT NULL DEFAULT '' COMMENT '提示',
+  `group` varchar(50) DEFAULT '' COMMENT '分组',
+  `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `is_dev` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否仅开发者模式可见',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0正常1删除',
+  PRIMARY KEY (`id`),
+  KEY `pid` (`pid`),
+  KEY `status` (`status`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='后台菜单管理';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `yc_menu`
+--
+
+LOCK TABLES `yc_menu` WRITE;
+/*!40000 ALTER TABLE `yc_menu` DISABLE KEYS */;
+INSERT INTO `yc_menu` VALUES (1,'后台首页','admin','',0,1,'admin/index/index',0,'','',1486800730,0,0),(2,'系统管理','admin','',0,2,'admin/system/index',0,'','',1486800730,0,0),(3,'栏目管理','admin','',0,3,'admin/category/index',0,'','',1486800730,0,0),(4,'内容管理','admin','',0,4,'admin/artice/index',0,'','',1486800730,0,0),(5,'模型管理','admin','',0,5,'admin/module/index',0,'','',1486800730,0,0),(6,'权限管理','admin','',0,6,'admin/sysauth/index',0,'','',1486800730,0,0),(7,'菜单管理','admin','',0,7,'admin/menu/index',0,'','',1486800730,0,0),(8,'用户管理','admin','',0,8,'admin/user/index',0,'','',1486800730,0,0),(9,'扩展管理','admin','',0,9,'admin/extend/index',0,'','',1486800730,0,0);
+/*!40000 ALTER TABLE `yc_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -446,4 +486,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-09  9:53:05
+-- Dump completed on 2017-02-13 13:45:54
