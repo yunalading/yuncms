@@ -4,10 +4,10 @@ root = true
 end_of_line = lf
 insert_final_newline = true
 
-[*.{js,html,css,php}]
+[*.{js,html,css,less,php}]
 charset = utf-8
 
-[*.js]
+[*.{js,html,css,less,php}]
 indent_style = space
 indent_size = 4
 
