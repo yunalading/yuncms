@@ -81,7 +81,6 @@
     <meta charset="UTF-8">
     <title>系统发生错误</title>
     <meta name="robots" content="noindex,nofollow" />
-    <link rel="stylesheet" href="/static/core/css/core.min.css">
     <style>
         /* Base */
         body {
@@ -265,7 +264,6 @@
             margin-top: 24px;
             padding: 12px 0;
             border-top: 1px solid #eee;
-            text-align: center;
         }
 
         /* SPAN elements with the classes below are added by prettyprint. */
@@ -334,8 +332,8 @@
         </div>
     </div>
     <?php } else { ?>
-    <div class="exception not-find">
-            <div class="info"><h1>404<?php echo htmlentities($message); ?></h1></div>
+    <div class="exception">
+        <script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8" homePageUrl="/" homePageName="返回到首页"></script>
     </div>
     <?php } ?>
     
@@ -408,11 +406,12 @@
         <?php } ?>
     </div>
     <?php } ?>
-
+    <?php if(\think\App::$debug) { ?>
     <div class="copyright">
         <a title="官方网站" href="<?php echo APP_SITE;?>"><?php echo APP_NAME; ?></a>
         <span>V<?php echo APP_VERSION; ?></span>
     </div>
+    <?php } ?>
     <?php if(\think\App::$debug) { ?>
     <script>
         var LINE = <?php echo $line; ?>;
