@@ -9,17 +9,14 @@
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
 
+
 namespace app\install\controller;
 
 use app\common\controller\InstallBaseController;
 
-/**
- * Class Index
- * @package app\install\controller
- */
-class Index extends InstallBaseController {
+class Step1 extends InstallBaseController {
+
     /**
-     * 首页
      * @return \think\response\View
      */
     public function index() {
