@@ -1,123 +1,126 @@
-
-
 <!-- 右侧内容 -->
 <div id="main" class="col-xs-12 col-sm-9 main" style="padding-right: 0;">
-      <!-- 面包屑导航 -->
-        <ul class="breadcrumb">
-            <li><i class="fa fa-map-marker"></i></li>
-            <li class="text-muted">首页</li>
-        </ul>
+    <!-- 面包屑导航 -->
+    <ul class="breadcrumb">
+        <li><i class="fa fa-map-marker"></i></li>
+        <li class="text-muted">首页</li>
+    </ul>
 
+    <!-- 多标签后台内容部分 -->
+    <div class="tab-content ct-tab-content" style="height: 100%;">
+        <!-- 首页 -->
+        <div role="tabpanel" class="tab-pane fade in active" id="home">
+            <div class="dashboard clearfix">
+                <div class="col-xs-12 col-sm-6 col-lg-6 ct-update">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="update pull-right"></div>
+                            <i class="fa fa-cog"></i> 系统信息
+                        </div>
+                        <div class="panel-body">
 
-        <!-- 多标签后台内容部分 -->
-        <div class="tab-content ct-tab-content" style="height: 100%;">
-            <!-- 首页 -->
-            <div role="tabpanel" class="tab-pane fade in active" id="home">
-                <div class="dashboard clearfix">
-                    <div class="col-xs-12 col-sm-6 col-lg-6 ct-update">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="update pull-right"></div>
-                                <i class="fa fa-cog"></i> 系统信息
-                            </div>
-                            <div class="panel-body">
-
-                                <table class="table table-condensed">
-                                    <tbody>
-                                        <tr>
-                                            <td>lyadmin版本</td>
-                                            <td>
-                                                <span class="version">
-                                                    v1.1.0                                                            beta1                                                        </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>产品型号</td>
-                                            <td>零云（ lyadmin ）</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ThinkPHP版本</td>
-                                            <td>3.2.3</td>
-                                        </tr>
-                                        <tr>
-                                            <td>服务器操作系统</td>
-                                            <td>Linux</td>
-                                        </tr>
-                                        <tr>
-                                            <td>运行环境</td>
-                                            <td>
-                                                Apache/2.4.23                                                    </td>
-                                        </tr>
-                                        <tr>
-                                            <td>PHP版本</td>
-                                            <td>5.5.38</td>
-                                        </tr>
-                                        <tr>
-                                            <td>MYSQL版本</td>
-                                            <td>10.1.16-MariaDB</td>
-                                        </tr>
-                                        <tr>
-                                            <td>上传限制</td>
-                                            <td>128M</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <table class="table table-condensed">
+                                <tbody>
+                                    <tr>
+                                        <td>yuncms版本</td>
+                                        <td>
+                                            <span class="version">
+                                                  <?php echo  config('core.version') ?> beta1
+                                                </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>产品型号</td>
+                                        <td>云阿拉丁内容管理系统（ yuncms ）</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ThinkPHP版本</td>
+                                        <td>{$Think.const.THINK_VERSION}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>服务器操作系统</td>
+                                        <td>
+                                            <?php echo PHP_OS; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>web环境</td>
+                                        <td>
+                                            <?php $webs=explode(' ',$_SERVER['SERVER_SOFTWARE']);
+                                                echo $webs[0].$webs[1]; ?> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>PHP版本</td>
+                                        <td>
+                                            <?php
+                                              echo PHP_VERSION;  ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>MYSQL版本</td>
+                                        <td>{$mysqlversion}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>上传限制</td>
+                                        <td>
+                                            <?php echo @ini_get('file_uploads') ? ini_get('upload_max_filesize') :'unknown'; ?>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-
-                    <div class="col-xs-12 col-sm-6 col-lg-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-actions"></div>
-                                <i class="fa fa-users"></i> 产品团队
-                            </div>
-                            <div class="panel-body">
-                                <table class="table table-condensed">
-                                    <tbody>
-                                        <tr>
-                                            <td>网站标题</td>
-                                            <td>lyadmin</td>
-                                        </tr>
-                                        <tr>
-                                            <td>lyadmin框架</td>
-                                            <td><a href="http://lyadmin.lyunweb.com">南京科斯克网络科技有限公司</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>官方网址</td>
-                                            <td><a href="http://lyadmin.lyunweb.com">http://lyadmin.lyunweb.com</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>公司地址</td>
-                                            <td>南京市鼓楼区广东路38号</td>
-                                        </tr>
-                                        <tr>
-                                            <td>核心团队</td>
-                                            <td>江如意、赵瀚卿、张玥、潘美红、赵川...</td>
-                                        </tr>
-                                        <tr>
-                                            <td>客服QQ</td>
-                                            <td>209216005</td>
-                                        </tr>
-                                        <tr>
-                                            <td>官方QQ群</td>
-                                            <td>
-                                                <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=f48f78657bc1f0865ebf44059ca3054b1e73e57c6afee2a91ca3e8d49ee07029">
-                                                    <img border="0" src="data:image/png;base64,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" alt="零云交流群" title="零云交流群">
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>联系我们</td>
-                                            <td>
-                                                service@lingyun.net                                                    </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 后台首页小工具 -->
                 </div>
+
+                <div class="col-xs-12 col-sm-6 col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-actions"></div>
+                            <i class="fa fa-users"></i> 产品团队
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-condensed">
+                                <tbody>
+                                    <tr>
+                                        <td>网站标题</td>
+                                        <td>{$config.webname}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>yuncms框架</td>
+                                        <td><a href="http://www.yunalading.com">大冶市云阿拉丁科技有限公司</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>官方网址</td>
+                                        <td><a href="http://www.yunalading.com">http://www.yunalading.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>公司地址</td>
+                                        <td>湖北省黄石市大冶市大冶大道116号</td>
+                                    </tr>
+                                    <tr>
+                                        <td>核心团队</td>
+                                        <td>陈前号、卢超、黄素华、胡应应、罗玉梅...</td>
+                                    </tr>
+                                    <tr>
+                                        <td>客服QQ</td>
+                                        <td>68527761</td>
+                                    </tr>
+                                    <tr>
+                                        <td>官方QQ群</td>
+                                        <td>
+                                            <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=b4336cf6eb00110f80a3641809777ffc175d40ec5379bf6c31f338766627ac0c"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="yuncms" title="yuncms"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>联系我们</td>
+                                        <td>service@yunalading.com</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- 后台首页小工具 -->
             </div>
         </div>
+    </div>

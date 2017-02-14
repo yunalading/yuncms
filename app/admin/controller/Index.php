@@ -17,7 +17,13 @@ use app\admin\model\AdminUserModel;
 
 class Index extends AdminBaseController {
     public function index() {
-        //print_r($this->config);//系统配置项
+        //var_dump(mysql_get_server_info());
+        //查询数据库的版本
+        $mysqlversion=getmysqlversion();
+        if(!$mysqlversion || $mysqlversion==''){
+          $mysqlversion='unknow';
+        }
+        $this->assign('mysqlversion',$mysqlversion);
         return view();
     }
     public function test(){
