@@ -14548,27 +14548,12 @@ tbody.am-collapse.am-in {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
-.header {
-  border-bottom: 1px solid #dedede;
-  padding: 1rem 0;
-}
-.header .logo {
-  width: 200px;
-  vertical-align: bottom;
-}
-@media only screen and (max-width: 640px) {
-  .header .logo {
-    width: 180px;
-  }
-}
-.header .version {
-  margin-left: 1rem;
-  font-size: 1.4rem;
-  color: #dedede;
-}
 .login {
-  width: 70%;
+  width: 400px;
   margin: 10rem auto;
+}
+.login .logo {
+  margin-bottom: 5rem;
 }
 .footer {
   border-top: 1px solid #dedede;
