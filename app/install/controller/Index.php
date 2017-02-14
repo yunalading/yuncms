@@ -18,8 +18,8 @@ use app\common\controller\InstallBaseController;
  * @package app\install\controller
  */
 class Index extends InstallBaseController {
+
     /**
-     * 首页
      * @return \think\response\View
      */
     public function index() {

@@ -13,7 +13,12 @@ namespace app\admin\controller;
 use app\common\controller\AdminBaseController;
 
 class Index extends AdminBaseController {
+
+    /**
+     * @return \think\response\View
+     */
     public function index() {
+
         return view();
     }
 }

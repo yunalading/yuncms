@@ -8,12 +8,15 @@
 // +----------------------------------------------------------------------
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
+
 return [
     '__pattern__' => [
+        'id' => '\d+',
         'name' => '\w+',
     ],
-    '[hello]'     => [
-        ':id'   => ['home/index/index', ['method' => 'get'], ['id' => '\d+']],
-        ':name' => ['home/index/index', ['method' => 'post']],
+    '[hello]' => [
+        ':id' => ['home/index/index', ['method' => 'get']],
+        ':name' => ['home/index/index', ['method' => 'get']],
     ],
+
 ];
