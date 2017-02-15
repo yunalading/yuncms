@@ -4,9 +4,20 @@
 'use strict';
 var $ = (typeof window !== "undefined" ? window['jQuery'] : typeof global !== "undefined" ? global['jQuery'] : null);
 require('../../common/js/captcha');
+require('./manager-box');
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../../common/js/captcha":2}],2:[function(require,module,exports){
+},{"../../common/js/captcha":3,"./manager-box":2}],2:[function(require,module,exports){
+(function (global){
+'use strict';
+var $ = (typeof window !== "undefined" ? window['jQuery'] : typeof global !== "undefined" ? global['jQuery'] : null);
+$(function () {
+    $('.manager-box').css('height',$('body').height()-52);
+    $('#context-page').css('height',$('body').height()-105);
+});
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],3:[function(require,module,exports){
 (function (global){
 'use strict';
 var $ = (typeof window !== "undefined" ? window['jQuery'] : typeof global !== "undefined" ? global['jQuery'] : null);
