@@ -1,58 +1,58 @@
 .step-bar {
-  margin: 2rem 0;
-  .setp-title {
-    h1 {
-      font-size: 6rem;
-      color: @global-secondary;
-    }
-    h3 {
-      color: @global-secondary;
-      font-size: 3.2rem;
-      margin: 0;
-      margin-top: 1rem;
-    }
-    p {
-      margin: 0;
-      color: @global-border-color;
-    }
-  }
-  .step {
-    text-align: center;
-    color: @global-border-color;
-    margin: 0 2rem;
-    @media @small-only{
-      margin: 0;
-    }
-    .am-icon {
-      font-size: 4rem;
-      display: block;
-    }
-    .am-u-sm-3 {
-      padding: 0;
-      &:first-of-type{
-        .line{
-          border-top-left-radius: 50px;
-          border-bottom-left-radius: 50px;
+    margin: 2rem 0;
+    .setp-title {
+        h1 {
+            font-size: 6rem;
+            color: @global-secondary;
         }
-      }
-      &:last-of-type{
-        .line{
-          border-top-right-radius:50px;
-          border-bottom-right-radius: 50px;
+        h3 {
+            color: @global-secondary;
+            font-size: 3.2rem;
+            margin: 0;
+            margin-top: 1rem;
         }
-      }
-      &.am-active {
-        color: @global-primary;
-        .line {
-          background-color: @global-primary;
+        p {
+            margin: 0;
+            color: @global-border-color;
         }
-      }
-      .line {
-        background-color: @global-border-color;
-        height: 1rem;
-        margin: 0.5rem 0;
-      }
+    }
+    .step {
+        text-align: center;
+        color: @global-border-color;
+        margin: 0 2rem;
+        @media @small-only {
+            margin: 0;
+        }
+        .am-icon {
+            font-size: 4rem;
+            display: block;
+        }
+        .am-u-sm-3 {
+            padding: 0;
+            &:first-of-type {
+                .line {
+                    border-top-left-radius: 50px;
+                    border-bottom-left-radius: 50px;
+                }
+            }
+            &:last-of-type {
+                .line {
+                    border-top-right-radius: 50px;
+                    border-bottom-right-radius: 50px;
+                }
+            }
+            &.am-active {
+                color: @global-primary;
+                .line {
+                    background-color: @global-primary;
+                }
+            }
+            .line {
+                background-color: @global-border-color;
+                height: 1rem;
+                margin: 0.5rem 0;
+            }
 
+        }
     }
-  }
 }

@@ -41,6 +41,11 @@
                         <label>密码<span>(请填写密码，密码至少为6个字符)</span></label>
                         <input type="password" class="am-form-field am-radius" placeholder="请填写密码" required minlength="6">
                     </div>
+                    <div class="am-form-group">
+                        <label>验证码<span>(请填写验证码)</span></label>
+                        <input type="password" class="am-form-field am-radius captcha-field" placeholder="请填写验证码" required minlength="6"><img src="{:captcha_src()}" alt="点击刷新" title="点击刷新" />
+                    </div>
+                    {:token()}
                     <p><button class="am-btn am-btn-primary am-radius" type="submit">登录</button>&nbsp;&nbsp;<a href="/" class="am-btn am-btn-default am-radius">返回首页</a></p>
                 </fieldset>
             </form>

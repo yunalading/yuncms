@@ -11,8 +11,8 @@ function forwardTimer() {
     }
 }
 $(function () {
-   if($('#system-message').find('#wait').length > 0){
-       timer = parseInt($('#system-message').find('#wait').html());
-       forwardTimer();
-   }
+    if ($('#system-message').find('#wait').length > 0) {
+        timer = parseInt($('#system-message').find('#wait').html());
+        forwardTimer();
+    }
 });

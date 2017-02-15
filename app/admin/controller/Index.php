@@ -25,8 +25,7 @@ class Index extends AdminBaseController {
     /**
      * @return \think\response\View
      */
-    public function manager(){
-
+    public function manager() {
         return view();
     }
 }

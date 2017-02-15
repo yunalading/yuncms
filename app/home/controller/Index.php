@@ -13,6 +13,9 @@ namespace app\home\controller;
 use app\common\controller\HomeBaseController;
 
 class Index extends HomeBaseController {
+    /**
+     * @return string
+     */
     public function index() {
         return "ThinkPHP";
     }
