@@ -6,6 +6,7 @@
     }
     .am-form-group {
         label {
+            display: block;
             span {
                 font-weight: 400;
                 font-size: 1.4rem;
@@ -19,6 +20,14 @@
                 }
 
             }
+        }
+        .captcha-field {
+            width: 250px;
+            display: inline-block;
+        }
+        #captcha {
+            float: right;
+            border: 1px solid @global-border-color;
         }
     }
 }

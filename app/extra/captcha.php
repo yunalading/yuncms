@@ -16,7 +16,7 @@ return [
     // 是否画混淆曲线
     'useCurve' => false,
     // 验证码图片高度
-    'imageH' => 37,
+    'imageH' => 35,
     // 验证码图片宽度
     'imageW' => 120,
     // 验证码位数

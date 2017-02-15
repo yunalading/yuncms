@@ -14555,6 +14555,9 @@ tbody.am-collapse.am-in {
 .login .logo {
   margin-bottom: 5rem;
 }
+.login .am-form-group label {
+  display: block;
+}
 .login .am-form-group label span {
   font-weight: 400;
   font-size: 1.4rem;
@@ -14562,6 +14565,14 @@ tbody.am-collapse.am-in {
 }
 .login .am-form-group.am-form-error label span {
   display: inline-block;
+}
+.login .am-form-group .captcha-field {
+  width: 250px;
+  display: inline-block;
+}
+.login .am-form-group #captcha {
+  float: right;
+  border: 1px solid #dedede;
 }
 .footer {
   border-top: 1px solid #dedede;
