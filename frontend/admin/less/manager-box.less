@@ -1,0 +1,41 @@
+.manager-box {
+    height: 100%;
+    .manager-leftbar {
+        height: 100%;
+        .sidebar {
+            min-height: 100%;
+            width: 200px;
+            border-right: 1px solid #dedede;
+            .am-list li {
+                padding-left: 10px;
+                &:first-of-type{
+                    border-top: none;
+                }
+            }
+        }
+    }
+    .manager-context {
+        height: 100%;
+        margin-left: 201px;
+        min-width: 1399px;
+        display: block;
+        .am-breadcrumb {
+            background-color: #FFFFFF;
+            left: 201px;
+            width: 100%;
+            z-index: 99;
+        }
+        .manager-context-page {
+            left: 201px;
+            iframe{
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+}
+.manager-context-body{
+    height: 100%;
+    overflow-y: auto;
+    padding: 10px 10px 0 10px;
+}

@@ -26,6 +26,14 @@ class Index extends AdminBaseController {
      * @return \think\response\View
      */
     public function manager() {
+        $this->assign('menus',json_encode(config('authorization')));
+        return view();
+    }
+
+    /**
+     * @return \think\response\View
+     */
+    public function welcome() {
         return view();
     }
 }
