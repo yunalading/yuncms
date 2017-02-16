@@ -11,6 +11,7 @@
 namespace app\home\controller;
 
 use app\common\controller\HomeBaseController;
+use think\exception\HttpException;
 
 class Index extends HomeBaseController {
     /**

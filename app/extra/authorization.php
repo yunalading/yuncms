@@ -25,7 +25,7 @@ return [
             'name' => '内容',
             'submenus' => [
                 [
-                    'id' => '',
+                    'id' => 'content-list',
                     'name' => '内容列表',
                     'href' => ''
                 ]
@@ -35,7 +35,7 @@ return [
             'name' => '用户',
             'submenus' => [
                 [
-                    'id' => '',
+                    'id' => 'user-list',
                     'name' => '用户列表',
                     'href' => ''
                 ]
@@ -45,7 +45,7 @@ return [
             'name' => '专题',
             'submenus' => [
                 [
-                    'id' => '',
+                    'id' => 'subject-list',
                     'name' => '专题列表',
                     'href' => ''
                 ]
@@ -116,28 +116,28 @@ return [
                     'id' => '',
                     'name' => '基本信息',
                 ], [
-                    'id' => 'nav',
+                    'id' => 'nav-manager',
                     'name' => '导航管理',
                 ], [
-                    'id' => '',
+                    'id' => 'email-config',
                     'name' => '邮件配置',
                 ], [
-                    'id' => '',
+                    'id' => 'sms-config',
                     'name' => '短信配置',
                 ], [
-                    'id' => '',
+                    'id' => 'oauth-login',
                     'name' => '集成登录',
                     'submenus' => [
                         [
-                            'id' => '',
+                            'id' => 'qq-login',
                             'name' => 'QQ',
                             'href' => ''
                         ], [
-                            'id' => '',
+                            'id' => 'wechat-login',
                             'name' => '微信',
                             'href' => ''
                         ], [
-                            'id' => '',
+                            'id' => 'sina-weibo-login',
                             'name' => '新浪微博',
                             'href' => ''
                         ]
@@ -157,7 +157,7 @@ return [
                         ]
                     ]
                 ], [
-                    'id' => '',
+                    'id' => 'area-manager',
                     'name' => '地区管理',
                 ], [
                     'id' => '',
