@@ -3,7 +3,10 @@
     <!-- 面包屑导航 -->
     <ul class="breadcrumb">
         <li><i class="fa fa-map-marker"></i></li>
-        <li class="text-muted">首页</li>
+        <!-- <li class="text-muted">首页</li> -->
+        {foreach $positionlink as $vo}
+        <li class="text-muted">{$vo.title}</li>
+        {/foreach}
     </ul>
 
     <!-- 多标签后台内容部分 -->

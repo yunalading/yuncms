@@ -1,28 +1,29 @@
-          <div class="clearfix footer">
-              <div class="navbar navbar-default" role="navigation">
-                  <div class="container-fluid">
-                      <div class="navbar-header">
-                          <a class="navbar-brand" target="_blank" href="/">
-                              <span><b><span style="color: #2699ed;">yuncms</span></b></span>
-                          </a>
-                      </div>
-                      <div class="collapse navbar-collapse navbar-collapse-bottom">
-                          <ul class="nav navbar-nav">
-                              <li>
-                                  <a href="/index.php/admin/index/index" class="text-muted" target="_blank">
-                                      <span>版权所有 © 2014-2017</span>
-                                  </a>
-                              </li>
-                          </ul>
-                          <ul class="nav navbar-nav navbar-right">
-                              <li><a class="text-muted pull-right">框架开发：大冶市云阿拉丁科技有限公司</a></li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-          </div>
+<div class="clearfix footer">
+    <div class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" target="_blank" href="/">
+                    <span><b><span style="color: #2699ed;">yuncms</span></b>
+                    </span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse navbar-collapse-bottom">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="{:U('admin/index/index')}" class="text-muted" target="_blank">
+                            <span>版权所有 © 2014-2017</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="text-muted pull-right">框架开发：大冶市云阿拉丁科技有限公司</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
-      </div>
+</div>
 </div>
 </div>
 
@@ -33,25 +34,42 @@
 </div>
 
 <div class="clearfix full-script">
-<div class="container-fluid">
-<input type="hidden" id="corethink_home_img" value="http://www.houtai.com/Application/Home/View/Public/img">
-<script type="text/javascript" src="http://www.houtai.com/Public/libs/lyui/dist/js/lyui.min.js"></script>
-<script type="text/javascript" src="http://www.houtai.com/Application/Admin/View/Public/js/admin.js"></script>
-<script type="text/javascript">
-// 如果是多标签方式自动跳转后台首页
-var admin_tabs = '';
-if(admin_tabs == '1' && !(self.frameElement != null && (self.frameElement.tagName == "IFRAME" || self.frameElement.tagName == "iframe"))){
-    parent.parent.location = "/index.php/admin/index/index";
-}
-if(admin_tabs == '0' && (self.frameElement != null && (self.frameElement.tagName == "IFRAME" || self.frameElement.tagName == "iframe"))){
-    parent.parent.location = "/index.php/admin/index/index";
-}
-</script>
+    <div class="container-fluid">
+        <input type="hidden" id="corethink_home_img" value="/static/admin/images">
+        <script type="text/javascript" src="/static/admin/js/lyui.min.js"></script>
+        <script type="text/javascript" src="/static/admin/js/admin_cqh.js"></script>
+        <script type="text/javascript">
+            // 如果是多标签方式自动跳转后台首页
+            // var admin_tabs = '';
+            // if (admin_tabs == '1' && !(self.frameElement != null && (self.frameElement.tagName == "IFRAME" || self.frameElement.tagName == "iframe"))) {
+            //     parent.parent.location = "/index.php/admin/index/index";
+            // }
+            // if (admin_tabs == '0' && (self.frameElement != null && (self.frameElement.tagName == "IFRAME" || self.frameElement.tagName == "iframe"))) {
+            //     parent.parent.location = "/index.php/admin/index/index";
+            // }
+        </script>
+        <script type="text/javascript" src="/static/admin/js/lyui.extend.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                //给数组增加查找指定的元素索引方法
+                Array.prototype.indexOf = function(val) {
+                    for (var i = 0; i < this.length; i++) {
+                        if (this[i] == val) return i;
+                    }
+                    return -1;
+                };
 
-</div>
+                //给数组增加删除方法
+                Array.prototype.remove = function(val) {
+                    var index = this.indexOf(val);
+                    if (index > -1) {
+                        this.splice(index, 1);
+                    }
+                };
+            });
+        </script>
+    </div>
 </div>
 </body>
+
 </html>
-<!-- <script type="text/javascript">
-var PARSE_VAR = {"_menu_list":{"Admin":{"pid":"0","title":"\u7cfb\u7edf","icon":"fa fa-cog","level":"system","id":"1","_child":[{"pid":"1","title":"\u7cfb\u7edf\u529f\u80fd","icon":"fa fa-folder-open-o","id":"2","_child":[{"pid":"2","title":"\u7cfb\u7edf\u8bbe\u7f6e","icon":"fa fa-wrench","url":"Admin\/Config\/group","id":"3","_child":[{"pid":"3","title":"\u4fee\u6539\u8bbe\u7f6e","url":"Admin\/Config\/groupSave","id":"4"}]},{"pid":"2","title":"\u5bfc\u822a\u7ba1\u7406","icon":"fa fa-map-signs","url":"Admin\/Nav\/index","id":"5","_child":[{"pid":"5","title":"\u65b0\u589e","url":"Admin\/Nav\/add","id":"6"},{"pid":"5","title":"\u7f16\u8f91","url":"Admin\/Nav\/edit","id":"7"},{"pid":"5","title":"\u8bbe\u7f6e\u72b6\u6001","url":"Admin\/Nav\/setStatus","id":"8"}]},{"pid":"2","title":"\u914d\u7f6e\u7ba1\u7406","icon":"fa fa-cogs","url":"Admin\/Config\/index","id":"13","_child":[{"pid":"13","title":"\u65b0\u589e","url":"Admin\/Config\/add","id":"14"},{"pid":"13","title":"\u7f16\u8f91","url":"Admin\/Config\/edit","id":"15"},{"pid":"13","title":"\u8bbe\u7f6e\u72b6\u6001","url":"Admin\/Config\/setStatus","id":"16"}]},{"pid":"2","title":"\u4e0a\u4f20\u7ba1\u7406","icon":"fa fa-upload","url":"Admin\/Upload\/index","id":"17","_child":[{"pid":"17","title":"\u4e0a\u4f20\u6587\u4ef6","url":"Admin\/Upload\/upload","id":"18"},{"pid":"17","title":"\u5220\u9664\u6587\u4ef6","url":"Admin\/Upload\/delete","id":"19"},{"pid":"17","title":"\u8bbe\u7f6e\u72b6\u6001","url":"Admin\/Upload\/setStatus","id":"20"},{"pid":"17","title":"\u4e0b\u8f7d\u8fdc\u7a0b\u56fe\u7247","url":"Admin\/Upload\/downremoteimg","id":"21"},{"pid":"17","title":"\u6587\u4ef6\u6d4f\u89c8","url":"Admin\/Upload\/fileManager","id":"22"}]}]},{"pid":"1","title":"\u7cfb\u7edf\u6743\u9650","icon":"fa fa-folder-open-o","id":"23","_child":[{"pid":"23","title":"\u7528\u6237\u7ba1\u7406","icon":"fa fa-user","url":"Admin\/User\/index","id":"24","_child":[{"pid":"24","title":"\u65b0\u589e","url":"Admin\/User\/add","id":"25"},{"pid":"24","title":"\u7f16\u8f91","url":"Admin\/User\/edit","id":"26"},{"pid":"24","title":"\u8bbe\u7f6e\u72b6\u6001","url":"Admin\/User\/setStatus","id":"27"}]},{"pid":"23","title":"\u7ba1\u7406\u5458\u7ba1\u7406","icon":"fa fa-lock","url":"Admin\/Access\/index","id":"28","_child":[{"pid":"28","title":"\u65b0\u589e","url":"Admin\/Access\/add","id":"29"},{"pid":"28","title":"\u7f16\u8f91","url":"Admin\/Access\/edit","id":"30"},{"pid":"28","title":"\u8bbe\u7f6e\u72b6\u6001","url":"Admin\/Access\/setStatus","id":"31"}]},{"pid":"23","title":"\u7528\u6237\u7ec4\u7ba1\u7406","icon":"fa fa-sitemap","url":"Admin\/Group\/index","id":"32","_child":[{"pid":"32","title":"\u65b0\u589e","url":"Admin\/Group\/add","id":"33"},{"pid":"32","title":"\u7f16\u8f91","url":"Admin\/Group\/edit","id":"34"},{"pid":"32","title":"\u8bbe\u7f6e\u72b6\u6001","url":"Admin\/Group\/setStatus","id":"35"}]}]},{"pid":"1","title":"\u6269\u5c55\u4e2d\u5fc3","icon":"fa fa-folder-open-o","id":"36","_child":[{"pid":"36","title":"\u529f\u80fd\u6a21\u5757","icon":"fa fa-th-large","url":"Admin\/Module\/index","id":"44","_child":[{"pid":"44","title":"\u5b89\u88c5","url":"Admin\/Module\/install","id":"45"},{"pid":"44","title":"\u5378\u8f7d","url":"Admin\/Module\/uninstall","id":"46"},{"pid":"44","title":"\u66f4\u65b0\u4fe1\u606f","url":"Admin\/Module\/updateInfo","id":"47"},{"pid":"44","title":"\u8bbe\u7f6e\u72b6\u6001","url":"Admin\/Module\/setStatus","id":"48"}]},{"pid":"36","title":"\u63d2\u4ef6\u7ba1\u7406","icon":"fa fa-th","url":"Admin\/Addon\/index","id":"49","_child":[{"pid":"49","title":"\u5b89\u88c5","url":"Admin\/Addon\/install","id":"50"},{"pid":"49","title":"\u5378\u8f7d","url":"Admin\/Addon\/uninstall","id":"51"},{"pid":"49","title":"\u8fd0\u884c","url":"Admin\/Addon\/execute","id":"52"},{"pid":"49","title":"\u8bbe\u7f6e","url":"Admin\/Addon\/config","id":"53"},{"pid":"49","title":"\u540e\u53f0\u7ba1\u7406","url":"Admin\/Addon\/adminList","id":"54","_child":[{"pid":"54","title":"\u65b0\u589e\u6570\u636e","url":"Admin\/Addon\/adminAdd","id":"55"},{"pid":"54","title":"\u7f16\u8f91\u6570\u636e","url":"Admin\/Addon\/adminEdit","id":"56"},{"pid":"54","title":"\u8bbe\u7f6e\u72b6\u6001","url":"Admin\/Addon\/setStatus","id":"57"}]}]}]}],"name":"Admin"}},"_current_menu_list":{"pid":"0","title":"\u7cfb\u7edf","icon":"fa fa-cog","level":"system","id":"1","_child":[{"pid":"1","title":"\u7cfb\u7edf\u529f\u80fd","icon":"fa fa-folder-open-o","id":"2","_child":[{"pid":"2","title":"\u7cfb\u7edf\u8bbe\u7f6e","icon":"fa fa-wrench","url":"Admin\/Config\/group","id":"3","_child":[{"pid":"3","title":"\u4fee\u6539\u8bbe\u7f6e","url":"Admin\/Config\/groupSave","id":"4"}]},{"pid":"2","title":"\u5bfc\u822a\u7ba1\u7406","icon":"fa fa-map-signs","url":"Admin\/Nav\/index","id":"5","_child":[{"pid":"5","title":"\u65b0\u589e","url":"Admin\/Nav\/add","id":"6"},{"pid":"5","title":"\u7f16\u8f91","url":"Admin\/Nav\/edit","id":"7"},{"pid":"5","title":"\u8bbe\u7f6e\u72b6\u6001","url":"Admin\/Nav\/setStatus","id":"8"}]},{"pid":"2","title":"\u914d\u7f6e\u7ba1\u7406","icon":"fa fa-cogs","url":"Admin\/Config\/index","id":"13","_child":[{"pid":"13","title":"\u65b0\u589e","url":"Admin\/Config\/add","id":"14"},{"pid":"13","title":"\u7f16\u8f91","url":"Admin\/Config\/edit","id":"15"},{"pid":"13","title":"\u8bbe\u7f6e\u72b6\u6001","url":"Admin\/Config\/setStatus","id":"16"}]},{"pid":"2","title":"\u4e0a\u4f20\u7ba1\u7406","icon":"fa fa-upload","url":"Admin\/Upload\/index","id":"17","_child":[{"pid":"17","title":"\u4e0a\u4f20\u6587\u4ef6","url":"Admin\/Upload\/upload","id":"18"},{"pid":"17","title":"\u5220\u9664\u6587\u4ef6","url":"Admin\/Upload\/delete","id":"19"},{"pid":"17","title":"\u8bbe\u7f6e\u72b6\u6001","url":"Admin\/Upload\/setStatus","id":"20"},{"pid":"17","title":"\u4e0b\u8f7d\u8fdc\u7a0b\u56fe\u7247","url":"Admin\/Upload\/downremoteimg","id":"21"},{"pid":"17","title":"\u6587\u4ef6\u6d4f\u89c8","url":"Admin\/Upload\/fileManager","id":"22"}]}]},{"pid":"1","title":"\u7cfb\u7edf\u6743\u9650","icon":"fa fa-folder-open-o","id":"23","_child":[{"pid":"23","title":"\u7528\u6237\u7ba1\u7406","icon":"fa fa-user","url":"Admin\/User\/index","id":"24","_child":[{"pid":"24","title":"\u65b0\u589e","url":"Admin\/User\/add","id":"25"},{"pid":"24","title":"\u7f16\u8f91","url":"Admin\/User\/edit","id":"26"},{"pid":"24","title":"\u8bbe\u7f6e\u72b6\u6001","url":"Admin\/User\/setStatus","id":"27"}]},{"pid":"23","title":"\u7ba1\u7406\u5458\u7ba1\u7406","icon":"fa fa-lock","url":"Admin\/Access\/index","id":"28","_child":[{"pid":"28","title":"\u65b0\u589e","url":"Admin\/Access\/add","id":"29"},{"pid":"28","title":"\u7f16\u8f91","url":"Admin\/Access\/edit","id":"30"},{"pid":"28","title":"\u8bbe\u7f6e\u72b6\u6001","url":"Admin\/Access\/setStatus","id":"31"}]},{"pid":"23","title":"\u7528\u6237\u7ec4\u7ba1\u7406","icon":"fa fa-sitemap","url":"Admin\/Group\/index","id":"32","_child":[{"pid":"32","title":"\u65b0\u589e","url":"Admin\/Group\/add","id":"33"},{"pid":"32","title":"\u7f16\u8f91","url":"Admin\/Group\/edit","id":"34"},{"pid":"32","title":"\u8bbe\u7f6e\u72b6\u6001","url":"Admin\/Group\/setStatus","id":"35"}]}]},{"pid":"1","title":"\u6269\u5c55\u4e2d\u5fc3","icon":"fa fa-folder-open-o","id":"36","_child":[{"pid":"36","title":"\u529f\u80fd\u6a21\u5757","icon":"fa fa-th-large","url":"Admin\/Module\/index","id":"44","_child":[{"pid":"44","title":"\u5b89\u88c5","url":"Admin\/Module\/install","id":"45"},{"pid":"44","title":"\u5378\u8f7d","url":"Admin\/Module\/uninstall","id":"46"},{"pid":"44","title":"\u66f4\u65b0\u4fe1\u606f","url":"Admin\/Module\/updateInfo","id":"47"},{"pid":"44","title":"\u8bbe\u7f6e\u72b6\u6001","url":"Admin\/Module\/setStatus","id":"48"}]},{"pid":"36","title":"\u63d2\u4ef6\u7ba1\u7406","icon":"fa fa-th","url":"Admin\/Addon\/index","id":"49","_child":[{"pid":"49","title":"\u5b89\u88c5","url":"Admin\/Addon\/install","id":"50"},{"pid":"49","title":"\u5378\u8f7d","url":"Admin\/Addon\/uninstall","id":"51"},{"pid":"49","title":"\u8fd0\u884c","url":"Admin\/Addon\/execute","id":"52"},{"pid":"49","title":"\u8bbe\u7f6e","url":"Admin\/Addon\/config","id":"53"},{"pid":"49","title":"\u540e\u53f0\u7ba1\u7406","url":"Admin\/Addon\/adminList","id":"54","_child":[{"pid":"54","title":"\u65b0\u589e\u6570\u636e","url":"Admin\/Addon\/adminAdd","id":"55"},{"pid":"54","title":"\u7f16\u8f91\u6570\u636e","url":"Admin\/Addon\/adminEdit","id":"56"},{"pid":"54","title":"\u8bbe\u7f6e\u72b6\u6001","url":"Admin\/Addon\/setStatus","id":"57"}]}]}]}],"name":"Admin"},"_parent_menu_list":false,"meta_title":"\u9996\u9875","meta_description":"lyadmin\u662f\u4e00\u5957\u8f7b\u91cf\u7ea7\u901a\u7528\u540e\u53f0\uff0c\u8ffd\u6c42\u7b80\u5355\u3001\u9ad8\u6548\u3001\u5353\u8d8a\u3002","_new_message":null,"_user_auth":{"uid":"1","username":"admin","nickname":"\u8d85\u7ea7\u7ba1\u7406\u5458","avatar":"0"},"_user_nav_main":[],"_user_center_side":".\/Application\/User\/View\/Index\/side.html","_user_center_info":".\/Application\/User\/View\/Index\/info.html","_admin_public_layout":".\/Application\/Admin\/View\/Public\/layout.html","_home_public_layout":".\/Application\/Home\/View\/Public\/layout.html","_home_public_modal":".\/Application\/Home\/View\/Public\/modal.html","_listbuilder_layout":".\/Application\/Common\/Builder\/listbuilder.html","_formbuilder_layout":".\/Application\/Common\/Builder\/formbuilder.html","_info_layout":".\/Application\/Admin\/View\/Public\/layout.html","_page_name":"admin_index_index","_current_module":"\u7cfb\u7edf"};
-</script> -->

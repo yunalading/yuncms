@@ -16,6 +16,10 @@ use app\common\controller\AdminBaseController;
 use app\admin\model\AdminUserModel;
 
 class Index extends AdminBaseController {
+  /**
+   * 欢迎页面
+   * @author [chenqianhao] <68527761@qq.com>
+  */
     public function index() {
         //var_dump(mysql_get_server_info());
         //查询数据库的版本
@@ -26,6 +30,10 @@ class Index extends AdminBaseController {
         $this->assign('mysqlversion',$mysqlversion);
         return view();
     }
+    /**
+     * 测试
+     * @author [chenqianhao] <68527761@qq.com>
+    */
     public function test(){
       return 'Hello world!';
     }

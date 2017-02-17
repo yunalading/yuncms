@@ -9,6 +9,10 @@
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
 
+/**
+ * [获取数据库的版本]
+ * @return [string] [数据库版本]
+ */
 function getmysqlversion(){
     $sql="select version() as version";
     $a=\think\Db::query($sql);

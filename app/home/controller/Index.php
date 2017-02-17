@@ -14,6 +14,7 @@ use app\common\controller\HomeBaseController;
 
 class Index extends HomeBaseController {
     public function index() {
+        //var_dump(GetPositionLink());
         return view();
     }
 }

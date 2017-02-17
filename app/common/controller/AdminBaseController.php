@@ -31,7 +31,9 @@ abstract class AdminBaseController extends BaseController {
         }
         if (!in_array($url, array('admin/index/login', 'admin/index/logout', 'admin/index/verify'))) {
             // 是否是超级管理员
-            define('IS_ROOT', $this->is_administrator());
+            if(!defined('IS_ROOT')){
+              define('IS_ROOT', $this->is_administrator());
+            }
             // 检测系统权限
             if (!IS_ROOT) {
                 $access = $this->accessControl();
@@ -62,6 +64,17 @@ abstract class AdminBaseController extends BaseController {
                         $this->assign('errors',$errors);
                     }
                 }
+            }
+            $positionlink=GetPositionLink();//后台的菜单的当前位置
+            if($positionlink){
+              $this->assign('positionlink',$positionlink);
+            }else{
+              if(session('positionlinkurl') && session('positionlinkurl')!=''){
+                $positionlink=GetPositionLink(session('positionlinkurl'));
+                if($positionlink){
+                  $this->assign('positionlink',$positionlink);
+                }
+              }
             }
             //菜单设置
             $this->setMenu();
@@ -208,6 +221,5 @@ abstract class AdminBaseController extends BaseController {
       $this->assign('config', $config);
       return $config;
     }
-
 
 }
