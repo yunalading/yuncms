@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `yc_admin_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `yc_admin_user` (
-  `aid` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT ' 管理员标识',
+  `aid` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '管理员标识',
   `aname` varchar(60) NOT NULL DEFAULT '' COMMENT '管理员用户名',
   `password` varchar(32) NOT NULL DEFAULT '' COMMENT '登录密码',
   `salt` smallint(4) unsigned NOT NULL DEFAULT '3306' COMMENT '密码组合加密字段',
@@ -39,7 +39,7 @@ CREATE TABLE `yc_admin_user` (
   UNIQUE KEY `管理员用户名` (`aname`),
   UNIQUE KEY `管理员邮箱` (`email`),
   UNIQUE KEY `管理员手机号` (`phone`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='管理员用户';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='管理员用户';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,7 +48,7 @@ CREATE TABLE `yc_admin_user` (
 
 LOCK TABLES `yc_admin_user` WRITE;
 /*!40000 ALTER TABLE `yc_admin_user` DISABLE KEYS */;
-INSERT INTO `yc_admin_user` VALUES (1,'admin','45a1a3e33cf2739383ee9cd6e512e8a4',3306,'68527761@qq.com','18671418772','',1486964432,'127.0.0.1',0,0,1486707687);
+INSERT INTO `yc_admin_user` VALUES (1,'admin','45a1a3e33cf2739383ee9cd6e512e8a4',3306,'68527761@qq.com','18671418772','',1487297618,'127.0.0.1',0,0,1486707687);
 /*!40000 ALTER TABLE `yc_admin_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,20 +56,21 @@ UNLOCK TABLES;
 -- Table structure for table `yc_adminlog`
 --
 
-DROP TABLE IF EXISTS `yc_adminlog`;
+DROP TABLE IF EXISTS `yc_admin_log`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `yc_adminlog` (
-  `log_id` int(11) NOT NULL,
+CREATE TABLE `yc_admin_log` (
+  `log_id` int(11)  NOT NULL AUTO_INCREMENT COMMENT '日志自增标识',
   `log_aid` int(11) unsigned zerofill NOT NULL COMMENT '操作的管理员标识',
   `log_action` varchar(150) NOT NULL DEFAULT '' COMMENT '操作的控制器和方法',
   `log_value` varchar(30) NOT NULL DEFAULT '' COMMENT '操作该动作的英文标识',
-  `log_desc` text NOT NULL COMMENT '中文描述',
-  `log_remark` text NOT NULL COMMENT '其它备注',
+  `log_desc` text NOT NULL DEFAULT '' COMMENT '中文描述',
+  `log_remark` text NOT NULL DEFAULT '' COMMENT '其它备注',
   `log_addtime` int(11) unsigned zerofill NOT NULL DEFAULT '00000000000' COMMENT '日志添加时间',
   `log_del` tinyint(1) unsigned zerofill NOT NULL DEFAULT '0' COMMENT '是否删除1删除0未删除',
-  `log_addip` varchar(15) NOT NULL DEFAULT '' COMMENT '记录操作ip'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='后台管理员操作日志';
+  `log_addip` varchar(15) NOT NULL DEFAULT '' COMMENT '记录操作ip',
+  PRIMARY KEY (`log_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='后台管理员操作日志';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,15 +97,15 @@ CREATE TABLE `yc_article` (
   `art_thumb` varchar(100) NOT NULL COMMENT '缩略图',
   `art_content` text NOT NULL COMMENT '内容',
   `art_addtime` int(11) unsigned NOT NULL COMMENT '发布时间',
-  `art_author` varchar(50) NOT NULL COMMENT '作者',
+  `art_author` varchar(50) NOT NULL COMMENT '文章作者',
   `art_view` int(11) unsigned NOT NULL COMMENT '查看次数',
-  `cate_id` varchar(100) NOT NULL COMMENT '所属栏目的cate_id,多个栏目用'',''号隔开',
-  `art_status` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0正常显示，1隐藏',
+  `art_cate_id` varchar(100) NOT NULL COMMENT '所属栏目的cate_id,多个栏目用逗号(,)隔开',
+  `art_status` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '文章显示状态：0正常显示，1隐藏',
   `art_order` tinyint(5) unsigned NOT NULL DEFAULT '100' COMMENT '文章排序',
-  `art_module` varchar(255) NOT NULL COMMENT '模板指定模型,没指定用上级栏目的',
+  `art_module` varchar(255) NOT NULL COMMENT '模板指定模型,没指定默认用上级栏目的',
   `art_template` varchar(50) NOT NULL COMMENT '文章模板',
   PRIMARY KEY (`atr_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文章内容表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文章内容表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -176,18 +177,19 @@ DROP TABLE IF EXISTS `yc_auth_rule`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `yc_auth_rule` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT COMMENT '规则id,自增主键',
-  `module` varchar(20) NOT NULL DEFAULT '' COMMENT '规则所属module',
+  `module` varchar(30) NOT NULL DEFAULT '' COMMENT '规则所属模型',
   `type` tinyint(2) NOT NULL DEFAULT '1' COMMENT '1-url规则;2-主菜单',
-  `name` char(80) NOT NULL DEFAULT '' COMMENT '规则唯一英文标识',
-  `title` char(20) NOT NULL DEFAULT '' COMMENT '规则中文描述',
-  `group` char(20) NOT NULL DEFAULT '' COMMENT '权限节点分组',
-  `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `name` varchar(80) NOT NULL DEFAULT '' COMMENT '规则唯一英文标识',
+  `title` varchar(20) NOT NULL DEFAULT '' COMMENT '规则中文描述',
+  `group` varchar(20) NOT NULL DEFAULT '' COMMENT '权限节点分组',
+  `addtime` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否有效(0:无效,1:有效)',
-  `sort` int(5) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
-  `condition` varchar(300) NOT NULL DEFAULT '' COMMENT '规则附加条件',
+  `sort` int(5) unsigned NOT NULL DEFAULT '100' COMMENT '排序',
+  `condition` text NOT NULL DEFAULT '' COMMENT '规则附加条件',
   PRIMARY KEY (`id`),
+  UNIQUE KEY `规则唯一英文标识` (`name`),
   KEY `module` (`module`,`status`,`type`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,11 +214,12 @@ CREATE TABLE `yc_autoconfig` (
   `conf_name` varchar(50) NOT NULL DEFAULT '' COMMENT '变量名',
   `conf_value` text NOT NULL COMMENT '变量值',
   `conf_order` int(5) unsigned NOT NULL DEFAULT '100' COMMENT '排序',
-  `conf_tips` varchar(150) NOT NULL DEFAULT '' COMMENT '描述',
+  `conf_tips` varchar(150) NOT NULL DEFAULT '' COMMENT '描述说明',
+  `conf_type` tinyint(1) unsigned zerofill NOT NULL DEFAULT '0' COMMENT '类型0配置项1模型',
+  `conf_mid` int(11) unsigned DEFAULT '0' COMMENT '如果type=1,此处对应yc_module表的mid',
+  `conf_addtime` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
   `field_type` varchar(50) NOT NULL DEFAULT '' COMMENT '字段类型',
   `field_value` varchar(255) NOT NULL DEFAULT '' COMMENT '类型值(如field_type值为"radio"时field_value可设为 "1|开启,0|关闭")',
-  `type` tinyint(1) unsigned zerofill NOT NULL DEFAULT '0' COMMENT '类型0配置项1模型',
-  `mid` int(11) unsigned DEFAULT '0' COMMENT '如果type=1,此处对应yc_module表的mid',
   PRIMARY KEY (`conf_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='自定义配置项';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -397,7 +400,7 @@ CREATE TABLE `yc_menu` (
   `pid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '上级分类ID',
   `sort` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '排序（同级有效）',
   `url` char(255) NOT NULL DEFAULT '' COMMENT '链接地址',
-  `hide` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否隐藏',
+  `hide` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否隐藏0显示1隐藏',
   `tip` varchar(255) NOT NULL DEFAULT '' COMMENT '提示',
   `group` varchar(50) DEFAULT '' COMMENT '分组',
   `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间',
@@ -406,7 +409,7 @@ CREATE TABLE `yc_menu` (
   PRIMARY KEY (`id`),
   KEY `pid` (`pid`),
   KEY `status` (`status`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='后台菜单管理';
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='后台菜单管理';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -415,7 +418,7 @@ CREATE TABLE `yc_menu` (
 
 LOCK TABLES `yc_menu` WRITE;
 /*!40000 ALTER TABLE `yc_menu` DISABLE KEYS */;
-INSERT INTO `yc_menu` VALUES (1,'后台首页','admin','',0,1,'admin/index/index',0,'','',1486800730,0,0),(2,'系统管理','admin','',0,2,'admin/system/index',0,'','',1486800730,0,0),(3,'栏目管理','admin','',0,3,'admin/category/index',0,'','',1486800730,0,0),(4,'内容管理','admin','',0,4,'admin/artice/index',0,'','',1486800730,0,0),(5,'模型管理','admin','',0,5,'admin/module/index',0,'','',1486800730,0,0),(6,'权限管理','admin','',0,6,'admin/sysauth/index',0,'','',1486800730,0,0),(7,'菜单管理','admin','',0,7,'admin/menu/index',0,'','',1486800730,0,0),(8,'用户管理','admin','',0,8,'admin/user/index',0,'','',1486800730,0,0),(9,'扩展管理','admin','',0,9,'admin/extend/index',0,'','',1486800730,0,0);
+INSERT INTO `yc_menu` VALUES (1,'后台首页','admin','',0,1,'admin/index/index',0,'','',1486800730,0,0),(2,'系统管理','admin','',0,2,'',0,'','',1486800730,0,0),(3,'栏目管理','admin','',0,3,'',0,'','',1486800730,0,0),(4,'内容管理','admin','',0,4,'',0,'','',1486800730,0,0),(5,'模型管理','admin','',0,5,'',0,'','',1486800730,0,0),(6,'权限管理','admin','',0,6,'',0,'','',1486800730,0,0),(7,'菜单管理','admin','',0,7,'',0,'','',1486800730,0,0),(8,'用户管理','admin','',0,8,'',0,'','',1486800730,0,0),(9,'扩展管理','admin','',0,9,'',0,'','',1486800730,0,0),(10,'管理员','admin','',8,10,'admin/user/index',0,'','',1486800730,0,0),(11,'管理组','admin','',8,11,'admin/user/group',0,'','',1486800730,0,0),(12,'后台菜单','admin','',7,12,'admin/menu/index',0,'','',1486800730,0,0),(13,'前台菜单','admin','',7,13,'admin/menu/home',1,'','',1486800730,0,0);
 /*!40000 ALTER TABLE `yc_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -486,4 +489,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-13 13:45:54
+-- Dump completed on 2017-02-17 10:57:03

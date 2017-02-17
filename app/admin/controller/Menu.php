@@ -25,7 +25,7 @@ class Menu extends AdminBaseController {
     $param=$request->param();
     if(isset($param['keyword']) && trim($param['keyword'])!=''){
       $keyword=trim($param['keyword']);
-      $where['']=;
+      $where['title']= array('like','%'.$keyword.'%');
     }
     $menus = new MenuModel();
     $where['status']=0;
@@ -34,7 +34,6 @@ class Menu extends AdminBaseController {
     $this->assign('menulist',$menulist);
     return $this->fetch();
   }
-
 
   //get
   public function read($id){
@@ -74,6 +73,8 @@ class Menu extends AdminBaseController {
   }
   //get
   public function edit($id=0){
+      echo $id;
+      die();
       if($id && $id>0){
           $row=Menu::where('id',$id)->find();
           $menus_one=$this->get_menu_shangji();
@@ -109,6 +110,8 @@ class Menu extends AdminBaseController {
   }
   //delete
   public function delete($id=0){
+    echo $id;
+    die();
       $request = Request::instance()->param();
       //有子菜单的菜单不能删除
       $child_count = Menu::where('pid',$request['id'])->count();

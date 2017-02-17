@@ -14,9 +14,6 @@
         <div class="panel-body">
             <div class="builder listbuilder-box">
                 <!-- Tab导航 -->
-
-
-
                 <!-- 顶部工具栏按钮 -->
                 <div class="builder-toolbar">
                     <div class="row">
@@ -83,9 +80,8 @@
                                                 </td>
                                                 <td>
                                                     <!-- <a class="label label-warning" href="#">超级管理员无需操作</a> -->
-                                                    <a name="edit" title="编辑" class="label label-primary-outline label-pill" href="/admin.php?s=/Admin/Group/edit/id/2.html">编辑</a>
-
-                                                    <a name="delete" title="删除" class="label label-danger-outline label-pill ajax-get confirm" model="Group" href="/admin.php?s=/Admin/Group/setStatus/status/delete/ids/2/model/Group.html">删除</a>
+                                                    <a name="edit" title="编辑" class="label label-primary-outline label-pill" href="{:U('admin/menu/edit','id='.$vo['id'].'')}">编辑</a>
+                                                    <a name="delete" title="删除" class="label label-danger-outline label-pill ajax-get confirm" model="Group" href=":U('admin/menu/delete','id='.$vo['id'].'')}">删除</a>
                                                 </td>
                                             </tr>
                                             {/foreach}

@@ -21,7 +21,6 @@ class Index extends AdminBaseController {
    * @author [chenqianhao] <68527761@qq.com>
   */
     public function index() {
-        //var_dump(mysql_get_server_info());
         //查询数据库的版本
         $mysqlversion=getmysqlversion();
         if(!$mysqlversion || $mysqlversion==''){
@@ -86,7 +85,6 @@ class Index extends AdminBaseController {
               return $this->fetch();
           }
           $adminusermodel = new AdminUserModel();
-          //$aid=Db::name('admin_user')->where('aname',$aname)->value('aid');//设置了前缀用name,table方法需要带上前缀
           $where['aname']=$aname;
           $field="aid";
           $aid=$adminusermodel->getOne($field,$where);
@@ -111,14 +109,12 @@ class Index extends AdminBaseController {
           session('islogin', 1);
           session('aname', $aname);
           session('aid', $aid);
-          //session('user_auth.uid', $aid);//权限验证使用
           //更新最后登陆时间和ip
           $data['lasttime']=time();
           $data['lastip']=request()->ip();
           $adminusermodel->autoupdate($data,$wheres);
           return $this->redirect('Index/index');
       }
-      //\think\Cache::clear(); //清空缓存
       //$this->view->engine->layout(false);
       return $this->fetch();
     }
@@ -128,7 +124,7 @@ class Index extends AdminBaseController {
      */
     public function removeRuntime()
     {
-        $result = Cache::clear();
+        $result = \think\Cache::clear(); //清空缓存
         if ($result) {
             echo "缓存清理成功";
         } else {
