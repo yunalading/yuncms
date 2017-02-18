@@ -1,4 +1,4 @@
-/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-02-17"A"08:02:20 UTC */
+/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-02-18"A"03:02:32 UTC */
 /* ==========================================================================
    Component: Base
  ============================================================================ */
@@ -14641,6 +14641,14 @@ body {
 .content-page .am-container,
 .content-page .am-u-sm-6 {
   padding-left: 0;
+}
+.content-page .am-panel .am-panel-hd {
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+}
+.content-page .am-panel .am-icon {
+  color: #35c0ff;
+  margin-right: 0.5rem;
 }
 .footer {
   border-top: 1px solid #dedede;

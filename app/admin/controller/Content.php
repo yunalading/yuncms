@@ -10,19 +10,27 @@
 // +----------------------------------------------------------------------
 
 
-namespace app\install\controller;
+namespace app\admin\controller;
 
-use app\common\controller\InstallBaseController;
+use app\common\controller\AdminBaseController;
 
 /**
- * Class Complete
- * @package app\install\controller
+ * Class Content
+ * @package app\admin\controller
  */
-class Step4 extends InstallBaseController {
+class Content extends AdminBaseController {
     /**
      * @return \think\response\View
      */
     public function index() {
+
+        return view();
+    }
+
+    /**
+     * @return \think\response\View
+     */
+    public function lists() {
         return view();
     }
 }

@@ -14,6 +14,10 @@ namespace app\install\controller;
 
 use app\common\controller\InstallBaseController;
 
+/**
+ * Class Complete
+ * @package app\install\controller
+ */
 class Step3 extends InstallBaseController {
     /**
      * @return \think\response\View
