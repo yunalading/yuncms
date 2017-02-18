@@ -42,7 +42,7 @@ return [
                 ],[
                     'id'=>'',
                     'name'=>'评论',
-                    'href'=>''
+                    'href'=>'/admin/comment'
                 ]
             ]
         ], [
@@ -101,7 +101,7 @@ return [
                 ]
             ]
         ], [
-            'id' => 'comment',
+            'id' => 'message',
             'name' => '留言',
             'iconClass'=>'am-icon-comment-o',
             'submenus' => [

@@ -10,17 +10,19 @@
 // +----------------------------------------------------------------------
 
 
-namespace app\core\enum;
+namespace app\admin\controller;
 
-use app\core\Enum;
+use app\common\controller\AdminBaseController;
 
 /**
- * Class UserStateEnum
- * @package app\core\enum
+ * Class Comment
+ * @package app\admin\controller
  */
-class UserStateEnum extends Enum {
-    const HI = "Hi";
-    const BY = "By";
-    const NUMBER = 1;
-    const __default = self::BY;
+class Comment extends AdminBaseController {
+    /**
+     * @return \think\response\View
+     */
+    public function index() {
+        return view();
+    }
 }

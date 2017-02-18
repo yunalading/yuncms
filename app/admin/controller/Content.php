@@ -27,4 +27,31 @@ class Content extends AdminBaseController {
         return view();
     }
 
+    /**
+     * @return \think\response\View
+     */
+    public function add() {
+        return view();
+    }
+
+    /**
+     * @return \think\response\View
+     */
+    public function edit() {
+        return view();
+    }
+
+    /**
+     * @return \think\response\View
+     */
+    public function del() {
+        return view();
+    }
+
+    /**
+     * @return \think\response\View
+     */
+    public function trash() {
+        return view();
+    }
 }

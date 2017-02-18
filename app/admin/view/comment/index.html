@@ -1,0 +1,111 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YunCMS后台管理系统</title>
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" type="image/png" href="/static/images/favicon.png">
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="/static/images/app-icon72x72@2x.png">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="apple-touch-icon-precomposed" href="/static/images/app-icon72x72@2x.png">
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="/static/images/app-icon72x72@2x.png">
+    <meta name="msapplication-TileColor" content="#0e90d2">
+    <link rel="stylesheet" href="/static/admin/css/admin.min.css">
+</head>
+<body>
+<div class="content-page">
+    <div class="am-container">
+        <div class="page-title"><h1 class="am-inline">评论列表</h1>
+            <a href="#" class="am-btn am-btn-default am-btn-xs am-radius">
+                <i class="am-icon-trash"></i>回收站
+            </a>
+        </div>
+        <form class="am-form-inline search-form">
+            <div class="am-form-group">
+                <input type="keyword" class="am-form-field" placeholder="关键词">
+            </div>
+            <button type="submit" class="am-btn am-btn-default"><i class="am-icon-search"></i></button>
+        </form>
+        <table class="am-table">
+            <thead>
+            <tr>
+                <th>用户</th>
+                <th>手机</th>
+                <th>邮件地址</th>
+                <th>内容</th>
+                <th>评论数</th>
+                <th>日期</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><a target="_blank" href="#">世界您好</a></td>
+                <td><a href="#">admin</a></td>
+                <td><a href="#">未分类</a></td>
+                <td>--</td>
+                <td><a href="#">5</a></td>
+                <td>2017-1-18 15:43:26</td>
+                <td><a href="#">未发布</a></td>
+                <td>
+                    <div class="am-btn-group am-btn-group-xs">
+                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
+                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><a target="_blank" href="#">Gulp常用配置</a></td>
+                <td><a href="#">hukei</a></td>
+                <td><a href="#">Gulp</a></td>
+                <td><a href="#">gulp</a>、<a href="#">nodejs</a></td>
+                <td><a href="#">20</a></td>
+                <td>2017-1-28 15:43:26</td>
+                <td><a href="#">已发布</a></td>
+                <td>
+                    <div class="am-btn-group am-btn-group-xs">
+                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
+                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <ul class="am-pagination am-pagination-right">
+            <li class="am-disabled"><a href="#">&laquo;</a></li>
+            <li class="am-active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+    </div>
+</div>
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="/static/common/jquery/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="/static/common/amazeui/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="/static/common/amazeui/js/amazeui.min.js"></script>
+<script src="/static/common/handlebars/handlebars.js"></script>
+<script src="/static/admin/js/admin.min.js"></script>
+</body>
+</html>
