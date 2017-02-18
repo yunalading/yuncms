@@ -13,6 +13,7 @@ return [
         [
             'id' => 'command',
             'name' => '控制台',
+            'iconClass'=>'am-icon-dashboard',
             'submenus' => [
                 [
                     'id' => 'welcome',
@@ -23,16 +24,31 @@ return [
         ], [
             'id' => 'content',
             'name' => '内容',
+            'iconClass'=>'am-icon-file-o',
             'submenus' => [
                 [
                     'id' => 'content-list',
                     'name' => '内容列表',
-                    'href' => ''
+                    'href' => '/admin/content',
+                    'actives'=>[
+                        [
+                            'name'=>'删除',
+                            'href'=>'/admin/content/del'
+                        ],[
+                            'name'=>'编辑',
+                            'href'=>'/admin/content/edit'
+                        ],
+                    ]
+                ],[
+                    'id'=>'',
+                    'name'=>'评论',
+                    'href'=>''
                 ]
             ]
         ], [
             'id' => 'user',
             'name' => '用户',
+            'iconClass'=>'am-icon-users',
             'submenus' => [
                 [
                     'id' => 'user-list',
@@ -43,6 +59,7 @@ return [
         ], [
             'id' => 'subject',
             'name' => '专题',
+            'iconClass'=>'am-icon-circle-o',
             'submenus' => [
                 [
                     'id' => 'subject-list',
@@ -53,6 +70,7 @@ return [
         ], [
             'id' => 'category',
             'name' => '分类',
+            'iconClass'=>'am-icon-flag',
             'submenus' => [
                 [
                     'id' => '',
@@ -63,6 +81,7 @@ return [
         ], [
             'id' => 'model',
             'name' => '模型',
+            'iconClass'=>'am-icon-reorder',
             'submenus' => [
                 [
                     'id' => '',
@@ -73,6 +92,7 @@ return [
         ], [
             'id' => 'tag',
             'name' => '标签',
+            'iconClass'=>'am-icon-tags',
             'submenus' => [
                 [
                     'id' => '',
@@ -83,6 +103,7 @@ return [
         ], [
             'id' => 'comment',
             'name' => '留言',
+            'iconClass'=>'am-icon-comment-o',
             'submenus' => [
                 [
                     'id' => '',
@@ -93,6 +114,7 @@ return [
         ], [
             'id' => 'ads',
             'name' => '广告',
+            'iconClass'=>'am-icon-adn',
             'submenus' => [
                 [
                     'id' => '',
@@ -111,6 +133,7 @@ return [
         ], [
             'id' => 'system',
             'name' => '系统',
+            'iconClass'=>'am-icon-cog',
             'submenus' => [
                 [
                     'id' => '',

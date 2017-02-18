@@ -13,6 +13,7 @@
 namespace app\admin\controller;
 
 use app\common\controller\AdminBaseController;
+use app\core\Users;
 
 /**
  * Class Content
@@ -23,14 +24,7 @@ class Content extends AdminBaseController {
      * @return \think\response\View
      */
     public function index() {
-
         return view();
     }
 
-    /**
-     * @return \think\response\View
-     */
-    public function lists() {
-        return view();
-    }
 }
