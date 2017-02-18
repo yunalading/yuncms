@@ -8,18 +8,29 @@
 // +----------------------------------------------------------------------
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
+
+
 namespace app\admin\controller;
 
 use app\common\controller\AdminBaseController;
 
-class Index extends AdminBaseController {
-
+/**
+ * Class Dashboard
+ * @package app\admin\controller
+ */
+class Dashboard extends AdminBaseController {
     /**
      * @return \think\response\View
      */
     public function index() {
-
+        $this->assign('menus',json_encode(config('authorization')));
         return view();
     }
 
+    /**
+     * @return \think\response\View
+     */
+    public function welcome() {
+        return view();
+    }
 }

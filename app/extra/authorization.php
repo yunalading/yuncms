@@ -11,14 +11,14 @@
 return [
     'menus' => [
         [
-            'id' => 'command',
+            'id' => 'dashboard',
             'name' => '控制台',
             'iconClass'=>'am-icon-dashboard',
             'submenus' => [
                 [
                     'id' => 'welcome',
                     'name' => '欢迎页面',
-                    'href' => '/admin/index/welcome'
+                    'href' => '/admin/dashboard/welcome'
                 ]
             ]
         ], [
