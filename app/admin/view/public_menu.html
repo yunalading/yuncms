@@ -87,6 +87,11 @@
                     </li>
                 </ul>
             </li>
+            <!-- <?php
+
+                echo '<pre>';
+                print_r($menus);
+            ?> -->
 
             {volist name="menus.main" id="vo" key="k"}
             <li>
@@ -98,14 +103,14 @@
                 </a>
                 {if condition="$vo.nav_number gt 0 "}
                 <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--{$k}">
-                    {for start="0" end="$vo.nav_number"}
+                    {for start="0" end="$vo.nav_number"} {present name="menus['child'][$k][$i]['url']"}
                     <li>
                         <a href="/index.php/{$menus['child'][$k][$i]['url']}">
                             <i class="fa fa-th-large "></i>
                             <span class="nav-label ">{$menus['child'][$k][$i]['title']}</span>
                         </a>
                     </li>
-                    {/for}
+                    {else /} {/present} {/for}
                 </ul>
                 {/if}
             </li>

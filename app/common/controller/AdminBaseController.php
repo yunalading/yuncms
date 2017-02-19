@@ -21,8 +21,9 @@ abstract class AdminBaseController extends BaseController {
     protected $config;
     public function __construct() {
         parent::__construct();
-        $request = request();
-        $url=strtolower($request->module()).'/'.strtolower($request->controller()).'/'.strtolower($request->action());
+        //$request = request();
+        //$url=strtolower($request->module()).'/'.strtolower($request->controller()).'/'.strtolower($request->action());
+        $url=geturlbase();
         if (!$this->isLogin() and !in_array($url, array('admin/index/login', 'admin/index/logout', 'admin/index/verify'))){
             $this->redirect('admin/index/login');
         }else{

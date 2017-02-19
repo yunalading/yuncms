@@ -22,3 +22,13 @@ function getmysqlversion(){
       return false;
     }
 }
+
+/**
+ * 获取当前的url不含参数
+ * @return [string]
+ */
+function geturlbase(){
+  $request = \think\Request::instance();
+  $url=strtolower($request->module()).'/'.strtolower($request->controller()).'/'.strtolower($request->action());
+  return $url;
+}

@@ -34,24 +34,58 @@ class Menu extends AdminBaseController {
     $this->assign('menulist',$menulist);
     return $this->fetch();
   }
+  /**
+   * 菜单显示隐藏
+   * @author [chenqianhao] <68527761@qq.com>
+  */
+  public function changehide()
+  {
+      $request = Request::instance();
+      $menus = new MenuModel();
+      $data=$menus->getparaminfo($request);
+      if($data['status']==0){
+        return json($data);
+      }else{
+        foreach($data['info'] as $v){
+          $datas['hide']=$data['hide'];
+          $where['id']=$v;
+          $menus->autoupdate($datas,$where);
+        }
+        $data['info']='修改成功!';
+        return json($data);
+      }
+      //return json(["info"=>"test","status"=>0,"url"=>"admin/index/index"]);
+
+      // echo '<pre>';
+      // print_r($request);
+      // die();
+      $menu= Menu::find($request['id']);
+      $menu->hide = $request['hide'];
+      $re = $menu->save();
+      if($re){
+          $data = [
+              'status' => 1,
+              'id' => $request['id'],
+              'hide' => $request['hide'],
+              'msg' => '修改显示菜单成功！',
+          ];
+      }else{
+          $data = [
+              'status' => 0,
+              'msg' => '修改显示菜单失败，请稍后重试！',
+          ];
+      }
+      return json(['data'=>$data]);
+  }
+
+
+
+
+
 
   //get
   public function read($id){
-    $menus = new Menu();
-    $menu = $menus->tree();
-    //print_r($menu);
-    //die();
-    //$m = $menu[0];
-    //print_r($m->toArray());exit;
-    // $nav=getAll($menu);
-    // print_r($nav);
-    // die();
-    //获取前后台所有一级菜单
-    //$menus_one = $menus->order('sort','asc')->where('pid','0')->select();
-    $menus_one=$this->get_menu_shangji();
-    $this->assign('menus_one',$menus_one);
-    $this->assign('menu',$menu);
-    return $this->fetch();
+
   }
   //get
   public function create(){
@@ -158,27 +192,7 @@ class Menu extends AdminBaseController {
       }
       return json(['data'=>$data]);
   }
-  public function changehide()
-  {
-      $request = Request::instance()->post();
-      $menu= Menu::find($request['id']);
-      $menu->hide = $request['hide'];
-      $re = $menu->save();
-      if($re){
-          $data = [
-              'status' => 1,
-              'id' => $request['id'],
-              'hide' => $request['hide'],
-              'msg' => '修改显示菜单成功！',
-          ];
-      }else{
-          $data = [
-              'status' => 0,
-              'msg' => '修改显示菜单失败，请稍后重试！',
-          ];
-      }
-      return json(['data'=>$data]);
-  }
+
   private function get_menu_shangji(){
       return Menu::order('sort','asc')->where('pid','0')->select();
 /*        $menu = new Menu();

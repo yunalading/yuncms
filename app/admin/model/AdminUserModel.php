@@ -14,6 +14,9 @@ use think\Db;
 use think\Config;
 class AdminUserModel extends BaseModel
 {
+
+  // const STATUS_DEL = 0;
+  // const STATUS_DEL = 0;
     protected $tableName='admin_user';
     /**
      * 根据条件获取指定的一个值

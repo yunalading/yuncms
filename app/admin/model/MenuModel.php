@@ -44,6 +44,7 @@ class MenuModel extends BaseModel
         $row = db('admin_user',[],false)->where($where)->find();
         return $row;
     }
+
     /**
      * 根据条件获更新数据数据
      * @param $data 要更新的字段和值组成的二元数组
@@ -108,7 +109,38 @@ class MenuModel extends BaseModel
         return $arr;
     }
 
-
+    /**
+     * 过滤要操作的数据，返回操作的数组
+     * @param $request [array] 请求过来的参数
+     * @return array|null
+     * @author [chenqianhao] <68527761@qq.com>
+     */
+     function getparaminfo($request){
+       $info=array();
+       $param=$request->param();
+       $url=geturlbase();
+       if(isset($param['id']) && $param['id']=='select'){//多选
+         if(isset($param['ids']) && $param['ids']!=''){
+           $info['info']=explode(',',$param['ids']);
+           $info['status']=1;
+           $info['hide']=intval($param['hide']);
+           $info['url']=$url;
+           return $info;
+         }else{
+            $info['info']='请选择要操作的数据！';
+            $info['status']=0;
+            $info['url']=$url;
+            return $info;
+         }
+       }else{//单选中
+         $ids=intval($param['id']);
+         $info['info'][0]=$ids;
+         $info['status']=1;
+         $info['hide']=intval($param['hide']);
+         $info['url']=$url;
+         return $info;
+       }
+     }
 
 
 

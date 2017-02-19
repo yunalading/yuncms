@@ -139,7 +139,8 @@ $(function(){
         $.ajax({
             url: $('input[name="check_version_url"]').val(),
             type: 'GET',
-        }).done(function(data) {console.log();
+        }).done(function(data) {
+            console.log();
             if (data.status == 1) {
                 $('.version').html(data.info);
                 if (data.sn_info) {
