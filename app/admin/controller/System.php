@@ -26,4 +26,12 @@ class System extends AdminBaseController {
     public function index() {
         return view();
     }
+
+    /**
+     * 基本信息
+     * @return \think\response\View
+     */
+    public function general() {
+        return view();
+    }
 }

@@ -8,18 +8,19 @@
 // +----------------------------------------------------------------------
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
+
+
 namespace app\admin\controller;
 
 use app\common\controller\AdminBaseController;
 
+/**
+ * Class Index
+ * @package app\admin\controller
+ */
 class Index extends AdminBaseController {
-
-    /**
-     * @return \think\response\View
-     */
+    
     public function index() {
 
-        return view();
     }
-
 }

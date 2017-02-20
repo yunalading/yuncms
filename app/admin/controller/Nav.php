@@ -15,15 +15,14 @@ namespace app\admin\controller;
 use app\common\controller\AdminBaseController;
 
 /**
- * Class Dashboard
+ * Class Nav
  * @package app\admin\controller
  */
-class Dashboard extends AdminBaseController {
+class Nav extends AdminBaseController {
     /**
      * @return \think\response\View
      */
     public function index() {
-        $this->assign('menus',json_encode(config('authorization')));
         return view();
     }
 

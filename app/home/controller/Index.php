@@ -18,6 +18,6 @@ class Index extends HomeBaseController {
      * @return string
      */
     public function index() {
-        return "ThinkPHP";
+        return view();
     }
 }

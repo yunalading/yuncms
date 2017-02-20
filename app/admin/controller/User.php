@@ -15,16 +15,28 @@ namespace app\admin\controller;
 use app\common\controller\AdminBaseController;
 
 /**
- * Class Dashboard
+ * Class User
  * @package app\admin\controller
  */
-class Dashboard extends AdminBaseController {
+class User extends AdminBaseController {
     /**
      * @return \think\response\View
      */
     public function index() {
-        $this->assign('menus',json_encode(config('authorization')));
         return view();
     }
 
+    /**
+     * @return \think\response\View
+     */
+    public function login() {
+        return view();
+    }
+
+    /**
+     * @return \think\response\View
+     */
+    public function logout() {
+        return view();
+    }
 }
