@@ -18,7 +18,7 @@ return [
                 [
                     'id' => 'welcome',
                     'name' => '系统信息',
-                    'href' => '/admin/dashboard/welcome'
+                    'href' => '/admin/system'
                 ]
             ]
         ], [

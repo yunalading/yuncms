@@ -15,15 +15,31 @@ namespace app\admin\controller;
 use app\common\controller\AdminBaseController;
 
 /**
- * Class Dashboard
+ * Class Ad
  * @package app\admin\controller
  */
-class Dashboard extends AdminBaseController {
+class Ad extends AdminBaseController {
     /**
+     * 普通广告列表
      * @return \think\response\View
      */
-    public function index() {
-        $this->assign('menus',json_encode(config('authorization')));
+    public function general() {
+        return view();
+    }
+
+    /**
+     * 脚本广告列表
+     * @return \think\response\View
+     */
+    public function script() {
+        return view();
+    }
+
+    /**
+     * 幻灯片广告列表
+     * @return \think\response\View
+     */
+    public function slide() {
         return view();
     }
 }
