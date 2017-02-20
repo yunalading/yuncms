@@ -190,19 +190,19 @@ return [
                 ], [
                     'id' => 'images',
                     'name' => '图片管理',
-                    'href'=>'/admin/images'
+                    'href' => '/admin/images'
                 ], [
                     'id' => 'upload',
                     'name' => '上传设置',
-                    'href'=>'/admin/upload'
+                    'href' => '/admin/upload'
                 ], [
                     'id' => 'constant',
                     'name' => '常量管理',
-                    'href'=>'/admin/constant'
+                    'href' => '/admin/constant'
                 ], [
                     'id' => 'links',
                     'name' => '友情链接',
-                    'href'=>'/admin/links'
+                    'href' => '/admin/links'
                 ]
             ]
         ]
