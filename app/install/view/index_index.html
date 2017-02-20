@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>YunCMS官方安装程序</title>
+    <title>{$Think.const.APP_NAME}官方安装程序</title>
     <!-- Set render engine for 360 browser -->
     <meta name="renderer" content="webkit">
     <!-- No Baidu Siteapp-->
@@ -28,7 +28,7 @@
 <body>
 <header class="header">
     <div class="am-container">
-        <img class="logo" src="/static/install/images/logo.png" title="YunCMS官方安装程序" alt="YunCMS官方安装程序"><span class="version">版本:v1.0.0</span>
+        <img class="logo" src="/static/install/images/logo.png" title="{$Think.const.APP_NAME}官方安装程序" alt="{$Think.const.APP_NAME}官方安装程序"><span class="version">版本:v{$Think.const.APP_VERSION}</span>
     </div>
 </header>
 <div class="license-box">
@@ -85,13 +85,13 @@
             </div>
         </div>
         <p class="am-text-center">
-            <a href="/index.php/install/step1" class="am-btn am-btn-primary am-round">同意协议进入安装</a>
+            <a href="<?= url('/install/step1');?>" class="am-btn am-btn-primary am-round">同意协议进入安装</a>
         </p>
     </div>
 </div>
 <footer class="footer">
     <div class="am-container">
-        <p>© 2017 <a target="_blank" href="http://www.yunalading.com">YunAlaDing</a> , Inc. Licensed Apacle license 2.0.</p>
+        <p>© 2017 <a target="_blank" href="{$Think.const.APP_SITE}">YunAlaDing</a> , Inc. Licensed Apacle license 2.0.</p>
     </div>
 </footer>
 <!--[if (gte IE 9)|!(IE)]><!-->

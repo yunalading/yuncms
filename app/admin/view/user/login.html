@@ -29,8 +29,8 @@
 <div>
     <div class="am-container">
         <div class="login">
-            <p class="am-text-center"><img class="logo am-img-responsive" src="/static/images/logo.png" title="YunCMS后台管理系统" alt="YunCMS后台管理系统"></p>
-            <form class="am-form" action="index.php/admin/dashboard" method="post" data-am-validator>
+            <p class="am-text-center"><img class="logo am-img-responsive" src="/static/images/logo.png" title="{$Think.const.APP_NAME}后台管理系统" alt="{$Think.const.APP_NAME}后台管理系统"></p>
+            <form class="am-form" action="<?= URL('/admin/dashboard');?>" method="post" data-am-validator>
                 <fieldset>
                     <legend>管理员登录</legend>
                     <div class="am-form-group">
@@ -46,7 +46,7 @@
                         <input type="password" class="am-form-field am-radius captcha-field" placeholder="请填写验证码" required minlength="4"><img src="{:captcha_src()}" id="captcha" alt="点击刷新" title="点击刷新" />
                     </div>
                     {:token()}
-                    <p><button class="am-btn am-btn-primary am-radius" type="submit">登录</button>&nbsp;&nbsp;<a href="/" class="am-btn am-btn-default am-radius">返回首页</a></p>
+                    <p><button class="am-btn am-btn-primary am-radius" type="submit">登录</button>&nbsp;&nbsp;<a href="<?= URL('/');?>" class="am-btn am-btn-default am-radius">返回首页</a></p>
                 </fieldset>
             </form>
         </div>
@@ -54,7 +54,7 @@
 </div>
 <footer class="footer">
     <div class="am-container">
-        <p>© 2017 <a target="_blank" href="http://www.yunalading.com">YunAlaDing</a> , Inc. Licensed Apacle license 2.0.</p>
+        <p>© 2017 <a target="_blank" href="{$Think.const.APP_SITE}">YunAlaDing</a> , Inc. Licensed Apacle license 2.0.</p>
     </div>
 </footer>
 <!--[if (gte IE 9)|!(IE)]><!-->

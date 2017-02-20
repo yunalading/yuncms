@@ -21,6 +21,6 @@ use app\common\controller\AdminBaseController;
 class Index extends AdminBaseController {
 
     public function index() {
-        $this->redirect('/admin/user/login');
+        $this->redirect(url('/admin/user/login'));
     }
 }

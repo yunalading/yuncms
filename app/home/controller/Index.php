@@ -14,7 +14,7 @@ use app\common\controller\HomeBaseController;
 
 class Index extends HomeBaseController {
     /**
-     * @return string
+     * @return \think\response\View
      */
     public function index() {
         return view('/index');
