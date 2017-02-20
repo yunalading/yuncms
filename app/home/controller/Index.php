@@ -11,13 +11,12 @@
 namespace app\home\controller;
 
 use app\common\controller\HomeBaseController;
-use think\exception\HttpException;
 
 class Index extends HomeBaseController {
     /**
      * @return string
      */
     public function index() {
-        return view();
+        return view('/index');
     }
 }
