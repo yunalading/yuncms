@@ -13,140 +13,144 @@ return [
         [
             'id' => 'dashboard',
             'name' => '控制台',
-            'iconClass'=>'am-icon-dashboard',
+            'iconClass' => 'am-icon-dashboard',
             'submenus' => [
                 [
                     'id' => 'welcome',
-                    'name' => '欢迎页面',
+                    'name' => '系统信息',
                     'href' => '/admin/dashboard/welcome'
                 ]
             ]
         ], [
             'id' => 'content',
             'name' => '内容',
-            'iconClass'=>'am-icon-file-o',
+            'iconClass' => 'am-icon-file-o',
             'submenus' => [
                 [
                     'id' => 'content-list',
                     'name' => '内容列表',
                     'href' => '/admin/content',
-                    'actives'=>[
+                    'actives' => [
                         [
-                            'name'=>'删除',
-                            'href'=>'/admin/content/del'
-                        ],[
-                            'name'=>'编辑',
-                            'href'=>'/admin/content/edit'
+                            'name' => '删除',
+                            'href' => '/admin/content/del'
+                        ], [
+                            'name' => '编辑',
+                            'href' => '/admin/content/edit'
                         ],
                     ]
-                ],[
-                    'id'=>'',
-                    'name'=>'评论',
-                    'href'=>'/admin/comment'
+                ], [
+                    'id' => 'comment',
+                    'name' => '评论',
+                    'href' => '/admin/comment'
                 ]
             ]
         ], [
-            'id' => 'user',
+            'id' => 'member',
             'name' => '用户',
-            'iconClass'=>'am-icon-users',
+            'iconClass' => 'am-icon-users',
             'submenus' => [
                 [
-                    'id' => 'user-list',
+                    'id' => 'member-list',
                     'name' => '用户列表',
-                    'href' => ''
+                    'href' => '/admin/member'
                 ]
             ]
         ], [
             'id' => 'subject',
             'name' => '专题',
-            'iconClass'=>'am-icon-circle-o',
+            'iconClass' => 'am-icon-circle-o',
             'submenus' => [
                 [
                     'id' => 'subject-list',
                     'name' => '专题列表',
-                    'href' => ''
+                    'href' => '/admin/subject'
                 ]
             ]
         ], [
             'id' => 'category',
             'name' => '分类',
-            'iconClass'=>'am-icon-flag',
+            'iconClass' => 'am-icon-flag',
             'submenus' => [
                 [
-                    'id' => '',
+                    'id' => 'category-list',
                     'name' => '分类列表',
-                    'href' => ''
+                    'href' => '/admin/category'
                 ]
             ]
         ], [
             'id' => 'model',
             'name' => '模型',
-            'iconClass'=>'am-icon-reorder',
+            'iconClass' => 'am-icon-reorder',
             'submenus' => [
                 [
-                    'id' => '',
+                    'id' => 'model-list',
                     'name' => '模型列表',
-                    'href' => ''
+                    'href' => '/admin/model'
                 ]
             ]
         ], [
             'id' => 'tag',
             'name' => '标签',
-            'iconClass'=>'am-icon-tags',
+            'iconClass' => 'am-icon-tags',
             'submenus' => [
                 [
-                    'id' => '',
+                    'id' => 'tag-list',
                     'name' => '标签列表',
-                    'href' => ''
+                    'href' => '/admin/tag'
                 ]
             ]
         ], [
             'id' => 'message',
             'name' => '留言',
-            'iconClass'=>'am-icon-comment-o',
+            'iconClass' => 'am-icon-comment-o',
             'submenus' => [
                 [
-                    'id' => '',
+                    'id' => 'message-list',
                     'name' => '留言列表',
-                    'href' => ''
+                    'href' => '/admin/message'
                 ]
             ]
         ], [
             'id' => 'ads',
             'name' => '广告',
-            'iconClass'=>'am-icon-adn',
+            'iconClass' => 'am-icon-adn',
             'submenus' => [
                 [
-                    'id' => '',
+                    'id' => 'ad-general',
                     'name' => '普通广告',
-                    'href' => ''
+                    'href' => '/admin/ad/general'
                 ], [
-                    'id' => '',
+                    'id' => 'ad-script',
                     'name' => '脚本广告',
-                    'href' => ''
+                    'href' => '/admin/ad/script'
                 ], [
-                    'id' => '',
+                    'id' => 'ad-slide',
                     'name' => '幻灯片',
-                    'href' => ''
+                    'href' => '/admin/ad/slide'
                 ]
             ]
         ], [
             'id' => 'system',
             'name' => '系统',
-            'iconClass'=>'am-icon-cog',
+            'iconClass' => 'am-icon-cog',
             'submenus' => [
                 [
-                    'id' => '',
+                    'id' => 'system-general',
                     'name' => '基本信息',
+                    'href' => '/admin/system/general'
                 ], [
                     'id' => 'nav-manager',
                     'name' => '导航管理',
+                    'href' => '/admin/nav'
                 ], [
                     'id' => 'email-config',
                     'name' => '邮件配置',
+                    'href' => '/admin/email'
                 ], [
                     'id' => 'sms-config',
                     'name' => '短信配置',
+                    'href' => '/admin/sms'
                 ], [
                     'id' => 'oauth-login',
                     'name' => '集成登录',
@@ -154,46 +158,51 @@ return [
                         [
                             'id' => 'qq-login',
                             'name' => 'QQ',
-                            'href' => ''
+                            'href' => '/admin/oauth/qq'
                         ], [
                             'id' => 'wechat-login',
                             'name' => '微信',
-                            'href' => ''
+                            'href' => '/admin/oauth/wechat'
                         ], [
                             'id' => 'sina-weibo-login',
                             'name' => '新浪微博',
-                            'href' => ''
+                            'href' => '/admin/oauth/weibo'
                         ]
                     ]
                 ], [
-                    'id' => '',
+                    'id' => 'auth',
                     'name' => '权限管理',
                     'submenus' => [
                         [
-                            'id' => '',
+                            'id' => 'user',
                             'name' => '管理员',
-                            'href' => ''
+                            'href' => '/admin/user'
                         ], [
-                            'id' => '',
+                            'id' => 'role',
                             'name' => '角色',
-                            'href' => ''
+                            'href' => '/admin/role'
                         ]
                     ]
                 ], [
                     'id' => 'area-manager',
                     'name' => '地区管理',
+                    'href' => '/admin/area'
                 ], [
-                    'id' => '',
+                    'id' => 'images',
                     'name' => '图片管理',
+                    'href'=>'/admin/images'
                 ], [
-                    'id' => '',
+                    'id' => 'upload',
                     'name' => '上传设置',
+                    'href'=>'/admin/upload'
                 ], [
-                    'id' => '',
+                    'id' => 'constant',
                     'name' => '常量管理',
+                    'href'=>'/admin/constant'
                 ], [
-                    'id' => '',
+                    'id' => 'links',
                     'name' => '友情链接',
+                    'href'=>'/admin/links'
                 ]
             ]
         ]
