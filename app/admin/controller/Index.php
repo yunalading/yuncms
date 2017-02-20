@@ -19,8 +19,8 @@ use app\common\controller\AdminBaseController;
  * @package app\admin\controller
  */
 class Index extends AdminBaseController {
-    
-    public function index() {
 
+    public function index() {
+        $this->redirect('/admin/user/login');
     }
 }
