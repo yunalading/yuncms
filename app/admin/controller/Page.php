@@ -15,7 +15,7 @@ namespace app\admin\controller;
 use app\common\controller\AdminBaseController;
 
 /**
- * Class Subject
+ * Class Page
  * @package app\admin\controller
  */
 class Page extends AdminBaseController {
