@@ -18,7 +18,7 @@ use app\common\controller\AdminBaseController;
  * Class Subject
  * @package app\admin\controller
  */
-class Subject extends AdminBaseController {
+class Page extends AdminBaseController {
     /**
      * @return \think\response\View
      */

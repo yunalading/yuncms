@@ -57,14 +57,14 @@ return [
                 ]
             ]
         ], [
-            'id' => 'subject',
-            'name' => '专题',
+            'id' => 'page',
+            'name' => '页面',
             'iconClass' => 'am-icon-circle-o',
             'submenus' => [
                 [
-                    'id' => 'subject-list',
-                    'name' => '专题列表',
-                    'href' => '/admin/subject'
+                    'id' => 'page-list',
+                    'name' => '页面列表',
+                    'href' => '/admin/page'
                 ]
             ]
         ], [
