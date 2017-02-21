@@ -38,7 +38,11 @@ function GetPositionLink($str='')
     $position=array();
     $request = request();
     $module=strtolower($request->module());
-    $url=strtolower($request->module()).'/'.strtolower($request->controller()).'/'.strtolower($request->action());
+    if($str!=''){
+      $url=$str;
+    }else{
+      $url=strtolower($request->module()).'/'.strtolower($request->controller()).'/'.strtolower($request->action());
+    }
     //后台面包屑导航
     if($module == 'admin'){
       $row=\think\Db::name('menu')->where('url', $url)->find();
@@ -61,7 +65,7 @@ function GetPositionLink($str='')
           }
         }
       }
-      return $position;
+      return array_reverse($position);
     }else{ //前台面包屑导航
 
       return  "面包屑导航";

@@ -34,14 +34,15 @@ class MenuModel extends BaseModel
     /**
      * 根据条件获取指定的一组数据
      * @param $where [array] 条件
+     * @param $field [string] 查询的字段
      * @return array|null
      * @author [chenqianhao] <68527761@qq.com>
      */
-    public function getRow($where)
+    public function getRow($where,$field='*')
     {
         //$admin_user=Db::table('yc_admin_user')->where($where)->find();
         //助手函数需加入第三个参数才和Db::table或Db::name一样是单例模式，否则每次都要连接一下数据库
-        $row = db('admin_user',[],false)->where($where)->find();
+        $row = db($this->tableName,[],false)->field($field)->where($where)->find();
         return $row;
     }
 
@@ -64,16 +65,29 @@ class MenuModel extends BaseModel
      * @return array|null
      * @author [chenqianhao] <68527761@qq.com>
      */
-    public function getAll($where=array())
+    public function getAll($where=array(),$field='*')
     {
       if(empty($where)){
-        $info = Db::name($this->tableName)->select();
+        $info = Db::name($this->tableName)->field($field)->select();
       }else{
-        $info = Db::name($this->tableName)->where($where)->select();
+        $info = Db::name($this->tableName)->field($field)->where($where)->select();
       }
       return $info;
     }
 
+
+    /**
+     * 根据条件获取指定的所有数据
+     * @param $data [array] 要插入的数据数组
+     * @return int 插入的主键id
+     * @author [chenqianhao] <68527761@qq.com>
+     */
+    public function autoinsert($data)
+    {
+      Db::name($this->tableName)->insert($data);
+      $id = Db::name($this->tableName)->getLastInsID();
+      return $id;
+    }
 
     /**
      * 获取菜单树
@@ -123,7 +137,7 @@ class MenuModel extends BaseModel
          if(isset($param['ids']) && $param['ids']!=''){
            $info['info']=explode(',',$param['ids']);
            $info['status']=1;
-           $info['hide']=intval($param['hide']);
+          //  $info['hide']=intval($param['hide']);
            $info['url']=$url;
            return $info;
          }else{
@@ -136,13 +150,23 @@ class MenuModel extends BaseModel
          $ids=intval($param['id']);
          $info['info'][0]=$ids;
          $info['status']=1;
-         $info['hide']=intval($param['hide']);
+        //  $info['hide']=intval($param['hide']);
          $info['url']=$url;
          return $info;
        }
      }
 
-
-
-
+     /**
+      * 获取所有一级菜单
+      * @return array|null
+      * @author [chenqianhao] <68527761@qq.com>
+      */
+      function get_menu_shangji(){
+        $where['pid']=0;
+        $where['status']=0;
+        $where['type']='admin';
+        $field=['id','title'];
+        $data=$this->getAll($where,$field);
+        return $data;
+      }
 }

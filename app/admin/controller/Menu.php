@@ -35,6 +35,101 @@ class Menu extends AdminBaseController {
     return $this->fetch();
   }
   /**
+   * delete
+   * 删除菜单
+   * @author [chenqianhao] <68527761@qq.com>
+  */
+  public function delete($id=0){
+    $request = Request::instance();
+    $menus = new MenuModel();
+    //有子菜单的菜单不能删除[后期完善]
+    $data=$menus->getparaminfo($request);
+    $data['statuss']=intval($request->param()['status']);
+    if($data['status']==0){
+      return json($data);
+    }else{
+      foreach($data['info'] as $v){
+        $datas['status']=$data['statuss'];
+        $where['id']=$v;
+        $menus->autoupdate($datas,$where);
+      }
+      $data['info']='删除菜单成功!';
+      return json($data);
+    }
+  }
+
+  /**
+   * get
+   * 编辑菜单
+   * @author [chenqianhao] <68527761@qq.com>
+  */
+  public function edit($id=0){
+      $menus = new MenuModel();
+      $where['id']=$id;
+      $menus_one=$menus->getRow($where);
+      //顶级菜单
+      $topmenu=$menus->get_menu_shangji();
+      $this->assign('menus_one',$menus_one);
+      $this->assign('topmenu',$topmenu);
+      return $this->fetch();
+  }
+  /**
+   * put
+   * 编辑菜单
+   * @author [chenqianhao] <68527761@qq.com>
+  */
+  public function update($id=0){
+     $param = Request::instance()->param(false);
+     $param['addtime']=time();
+     $param['tip']=isset($param['tip'])?trim($param['tip']):'';
+     $param['icon']=isset($param['icon'])?trim($param['icon']):'';
+     $where['id']=$param['id'];
+     unset($param["id"]);
+     $menus= new MenuModel();
+     $update=$menus->autoupdate($param,$where);
+     return $this->success('修改菜单数据成功','index');
+  }
+  /**
+   * get
+   * 新增菜单
+   * @author [chenqianhao] <68527761@qq.com>
+  */
+  public function create(){
+    $menus = new MenuModel();
+    //顶级菜单
+    $topmenu=$menus->get_menu_shangji();
+    $this->assign('topmenu',$topmenu);
+    return $this->fetch();
+
+
+      // $menu = new Menu();
+      // $menu->data($param);
+      // $menu->save();
+      // return $this->redirect('index');
+  }
+  /**
+   * post
+   * 保存新增菜单数据
+   * @author [chenqianhao] <68527761@qq.com>
+  */
+  public function save($id=0){
+      $param = Request::instance()->param(false);
+      $param['addtime']=time();
+      $param['tip']=isset($param['tip'])?trim($param['tip']):'';
+      $param['icon']=isset($param['icon'])?trim($param['icon']):'';
+      $menus = new MenuModel();
+      $insertid=$menus->autoinsert($param);
+      if($insertid>0){
+        return $this->success('新增菜单成功','index');
+      }else{
+        return $this->error('新增菜单失败','index');
+      }
+  }
+  //get
+  public function read($id=0){
+
+  }
+  /**
    * 菜单显示隐藏
    * @author [chenqianhao] <68527761@qq.com>
   */
@@ -43,6 +138,7 @@ class Menu extends AdminBaseController {
       $request = Request::instance();
       $menus = new MenuModel();
       $data=$menus->getparaminfo($request);
+      $data['hide']=intval($request->param()['hide']);
       if($data['status']==0){
         return json($data);
       }else{
@@ -55,166 +151,28 @@ class Menu extends AdminBaseController {
         return json($data);
       }
       //return json(["info"=>"test","status"=>0,"url"=>"admin/index/index"]);
-
-      // echo '<pre>';
-      // print_r($request);
-      // die();
-      $menu= Menu::find($request['id']);
-      $menu->hide = $request['hide'];
-      $re = $menu->save();
-      if($re){
-          $data = [
-              'status' => 1,
-              'id' => $request['id'],
-              'hide' => $request['hide'],
-              'msg' => '修改显示菜单成功！',
-          ];
-      }else{
-          $data = [
-              'status' => 0,
-              'msg' => '修改显示菜单失败，请稍后重试！',
-          ];
-      }
-      return json(['data'=>$data]);
   }
 
-
-
-
-
-
-  //get
-  public function read($id){
-
-  }
-  //get
-  public function create(){
-      $request = Request::instance()->param(false);
-      $request['addtime']=time();
-      $request['tip']=isset($request['tip'])?trim($request['tip']):'';
-      //图标被过滤了如何处理？
-/*        echo '<pre>';
-      print_r($request);
-      echo '</pre>';
-      die();*/
-      $menu = new Menu();
-      $menu->data($request);
-      $menu->save();
-      return $this->redirect('index');
-  }
-  //post
-  public function save($id){
-  }
-  //get
-  public function edit($id=0){
-      echo $id;
-      die();
-      if($id && $id>0){
-          $row=Menu::where('id',$id)->find();
-          $menus_one=$this->get_menu_shangji();
-          $data = [
-              'status' => 1,
-              'msg' => '获取当前菜单信息成功！',
-              'row' => $row,
-              'menus_one' => $menus_one,
-          ];
-          return $data;
-      }
-      $request = Request::instance()->get();
-      $ids=$request['ids'];
-      unset($request['ids']);
-      //print_r($request);
-      $res=Menu::where('id',$ids)->update($request);
-      if($res){
-          $data = [
-              'status' => 2,
-              'id' => $ids,
-              'msg' => '编辑菜单成功！',
-          ];
-      }else{
-          $data = [
-              'status' => 0,
-              'msg' => '编辑菜单失败，请稍后重试！',
-          ];
-      }
-      return $this->redirect('index');
-  }
-  //put
-  public function update($id){
-  }
-  //delete
-  public function delete($id=0){
-    echo $id;
-    die();
-      $request = Request::instance()->param();
-      //有子菜单的菜单不能删除
-      $child_count = Menu::where('pid',$request['id'])->count();
-      if($child_count>0){
-          $data = [
-              'status' => 0,
-              'msg' => '请先删除下级菜单！',
-          ];
-          return $data;
-      }
-      //$re = Menu::where('id',$request['id'])->delete();
-      //Menu::where('pid',$request['id'])->update(['pid'=>0]);//更新下级菜单为一级菜单
-      $res=Menu::where('id',$request['id'])->update(['status'=>1]);
-      if($res>0){
-          $data = [
-              'status' => 0,
-              'msg' => '菜单删除成功！',
-              'ids' => $res,
-          ];
-      }else{
-          $data = [
-              'status' => 1,
-              'msg' => '菜单删除失败，请稍后重试！',
-          ];
-      }
-      return $data;
-  }
-  public function changeOrder()
+  /**
+   * 修改菜单排序
+   * @author [chenqianhao] <68527761@qq.com>
+  */
+  public function changeorder()
   {
-      $request = Request::instance()->post();
-      $menu= Menu::find($request['id']);
-      $menu->sort = $request['sort'];
-      $re = $menu->save();
-      if($re){
-          $data = [
-              'status' => 1,
-              'msg' => '菜单排序更新成功！',
-          ];
+      $request = Request::instance();
+      $data=$request->param();
+      $menus = new MenuModel();
+      $datas['sort']=intval($data['sort']);
+      $where['id']=intval($data['id']);
+      $update=$menus->autoupdate($datas,$where);
+      if($update>0){
+        $info['info']="修改排序成功！";
+        $info['status']=1;
       }else{
-          $data = [
-              'status' => 0,
-              'msg' => '菜单排序更新失败，请稍后重试！',
-          ];
+        $info['info']="修改排序失败！";
+        $info['status']=0;
       }
-      return json(['data'=>$data]);
+      return json($info);
   }
-
-  private function get_menu_shangji(){
-      return Menu::order('sort','asc')->where('pid','0')->select();
-/*        $menu = new Menu();
-      return $menu->order('sort','asc')->where('pid','0')->select();*/
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

@@ -20,9 +20,9 @@
                         <!-- 工具栏按钮 -->
                         <div class="col-xs-12 col-sm-8 button-list clearfix">
                             <div class="form-group">
-                                <a title="新增" class="btn btn-primary-outline btn-pill" href="{:U('admin/menu/add')}">新增</a>&nbsp;<a title="显示" target-form="ids" class="btn btn-success-outline btn-pill ajax-yuncms confirm" href="javascript:void(0);" url="{:U('admin/menu/changehide','id=select&hide=0')}">显示</a>&nbsp;
-                                <a title="隐藏" target-form="ids" class="btn btn-warning-outline btn-pill  confirm" href="{:U('admin/menu/changehide','id=select&hide=1')}">隐藏</a>&nbsp;
-                                <a title="删除" target-form="ids" class="btn btn-danger-outline btn-pill confirm" href="{:U('admin/menu/delete','id=select&type=0')}">删除</a>&nbsp; </div>
+                                <a title="新增" class="btn btn-primary-outline btn-pill" href="{:U('admin/menu/create')}">新增</a>&nbsp;<a title="显示" target-form="ids" class="btn btn-success-outline btn-pill confirm" href="javascript:void(0);" url="{:U('admin/menu/changehide','id=select&hide=0')}">显示</a>&nbsp;
+                                <a title="隐藏" target-form="ids" class="btn btn-warning-outline btn-pill  confirm" href="javascript:void(0);" url="{:U('admin/menu/changehide','id=select&hide=1')}">隐藏</a>&nbsp;
+                                <a title="删除" target-form="ids" class="btn btn-danger-outline btn-pill confirm" href="javascript:void(0);" url="{:U('admin/menu/delete','id=select&status=1')}">删除</a>&nbsp; </div>
                         </div>
                         <!-- 搜索框 -->
                         <div class="col-xs-12 col-sm-4 clearfix">
@@ -66,7 +66,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="layui-input-inline">
-                                                        <input type="text" name="sort" value="{$vo.sort}" lay-verify="sort" autocomplete="off" class="layui-input" style="max-width:30px;text-align:center;" />
+                                                        <input type="text" name="sort" value="{$vo.sort}" lay-verify="sort" autocomplete="off" class="layui-input" style="max-width:30px;text-align:center;" onchange="changeorder('{:U('admin/menu/changeorder')}',{$vo.id},this.value)" />
                                                     </div>
                                                 </td>
                                                 <!-- <td> {$vo.id} </td> -->
@@ -83,7 +83,7 @@
                                                 <td>
                                                     <!-- <a class="label label-warning" href="#">超级管理员无需操作</a> -->
                                                     <a name="edit" title="编辑" class="label label-primary-outline label-pill" href="{:U('admin/menu/edit','id='.$vo['id'].'')}">编辑</a>
-                                                    <a name="delete" title="删除" class="label label-danger-outline label-pill ajax-get confirm" model="Group" href=":U('admin/menu/delete','id='.$vo['id'].'')}">删除</a>
+                                                    <a name="delete" title="删除" class="label label-danger-outline label-pill confirm" href="javascript:void(0);" url="{:U('admin/menu/delete','id='.$vo['id'].'&status=1')}">删除</a>
                                                 </td>
                                             </tr>
                                             {/foreach}
@@ -105,32 +105,44 @@
 
 
     <script type="text/javascript">
+        var backurl = $('#curr_url').val();
+
+        //有class='confirm'的按钮点击后执行confirm确定后再执行ajax
+        $(document).on('click', '.confirm', function() {
+            if (confirm('确定要执行此操作吗?')) {
+                ajax_done($(this));
+            } else {
+                return false;
+            }
+        });
+
+        //有class='ajax-yuncms'的按钮点击后直接执行ajax
         $(document).on('click', '.ajax-yuncms', function() {
+            ajax_done($(this));
+        });
+
+        function ajax_done(el) {
             var chk_ids = jqchk();
-            //alert(chk_ids);
-            var urls = $(this).attr('url');
-            var backurl = $('#curr_url').val();
-            //alert(backurl);
+            var urls = el.attr('url');
+            // var backurl = $('#curr_url').val();
             $.ajax({
-                type: "GET",
+                type: "DELETE",
                 url: urls,
                 dataType: "json",
                 data: "ids=" + chk_ids,
                 success: function(data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status == 1) {
-                        //alert(backurl);
-                        window.location.href = 'http://' + document.domain + backurl;
                         $.alertMessager(data.info, 'success');
+                        window.location.href = 'http://' + document.domain + backurl;
                     } else {
                         $.alertMessager(data.info, 'danger');
                     }
                 }
             });
+        }
 
-        });
-
-        //jquery获取复选框值
+        //jquery获取复选框ids的值
         function jqchk() {
             var chk_value = [];
             $('input[name="ids[]"]:checked').each(function() {
@@ -141,5 +153,25 @@
             } else {
                 return '';
             }
+        }
+
+
+        function changeorder(url, id, sort) {
+            $.ajax({
+                type: "GET",
+                url: url,
+                dataType: "json",
+                data: "id=" + id + '&sort=' + sort,
+                success: function(data) {
+                    //console.log(data);
+                    if (data.status == 1) {
+                        $.alertMessager(data.info, 'success');
+                        window.location.href = 'http://' + document.domain + backurl;
+                    } else {
+                        $.alertMessager(data.info, 'danger');
+                    }
+                }
+            });
+
         }
     </script>
