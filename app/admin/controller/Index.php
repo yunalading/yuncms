@@ -15,11 +15,13 @@ namespace app\admin\controller;
 use app\common\controller\AdminBaseController;
 
 /**
- * Class Index
+ * Class Index 默认控制器
  * @package app\admin\controller
  */
 class Index extends AdminBaseController {
-
+    /**
+     * 默认首页
+     */
     public function index() {
         $this->redirect(url('/admin/user/login'));
     }

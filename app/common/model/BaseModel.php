@@ -14,6 +14,10 @@ namespace app\common\model;
 
 use think\Model;
 
+/**
+ * Class BaseModel
+ * @package app\common\model
+ */
 class BaseModel extends Model {
 
 }

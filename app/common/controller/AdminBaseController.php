@@ -12,8 +12,14 @@
 
 namespace app\common\controller;
 
-
+/**
+ * Class AdminBaseController
+ * @package app\common\controller
+ */
 abstract class AdminBaseController extends BaseController {
+    /**
+     * AdminBaseController constructor.
+     */
     public function __construct() {
         parent::__construct();
 
