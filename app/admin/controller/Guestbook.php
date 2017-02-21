@@ -15,10 +15,10 @@ namespace app\admin\controller;
 use app\common\controller\AdminBaseController;
 
 /**
- * Class Message
+ * Class Guestbook
  * @package app\admin\controller
  */
-class Message extends AdminBaseController {
+class Guestbook extends AdminBaseController {
     /**
      * @return \think\response\View
      */

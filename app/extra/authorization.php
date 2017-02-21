@@ -101,14 +101,14 @@ return [
                 ]
             ]
         ], [
-            'id' => 'message',
+            'id' => 'guestbook',
             'name' => '留言',
             'iconClass' => 'am-icon-comment-o',
             'submenus' => [
                 [
-                    'id' => 'message-list',
+                    'id' => 'guestbook-list',
                     'name' => '留言列表',
-                    'href' => '/admin/message'
+                    'href' => '/admin/guestbook'
                 ]
             ]
         ], [
