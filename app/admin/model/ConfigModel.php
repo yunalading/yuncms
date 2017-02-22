@@ -14,20 +14,14 @@ use app\common\model\BaseModel;
 use think\Db;
 class ConfigModel extends BaseModel
 {
-    protected $tableName='config';
+    protected $table='config';
     /**
      * 获取配置列表信息
      * @Author [chenqianhao] <68527761@qq.com>
      */
     public function getAllConfig()
     {
-        return Db::name($this->tableName)->find();
+        return Db::name($this->table)->find();
     }
-
-
-
-
-
-
 
 }

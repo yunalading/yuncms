@@ -73,3 +73,75 @@
 </body>
 
 </html>
+
+<script type="text/javascript">
+    var backurl = $('#curr_url').val();
+
+    //有class='confirm'的按钮点击后执行confirm确定后再执行ajax
+    $(document).on('click', '.confirm', function() {
+        if (confirm('确定要执行此操作吗?')) {
+            ajax_done($(this));
+        } else {
+            return false;
+        }
+    });
+
+    //有class='ajax-yuncms'的按钮点击后直接执行ajax
+    $(document).on('click', '.ajax-yuncms', function() {
+        ajax_done($(this));
+    });
+
+    function ajax_done(el) {
+        var chk_ids = jqchk();
+        var urls = el.attr('url');
+        // var backurl = $('#curr_url').val();
+        $.ajax({
+            type: "DELETE",
+            url: urls,
+            dataType: "json",
+            data: "ids=" + chk_ids,
+            success: function(data) {
+                //console.log(data);
+                if (data.status == 1) {
+                    $.alertMessager(data.info, 'success');
+                    window.location.href = 'http://' + document.domain + backurl;
+                } else {
+                    $.alertMessager(data.info, 'danger');
+                }
+            }
+        });
+    }
+
+    //jquery获取复选框ids的值
+    function jqchk() {
+        var chk_value = [];
+        $('input[name="ids[]"]:checked').each(function() {
+            chk_value.push($(this).val());
+        });
+        if (chk_value.length > 0) {
+            return chk_value;
+        } else {
+            return '';
+        }
+    }
+
+
+    function changeorder(url, id, sort) {
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "json",
+            data: "id=" + id + '&sort=' + sort,
+            success: function(data) {
+                //console.log(data);
+                if (data.status == 1) {
+                    $.alertMessager(data.info, 'success');
+                    window.location.href = 'http://' + document.domain + backurl;
+                } else {
+                    $.alertMessager(data.info, 'danger');
+                }
+            }
+        });
+
+    }
+</script>

@@ -191,7 +191,11 @@
     <div class="panel-lite">
         <div class="brand">
             <a href="####" target="_blank">
-                <img alt="logo" class="logo img-responsive" src="{$config.domain}{$config.logo}">
+              {if condition="$config['logo']!=''"}
+                  <img alt="logo" class="logo img-responsive" src="/{$config.logo}">
+              {else /}
+                  <img alt="logo" class="logo img-responsive" src="/static/images/logo.png">
+              {/if}
             </a>
         </div>
         <h4>后台管理登录</h4>

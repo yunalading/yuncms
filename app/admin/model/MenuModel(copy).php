@@ -14,7 +14,81 @@ use think\Db;
 use think\Config;
 class MenuModel extends BaseModel
 {
-    // protected $table='menu';
+    protected $tableName='menu';
+    /**
+     * 根据条件获取指定的一个值
+     * @param $where [array] 条件
+     * @param $field 查查询的字段
+     * @return string
+     * @author [chenqianhao] <68527761@qq.com>
+     */
+    public function getOne($field,$where=array())
+    {
+        if(empty($where)){
+          $value=Db::name($this->tableName)->value($field);
+        }else{
+          $value=Db::name($this->tableName)->where($where)->value($field);
+        }
+        return $value;
+    }
+    /**
+     * 根据条件获取指定的一组数据
+     * @param $where [array] 条件
+     * @param $field [string] 查询的字段
+     * @return array|null
+     * @author [chenqianhao] <68527761@qq.com>
+     */
+    public function getRow($where,$field='*')
+    {
+        //$admin_user=Db::table('yc_admin_user')->where($where)->find();
+        //助手函数需加入第三个参数才和Db::table或Db::name一样是单例模式，否则每次都要连接一下数据库
+        $row = db($this->tableName,[],false)->field($field)->where($where)->find();
+        return $row;
+    }
+
+    /**
+     * 根据条件获更新数据数据
+     * @param $data 要更新的字段和值组成的二元数组
+     * @param $where [array] 条件
+     * @return int 影响的条数
+     * @author [chenqianhao] <68527761@qq.com>
+     */
+    public function autoupdate($data,$where)
+    {
+       $update=Db::table(Config::get('database.prefix').$this->tableName)->where($where)->update($data);
+       return $update;
+    }
+
+    /**
+     * 根据条件获取指定的所有数据
+     * @param $where [array] 条件
+     * @return array|null
+     * @author [chenqianhao] <68527761@qq.com>
+     */
+    public function getAll($where=array(),$field='*')
+    {
+      if(empty($where)){
+        $info = Db::name($this->tableName)->field($field)->select();
+      }else{
+        $info = Db::name($this->tableName)->field($field)->where($where)->select();
+      }
+      return $info;
+    }
+
+
+    /**
+     * 根据条件获取指定的所有数据
+     * @param $data [array] 要插入的数据数组
+     * @return int 插入的主键id
+     * @author [chenqianhao] <68527761@qq.com>
+     */
+    public function autoinsert($data)
+    {
+      Db::name($this->tableName)->insert($data);
+      $id = Db::name($this->tableName)->getLastInsID();
+      return $id;
+    }
+
     /**
      * 获取菜单树
      * @param $where [array] 条件
@@ -23,11 +97,7 @@ class MenuModel extends BaseModel
      */
     public function tree($where)
     {
-        // $menus = Db::name($this->table)->order('sort','asc')->where($where)->select();
-        // return $this->getTree($menus,'title','id','pid');
-
-        $table=$this->gettable();
-        $menus = Db::name($table)->order('sort','asc')->where($where)->select();
+        $menus = Db::name($this->tableName)->order('sort','asc')->where($where)->select();
         return $this->getTree($menus,'title','id','pid');
     }
     /**

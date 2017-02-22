@@ -151,7 +151,7 @@
                         <span class="icon-bar"></span>
                     </button> {if condition="$config.logo neq '' "}
                         <a class="navbar-brand" target="_blank" href="{:U('admin/index/index')}">
-                            <img class="logo img-responsive" src="{$config.logo}">
+                            <img class="logo img-responsive" src="/{$config.logo}">
                         </a>
                         {else /}
                         <a class="navbar-brand" target="_blank" href="{:U('admin/index/index')}">
@@ -167,7 +167,7 @@
                         <span class="icon-bar"></span>
                     </button> {if condition="$config.logo neq '' "}
                         <a class="navbar-brand" target="_blank" href="{:U('admin/index/index')}">
-                            <img class="logo img-responsive" src="{$config.logo}">
+                            <img class="logo img-responsive" src="/{$config.logo}">
                         </a>
                         {else /}
                         <a class="navbar-brand" target="_blank" href="{:U('admin/index/index')}">
@@ -192,7 +192,7 @@
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a target="_blank" href="/"><i class="fa fa-external-link"></i> 打开前台 </a></li>
                                     <li><a href="{:U('admin/index/removeRuntime')}" style="border: 0;text-align: left" class="btn ajax-get no-refresh"><i class="fa fa-trash"></i> 清空缓存</a></li>
-                                    <li><a href="{:U('admin/index/logout')}" class="ajax-get"><i class="fa fa-sign-out"></i> 退出</a></li>
+                                    <li><a href="{:U('admin/index/logout')}"><i class="fa fa-sign-out"></i> 退出</a></li>
                                 </ul>
                             </li>
                         </ul>

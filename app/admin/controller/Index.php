@@ -30,19 +30,16 @@ class Index extends AdminBaseController {
         return view();
     }
     /**
-     * 测试
-     * @author [chenqianhao] <68527761@qq.com>
-    */
-    public function test(){
-      return 'Hello world!';
-    }
-    /**
      * 用户登录
      * @author [chenqianhao] <68527761@qq.com>
      */
     public function login(){
+      //$controller=$this->request->controller();
       //获取系统配置
       $config = $this->getconfigall();
+      // print_r($config);
+      // var_dump($this);
+      // die();
       $input=Request::instance()->post();
       if($input){
           $aname=trim($input['aname']);
@@ -87,7 +84,7 @@ class Index extends AdminBaseController {
           $adminusermodel = new AdminUserModel();
           $where['aname']=$aname;
           $field="aid";
-          $aid=$adminusermodel->getOne($field,$where);
+          $aid=$adminusermodel->getOne($field,$where,'admin_user');
           if($aid<1){
               session('islogin', 0);
               $errors['msg']="您输入的用户不存在！";
@@ -96,7 +93,7 @@ class Index extends AdminBaseController {
               return $this->fetch();
           }
           $wheres['aid']=$aid;
-          $admin_user=$adminusermodel->getRow($wheres);
+          $admin_user=$adminusermodel->getRow($wheres,'*','admin_user');
           //验证用户密码是否输入正确
           $md_password=md5($input['password'].$admin_user['salt']);
           if($md_password != $admin_user['password']){
@@ -112,7 +109,7 @@ class Index extends AdminBaseController {
           //更新最后登陆时间和ip
           $data['lasttime']=time();
           $data['lastip']=request()->ip();
-          $adminusermodel->autoupdate($data,$wheres);
+          $adminusermodel->autoupdate($data,$wheres,'admin_user');
           return $this->redirect('Index/index');
       }
       //$this->view->engine->layout(false);

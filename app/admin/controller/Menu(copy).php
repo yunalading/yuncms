@@ -28,9 +28,6 @@ class Menu extends AdminBaseController {
       $where['title']= array('like','%'.$keyword.'%');
     }
     $menus = new MenuModel();
-    // echo $menus::$tableName;
-    // print_r($this);
-    // die();
     $where['status']=0;
     $where['type']='admin';
     $menulist = $menus->tree($where);
@@ -103,6 +100,12 @@ class Menu extends AdminBaseController {
     $topmenu=$menus->get_menu_shangji();
     $this->assign('topmenu',$topmenu);
     return $this->fetch();
+
+
+      // $menu = new Menu();
+      // $menu->data($param);
+      // $menu->save();
+      // return $this->redirect('index');
   }
   /**
    * post

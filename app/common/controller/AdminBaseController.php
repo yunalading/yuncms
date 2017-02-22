@@ -18,7 +18,6 @@ use app\admin\model\ConfigModel;
  *  @author [chenqianhao] <68527761@qq.com>
  */
 abstract class AdminBaseController extends BaseController {
-    protected $config;
     public function __construct() {
         parent::__construct();
         //$request = request();
@@ -218,7 +217,7 @@ abstract class AdminBaseController extends BaseController {
      */
     protected function getconfigall() {
       $Mconfig = new ConfigModel();
-      $config=$this->config=$Mconfig->getAllConfig();
+      $config=$Mconfig->getAllConfig();
       $this->assign('config', $config);
       return $config;
     }
