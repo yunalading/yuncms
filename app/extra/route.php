@@ -12,6 +12,7 @@
  * 页面路由
  */
 return [
+    'index' => 'home/index/index',
     'about' => function () {
         echo 'about';
     }
