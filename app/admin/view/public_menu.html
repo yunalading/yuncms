@@ -87,27 +87,22 @@
                     </li>
                 </ul>
             </li>
-            <!-- <?php
 
-                echo '<pre>';
-                print_r($menus);
-            ?> -->
-
-            {volist name="menus.main" id="vo" key="k"}
+            {volist name="menus.main" id="vo"}
             <li>
-                <a data-toggle="collapse" href="#navside-collapse--{$k}">
+                <a data-toggle="collapse" href="#navside-collapse--{$vo.id}">
                     <i class="fa fa-folder-open-o"></i>
                     <span class="nav-label">{$vo.title}</span>
                     <span class="angle fa fa-angle-down"></span>
                     <span class="angle-collapse fa fa-angle-left"></span>
                 </a>
                 {if condition="$vo.nav_number gt 0 "}
-                <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--{$k}">
-                    {for start="0" end="$vo.nav_number"} {present name="menus['child'][$k][$i]['url']"}
+                <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--{$vo.id}">
+                    {for start="0" end="$vo.nav_number"} {present name="menus['child'][$vo['id']][$i]['url']"}
                     <li>
-                        <a href="/index.php/{$menus['child'][$k][$i]['url']}">
+                        <a href="/index.php/{$menus['child'][$vo['id']][$i]['url']}">
                             <i class="fa fa-th-large "></i>
-                            <span class="nav-label ">{$menus['child'][$k][$i]['title']}</span>
+                            <span class="nav-label ">{$menus['child'][$vo['id']][$i]['title']}</span>
                         </a>
                     </li>
                     {else /} {/present} {/for}

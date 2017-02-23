@@ -9,7 +9,6 @@
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 namespace app\admin\controller;
-use think\Request;
 use think\Validate;
 use think\Cache;
 use app\common\controller\AdminBaseController;
@@ -34,12 +33,8 @@ class Index extends AdminBaseController {
      * @author [chenqianhao] <68527761@qq.com>
      */
     public function login(){
-      //$controller=$this->request->controller();
       //获取系统配置
       $config = $this->getconfigall();
-      // print_r($config);
-      // var_dump($this);
-      // die();
       $input=Request::instance()->post();
       if($input){
           $aname=trim($input['aname']);
@@ -78,8 +73,9 @@ class Index extends AdminBaseController {
               $errors['msg']=$validate->getError();
               $errors['code']=1;
               //$error=json_encode($errors);
-              $this->assign('errors',$errors);
-              return $this->fetch();
+              // $this->assign('errors',$errors);
+              // return $this->fetch();
+              return $this->error($errors['msg']);
           }
           $adminusermodel = new AdminUserModel();
           $where['aname']=$aname;
@@ -89,8 +85,9 @@ class Index extends AdminBaseController {
               session('islogin', 0);
               $errors['msg']="您输入的用户不存在！";
               $errors['code']=2;
-              $this->assign('errors',$errors);
-              return $this->fetch();
+              return $this->error($errors['msg']);
+              // $this->assign('errors',$errors);
+              // return $this->fetch();
           }
           $wheres['aid']=$aid;
           $admin_user=$adminusermodel->getRow($wheres,'*','admin_user');
@@ -100,8 +97,9 @@ class Index extends AdminBaseController {
               session('islogin', 0);
               $errors['msg']="您输入的密码不正确！";
               $errors['code']=3;
-              $this->assign('errors',$errors);
-              return $this->fetch();
+              return $this->error($errors['msg']);
+              // $this->assign('errors',$errors);
+              // return $this->fetch();
           }
           session('islogin', 1);
           session('aname', $aname);

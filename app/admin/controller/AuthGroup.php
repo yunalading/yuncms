@@ -9,12 +9,13 @@
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 namespace app\admin\controller;
-use think\Request;
 use think\Validate;
+use think\Request;
 use app\common\controller\AdminBaseController;
-use app\admin\model\MenuModel;
+use app\admin\model\AuthGroupModel;
 
-class Menu extends AdminBaseController {
+
+class AuthGroup extends AdminBaseController {
   /**
    * 菜单列表
    * get
@@ -27,13 +28,28 @@ class Menu extends AdminBaseController {
       $keyword=trim($param['keyword']);
       $where['title']= array('like','%'.$keyword.'%');
     }
-    $menus = new MenuModel();
-    $where['status']=0;
-    $where['type']='admin';
-    $menulist = $menus->tree($where);
-    $this->assign('menulist',$menulist);
+    $AuthGroup = new AuthGroupModel();
+    // $where['status']=1;
+    $where['type']=1;
+    $AuthGroups = $AuthGroup->getAll($where,'*',10);
+    $data=$AuthGroups->toArray();
+    $data['lastpage']=$AuthGroups->lastPage();
+    $this->assign('authGroup',$data);
     return $this->fetch();
   }
+  /**
+   * get
+   * 新增用户组
+   * @author [chenqianhao] <68527761@qq.com>
+  */
+  public function create(){
+    // $menus = new MenuModel();
+    // //顶级菜单
+    // $topmenu=$menus->get_menu_shangji();
+    // $this->assign('topmenu',$topmenu);
+    return $this->fetch();
+  }
+
   /**
    * delete
    * 删除菜单
@@ -54,6 +70,9 @@ class Menu extends AdminBaseController {
         $menus->autoupdate($datas,$where);
       }
       $data['info']='删除菜单成功!';
+      $log['log_desc']="删除菜单";
+      $log['log_remark']="管理员".session('aname').$log['log_desc'].geturlbase()."成功!";
+      $this->inserlog($log);
       return json($data);
     }
   }
@@ -80,33 +99,31 @@ class Menu extends AdminBaseController {
   */
   public function update($id=0){
      $param = Request::instance()->param(false);
+     $menus= new MenuModel();
      $param['addtime']=time();
      $param['tip']=isset($param['tip'])?trim($param['tip']):'';
      $param['icon']=isset($param['icon'])?trim($param['icon']):'';
+     $param['url']=isset($param['url'])?trim($param['url']):'';
+     $param['title']=isset($param['title'])?trim($param['title']):'';
+     $param['id']=isset($param['id'])?intval($param['id']):0;
+     if($param['url']!=''){
+       $where['url']=$param['url'];
+       $where['status']=0;
+       $where['id']=array('neq',$param['id']);
+       $count=$menus->getcount($where);
+       if($count>0){
+         return $this->error('该菜单已经存在无法重复添加！','index');
+       }
+     }
      $where['id']=$param['id'];
      unset($param["id"]);
-     $menus= new MenuModel();
      $update=$menus->autoupdate($param,$where);
+     $log['log_desc']="编辑菜单";
+     $log['log_remark']="管理员".session('aname').$log['log_desc'].$param['title'].'('.geturlbase().")成功!";
+     $this->inserlog($log);
      return $this->success('修改菜单数据成功','index');
   }
-  /**
-   * get
-   * 新增菜单
-   * @author [chenqianhao] <68527761@qq.com>
-  */
-  public function create(){
-    $menus = new MenuModel();
-    //顶级菜单
-    $topmenu=$menus->get_menu_shangji();
-    $this->assign('topmenu',$topmenu);
-    return $this->fetch();
 
-
-      // $menu = new Menu();
-      // $menu->data($param);
-      // $menu->save();
-      // return $this->redirect('index');
-  }
   /**
    * post
    * 保存新增菜单数据
@@ -117,11 +134,31 @@ class Menu extends AdminBaseController {
       $param['addtime']=time();
       $param['tip']=isset($param['tip'])?trim($param['tip']):'';
       $param['icon']=isset($param['icon'])?trim($param['icon']):'';
+      $param['url']=isset($param['url'])?trim($param['url']):'';
+      $param['title']=isset($param['title'])?trim($param['title']):'';
+      if($param['title']==''){
+        return $this->error('新增菜单失败,必须填写菜单名称','index');
+      }
       $menus = new MenuModel();
+      //url必须是唯一的
+      if($param['url']!=''){
+        $where['url']=$param['url'];
+        $where['status']=0;
+        $count=$menus->getcount($where);
+        if($count>0){
+          return $this->error('该菜单已经存在无法重复添加！','index');
+        }
+      }
       $insertid=$menus->autoinsert($param);
       if($insertid>0){
+        $log['log_desc']="新增菜单";
+        $log['log_remark']="管理员".session('aname').$log['log_desc'].  $param['title'].'('.geturlbase().")成功!";
+        $this->inserlog($log);
         return $this->success('新增菜单成功','index');
       }else{
+        $log['log_desc']="新增菜单";
+        $log['log_remark']="管理员".session('aname').$log['log_desc'].$param['title'].'('.geturlbase().")失败!";
+        $this->inserlog($log);
         return $this->error('新增菜单失败','index');
       }
   }
@@ -148,6 +185,10 @@ class Menu extends AdminBaseController {
           $menus->autoupdate($datas,$where);
         }
         $data['info']='修改成功!';
+        $log['log_desc']="修改菜单显示隐藏";
+        $zhauntgai=$data['hide']>0?'隐藏':'显示';
+        $log['log_remark']="管理员".session('aname')."修改菜单".geturlbase().$zhuantai."状态成功!";
+        $this->inserlog($log);
         return json($data);
       }
       //return json(["info"=>"test","status"=>0,"url"=>"admin/index/index"]);
@@ -168,9 +209,15 @@ class Menu extends AdminBaseController {
       if($update>0){
         $info['info']="修改排序成功！";
         $info['status']=1;
+        $log['log_desc']="修改菜单排序";
+        $log['log_remark']="管理员".session('aname')."修改菜单".geturlbase()."排序成功!";
+        $this->inserlog($log);
       }else{
         $info['info']="修改排序失败！";
         $info['status']=0;
+        $log['log_desc']="修改菜单排序";
+        $log['log_remark']="管理员".session('aname')."修改菜单".geturlbase()."排序失败!";
+        $this->inserlog($log);
       }
       return json($info);
   }

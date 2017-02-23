@@ -222,4 +222,22 @@ abstract class AdminBaseController extends BaseController {
       return $config;
     }
 
+    /**
+     * 记录管理员操作日志
+     * @param  $data  [array]  要插入的数据
+     * @return int 插入的主键id
+     * @author [chenqianhao] <68527761@qq.com>
+     */
+    public function inserlog($data) {
+      $data['log_addtime']=isset($data['log_addtime'])?$data['log_addtime']:time();
+      $data['log_action']=isset($data['log_action'])?trim($data['log_action']):geturlbase();
+      $data['log_value']=isset($data['log_value'])?intval($data['log_value']):$this->request->controller();
+      $data['log_addip']=isset($data['log_addip'])?intval($data['log_addip']):$this->request->ip();
+      $data['log_aid']=isset($data['log_aid'])?intval($data['log_aid']):session('aid');
+      $data['log_type']=isset($data['log_type'])?intval($data['log_type']):0;
+      $adminlog = new \app\admin\model\AdminLogModel();
+      $id = $adminlog->autoinsert($data,'admin_log');
+      return $id;
+    }
+
 }

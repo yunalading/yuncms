@@ -91,16 +91,27 @@ class BaseModel extends Model {
   /**
    * 根据条件获取指定的所有数据
    * @param $where [array] 条件
+   * @param $field [string] 查询字段，默认全部字段
+   * @param $paginate [string] 分页时每页显示的条数(默认0不分页)
+   * @param $table [string] 查询的表名
    * @return array|null
    * @author [chenqianhao] <68527761@qq.com>
    */
-  public function getAll($where=array(),$field='*',$table='')
+  public function getAll($where=array(),$field='*',$paginate=0,$table='')
   {
     $table=$this->gettable($table);
-    if(empty($where)){
-      $info = Db::name($table)->field($field)->select();
+    if($paginate>0){
+      if(empty($where)){
+        $info = Db::name($table)->field($field)->paginate($paginate);;
+      }else{
+        $info = Db::name($table)->field($field)->where($where)->paginate($paginate);
+      }
     }else{
-      $info = Db::name($table)->field($field)->where($where)->select();
+      if(empty($where)){
+        $info = Db::name($table)->field($field)->select();
+      }else{
+        $info = Db::name($table)->field($field)->where($where)->select();
+      }
     }
     return $info;
   }
@@ -118,4 +129,22 @@ class BaseModel extends Model {
     $id = Db::name($table)->getLastInsID();
     return $id;
   }
+
+  /**
+   * 根据条件获取指定的数据的条数
+   * @param $where [array] 条件
+   * @return int|0
+   * @author [chenqianhao] <68527761@qq.com>
+   */
+  public function getcount($where=array(),$table='')
+  {
+    $table=$this->gettable($table);
+    if(empty($where)){
+      $count = Db::name($table)->count();
+    }else{
+      $count = Db::name($table)->where($where)->count();
+    }
+    return $count;
+  }
+
 }

@@ -90,7 +90,7 @@
 | type | tinyint(1) unsigned | 1 | 组类型0前台1后台 |  |
 | title| varchar(30) | | 用户组中文名称 |   |
 | description | varchar(150)  | | 用户主描述 |  |
-| status | tinyint(1) unsigned  | 1 |  用户组状态：为1正常，为0禁用,-1为删除 | |
+| status | tinyint(1) unsigned  | 1 |  用户组状态：为1正常，为0禁用,2为删除 | |
 | rules | varchar(100) |   |  用户组拥有的规则id，多个规则 , 隔开 |  |
 | addtime | int(11) unsigned    | 0 | 添加时间 |  |
 
@@ -225,6 +225,7 @@
 | 字段           | 类型           | 默认值 | 注释  | 索引  |
 | ------------- |-------------| ----- | -----| -----|
 | log_id      | int(11) | | 自增| PRIMARY  |
+| log_type     | tinyint(1)  | 0 |日志类型：0管理员；1用户中心 |    |
 | log_aid     | int(11) unsigned     | | 操作的管理员标识 |    |
 | log_action | varchar(150)      | | 操作的控制器和方法 |   |
 | log_value | varchar(30)     |    | 操作该动作的英文标识 |  |
