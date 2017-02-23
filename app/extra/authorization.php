@@ -112,6 +112,17 @@ return [
                 ]
             ]
         ], [
+            'id' => 'images',
+            'name' => '图片',
+            'iconClass' => 'am-icon-image',
+            'submenus' => [
+                [
+                    'id' => 'images-list',
+                    'name' => '图片列表',
+                    'href' => '/admin/images'
+                ]
+            ]
+        ], [
             'id' => 'ads',
             'name' => '广告',
             'iconClass' => 'am-icon-adn',
@@ -187,10 +198,6 @@ return [
                     'id' => 'area-manager',
                     'name' => '地区管理',
                     'href' => '/admin/area'
-                ], [
-                    'id' => 'images',
-                    'name' => '图片管理',
-                    'href' => '/admin/images'
                 ], [
                     'id' => 'upload',
                     'name' => '上传设置',
