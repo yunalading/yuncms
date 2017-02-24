@@ -10,6 +10,7 @@
 // +----------------------------------------------------------------------
 namespace app\admin\controller;
 use think\Validate;
+use think\Request;
 use think\Cache;
 use app\common\controller\AdminBaseController;
 use app\admin\model\AdminUserModel;

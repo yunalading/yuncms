@@ -29,6 +29,8 @@ abstract class AdminBaseController extends BaseController {
           //获取系统配置
           $this->getconfigall();
         }
+
+        //print_r(get_defined_constants());
         if (!in_array($url, array('admin/index/login', 'admin/index/logout', 'admin/index/verify'))) {
             // 是否是超级管理员
             if(!defined('IS_ROOT')){
@@ -91,6 +93,7 @@ abstract class AdminBaseController extends BaseController {
             return true;
         }
     }
+
     /**
      * 检测当前用户是否为管理员
      * @return boolean true-管理员，false-非管理员
@@ -99,7 +102,18 @@ abstract class AdminBaseController extends BaseController {
     public  function is_administrator($uid = null) {
         //$uid = is_null($uid) ? $this->isLogin() : $uid;
         $uid = is_null($uid) ? session('aid') : $uid;
-        return $uid && (intval($uid) === config('authorization.user_administrator'));
+        if(intval($uid)>0){
+          $gid=db('auth_group_access')->where('aid',$uid)->value('gid');
+          if($gid<1){
+            return false;
+          }
+          if(intval($gid) === config('authorization.admin_gid')){
+              return true;
+          }
+        }else{
+          return false;
+        }
+        //return $uid && (intval($uid) === config('authorization.user_administrator'));
     }
     /**
      * 权限检测

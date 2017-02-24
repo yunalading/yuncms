@@ -19,6 +19,9 @@
                     <div class="row">
                         <!-- 工具栏按钮 -->
 
+<!-- {$Think.const.IS_ROOT}
+{$Think.config.authorization.admin_gid} -->
+
                         <div class="col-xs-12 col-sm-8 button-list clearfix">
                             <div class="form-group">
                                 <a title="新增" class="btn btn-primary-outline btn-pill" href="{:U('admin/authGroup/create')}">新增</a>&nbsp;<a title="显示" target-form="ids" class="btn btn-success-outline btn-pill confirm" href="javascript:void(0);" url="{:U('admin/authGroup/changehide','id=select&status=0')}">启用</a>&nbsp;
@@ -63,9 +66,14 @@
                                         <tbody>
                                             {foreach $authGroup['data'] as $vo}
                                             <tr>
-                                                <td>
-                                                    <input class="ids" type="checkbox" value="{$vo.gid}" name="ids[]">
-                                                </td>
+                                                                                                                                <td>
+                                                {eq name="$vo['gid']"       value="$Think.config.authorization.admin_gid"}
+                                                  <input class="disabled"  type="checkbox" disabled>
+                                                                                                                                {else/}
+                                                  <input class="ids" type="checkbox" value="{$vo.gid}" name="ids[]">
+                                                {/eq}
+                                              </td>
+
                                                 <td> {$vo.gid} </td>
                                                 <td> {$vo.title} </td>
                                                 <td>
@@ -83,8 +91,12 @@
                                                 <td> {$vo.rules} </td>
                                                 <td>{$vo.addtime|date="Y-m-d h:i:s",###}</td>
                                                 <td>
-                                                    <a name="edit" title="编辑" class="label label-primary-outline label-pill" href="{:U('admin/authGroup/edit','id='.$vo['gid'].'')}">编辑</a>
-                                                    <a name="delete" title="删除" class="label label-danger-outline label-pill confirm" href="javascript:void(0);" url="{:U('admin/authGroup/delete','id='.$vo['gid'].'&status=1')}">删除</a>
+                                                  {eq name="$vo['gid']" value="$Think.config.authorization.admin_gid"}
+                                                      <a class="label label-warning" href="#">超级管理员无需操作</a>
+                                                  {else/}
+                                                      <a name="edit" title="编辑" class="label label-primary-outline label-pill" href="{:U('admin/authGroup/edit','id='.$vo['gid'].'')}">编辑</a>
+                                                      <a name="delete" title="删除" class="label label-danger-outline label-pill confirm" href="javascript:void(0);" url="{:U('admin/authGroup/delete','id='.$vo['gid'].'&status=1')}">删除</a>
+                                                  {/eq}
                                                 </td>
                                             </tr>
                                             {/foreach}

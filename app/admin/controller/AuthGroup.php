@@ -12,10 +12,9 @@ namespace app\admin\controller;
 use think\Validate;
 use think\Request;
 use app\common\controller\AdminBaseController;
-use app\admin\model\AuthGroupModel;
+use app\admin\model\AuthRuleModel;
 
-
-class AuthGroup extends AdminBaseController {
+class AuthRule extends AdminBaseController {
   /**
    * 菜单列表
    * get
@@ -48,6 +47,47 @@ class AuthGroup extends AdminBaseController {
     // $topmenu=$menus->get_menu_shangji();
     // $this->assign('topmenu',$topmenu);
     return $this->fetch();
+  }
+
+  /**
+   * post
+   * 保存新增菜单数据
+   * @author [chenqianhao] <68527761@qq.com>
+  */
+  public function save($id=0){
+      $param = Request::instance()->param(false);
+      $param['addtime']=time();
+      $param['description']=isset($param['description'])?trim($param['description']):'';
+      if($param['description']!=''){
+        $param['description']=str_replace("\r\n","<br />",$param['description']);
+        $param['description']=htmlspecialchars_decode($param['description']);
+      }
+      $param['status']=isset($param['status'])?intval($param['status']):'';
+      $param['rules']=isset($param['rules'])?trim($param['rules']):'';
+      $param['title']=isset($param['title'])?trim($param['title']):'';
+      if($param['title']==''){
+        return $this->error('新增用户组失败,必须填写用户组名称','index');
+      }
+      $authGroup = new AuthGroupModel();
+      //用户组名必须是唯一的
+      $where['title']=$param['title'];
+      $where['status']=1;
+      $count=$authGroup->getcount($where);
+      if($count>0){
+        return $this->error('该用户组已经存在无法重复添加！','index');
+      }
+      $insertid=$authGroup->autoinsert($param);
+      if($insertid>0){
+        $log['log_desc']="新增用户组";
+        $log['log_remark']="管理员".session('aname').$log['log_desc'].  $param['title']."成功!";
+        $this->inserlog($log);
+        return $this->success('新增用户组成功','index');
+      }else{
+        $log['log_desc']="新增菜单";
+        $log['log_remark']="管理员".session('aname').$log['log_desc'].$param['title']."失败!";
+        $this->inserlog($log);
+        return $this->error('新增用户组失败','index');
+      }
   }
 
   /**
@@ -124,44 +164,7 @@ class AuthGroup extends AdminBaseController {
      return $this->success('修改菜单数据成功','index');
   }
 
-  /**
-   * post
-   * 保存新增菜单数据
-   * @author [chenqianhao] <68527761@qq.com>
-  */
-  public function save($id=0){
-      $param = Request::instance()->param(false);
-      $param['addtime']=time();
-      $param['tip']=isset($param['tip'])?trim($param['tip']):'';
-      $param['icon']=isset($param['icon'])?trim($param['icon']):'';
-      $param['url']=isset($param['url'])?trim($param['url']):'';
-      $param['title']=isset($param['title'])?trim($param['title']):'';
-      if($param['title']==''){
-        return $this->error('新增菜单失败,必须填写菜单名称','index');
-      }
-      $menus = new MenuModel();
-      //url必须是唯一的
-      if($param['url']!=''){
-        $where['url']=$param['url'];
-        $where['status']=0;
-        $count=$menus->getcount($where);
-        if($count>0){
-          return $this->error('该菜单已经存在无法重复添加！','index');
-        }
-      }
-      $insertid=$menus->autoinsert($param);
-      if($insertid>0){
-        $log['log_desc']="新增菜单";
-        $log['log_remark']="管理员".session('aname').$log['log_desc'].  $param['title'].'('.geturlbase().")成功!";
-        $this->inserlog($log);
-        return $this->success('新增菜单成功','index');
-      }else{
-        $log['log_desc']="新增菜单";
-        $log['log_remark']="管理员".session('aname').$log['log_desc'].$param['title'].'('.geturlbase().")失败!";
-        $this->inserlog($log);
-        return $this->error('新增菜单失败','index');
-      }
-  }
+
   //get
   public function read($id=0){
 

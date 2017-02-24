@@ -17,7 +17,7 @@ return [
       'auth_rule'         => 'auth_rule',         // 权限规则表
       'auth_user'         => 'admin_user'             // 用户信息表
   ],
-  'user_administrator' => 1,//管理员的默认id,始终是最大权限
-  //'admin_group_id' => 3,//管理员组的默认id
-  'develop_mode'  =>  'false',//菜单里面开发者模式
+  //'user_administrator' => 1,//管理员的默认id,始终是最大权限
+  'admin_gid' => 1,//管员组的默认id(auth_group)
+  'develop_mode' => 'false',//菜单里面开发者模式
 ];
