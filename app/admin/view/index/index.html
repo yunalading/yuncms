@@ -1,0 +1,129 @@
+<!-- 右侧内容 -->
+<div id="main" class="col-xs-12 col-sm-9 main" style="padding-right: 0;">
+    <!-- 面包屑导航 -->
+    <ul class="breadcrumb">
+        <li><i class="fa fa-map-marker"></i></li>
+        <!-- <li class="text-muted">首页</li> -->
+        {foreach $positionlink as $vo}
+        <li class="text-muted">{$vo.title}</li>
+        {/foreach}
+    </ul>
+
+    <!-- 多标签后台内容部分 -->
+    <div class="tab-content ct-tab-content" style="height: 100%;">
+        <!-- 首页 -->
+        <div role="tabpanel" class="tab-pane fade in active" id="home">
+            <div class="dashboard clearfix">
+                <div class="col-xs-12 col-sm-6 col-lg-6 ct-update">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="update pull-right"></div>
+                            <i class="fa fa-cog"></i> 系统信息
+                        </div>
+                        <div class="panel-body">
+
+                            <table class="table table-condensed">
+                                <tbody>
+                                    <tr>
+                                        <td>yuncms版本</td>
+                                        <td>
+                                            <span class="version">
+                                                  <?php echo  config('core.version') ?> beta1
+                                                </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>产品型号</td>
+                                        <td>云阿拉丁内容管理系统（ yuncms ）</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ThinkPHP版本</td>
+                                        <td>{$Think.const.THINK_VERSION}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>服务器操作系统</td>
+                                        <td>
+                                            <?php echo PHP_OS; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>web环境</td>
+                                        <td>
+                                            <?php $webs=explode(' ',$_SERVER['SERVER_SOFTWARE']);
+                                                echo $webs[0].$webs[1]; ?> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>PHP版本</td>
+                                        <td>
+                                            <?php
+                                              echo PHP_VERSION;  ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>MYSQL版本</td>
+                                        <td>{$mysqlversion}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>上传限制</td>
+                                        <td>
+                                            <?php echo @ini_get('file_uploads') ? ini_get('upload_max_filesize') :'unknown'; ?>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-actions"></div>
+                            <i class="fa fa-users"></i> 产品团队
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-condensed">
+                                <tbody>
+                                    <tr>
+                                        <td>网站标题</td>
+                                        <td>{$config.webname}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>yuncms框架</td>
+                                        <td><a href="http://www.yunalading.com">大冶市云阿拉丁科技有限公司</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>官方网址</td>
+                                        <td><a href="http://www.yunalading.com">http://www.yunalading.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>公司地址</td>
+                                        <td>湖北省黄石市大冶市大冶大道116号</td>
+                                    </tr>
+                                    <tr>
+                                        <td>核心团队</td>
+                                        <td>陈前号、胡应应、黄素华、卢超、罗玉梅...</td>
+                                    </tr>
+                                    <tr>
+                                        <td>客服QQ</td>
+                                        <td>68527761</td>
+                                    </tr>
+                                    <tr>
+                                        <td>官方QQ群</td>
+                                        <td>
+                                            <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=b4336cf6eb00110f80a3641809777ffc175d40ec5379bf6c31f338766627ac0c"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="yuncms" title="yuncms"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>联系我们</td>
+                                        <td>service@yunalading.com</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- 后台首页小工具 -->
+            </div>
+        </div>
+    </div>

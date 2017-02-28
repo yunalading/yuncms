@@ -1,0 +1,370 @@
+<!-- 右侧内容 -->
+<div id="main" class="col-xs-12 col-sm-9 main" style="overflow-y: scroll;">
+    <!-- 面包屑导航 -->
+    <ul class="breadcrumb">
+      <li><i class="fa fa-map-marker"></i></li>
+      {foreach $positionlink as $vo}
+      <li class="text-muted">{$vo.title}</li>
+      {/foreach}
+      <li class="text-muted">新增用户组</li>
+    </ul>
+    <!-- 主体内容区域 -->
+    <div class="tab-content ct-tab-content">
+        <div class="panel builder formbuilder-box">
+            <div class="panel-body">
+                <form action="{:U('admin/authGroup/save')}" method="post" class="form form-builder">
+                    <ul class="nav-tabs nav">
+                        <li class="active"><a href="#tab1" data-toggle="tab">用户组信息</a></li>
+                        <li><a href="#tab2" data-toggle="tab">系统权限</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab1" class="tab-pane active">
+                            <div class="form-group"></div>
+                            <!-- <div class="form-group">
+                                <label class="left control-label">上级部门：</label>
+                                <div class="right">
+                                    <select name="pid" class="form-control select cui-select">
+                                        <option value="0" selected="selected">
+                                            顶级部门 </option>
+                                        <option value="1">
+                                            超级管理员 </option>
+                                        <option value="2">
+                                            运营部门 </option>
+                                    </select>
+                                </div>
+                            </div> -->
+                            <div class="form-group">
+                                <label class="left control-label">组名称：</label>
+                                <div class="right">
+                                    <input type="text" class="form-control input" name="title" value="">
+                                </div>
+                            </div>
+                            <input type="hidden" name="type" value="1">
+
+                            <div class="form-group">
+                                <label class="left control-label">组说明：</label>
+                                <div class="right">
+                                    <textarea class="form-control textarea" rows="5" name="description"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="left control-label">规则：</label>
+                                <div class="right">
+                                    <textarea class="form-control textarea" rows="3" name="rules"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="left control-label">状态：</label>
+                                <div class="right">
+
+                                    <div class="radio-inline cui-control cui-radio">
+                                          <label for="typelink">
+                                              <input type="radio" class="radio" name="status" value="1" checked="checked">
+                                                  <span class="cui-control-indicator"></span>
+                                                  <span>启用</span>
+                                            </label>
+                                      </div>
+
+                                      <div class="radio-inline cui-control cui-radio">
+                                            <label for="typelink">
+                                                <input type="radio" class="radio" name="status" value="0">
+                                                    <span class="cui-control-indicator"></span>
+                                                    <span>禁用</span>
+                                              </label>
+                                        </div>
+
+                                        <div class="radio-inline cui-control cui-radio">
+                                              <label for="typelink">
+                                                  <input type="radio" class="radio" name="status" value="2">
+                                                      <span class="cui-control-indicator"></span>
+                                                      <span>删除</span>
+                                                </label>
+                                          </div>
+                                </div>
+                            </div>
+                        </div>
+                         <div id="tab2" class="tab-pane">
+                           test
+                           <!--
+                            <div class="form-group"></div>
+                            <div class="form-group">
+                                <div class="auth">
+                                    <div class="Admin">
+                                        <div class="cui-control cui-checkbox">
+                                            <label class="checkbox-label checkbox-inline">
+                                                <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="1">
+                                                <span class="cui-control-indicator"></span>
+                                                <span> 系统</span>
+                                            </label>
+                                            <div class="auth1" style="padding-left: 25px;margin-top: 10px;">
+                                                <label class="checkbox-label checkbox-inline">
+                                                    <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="2">
+                                                    <span class="cui-control-indicator"></span>
+                                                    <span> 系统功能</span>
+                                                </label>
+                                                <div class="auth2" style="padding-left: 25px;margin-top: 10px;">
+                                                    <label class="checkbox-label checkbox-inline">
+                                                        <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="3">
+                                                        <span class="cui-control-indicator"></span>
+                                                        <span> 系统设置</span>
+                                                    </label>
+                                                    <div class="auth3" style="padding-left: 25px;margin-top: 10px;margin-bottom: 10px;">
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="4">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 修改设置</span>
+                                                        </label>
+                                                    </div>
+                                                    <label class="checkbox-label checkbox-inline">
+                                                        <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="5">
+                                                        <span class="cui-control-indicator"></span>
+                                                        <span> 导航管理</span>
+                                                    </label>
+                                                    <div class="auth5" style="padding-left: 25px;margin-top: 10px;margin-bottom: 10px;">
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="6">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 新增</span>
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="7">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 编辑</span>
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="8">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 设置状态</span>
+                                                        </label>
+                                                    </div>
+                                                    <label class="checkbox-label checkbox-inline">
+                                                        <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="13">
+                                                        <span class="cui-control-indicator"></span>
+                                                        <span> 配置管理</span>
+                                                    </label>
+                                                    <div class="auth13" style="padding-left: 25px;margin-top: 10px;margin-bottom: 10px;">
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="14">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 新增</span>
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="15">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 编辑</span>
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="16">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 设置状态</span>
+                                                        </label>
+                                                    </div>
+                                                    <label class="checkbox-label checkbox-inline">
+                                                        <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="17">
+                                                        <span class="cui-control-indicator"></span>
+                                                        <span> 上传管理</span>
+                                                    </label>
+                                                    <div class="auth17" style="padding-left: 25px;margin-top: 10px;margin-bottom: 10px;">
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="18">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 上传文件</span>
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="19">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 删除文件</span>
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="20">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 设置状态</span>
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="21">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 下载远程图片</span>
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="22">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 文件浏览</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <label class="checkbox-label checkbox-inline">
+                                                    <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="23">
+                                                    <span class="cui-control-indicator"></span>
+                                                    <span> 系统权限</span>
+                                                </label>
+                                                <div class="auth23" style="padding-left: 25px;margin-top: 10px;">
+                                                    <label class="checkbox-label checkbox-inline">
+                                                        <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="24">
+                                                        <span class="cui-control-indicator"></span>
+                                                        <span> 用户管理</span>
+                                                    </label>
+                                                    <div class="auth24" style="padding-left: 25px;margin-top: 10px;margin-bottom: 10px;">
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="25">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 新增</span>
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="26">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 编辑</span>
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="27">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 设置状态</span>
+                                                        </label>
+                                                    </div>
+                                                    <label class="checkbox-label checkbox-inline">
+                                                        <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="28">
+                                                        <span class="cui-control-indicator"></span>
+                                                        <span> 管理员管理</span>
+                                                    </label>
+                                                    <div class="auth28" style="padding-left: 25px;margin-top: 10px;margin-bottom: 10px;">
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="29">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 新增</span>
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="30">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 编辑</span>
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="31">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 设置状态</span>
+                                                        </label>
+                                                    </div>
+                                                    <label class="checkbox-label checkbox-inline">
+                                                        <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="32">
+                                                        <span class="cui-control-indicator"></span>
+                                                        <span> 用户组管理</span>
+                                                    </label>
+                                                    <div class="auth32" style="padding-left: 25px;margin-top: 10px;margin-bottom: 10px;">
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="33">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 新增</span>
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="34">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 编辑</span>
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="35">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 设置状态</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <label class="checkbox-label checkbox-inline">
+                                                    <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="36">
+                                                    <span class="cui-control-indicator"></span>
+                                                    <span> 扩展中心</span>
+                                                </label>
+                                                <div class="auth36" style="padding-left: 25px;margin-top: 10px;">
+                                                    <label class="checkbox-label checkbox-inline">
+                                                        <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="44">
+                                                        <span class="cui-control-indicator"></span>
+                                                        <span> 功能模块</span>
+                                                    </label>
+                                                    <div class="auth44" style="padding-left: 25px;margin-top: 10px;margin-bottom: 10px;">
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="45">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 安装</span>
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="46">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 卸载</span>
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="47">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 更新信息</span>
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="48">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 设置状态</span>
+                                                        </label>
+                                                    </div>
+                                                    <label class="checkbox-label checkbox-inline">
+                                                        <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="49">
+                                                        <span class="cui-control-indicator"></span>
+                                                        <span> 插件管理</span>
+                                                    </label>
+                                                    <div class="auth49" style="padding-left: 25px;margin-top: 10px;margin-bottom: 10px;">
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="50">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 安装</span>
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="51">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 卸载</span>
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="52">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 运行</span>
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="53">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 设置</span>
+                                                        </label>
+                                                        <label class="checkbox-inline" style="display: block;margin-top: 10px;margin-left: 0px;">
+                                                            <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="54">
+                                                            <span class="cui-control-indicator"></span>
+                                                            <span> 后台管理</span>
+                                                        </label>
+                                                        <div class="auth54" style="padding-left: 25px;margin-top: 10px;margin-bottom: 10px;">
+                                                            <label class="checkbox-inline">
+                                                                <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="55">
+                                                                <span class="cui-control-indicator"></span>
+                                                                <span> 新增数据</span>
+                                                            </label>
+                                                            <label class="checkbox-inline">
+                                                                <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="56">
+                                                                <span class="cui-control-indicator"></span>
+                                                                <span> 编辑数据</span>
+                                                            </label>
+                                                            <label class="checkbox-inline">
+                                                                <input type="checkbox" name="menu_auth[Admin][]" data-module-name="Admin" value="57">
+                                                                <span class="cui-control-indicator"></span>
+                                                                <span> 设置状态</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr> </div>
+                            </div>
+                            <div class="form-group"></div>
+                            -->
+                        </div>
+                    </div>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <!-- <input type="hidden" name="id" value=""> -->
+                        <button class="btn btn-primary submit " type="submit" target-form="form">确定</button>
+                        <button class="btn btn-default return" onclick="javascript:history.back(-1);return false;">返回</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

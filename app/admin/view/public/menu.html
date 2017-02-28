@@ -1,0 +1,118 @@
+<!-- 后台左侧导航 -->
+<div id="sidebar" class="col-xs-12 col-sm-3 sidebar tab-content">
+    <!-- 模块菜单 -->
+    <nav class="navside navside-default" role="navigation">
+        <ul class="nav navside-nav navside-first">
+            <!-- <li>
+                <a data-toggle="collapse" href="#navside-collapse--1">
+                    <i class="fa fa-folder-open-o"></i>
+                    <span class="nav-label">系统功能</span>
+                    <span class="angle fa fa-angle-down"></span>
+                    <span class="angle-collapse fa fa-angle-left"></span>
+                </a>
+                <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--1">
+                    <li>
+                        <a href="/admin.php?s=/Admin/Config/group.html">
+                            <i class="fa fa-wrench"></i>
+                            <span class="nav-label">系统设置</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin.php?s=/Admin/Nav/index.html">
+                            <i class="fa fa-map-signs"></i>
+                            <span class="nav-label">导航管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin.php?s=/Admin/Config/index.html">
+                            <i class="fa fa-cogs"></i>
+                            <span class="nav-label">配置管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin.php?s=/Admin/Upload/index.html">
+                            <i class="fa fa-upload"></i>
+                            <span class="nav-label">上传管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#navside-collapse--2">
+                    <i class="fa fa-folder-open-o"></i>
+                    <span class="nav-label">系统权限</span>
+                    <span class="angle fa fa-angle-down"></span>
+                    <span class="angle-collapse fa fa-angle-left"></span>
+                </a>
+                <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--2">
+                    <li>
+                        <a href="/admin.php?s=/Admin/User/index.html">
+                            <i class="fa fa-user"></i>
+                            <span class="nav-label">用户管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin.php?s=/Admin/Access/index.html">
+                            <i class="fa fa-lock"></i>
+                            <span class="nav-label">管理员管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin.php?s=/Admin/Group/index.html">
+                            <i class="fa fa-sitemap"></i>
+                            <span class="nav-label">用户组管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#navside-collapse--3">
+                    <i class="fa fa-folder-open-o"></i>
+                    <span class="nav-label">扩展中心</span>
+                    <span class="angle fa fa-angle-down"></span>
+                    <span class="angle-collapse fa fa-angle-left"></span>
+                </a>
+                <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--3">
+                    <li>
+                        <a href="/admin.php?s=/Admin/Module/index.html">
+                            <i class="fa fa-th-large"></i>
+                            <span class="nav-label">功能模块</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin.php?s=/Admin/Addon/index.html">
+                            <i class="fa fa-th"></i>
+                            <span class="nav-label">插件管理</span>
+                        </a>
+                    </li>
+                </ul>
+            </li> -->
+
+            {volist name="menus.main" id="vo"}
+            <li>
+                <a data-toggle="collapse" href="#navside-collapse--{$vo.id}">
+                    <i class="fa fa-folder-open-o"></i>
+                    <span class="nav-label">{$vo.title}</span>
+                    <span class="angle fa fa-angle-down"></span>
+                    <span class="angle-collapse fa fa-angle-left"></span>
+                </a>
+                {if condition="$vo.nav_number gt 0 "}
+                <ul class="nav navside-nav navside-second collapse in" id="navside-collapse--{$vo.id}">
+                    {for start="0" end="$vo.nav_number"} {present name="menus['child'][$vo['id']][$i]['url']"}
+                    <li>
+                        <a href="/index.php/{$menus['child'][$vo['id']][$i]['url']}">
+                            <i class="fa fa-th-large "></i>
+                            <span class="nav-label ">{$menus['child'][$vo['id']][$i]['title']}</span>
+                        </a>
+                    </li>
+                    {else /} {/present} {/for}
+                </ul>
+                {/if}
+            </li>
+            {/volist}
+
+
+
+        </ul>
+    </nav>
+</div>

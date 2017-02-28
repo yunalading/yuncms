@@ -10,7 +10,6 @@
 // +----------------------------------------------------------------------
 
 namespace app\common\controller;
-
 use think\Controller;
 
 /**
@@ -23,5 +22,6 @@ abstract class BaseController extends Controller {
      */
     public function __construct() {
         parent::__construct();
+
     }
 }

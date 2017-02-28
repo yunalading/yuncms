@@ -1,0 +1,147 @@
+<div class="clearfix footer">
+    <div class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" target="_blank" href="/">
+                    <span><b><span style="color: #2699ed;">yuncms</span></b>
+                    </span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse navbar-collapse-bottom">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="{:U('admin/index/index')}" class="text-muted" target="_blank">
+                            <span>版权所有 © 2014-2017</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="text-muted pull-right">框架开发：大冶市云阿拉丁科技有限公司</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="clearfix full-footer">
+
+</div>
+
+<div class="clearfix full-script">
+    <div class="container-fluid">
+        <input type="hidden" id="corethink_home_img" value="/static/admin/images">
+        <script type="text/javascript" src="/static/admin/js/lyui.min.js"></script>
+        <script type="text/javascript" src="/static/admin/js/admin_cqh.js"></script>
+        <script type="text/javascript">
+            // 如果是多标签方式自动跳转后台首页
+            // var admin_tabs = '';
+            // if (admin_tabs == '1' && !(self.frameElement != null && (self.frameElement.tagName == "IFRAME" || self.frameElement.tagName == "iframe"))) {
+            //     parent.parent.location = "/index.php/admin/index/index";
+            // }
+            // if (admin_tabs == '0' && (self.frameElement != null && (self.frameElement.tagName == "IFRAME" || self.frameElement.tagName == "iframe"))) {
+            //     parent.parent.location = "/index.php/admin/index/index";
+            // }
+        </script>
+        <script type="text/javascript" src="/static/admin/js/lyui.extend.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                //给数组增加查找指定的元素索引方法
+                Array.prototype.indexOf = function(val) {
+                    for (var i = 0; i < this.length; i++) {
+                        if (this[i] == val) return i;
+                    }
+                    return -1;
+                };
+
+                //给数组增加删除方法
+                Array.prototype.remove = function(val) {
+                    var index = this.indexOf(val);
+                    if (index > -1) {
+                        this.splice(index, 1);
+                    }
+                };
+            });
+        </script>
+    </div>
+</div>
+</body>
+
+</html>
+
+<script type="text/javascript">
+    var backurl = $('#curr_url').val();
+
+    //有class='confirm'的按钮点击后执行confirm确定后再执行ajax
+    $(document).on('click', '.confirm', function() {
+        if (confirm('确定要执行此操作吗?')) {
+            ajax_done($(this));
+        } else {
+            return false;
+        }
+    });
+
+    //有class='ajax-yuncms'的按钮点击后直接执行ajax
+    $(document).on('click', '.ajax-yuncms', function() {
+        ajax_done($(this));
+    });
+
+    function ajax_done(el) {
+        var chk_ids = jqchk();
+        var urls = el.attr('url');
+        // var backurl = $('#curr_url').val();
+        $.ajax({
+            type: "DELETE",
+            url: urls,
+            dataType: "json",
+            data: "ids=" + chk_ids,
+            success: function(data) {
+                //console.log(data);
+                if (data.status == 1) {
+                    $.alertMessager(data.info, 'success');
+                    window.location.href = 'http://' + document.domain + backurl;
+                } else {
+                    $.alertMessager(data.info, 'danger');
+                }
+            }
+        });
+    }
+
+    //jquery获取复选框ids的值
+    function jqchk() {
+        var chk_value = [];
+        $('input[name="ids[]"]:checked').each(function() {
+            chk_value.push($(this).val());
+        });
+        if (chk_value.length > 0) {
+            return chk_value;
+        } else {
+            return '';
+        }
+    }
+
+
+    function changeorder(url, id, sort) {
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "json",
+            data: "id=" + id + '&sort=' + sort,
+            success: function(data) {
+                //console.log(data);
+                if (data.status == 1) {
+                    $.alertMessager(data.info, 'success');
+                    window.location.href = 'http://' + document.domain + backurl;
+                } else {
+                    $.alertMessager(data.info, 'danger');
+                }
+            }
+        });
+
+    }
+</script>

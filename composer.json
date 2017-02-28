@@ -1,17 +1,17 @@
 {
-  "name": "2898117012/yuncms",
+  "name": "chenqianhao/yuncms",
   "description": "YunCMS",
   "type": "project",
   "license": "Apache-2.0",
   "homepage": "http://www.yunalading.com",
   "authors": [
     {
-      "name": "jabber",
-      "email": "2898117012@qq.com"
+      "name": "chenqianhao",
+      "email": "68527761@qq.com"
     }
   ],
   "require": {
-    "php": "^5.5.9",
+    "php": "^5.5.0",
     "topthink/framework": "*",
     "overtrue/wechat": "^3.2",
     "hightman/xunsearch": "^1.4",
@@ -26,5 +26,11 @@
   },
   "config": {
     "preferred-install": "dist"
+  },
+  "repositories": {
+      "packagist": {
+          "type": "composer",
+          "url": "https://packagist.phpcomposer.com"
+      }
   }
 }

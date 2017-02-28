@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <title>首页｜yuncms内容管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="author" content="lyadmin">
+    <meta name="keywords" content="">
+    <meta name="description" content="yuncms">
+    <meta name="generator" content="CoreThink">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="yuncms">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="apple-touch-icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/logo.png">
+    <link rel="stylesheet" type="text/css" href="/static/libs/lyui/dist/css/lyui.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/admin_cqh.css">
+    <link rel="stylesheet" type="text/css" href="/static/libs/lyui/dist/css/lyui.extend.min.css">
+    <style type="text/css">
+        /* Builder样式 */
+
+        .builder .builder-container .builder-data-empty {
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .builder .builder-container .builder-data-empty .empty-info {
+            padding: 130px 0;
+            color: #555;
+        }
+
+        .builder .builder-container .builder-table .table td {
+            max-width: 600px;
+            vertical-align: middle;
+            overflow: hidden;
+        }
+
+        .builder .builder-container .builder-table .table td img.picture {
+            max-width: 200px;
+            max-height: 40px;
+        }
+
+        .builder .builder-container .pagination {
+            margin-top: 0px;
+        }
+
+        .builder.formbuilder-box .form-builder .img-box .remove-picture {
+            color: red;
+            position: absolute;
+            top: 0;
+            right: 2px;
+            background: #fff;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .builder.formbuilder-box .form-builder .img-box .remove-picture:hover {
+            color: #DD0000;
+            box-shadow: inset 0 1px 1px red, 0 0 8px red;
+        }
+
+        .builder.formbuilder-box .form-builder .file-box .remove-file {
+            color: red;
+            position: absolute;
+            top: 12px;
+            right: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .builder.formbuilder-box .form-builder .file-box .remove-file:hover {
+            color: #DD0000;
+            box-shadow: inset 0 1px 1px red, 0 0 8px red;
+        }
+
+        .builder.formbuilder-box .form-builder .board_list .board {
+            padding: 0px;
+            margin-right: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .builder.formbuilder-box .form-builder .input,
+            .builder.formbuilder-box .form-builder .select,
+            .builder.formbuilder-box .form-builder .textarea,
+            .builder.formbuilder-box .form-builder .file-box {
+                width: 70%;
+            }
+            .builder.formbuilder-box .form-builder .bottom_button_list .btn {
+                min-width: 120px;
+            }
+            .builder.formbuilder-box .form-builder.form-horizontal {
+                padding: 0 15px;
+            }
+            .builder.formbuilder-box .form-builder.form-horizontal .control-label {
+                text-align: left;
+            }
+            .builder.formbuilder-box .form-builder.form-horizontal .left {
+                width: 15%;
+                float: left;
+            }
+            .builder.formbuilder-box .form-builder.form-horizontal .right {
+                width: 85%;
+                float: left;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .builder.formbuilder-box .form-builder.form-horizontal .left {
+                width: 12%;
+                float: left;
+            }
+            .builder.formbuilder-box .form-builder.form-horizontal .right {
+                width: 88%;
+                float: left;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .builder.formbuilder-box .form-builder .bottom_button_list .btn {
+                width: 100%;
+            }
+        }
+    </style>
+
+    <!--[if lt IE 9]>
+        <script src="http://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+        <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/static/libs/jquery/1.x/jquery.min.js"></script>
+</head>
+
+
+<!--当前的url-->
+<input type="hidden" id="curr_url" name="curr_url" value="{$Think.server.request_uri}">
+
+<body class="admin_index_index">
+    <div class="clearfix full-header">
+
+        <!-- 顶部导航 -->
+        <div class="navbar navbar-default navbar-fixed-top main-nav" role="navigation">
+            <div class="container-fluid">
+                <div>
+                    <div class="navbar-header navbar-header-default">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-top">
+                        <span class="sr-only">切换导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button> {if condition="$config.logo neq '' "}
+                        <a class="navbar-brand" target="_blank" href="{:U('admin/index/index')}">
+                            <img class="logo img-responsive" src="/{$config.logo}">
+                        </a>
+                        {else /}
+                        <a class="navbar-brand" target="_blank" href="{:U('admin/index/index')}">
+                            <span>yuncms</span>
+                        </a>
+                        {/if}
+                    </div>
+                    <div class="navbar-header navbar-header-inverse">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-top">
+                        <span class="sr-only">切换导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button> {if condition="$config.logo neq '' "}
+                        <a class="navbar-brand" target="_blank" href="{:U('admin/index/index')}">
+                            <img class="logo img-responsive" src="/{$config.logo}">
+                        </a>
+                        {else /}
+                        <a class="navbar-brand" target="_blank" href="{:U('admin/index/index')}">
+                            <span>yuncms</span>
+                        </a>
+                        {/if}
+                    </div>
+                    <div class="collapse navbar-collapse navbar-collapse-top">
+                        <ul class="nav navbar-nav">
+                            <!-- 主导航 -->
+                            <li class="active"><a href="{:U('admin/index/index')}"><i class="fa fa-home"></i>首页</a></li>
+                            <li><a href="{:U('admin/system/index')}" target=""><i class="fa fa fa-cog"></i><span>系统</span></a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="{:U('admin/index/removeRuntime')}" style="border: 0;text-align: left" class="btn ajax-get no-refresh"><i class="fa fa-trash"></i> 清空缓存</a></li>
+                            <li><a target="_blank" href="/"><i class="fa fa-external-link"></i> 打开前台</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-user"></i> {$Think.session.aname ?? '未登录'}
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a target="_blank" href="/"><i class="fa fa-external-link"></i> 打开前台 </a></li>
+                                    <li><a href="{:U('admin/index/removeRuntime')}" style="border: 0;text-align: left" class="btn ajax-get no-refresh"><i class="fa fa-trash"></i> 清空缓存</a></li>
+                                    <li><a href="{:U('admin/index/logout')}"><i class="fa fa-sign-out"></i> 退出</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix full-container" id="full-container">
+        <input type="hidden" name="check_version_url" value="{:U('admin/update/checkVersion')}">
+
+        <div class="container-fluid with-top-navbar" style="height: 100%;overflow: hidden;">
+            <div class="row" style="height: 100%;background: #fff;">
