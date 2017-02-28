@@ -1,0 +1,155 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YunCMS后台管理系统</title>
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" type="image/png" href="/static/images/favicon.png">
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="/static/images/app-icon72x72@2x.png">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="apple-touch-icon-precomposed" href="/static/images/app-icon72x72@2x.png">
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="/static/images/app-icon72x72@2x.png">
+    <meta name="msapplication-TileColor" content="#0e90d2">
+    <link rel="stylesheet" href="/static/admin/css/admin.min.css">
+</head>
+<body>
+<header class="am-topbar am-topbar-inverse manager-topbar">
+    <div class="am-topbar-brand">
+        <a href="/admin"><img src="/static/admin/images/logo.png" class="am-img-responsive"></a>
+    </div>
+    <div>
+        <ul class="am-nav am-nav-pills am-topbar-nav" id="main-menus"></ul>
+        <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right manager-tools-btn">
+            <li><a href="myinfo.html" target="context-page"><span class="am-icon-user"></span> admin </a></li>
+            <li><a href="http://help.yunalading.com" target="_blank"><span class="iconfont icon-help"></span> 帮助
+            </a></li>
+            <li><a href="logout.html"><span class="am-icon-power-off"></span> 退出</a></li>
+        </ul>
+    </div>
+</header>
+<div class="am-cf manager-box">
+    <div class="manager-leftbar am-fl">
+        <div class="sidebar">
+            <ul class="am-list" id="sub-menus"></ul>
+        </div>
+    </div>
+    <div class="manager-context">
+        <ol class="am-breadcrumb am-breadcrumb-slash" id="main-breadcrumb"></ol>
+        <div class="manager-context-page">
+            <iframe id="context-page" name="context-page"></iframe>
+        </div>
+    </div>
+</div>
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="/static/common/jquery/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="/static/common/amazeui/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="/static/common/amazeui/js/amazeui.min.js"></script>
+<script src="/static/common/handlebars/handlebars.js"></script>
+<script src="/static/admin/js/admin.min.js"></script>
+<script type="text/x-handlebars-template" id="main-menu-temp">
+    {{#each menus}}
+    <li><a href="javascript:;" data-id="{{id}}"><span class="{{iconClass}}"></span> {{name}} </a></li>
+    {{/each}}
+</script>
+<script type="text/x-handlebars-template" id="sub-menu-temp">
+    {{#each submenus}}
+    {{#if submenus}}
+    <li class="am-panel">
+        <a data-am-collapse="{target: '#collapase-nav-{{id}}'}"><i class="{{iconClass}} am-margin-left-sm"></i> {{name}}
+            <i class="am-icon-angle-right am-fr am-margin-right"></i></a>
+        <ul class="am-list am-collapse admin-sidebar-sub" id="collapase-nav-{{id}}" data-name="{{name}}">
+            {{#each submenus}}
+            <li><a href="javascript:;" data-href="{{href}}" data-name="{{name}}" target="context-page"
+                   class="menu-act-link"><i class="{{iconClass}} am-margin-left-sm"></i> {{name}} </a></li>
+            {{/each}}
+        </ul>
+    </li>
+    {{ else}}
+    <li><a href="javascript:;" data-href="{{href}}" data-name="{{name}}" target="context-page"
+           class="am-text-secondary menu-act-link"><i class="{{iconClass}} am-margin-left-sm"></i> {{name}}</a></li>
+    {{/if}}
+    {{/each}}
+</script>
+<script type="text/x-handlebars-template" id="main-breadcrumb-temp">
+    <li>{{name}}</li>
+</script>
+<script type="text/javascript">
+    /**
+     * 根据ID获取分类
+     */
+    function getMenus(menus, menu_id) {
+        for (var index in menus) {
+            if (menus[index].id == menu_id) {
+                return menus[index];
+            }
+        }
+    }
+    /**
+     * 追踪分类
+     * @param menus
+     */
+    function execSubMenus(menus) {
+        var main_breadcrumb_temp = Handlebars.compile($('#main-breadcrumb-temp').html());
+        $('#main-breadcrumb').append(main_breadcrumb_temp(menus));
+        if (menus.submenus) {
+            execSubMenus(menus.submenus[0]);
+        } else {
+            $('#sub-menus').find('li:first a').click();
+            $('#context-page').attr('src', menus.href);
+        }
+    }
+    /**
+     * 根据ID加栽子菜单
+     * @param menus
+     * @param menu_id
+     */
+    function loadSubMenus(menus, menu_id) {
+        var submenus = getMenus(menus, menu_id);
+        var sub_menu_temp = Handlebars.compile($('#sub-menu-temp').html());
+        $('#sub-menus').html(sub_menu_temp(submenus));
+        var main_breadcrumb_temp = Handlebars.compile($('#main-breadcrumb-temp').html());
+        $('#main-breadcrumb').html(main_breadcrumb_temp(submenus));
+        execSubMenus(submenus.submenus[0]);
+        $("#sub-menus").find('.menu-act-link').click(function () {
+            $('#context-page').attr('src', $(this).data('href'));
+            $('#main-breadcrumb').html(main_breadcrumb_temp(submenus));
+            if ($(this).parents('ul').data('name')) {
+                var smenu = {'name': $(this).parents('ul').data('name')};
+                $('#main-breadcrumb').append(main_breadcrumb_temp(smenu));
+            }
+            var smenu = {'name': $(this).data('name')};
+            $('#main-breadcrumb').append(main_breadcrumb_temp(smenu));
+        });
+    }
+    $(function () {
+        var menus = {$menus};
+        var main_menu_temp = Handlebars.compile($('#main-menu-temp').html());
+        $('#main-menus').html(main_menu_temp(menus));
+        $('#main-menus li a').click(function () {
+            $(this).parent().siblings().removeClass('am-active');
+            $(this).parent().addClass('am-active');
+            loadSubMenus(menus.menus, $(this).data('id'));
+        });
+        $('#main-menus').find('li:first a').click();
+    });
+</script>
+</body>
+</html>

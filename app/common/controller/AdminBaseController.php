@@ -16,8 +16,13 @@ use app\admin\model\ConfigModel;
 /**
  *  后台公共类
  *  @author [chenqianhao] <68527761@qq.com>
+ * Class AdminBaseController
+ * @package app\common\controller
  */
 abstract class AdminBaseController extends BaseController {
+    /**
+     * AdminBaseController constructor.
+     */
     public function __construct() {
         parent::__construct();
         //$request = request();
@@ -253,5 +258,6 @@ abstract class AdminBaseController extends BaseController {
       $id = $adminlog->autoinsert($data,'admin_log');
       return $id;
     }
+
 
 }

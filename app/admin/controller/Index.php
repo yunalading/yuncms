@@ -8,6 +8,8 @@
 // +----------------------------------------------------------------------
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
+
+
 namespace app\admin\controller;
 use think\Validate;
 use think\Request;
@@ -15,6 +17,10 @@ use think\Cache;
 use app\common\controller\AdminBaseController;
 use app\admin\model\AdminUserModel;
 
+/**
+ * Class Index 默认控制器
+ * @package app\admin\controller
+ */
 class Index extends AdminBaseController {
   /**
    * 欢迎页面
@@ -137,5 +143,4 @@ class Index extends AdminBaseController {
         //$this->redirect('/');
         return $this->redirect('admin/index/login');
     }
-
 }

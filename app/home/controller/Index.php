@@ -13,8 +13,10 @@ namespace app\home\controller;
 use app\common\controller\HomeBaseController;
 
 class Index extends HomeBaseController {
+    /**
+     * @return \think\response\View
+     */
     public function index() {
-        //var_dump(GetPositionLink());
-        return view();
+        return view('/index');
     }
 }

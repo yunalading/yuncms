@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>YunCMS官方安装程序</title>
+    <title>{$Think.const.APP_NAME}官方安装程序</title>
     <!-- Set render engine for 360 browser -->
     <meta name="renderer" content="webkit">
     <!-- No Baidu Siteapp-->
@@ -28,12 +28,12 @@
 <body>
 <header class="header">
     <div class="am-container">
-        <img class="logo" src="/static/images/logo.png" title="YunCMS官方安装程序" alt="YunCMS官方安装程序"><span class="version">版本:v1.0.0</span>
+        <img class="logo" src="/static/install/images/logo.png" title="{$Think.const.APP_NAME}官方安装程序" alt="{$Think.const.APP_NAME}官方安装程序"><span class="version">版本:v{$Think.const.APP_VERSION}</span>
     </div>
 </header>
 <div class="step-bar">
     <div class="am-container">
-        <div class="am-g">
+        <div class="am-g setp-title">
             <div class="am-u-sm-6 am-text-right">
                 <h1>Step.1</h1>
             </div>
@@ -42,18 +42,26 @@
                 <p>检测服务器环境及文件目录权限</p>
             </div>
         </div>
-        <div class="am-g">
-            <div class="am-u-sm-3">
-
+        <div class="am-g step">
+            <div class="am-u-sm-3 am-active">
+                <i class="am-icon am-icon-search"></i>
+                <div class="line"></div>
+                <spa>检查安装环境</spa>
             </div>
             <div class="am-u-sm-3">
-
+                <i class="am-icon am-icon-cogs"></i>
+                <div class="line"></div>
+                <span>选择安装方式</span>
             </div>
             <div class="am-u-sm-3">
-
+                <i class="am-icon am-icon-database"></i>
+                <div class="line"></div>
+                <span>创建数据库</span>
             </div>
             <div class="am-u-sm-3">
-
+                <i class="am-icon am-icon-bullseye"></i>
+                <div class="line"></div>
+                <span>安装</span>
             </div>
         </div>
     </div>
@@ -135,12 +143,16 @@
                 <td><i class="am-icon am-icon-minus-circle am-text-danger"></i>不支持</td>
             </tr>
         </table>
-        <p class="am-text-center"><a href="/index.php/install" class="am-btn am-btn-primary am-radius">上一步</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/index.php/install/index/step2" class="am-btn am-btn-primary am-radius">下一步</a></p>
+        <p class="am-text-center am-margin-top-xl">
+            <a href="<?= url('/install');?>" class="am-btn am-btn-primary am-radius" disabled>上一步</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="<?= url('/install/step2');?>" class="am-btn am-btn-primary am-radius">下一步</a>
+        </p>
     </div>
 </div>
 <footer class="footer">
     <div class="am-container">
-        <p>© 2017 <a target="_blank" href="http://www.yunalading.com">YunAlaDing</a> , Inc. Licensed Apacle license 2.0.</p>
+        <p>© 2017 <a target="_blank" href="{$Think.const.APP_SITE}">YunAlaDing</a> , Inc. Licensed Apacle license 2.0.
+        </p>
     </div>
 </footer>
 <!--[if (gte IE 9)|!(IE)]><!-->

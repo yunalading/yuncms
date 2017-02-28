@@ -1,0 +1,149 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$Think.const.APP_NAME}官方安装程序</title>
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" type="image/png" href="/static/images/favicon.png">
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="/static/images/app-icon72x72@2x.png">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="apple-touch-icon-precomposed" href="/static/images/app-icon72x72@2x.png">
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="/static/images/app-icon72x72@2x.png">
+    <meta name="msapplication-TileColor" content="#0e90d2">
+    <link rel="stylesheet" href="/static/install/css/install.min.css">
+</head>
+<body>
+<header class="header">
+    <div class="am-container">
+        <img class="logo" src="/static/install/images/logo.png" title="{$Think.const.APP_NAME}官方安装程序" alt="{$Think.const.APP_NAME}官方安装程序"><span class="version">版本:v{$Think.const.APP_VERSION}</span>
+    </div>
+</header>
+<div class="step-bar">
+    <div class="am-container">
+        <div class="am-g setp-title">
+            <div class="am-u-sm-6 am-text-right">
+                <h1>Step.2</h1>
+            </div>
+            <div class="am-u-sm-6 am-text-left">
+                <h3>开始安装</h3>
+                <p>检测服务器环境及文件目录权限</p>
+            </div>
+        </div>
+        <div class="am-g step">
+            <div class="am-u-sm-3 am-active">
+                <i class="am-icon am-icon-search"></i>
+                <div class="line"></div>
+                <spa>检查安装环境</spa>
+            </div>
+            <div class="am-u-sm-3 am-active">
+                <i class="am-icon am-icon-cogs"></i>
+                <div class="line"></div>
+                <span>选择安装方式</span>
+            </div>
+            <div class="am-u-sm-3 am-active">
+                <i class="am-icon am-icon-database"></i>
+                <div class="line"></div>
+                <span>创建数据库</span>
+            </div>
+            <div class="am-u-sm-3">
+                <i class="am-icon am-icon-bullseye"></i>
+                <div class="line"></div>
+                <span>安装</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="install-form">
+    <div class="am-container">
+        <div class="center-form">
+            <form class="am-form" method="post" action="<?= url('/install/step4');?>" data-am-validator>
+                <fieldset>
+                    <legend>数据库信息</legend>
+                    <div class="am-form-group">
+                        <label>数据库服务器<span>(请填写数据库服务器IP或域名)</span></label>
+                        <input type="text" class="am-form-field am-radius" value="localhost" placeholder="请填写数据库服务器IP或域名" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>数据库名<span>(请填写数据库名称)</span></label>
+                        <input type="text" class="am-form-field am-radius" value="yuncms" placeholder="请填写数据库名称" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>数据库用户名<span>(请填写数据库用户名)</span></label>
+                        <input type="text" class="am-form-field am-radius" value="root" placeholder="请填写数据库用户名" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>数据库密码<span>(请填写数据库密码)</span></label>
+                        <input type="text" class="am-form-field am-radius" placeholder="请填写数据库密码" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>数据库表前缀<span>(请填写表前缀)</span></label>
+                        <input type="text" class="am-form-field am-radius" value="yc_" placeholder="请填写表前缀" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>数据库端口<span>(请填写数据库端口号)</span></label>
+                        <input type="number" class="am-form-field am-radius" value="3306" placeholder="请填写数据库端口号" required>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>网站信息</legend>
+                    <div class="am-form-group">
+                        <label>站点名称<span>(请填写网站名称)</span></label>
+                        <input type="text" class="am-form-field am-radius" placeholder="请填写网站名称" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>管理员帐号<span>(请填写管理员账号)</span></label>
+                        <input type="text" class="am-form-field am-radius" placeholder="请填写管理员账号" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>管理员密码<span>(请填写管理员密码不少于6个字符)</span></label>
+                        <input type="password" class="am-form-field am-radius" id="admin-pwd" placeholder="请填写管理员密码" required minlength="6">
+                    </div>
+                    <div class="am-form-group">
+                        <label>确认密码<span>(请重新输入管理员密码)</span></label>
+                        <input type="password" class="am-form-field am-radius" placeholder="请重新输入管理员密码" data-equal-to="#admin-pwd" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>管理员邮箱<span>(请填写管理员邮箱)</span></label>
+                        <input type="email" class="am-form-field am-radius" placeholder="请填写管理员邮箱" required>
+                    </div>
+                </fieldset>
+                {:token()}
+                <p class="am-text-center am-margin-top-xl">
+                    <a href="<?= url('/install/step2');?>" class="am-btn am-btn-primary am-radius">上一步</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="submit" class="am-btn am-btn-primary am-radius">确定安装</button>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="am-container">
+        <p>© 2017 <a target="_blank" href="{$Think.const.APP_SITE}">YunAlaDing</a> , Inc. Licensed Apacle license 2.0.
+        </p>
+    </div>
+</footer>
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="/static/common/jquery/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="/static/common/amazeui/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="/static/common/amazeui/js/amazeui.min.js"></script>
+<script src="/static/install/js/install.min.js"></script>
+</body>
+</html>

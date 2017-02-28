@@ -1,6 +1,6 @@
 <h1><a target="_blank" href="http://www.yunalading.com/" title="YunCMS 官网"><img width="500" src="docs/images/logo.png" alt="YunCMS Logo"/></a></h1>
 
-YunCMS是基于ThinkPHP框架的一套CMS系统，方便用户快速建立企业网站，门户网站，个人博客或其他系统的内容管理系统。
+YunCMS是基于ThinkPHP5框架的一套CMS系统，方便用户快速建立企业网站，门户网站，个人博客或其他系统的内容管理系统。
 
 # 功能特色
 - 基于Markdown的内容编辑器 (优雅的内容编辑器，提高内容发布效率)
@@ -27,7 +27,7 @@ YunCMS是基于ThinkPHP框架的一套CMS系统，方便用户快速建立企业
 
 > 用来定义内容的标签
 
-- [x] 专题管理
+- [x] 页面管理
 
 > 用来定义特殊页面。
 
@@ -72,3 +72,7 @@ YunCMS遵循Apache2开源协议发布。Apache Licence是著名的非盈利开�
 - Amazeui
 - ThinkPHP
 - EasyWeChat
+- XunSearch
+
+# 联系方式
+- QQ交流群：340078051

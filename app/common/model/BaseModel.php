@@ -15,6 +15,12 @@ namespace app\common\model;
 use think\Model;
 use think\Db;
 // use think\Config;
+
+
+/**
+ * Class BaseModel
+ * @package app\common\model
+ */
 class BaseModel extends Model {
   /**
    * 获取当前表名

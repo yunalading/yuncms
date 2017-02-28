@@ -11,7 +11,19 @@
 
 // 应用公共文件
 
-function write_config(){
+/**
+ * 检查是否安装
+ * @return bool
+ */
+function check_install() {
+    return false;
+}
+
+/**
+ * 写入配置文件
+ */
+function write_config($config_path, $old_config = array(), $new_config = array()) {
+
 
 }
 

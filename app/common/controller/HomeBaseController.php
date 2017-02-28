@@ -14,10 +14,17 @@ namespace app\common\controller;
 
 use think\App;
 
+/**
+ * Class HomeBaseController
+ * @package app\common\controller
+ */
 abstract class HomeBaseController extends BaseController {
+    /**
+     * HomeBaseController constructor.
+     */
     public function __construct() {
         parent::__construct();
         //设置主题路径
-        config('template.view_path', App::$modulePath . 'view' . DS . config('app.theme') . DS);
+        $this->view->config('view_path', App::$modulePath . 'view' . DS . config('app.theme') . DS);
     }
 }

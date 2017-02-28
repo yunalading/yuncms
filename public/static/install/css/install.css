@@ -1,4 +1,4 @@
-/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-02-08"A"00:02:22 UTC */
+/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-02-18"A"07:02:10 UTC */
 /* ==========================================================================
    Component: Base
  ============================================================================ */
@@ -14568,14 +14568,13 @@ tbody.am-collapse.am-in {
 }
 .license-box .license {
   margin: 2rem 0;
-  border: 1px solid #dedede;
   height: 60rem;
   padding: 1rem;
   overflow-y: scroll;
 }
 @media only screen and (max-width: 640px) {
   .license-box .license {
-    height: 26rem;
+    height: 33rem;
   }
 }
 .license-box .license h1 {
@@ -14593,7 +14592,7 @@ tbody.am-collapse.am-in {
 }
 .license-box .license .sample-temple {
   margin-top: 1rem;
-  background-color: #dedede;
+  border: 1px dashed #dedede;
   border-radius: 5px;
   padding: 1rem;
   font-size: 1.4rem;
@@ -14601,6 +14600,170 @@ tbody.am-collapse.am-in {
 .license-box .license .sample-temple p {
   text-indent: 0;
   margin: 1rem 0;
+}
+.step-bar {
+  margin: 2rem 0;
+}
+.step-bar .setp-title h1 {
+  font-size: 6rem;
+  color: #3e5163;
+}
+.step-bar .setp-title h3 {
+  color: #3e5163;
+  font-size: 3.2rem;
+  margin: 0;
+  margin-top: 1rem;
+}
+.step-bar .setp-title p {
+  margin: 0;
+  color: #dedede;
+}
+.step-bar .step {
+  text-align: center;
+  color: #dedede;
+  margin: 0 2rem;
+}
+@media only screen and (max-width: 640px) {
+  .step-bar .step {
+    margin: 0;
+  }
+}
+.step-bar .step .am-icon {
+  font-size: 4rem;
+  display: block;
+}
+.step-bar .step .am-u-sm-3 {
+  padding: 0;
+}
+.step-bar .step .am-u-sm-3:first-of-type .line {
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+.step-bar .step .am-u-sm-3:last-of-type .line {
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+.step-bar .step .am-u-sm-3.am-active {
+  color: #3cc3fc;
+}
+.step-bar .step .am-u-sm-3.am-active .line {
+  background-color: #3cc3fc;
+}
+.step-bar .step .am-u-sm-3 .line {
+  background-color: #dedede;
+  height: 1rem;
+  margin: 0.5rem 0;
+}
+.check-table {
+  margin-top: 4rem;
+}
+.check-table h2 {
+  font-weight: 400;
+  margin-bottom: 1rem;
+  color: #3cc3fc;
+}
+.check-table .am-table {
+  font-size: 1.4rem;
+}
+.check-table .am-table .am-icon {
+  margin-right: 0.5rem;
+}
+.mode {
+  margin-top: 12rem;
+}
+.mode .am-g {
+  margin-bottom: 8rem;
+}
+.mode .mode-item {
+  margin: auto;
+  text-align: center;
+  width: 80%;
+  background-color: #dedede;
+  border: 1px solid #dedede;
+  color: #3e5163;
+  border-radius: 5px;
+}
+.mode .mode-item.am-active {
+  background-color: #3cc3fc;
+  border-color: #3cc3fc;
+  color: #ffffff;
+}
+.mode .mode-item .am-icon {
+  font-size: 4rem;
+}
+.mode .mode-item h3 {
+  margin-top: 0;
+}
+.install-form {
+  margin-top: 6rem;
+}
+.center-form {
+  width: 80%;
+  margin: auto;
+}
+.center-form fieldset legend {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.center-form fieldset .am-form-group label span {
+  font-weight: 400;
+  font-size: 1.4rem;
+  display: none;
+}
+.center-form fieldset .am-form-group.am-form-error label span {
+  display: inline-block;
+}
+.install-load {
+  margin: 8rem 0 10rem;
+}
+.install-load .loading {
+  text-align: center;
+}
+.install-load .loading i {
+  font-size: 8rem;
+  color: #3cc3fc;
+}
+.install-load .loading span {
+  display: block;
+  color: #3e5163;
+}
+.complete-page {
+  margin: 4rem 0 14rem;
+}
+.complete-page .app-list {
+  width: 40%;
+  text-align: center;
+  margin: 4rem auto;
+}
+.complete-page .app-list i {
+  font-size: 4rem;
+}
+.complete-page .app-list h3 {
+  margin: 0;
+}
+.complete-page .app-list p {
+  margin: 1rem 0;
+  color: #dedede;
+}
+.message-page {
+  margin: 4rem 0 14rem;
+}
+.system-message {
+  width: 40%;
+  margin: 4rem auto;
+}
+.system-message i {
+  font-size: 8rem;
+}
+.system-message h1 {
+  margin: 2.8rem 0 0;
+  color: #3cc3fc;
+}
+.system-message span {
+  color: #3e5163;
+}
+.system-message.jump {
+  text-align: center;
 }
 .footer {
   border-top: 1px solid #dedede;
