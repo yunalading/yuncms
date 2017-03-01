@@ -8,18 +8,10 @@
 // +----------------------------------------------------------------------
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
-namespace app\home\controller;
+namespace app\home\model;
 
-use app\common\controller\HomeBaseController;
-use app\home\model\Members;
-use think\Db;
+use think\Model;
 
-class Index extends HomeBaseController {
-    /**
-     * @return \think\response\View
-     */
-    public function index() {
-
-        return view('/index');
-    }
+class Members extends Model {
+    
 }
