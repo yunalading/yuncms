@@ -13,6 +13,6 @@ use app\common\model\BaseModel;
 
 class AuthGroupModel extends BaseModel
 {
-    protected $table='auth_group';
-
+    // protected $table='auth_group';
+    protected $name='auth_group';
 }

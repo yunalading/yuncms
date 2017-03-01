@@ -13,7 +13,7 @@
 namespace app\common\model;
 
 use think\Model;
-use think\Db;
+// use think\Db;
 // use think\Config;
 
 
@@ -21,27 +21,33 @@ use think\Db;
  * Class BaseModel
  * @package app\common\model
  */
-class BaseModel extends Model {
+class BaseModel extends Model{
   /**
    * 获取当前表名
    * @param $table [string] 条件
    * @return string 表名
    * @author [chenqianhao] <68527761@qq.com>
    */
-  public function gettable($table='')
+  public function getTable($table='')
   {
       if($table != ''){
-        return $table;
+        $this->name=$table;
+        return $this->name;
       }
-      if(isset($this->table) && trim($this->table)!=''){
-        return strtolower(trim($this->table));
+      // if(isset($this->table) && trim($this->table)!=''){
+      //   return strtolower(trim($this->table));
+      // }
+      if(isset($this->name) && trim($this->name)!=''){
+        $this->name=strtolower(trim($this->name));
+        return $this->name;
       }
       $request = \think\Request::instance();
       $controller = strtolower($request->controller());
       //AdminUser对应'admin_user'表
       if(isset($controller) && $controller !=''){
         $controllers=strtolower(substr($controller,0,1)).substr($controller,1);
-        return strtolower(preg_replace('/([A-Z])/', '_$1', $controllers));
+        $this->name=strtolower(preg_replace('/([A-Z])/', '_$1', $controllers));
+        return $this->name;
       }
       //该表不存在
       return '';
@@ -55,11 +61,13 @@ class BaseModel extends Model {
    */
   public function getOne($field,$where=array(),$table='')
   {
-      $table=$this->gettable($table);
+      $table=$this->getTable($table);
       if(empty($where)){
-        $value=Db::name($table)->value($field);
+        // $value=Db::name($table)->value($field);
+        $value=$this->value($field);
       }else{
-        $value=Db::name($table)->where($where)->value($field);
+        // $value=Db::name($table)->where($where)->value($field);
+        $value=$this->where($where)->value($field);
       }
       return $value;
   }
@@ -70,15 +78,15 @@ class BaseModel extends Model {
    * @return array|null
    * @author [chenqianhao] <68527761@qq.com>
    */
-  public function getRow($where,$field='*',$table='')
+  public function getRow($where=array(),$field='*',$table='')
   {
       //$admin_user=Db::table('yc_admin_user')->where($where)->find();
       //助手函数需加入第三个参数才和Db::table或Db::name一样是单例模式，否则每次都要连接一下数据库
       //$row = db($this->tableName,[],false)->field($field)->where($where)->find();
       //return $row;
-      $table=$this->gettable($table);
-      return  Db::name($table)->field($field)->where($where)->find();
-
+      $table=$this->getTable($table);
+      // return  Db::name($table)->field($field)->where($where)->find();
+      return  $this->field($field)->where($where)->find();
   }
   /**
    * 根据条件获更新数据数据
@@ -89,8 +97,9 @@ class BaseModel extends Model {
    */
   public function autoupdate($data,$where,$table='')
   {
-     $table=$this->gettable($table);
-     $update=Db::name($table)->where($where)->update($data);
+     $table=$this->getTable($table);
+     //  $update=Db::name($table)->where($where)->update($data);
+     $update=$this->where($where)->update($data);
      return $update;
   }
 
@@ -105,18 +114,22 @@ class BaseModel extends Model {
    */
   public function getAll($where=array(),$field='*',$paginate=0,$table='')
   {
-    $table=$this->gettable($table);
+    $table=$this->getTable($table);
     if($paginate>0){
       if(empty($where)){
-        $info = Db::name($table)->field($field)->paginate($paginate);;
+        // $info = Db::name($table)->field($field)->paginate($paginate);
+        $info = $this->field($field)->paginate($paginate);
       }else{
-        $info = Db::name($table)->field($field)->where($where)->paginate($paginate);
+        // $info = Db::name($table)->field($field)->where($where)->paginate($paginate);
+        $info = $this->field($field)->where($where)->paginate($paginate);
       }
     }else{
       if(empty($where)){
-        $info = Db::name($table)->field($field)->select();
+        // $info = Db::name($table)->field($field)->select();
+        $info = $this->field($field)->select();
       }else{
-        $info = Db::name($table)->field($field)->where($where)->select();
+        // $info = Db::name($table)->field($field)->where($where)->select();
+        $info = $this->field($field)->where($where)->select();
       }
     }
     return $info;
@@ -130,9 +143,11 @@ class BaseModel extends Model {
    */
   public function autoinsert($data,$table='')
   {
-    $table=$this->gettable($table);
-    Db::name($table)->insert($data);
-    $id = Db::name($table)->getLastInsID();
+    $table=$this->getTable($table);
+    // Db::name($table)->insert($data);
+    $this->insert($data);
+    // $id = Db::name($table)->getLastInsID();
+    $id = $this->getLastInsID();
     return $id;
   }
 
@@ -144,11 +159,13 @@ class BaseModel extends Model {
    */
   public function getcount($where=array(),$table='')
   {
-    $table=$this->gettable($table);
+    $table=$this->getTable($table);
     if(empty($where)){
-      $count = Db::name($table)->count();
+      // $count = Db::name($table)->count();
+      $count = $this->count();
     }else{
-      $count = Db::name($table)->where($where)->count();
+      // $count = Db::name($table)->where($where)->count();
+      $count = $this->where($where)->count();
     }
     return $count;
   }

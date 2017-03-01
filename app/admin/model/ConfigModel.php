@@ -11,17 +11,20 @@
 
 namespace app\admin\model;
 use app\common\model\BaseModel;
-use think\Db;
+// use think\Db;
 class ConfigModel extends BaseModel
 {
-    protected $table='config';
+    // protected $table='config';
+    protected $name='config';
     /**
      * 获取配置列表信息
      * @Author [chenqianhao] <68527761@qq.com>
      */
     public function getAllConfig()
     {
-        return Db::name($this->table)->find();
+        // return Db::name($this->table)->find();
+        // return $this->find();
+        return $this->getRow();
     }
 
 }

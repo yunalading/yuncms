@@ -13,6 +13,7 @@ namespace app\admin\model;
 use app\common\model\BaseModel;
 class AdminLogModel extends BaseModel
 {
-    protected $table='admin_log';
+    protected $name = 'admin_log';
+    //protected $table='admin_log';
 
 }

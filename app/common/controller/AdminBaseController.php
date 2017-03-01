@@ -32,7 +32,7 @@ abstract class AdminBaseController extends BaseController {
             $this->redirect('admin/index/login');
         }else{
           //获取系统配置
-          $this->getconfigall();
+          $this->getConfigAll();
         }
 
         //print_r(get_defined_constants());
@@ -234,7 +234,7 @@ abstract class AdminBaseController extends BaseController {
      * @return array 系统配置参数
      * @author [chenqianhao] <68527761@qq.com>
      */
-    protected function getconfigall() {
+    protected function getConfigAll() {
       $Mconfig = new ConfigModel();
       $config=$Mconfig->getAllConfig();
       $this->assign('config', $config);
@@ -247,7 +247,7 @@ abstract class AdminBaseController extends BaseController {
      * @return int 插入的主键id
      * @author [chenqianhao] <68527761@qq.com>
      */
-    public function inserlog($data) {
+    public function inserLog($data) {
       $data['log_addtime']=isset($data['log_addtime'])?$data['log_addtime']:time();
       $data['log_action']=isset($data['log_action'])?trim($data['log_action']):geturlbase();
       $data['log_value']=isset($data['log_value'])?intval($data['log_value']):$this->request->controller();

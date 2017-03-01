@@ -27,6 +27,7 @@ class AdminLog extends AdminBaseController {
       $where['log_remark']= array('like','%'.$keyword.'%');
     }
     $adminlog = new AdminLogModel();
+    // print_r($adminlog);exit;
     $where['log_del']=0;
     $where['log_type']=0;
     $adminlogs = $adminlog->getAll($where,'*',10);

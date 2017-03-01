@@ -13,6 +13,6 @@ use app\common\model\BaseModel;
 
 class AuthRuleModel extends BaseModel
 {
-    protected $table='auth_rule';
-
+    // protected $table='auth_rule';
+    protected $name='auth_rule';
 }

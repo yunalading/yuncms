@@ -15,6 +15,7 @@ use think\Config;
 class MenuModel extends BaseModel
 {
     // protected $table='menu';
+    protected $name='menu';
     /**
      * 获取菜单树
      * @param $where [array] 条件

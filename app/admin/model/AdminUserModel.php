@@ -14,6 +14,6 @@ use app\common\model\BaseModel;
 // use think\Config;
 class AdminUserModel extends BaseModel
 {
-    protected $table='admin_user';
-
+    // protected $table='admin_user';
+    protected $name = 'admin_user';
 }

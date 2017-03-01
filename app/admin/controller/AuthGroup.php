@@ -12,9 +12,9 @@ namespace app\admin\controller;
 use think\Validate;
 use think\Request;
 use app\common\controller\AdminBaseController;
-use app\admin\model\AuthRuleModel;
+use app\admin\model\AuthGroupModel;
 
-class AuthRule extends AdminBaseController {
+class AuthGroup extends AdminBaseController {
   /**
    * 菜单列表
    * get

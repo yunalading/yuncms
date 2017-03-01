@@ -12,10 +12,10 @@ namespace app\admin\controller;
 use think\Validate;
 use think\Request;
 use app\common\controller\AdminBaseController;
-use app\admin\model\MenuModel;
+use app\admin\model\AuthRuleModel;
 
 
-class Menu extends AdminBaseController {
+class AuthRule extends AdminBaseController {
   /**
    * 菜单列表
    * get
@@ -26,16 +26,15 @@ class Menu extends AdminBaseController {
     $param=$request->param();
     if(isset($param['keyword']) && trim($param['keyword'])!=''){
       $keyword=trim($param['keyword']);
-      $where['title']= array('like','%'.$keyword.'%');
+      $where['module']= array('like','%'.$keyword.'%');
     }
-    $menus = new MenuModel();
-    // echo $menus::$tableName;
-    // print_r($this);
-    // die();
-    $where['status']=0;
-    $where['type']='admin';
-    $menulist = $menus->tree($where);
-    $this->assign('menulist',$menulist);
+    $auth = new AuthRuleModel();
+    $where['status']=1;
+    $where['type']=1;
+    $AuthRules = $auth->getAll($where,'*',10);
+    $datalist=$AuthRules->toArray();
+    $datalist['lastpage']=$AuthRules->lastPage();
+    $this->assign('datalist',$datalist);
     return $this->fetch();
   }
   /**
