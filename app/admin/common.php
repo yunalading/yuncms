@@ -13,15 +13,16 @@
  * [获取数据库的版本]
  * @return [string] [数据库版本]
  */
-function getmysqlversion(){
-    $sql="select version() as version";
-    $a=\think\Db::query($sql);
-    if($a){
-      return $a[0]['version'];
-    }else{
-      return false;
-    }
-}
+
+// function getmysqlversion(){
+//     $sql="select version() as version";
+//     $a=\think\Db::query($sql);
+//     if($a){
+//       return $a[0]['version'];
+//     }else{
+//       return false;
+//     }
+// }
 
 /**
  * 获取当前的url不含参数

@@ -28,7 +28,8 @@ class Index extends AdminBaseController {
   */
     public function index() {
         //查询数据库的版本
-        $mysqlversion=getmysqlversion();
+        //$mysqlversion=getmysqlversion();
+        $mysqlversion=\app\core\db\DbHelp::ShowVersion();
         if(!$mysqlversion || $mysqlversion==''){
           $mysqlversion='unknow';
         }
@@ -143,4 +144,23 @@ class Index extends AdminBaseController {
         //$this->redirect('/');
         return $this->redirect('admin/index/login');
     }
+
+    // public function AddDbOne(){
+    //     $help=new \app\core\db\DbHelp();
+    //     $a=$help->AddDb('lctest');
+    //     print_r($a);
+    //     die();
+    // }
+    // public function DelDbOne(){
+    //     $help=new \app\core\db\DbHelp();
+    //     $a=$help->DelDb('lctest');
+    //     print_r($a);
+    //     die();
+    // }
+    // public function ShowDbVersion(){
+    //     $help=new \app\core\db\DbHelp();
+    //     $a=$help->ShowVersion();
+    //     print_r($a);
+    //     die();
+    // }
 }
