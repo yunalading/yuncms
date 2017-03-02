@@ -8,8 +8,6 @@
 // +----------------------------------------------------------------------
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
-
-
 namespace app\common\model;
 
 use think\Model;
@@ -18,6 +16,6 @@ use think\Model;
  * Class BaseModel
  * @package app\common\model
  */
-class BaseModel extends Model {
-
+abstract class BaseModel extends Model {
+    protected $resultSetType = 'collection';
 }

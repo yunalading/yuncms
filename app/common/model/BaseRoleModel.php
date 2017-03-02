@@ -8,23 +8,10 @@
 // +----------------------------------------------------------------------
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
-
-
-namespace app\admin\controller;
-
-use app\admin\model\AreaModel;
-
+namespace app\common\model;
 /**
- * Class Area
- * @package app\admin\controller
+ * Class BaseRoleModel
+ * @package app\common\model
  */
-class Area extends AdminBaseController {
-    /**
-     * @return \think\response\View
-     */
-    public function index() {
-        $areaModel = new AreaModel();
-        print_r($areaModel->get());
-        //return view();
-    }
+abstract class BaseRoleModel extends BaseModel {
 }

@@ -12,13 +12,12 @@
 
 namespace app\admin\model;
 
-use think\Model;
+use app\common\model\BaseAreaModel;
 
 /**
  * Class Area
  * @package app\admin\model
  */
-class AreaModel extends Model {
-    protected $name = 'area';
-
+class AreaModel extends BaseAreaModel {
+    
 }
