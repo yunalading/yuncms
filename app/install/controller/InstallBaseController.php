@@ -25,6 +25,5 @@ abstract class InstallBaseController extends BaseController {
     public function __construct() {
         parent::__construct();
         //检测是否已经安装
-
     }
 }
