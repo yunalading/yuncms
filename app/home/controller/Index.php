@@ -10,10 +10,6 @@
 // +----------------------------------------------------------------------
 namespace app\home\controller;
 
-use app\common\controller\HomeBaseController;
-use app\home\model\Members;
-use think\Db;
-
 class Index extends HomeBaseController {
     /**
      * @return \think\response\View

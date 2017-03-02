@@ -12,8 +12,6 @@
 
 namespace app\admin\controller;
 
-use app\common\controller\AdminBaseController;
-
 /**
  * Class Guestbook
  * @package app\admin\controller

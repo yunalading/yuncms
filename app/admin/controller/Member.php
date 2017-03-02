@@ -12,9 +12,6 @@
 
 namespace app\admin\controller;
 
-
-use app\common\controller\AdminBaseController;
-
 /**
  * Class Member
  * @package app\admin\controller

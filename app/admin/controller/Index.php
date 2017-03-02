@@ -12,8 +12,6 @@
 
 namespace app\admin\controller;
 
-use app\common\controller\AdminBaseController;
-
 /**
  * Class Index 默认控制器
  * @package app\admin\controller

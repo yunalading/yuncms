@@ -10,17 +10,21 @@
 // +----------------------------------------------------------------------
 
 
-namespace app\admin\controller;
+namespace app\install\controller;
+
+use app\common\controller\BaseController;
 
 /**
- * Class Images
- * @package app\admin\controller
+ * Class InstallBaseController
+ * @package app\install\controller
  */
-class Images extends AdminBaseController {
+abstract class InstallBaseController extends BaseController {
     /**
-     * @return \think\response\View
+     * InstallBaseController constructor.
      */
-    public function index() {
-        return view();
+    public function __construct() {
+        parent::__construct();
+        //检测是否已经安装
+
     }
 }

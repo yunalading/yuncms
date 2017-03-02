@@ -10,8 +10,8 @@
 // +----------------------------------------------------------------------
 namespace app\home\model;
 
-use think\Model;
+use app\common\model\BaseModel;
 
-class Members extends Model {
+class Members extends BaseModel {
     
 }

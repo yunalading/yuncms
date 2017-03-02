@@ -10,19 +10,22 @@
 // +----------------------------------------------------------------------
 
 
-namespace app\common\controller;
+namespace app\home\controller;
+
+use app\common\controller\BaseController;
+use think\App;
 
 /**
- * Class InstallBaseController
+ * Class HomeBaseController
  * @package app\common\controller
  */
-abstract class InstallBaseController extends BaseController {
+abstract class HomeBaseController extends BaseController {
     /**
-     * InstallBaseController constructor.
+     * HomeBaseController constructor.
      */
     public function __construct() {
         parent::__construct();
-        //检测是否已经安装
-
+        //设置主题路径
+        $this->view->config('view_path', App::$modulePath . 'view' . DS . config('app.theme') . DS);
     }
 }

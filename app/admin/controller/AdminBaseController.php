@@ -10,7 +10,9 @@
 // +----------------------------------------------------------------------
 
 
-namespace app\common\controller;
+namespace app\admin\controller;
+
+use app\common\controller\BaseController;
 
 /**
  * Class AdminBaseController

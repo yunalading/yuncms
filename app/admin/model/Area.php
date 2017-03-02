@@ -10,17 +10,9 @@
 // +----------------------------------------------------------------------
 
 
-namespace app\admin\controller;
+namespace app\admin\model;
 
-/**
- * Class Images
- * @package app\admin\controller
- */
-class Images extends AdminBaseController {
-    /**
-     * @return \think\response\View
-     */
-    public function index() {
-        return view();
-    }
+
+class Area {
+
 }
