@@ -10,9 +10,15 @@
 // +----------------------------------------------------------------------
 
 
-namespace app\common\model;
+namespace app\admin\model;
 
+use think\Model;
 
-class Area {
+/**
+ * Class Area
+ * @package app\admin\model
+ */
+class AreaModel extends Model {
+    protected $name = 'area';
 
 }

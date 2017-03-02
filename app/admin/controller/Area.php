@@ -12,6 +12,8 @@
 
 namespace app\admin\controller;
 
+use app\admin\model\AreaModel;
+
 /**
  * Class Area
  * @package app\admin\controller
@@ -21,6 +23,8 @@ class Area extends AdminBaseController {
      * @return \think\response\View
      */
     public function index() {
-        return view();
+        $areaModel = new AreaModel();
+        print_r($areaModel->get()->cache());
+        //return view();
     }
 }
