@@ -23,8 +23,7 @@ class Area extends AdminBaseController {
      * @return \think\response\View
      */
     public function index() {
-        $areaModel = new AreaModel();
-        print_r($areaModel->get());
-        //return view();
+
+        return view();
     }
 }
