@@ -10,8 +10,10 @@
 // +----------------------------------------------------------------------
 namespace app\common\model;
 /**
+ * 角色
  * Class BaseRoleModel
  * @package app\common\model
  */
 abstract class BaseRoleModel extends BaseModel {
+    protected $name = 'role';
 }

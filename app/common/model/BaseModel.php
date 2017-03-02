@@ -17,5 +17,5 @@ use think\Model;
  * @package app\common\model
  */
 abstract class BaseModel extends Model {
-    protected $resultSetType = 'collection';
+
 }

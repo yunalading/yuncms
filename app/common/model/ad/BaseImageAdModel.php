@@ -8,12 +8,17 @@
 // +----------------------------------------------------------------------
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
-namespace app\common\model;
+
+
+namespace app\common\model\ad;
+
+use app\common\model\BaseAdModel;
+
 /**
- * 评论
- * Class BaseCommentModel
- * @package app\common\model
+ * 图片广告
+ * Class BaseImageAdModel
+ * @package app\common\model\ad
  */
-abstract class BaseCommentModel extends BaseModel {
-    protected $name = 'comments';
+abstract class BaseImageAdModel extends BaseAdModel {
+    protected $name = 'ad_images';
 }

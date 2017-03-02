@@ -8,10 +8,15 @@
 // +----------------------------------------------------------------------
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
-namespace app\common\model;
+namespace app\common\model\ad;
+
+use app\common\model\BaseAdModel;
+
 /**
- * Class BaseSlideModel
+ * 幻灯片图片
+ * Class BaseSlidesImgModel
  * @package app\common\model
  */
-abstract class BaseSlideModel extends BaseModel {
+abstract class BaseSlidesImgModel extends BaseAdModel {
+    protected $name = 'slides_imgs';
 }

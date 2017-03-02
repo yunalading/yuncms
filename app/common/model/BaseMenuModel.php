@@ -10,8 +10,10 @@
 // +----------------------------------------------------------------------
 namespace app\common\model;
 /**
+ * 菜单
  * Class BaseMenuModel
  * @package app\common\model
  */
 abstract class BaseMenuModel extends BaseModel {
+    protected $name = 'menus';
 }

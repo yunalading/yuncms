@@ -10,9 +10,10 @@
 // +----------------------------------------------------------------------
 namespace app\common\model;
 /**
+ * 管理员用户
  * Class BaseUserModel
  * @package app\common\model
  */
 abstract class BaseUserModel extends BaseModel {
-
+    protected $name = 'users';
 }

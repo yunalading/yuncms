@@ -11,9 +11,10 @@
 namespace app\common\model;
 
 /**
+ * 会员
  * Class BaseMemberModel
  * @package app\common\model
  */
 abstract class BaseMemberModel extends BaseModel {
-
+    protected $name = 'members';
 }

@@ -10,9 +10,10 @@
 // +----------------------------------------------------------------------
 namespace app\common\model;
 /**
+ * 导航
  * Class BaseNavModel
  * @package app\common\model
  */
 abstract class BaseNavModel extends BaseModel {
-
+    protected $name = 'navs';
 }

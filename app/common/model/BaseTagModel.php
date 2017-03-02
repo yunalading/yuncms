@@ -10,8 +10,10 @@
 // +----------------------------------------------------------------------
 namespace app\common\model;
 /**
+ * 标签
  * Class BaseTagModel
  * @package app\common\model
  */
 abstract class BaseTagModel extends BaseModel {
+    protected $name = 'tags';
 }

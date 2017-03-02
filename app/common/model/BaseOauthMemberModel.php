@@ -10,8 +10,10 @@
 // +----------------------------------------------------------------------
 namespace app\common\model;
 /**
+ * 第三方会员
  * Class BaseOauthMemberModel
  * @package app\common\model
  */
 abstract class BaseOauthMemberModel extends BaseModel {
+    protected $name = 'oauth_members';
 }

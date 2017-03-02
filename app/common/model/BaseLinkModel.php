@@ -10,8 +10,10 @@
 // +----------------------------------------------------------------------
 namespace app\common\model;
 /**
+ * 友情链接
  * Class BaseLinkModel
  * @package app\common\model
  */
 abstract class BaseLinkModel extends BaseModel {
+    protected $name = 'links';
 }

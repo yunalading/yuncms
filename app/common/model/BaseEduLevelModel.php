@@ -10,8 +10,10 @@
 // +----------------------------------------------------------------------
 namespace app\common\model;
 /**
+ * 学历
  * Class BaseEduLevelModel
  * @package app\common\model
  */
 abstract class BaseEduLevelModel extends BaseModel {
+    protected $name = 'edu_level';
 }

@@ -11,6 +11,7 @@
 namespace app\common\model;
 
 /**
+ * 地区
  * Class BaseAreaModel
  * @package app\common\model
  */

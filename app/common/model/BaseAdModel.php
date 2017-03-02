@@ -10,6 +10,7 @@
 // +----------------------------------------------------------------------
 namespace app\common\model;
 /**
+ * 广告
  * Class BaseAdModel
  * @package app\common\model
  */

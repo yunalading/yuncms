@@ -10,9 +10,10 @@
 // +----------------------------------------------------------------------
 namespace app\common\model;
 /**
+ * 图片分类
  * Class BaseImgTypeModel
  * @package app\common\model
  */
 abstract class BaseImgTypeModel extends BaseModel {
-
+    protected $name = 'img_type';
 }

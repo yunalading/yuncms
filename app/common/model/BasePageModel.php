@@ -10,8 +10,10 @@
 // +----------------------------------------------------------------------
 namespace app\common\model;
 /**
+ * 页面
  * Class BasePageModel
  * @package app\common\model
  */
 abstract class BasePageModel extends BaseModel {
+    protected $name = 'pages';
 }

@@ -10,8 +10,10 @@
 // +----------------------------------------------------------------------
 namespace app\common\model;
 /**
+ * 留言
  * Class BaseGuestBookModel
  * @package app\common\model
  */
 abstract class BaseGuestBookModel extends BaseModel {
+    protected $name = 'guestbook';
 }

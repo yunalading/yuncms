@@ -10,8 +10,10 @@
 // +----------------------------------------------------------------------
 namespace app\common\model;
 /**
+ * 模型属性
  * Class BaseModelPropertiesModel
  * @package app\common\model
  */
 abstract class BaseModelPropertiesModel extends BaseModel {
+    protected $name = 'model_properties';
 }
