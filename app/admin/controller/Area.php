@@ -12,8 +12,6 @@
 
 namespace app\admin\controller;
 
-use app\admin\model\AreaModel;
-
 /**
  * Class Area
  * @package app\admin\controller
@@ -23,6 +21,7 @@ class Area extends AdminBaseController {
      * @return \think\response\View
      */
     public function index() {
+        print_r(in_array('/admin/tag',config('authorization.menus')));
         return view();
     }
 }

@@ -8,34 +8,8 @@
 // +----------------------------------------------------------------------
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
+namespace app\core\rbac;
 
+class Role {
 
-namespace app\admin\controller;
-
-/**
- * Class User
- * @package app\admin\controller
- */
-class User extends AdminBaseController {
-    protected $allow_actions = ['login'];
-    /**
-     * @return \think\response\View
-     */
-    public function index() {
-        return view();
-    }
-
-    /**
-     * @return \think\response\View
-     */
-    public function login() {
-        return view();
-    }
-
-    /**
-     * @return \think\response\View
-     */
-    public function logout() {
-        return view();
-    }
 }
