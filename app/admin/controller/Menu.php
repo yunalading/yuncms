@@ -52,10 +52,16 @@ class Menu extends AdminBaseController {
     if($data['status']==0){
       return json($data);
     }else{
+      $AuthRuleModel = new \app\admin\model\AuthRuleModel();
       foreach($data['info'] as $v){
         $datas['status']=$data['statuss'];
         $where['id']=$v;
         $menus->autoupdate($datas,$where);
+        //authrule中删除[子菜单应该都删除掉]
+        $url=$menus->getOne('url',$where);
+        $wheres['name']=$url;
+        $upauth['status']=1-$data['statuss'];
+        $AuthRuleModel->autoupdate($upauth,$wheres);
       }
       $data['info']='删除菜单成功!';
       $log['log_desc']="删除菜单";
@@ -103,12 +109,29 @@ class Menu extends AdminBaseController {
          return $this->error('该菜单已经存在无法重复添加！','index');
        }
      }
-     $where['id']=$param['id'];
-     unset($param["id"]);
-     $update=$menus->autoupdate($param,$where);
+     $wheres['id']=$param['id'];
+     $update=$menus->autoupdate($param,$wheres);
      $log['log_desc']="编辑菜单";
      $log['log_remark']="管理员".session('aname').$log['log_desc'].$param['title'].'('.geturlbase().")成功!";
      $this->inserlog($log);
+
+     $AuthRuleModel = new \app\admin\model\AuthRuleModel();
+     //查询该规则是否已经存在
+     $wheress['name']=$param['url'];
+     $wheress['status']=1;
+     $counts=$AuthRuleModel->getcount($wheress);
+    //  echo $AuthRuleModel::getLastSql();
+    //  die();
+     if($counts<1){
+         $params['addtime']=$param['addtime'];
+         $params['condition']='';
+         $params['type']=1;
+         $params['group']=$param['group'];
+         $params['name']=$param['url'];
+         $params['title']=$param['title'];
+         $params['sort']=$param['id'];
+         $AuthRuleModel->autoinsert($params);
+     }
      return $this->success('修改菜单数据成功','index');
   }
   /**
@@ -135,11 +158,14 @@ class Menu extends AdminBaseController {
       $param['icon']=isset($param['icon'])?trim($param['icon']):'';
       $param['url']=isset($param['url'])?trim($param['url']):'';
       $param['title']=isset($param['title'])?trim($param['title']):'';
+      $param['group']=isset($param['group'])?trim($param['group']):'';
+      $param['sort']=isset($param['sort'])?intval($param['sort']):100;
       if($param['title']==''){
         return $this->error('新增菜单失败,必须填写菜单名称','index');
       }
       $menus = new MenuModel();
       //url必须是唯一的
+      $AuthRuleModel = new \app\admin\model\AuthRuleModel();
       if($param['url']!=''){
         $where['url']=$param['url'];
         $where['status']=0;
@@ -147,7 +173,22 @@ class Menu extends AdminBaseController {
         if($count>0){
           return $this->error('该菜单已经存在无法重复添加！','index');
         }
+        //查询该规则是否已经存在
+        $wheres['name']=$param['url'];
+        $wheres['status']=1;
+        $counts=$AuthRuleModel->getcount($wheres);
+        if($counts>0){
+          return $this->error('该url在规则中已经存在无法重复添加！','index');
+        }
       }
+      $params['addtime']=$param['addtime'];
+      $params['condition']='';
+      $params['type']=1;
+      $params['group']=$param['group'];
+      $params['name']=$param['url'];
+      $params['title']=$param['title'];
+      $params['sort']=$param['sort'];
+      $AuthRuleModel->autoinsert($params);
       $insertid=$menus->autoinsert($param);
       if($insertid>0){
         $log['log_desc']="新增菜单";

@@ -21,7 +21,7 @@ class DbHelp extends \think\Db {
    *  @param $daname 数据库名称
    *  @return bool
    */
-    public static function AddDb($dbname=''){
+    public static function addDb($dbname=''){
         if($dbname==''){
             return false;
         }
@@ -38,7 +38,7 @@ class DbHelp extends \think\Db {
      *  @param $daname 数据库名称
      *  @return bool
      */
-      public static function DelDb($dbname=''){
+      public static function delDb($dbname=''){
           if($dbname==''){
               return false;
           }
@@ -54,7 +54,7 @@ class DbHelp extends \think\Db {
        *  @author [chenqianhao] <68527761@qq.com>
        *  @return string
        */
-        public static function ShowVersion(){
+        public static function showVersion(){
           $sql="select version() as version";
           $a=Db::query($sql);
           if($a){

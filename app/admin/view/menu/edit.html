@@ -64,6 +64,14 @@ $option = array('title' => 标题, 'data-id' => 1);
                                             <input type="text" class="form-control input text" name="title" value="{$menus_one.title}" placeholder="导航前台显示标题">
                                         </div>
                                     </div>
+
+                                    <div class="form-group item_title ">
+                                        <label class="left control-label">菜单分组：</label>
+                                        <div class="right">
+                                            <input type="text" class="form-control input text" name="group" value="{$menus_one.group}" placeholder="菜单属于的组">
+                                        </div>
+                                    </div>
+
                                     <!--
 如果选项的值是自定义数组(必须定义key为title的元素)需要解析，如果选项的值是常规字符串直接显示
 此处主要是用来给option定义更多的属性，比如data-ia=1，那么option应为

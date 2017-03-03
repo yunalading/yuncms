@@ -66,7 +66,7 @@
 | url | varchar(255) |  | 链接地址 |  |
 | hide | tinyint(1) unsigned | 0  | 是否隐藏0显示1隐藏 |  |
 | tip | text  |  | 提示说明 |  |
-| group | varchar(50) |   | 分组 |   |
+| group | varchar(50) |   | 菜单分组 |   |
 | addtime | int(11) |  0 |  添加时间 |  |
 | is_dev | tinyint(1) unsigned  |  0 | 是否仅开发者模式可见 |  |
 | status | tinyint(1) unsigned  |  0 | 菜单状态:0正常1删除 |  |
@@ -107,7 +107,7 @@
 | 字段           | 类型           | 默认值 | 注释  | 索引  |
 | ------------- |-------------| ----- | -----| -----|
 | id | mediumint(11) unsigned | | 自增标识| PRIMARY  |
-| module | varchar(30) |  | 规则所属模型 |  KEY |
+<!-- | module | varchar(30) |  | 规则所属模型 |  KEY | -->
 | type | tinyint(2) | 1 | 1-url规则;2-主菜单 |  KEY |
 | name | varchar(80) | | 规则唯一英文标识 | UNIQUE |
 | title | varchar(20)  | | 规则中文描述 |  |

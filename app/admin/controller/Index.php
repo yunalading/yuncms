@@ -16,7 +16,7 @@ use think\Request;
 use think\Cache;
 use app\common\controller\AdminBaseController;
 use app\admin\model\AdminUserModel;
-
+use think\Log;
 /**
  * Class Index 默认控制器
  * @package app\admin\controller
@@ -29,7 +29,7 @@ class Index extends AdminBaseController {
     public function index() {
         //查询数据库的版本
         //$mysqlversion=getmysqlversion();
-        $mysqlversion=\app\core\db\DbHelp::ShowVersion();
+        $mysqlversion=\app\core\db\DbHelp::showVersion();
         if(!$mysqlversion || $mysqlversion==''){
           $mysqlversion='unknow';
         }

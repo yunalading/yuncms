@@ -10,7 +10,7 @@
 // +----------------------------------------------------------------------
 namespace app\admin\model;
 use app\common\model\BaseModel;
-use think\Db;
+// use think\Db;
 use think\Config;
 class MenuModel extends BaseModel
 {
@@ -28,7 +28,8 @@ class MenuModel extends BaseModel
         // return $this->getTree($menus,'title','id','pid');
 
         $table=$this->gettable();
-        $menus = Db::name($table)->order('sort','asc')->where($where)->select();
+        // $menus = Db::name($table)->order('sort','asc')->where($where)->select();
+        $menus = $this->order('sort','asc')->where($where)->select();
         return $this->getTree($menus,'title','id','pid');
     }
     /**
@@ -96,7 +97,7 @@ class MenuModel extends BaseModel
         $where['pid']=0;
         $where['status']=0;
         $where['type']='admin';
-        $field=['id','title'];
+        $field=['id','title','group'];
         $data=$this->getAll($where,$field);
         return $data;
       }

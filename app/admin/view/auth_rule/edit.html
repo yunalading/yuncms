@@ -2,79 +2,95 @@
 <div id="main" class="col-xs-12 col-sm-9 main" style="overflow-y: scroll;">
     <!-- 面包屑导航 -->
     <ul class="breadcrumb">
-      <li><i class="fa fa-map-marker"></i></li>
-      {foreach $positionlink as $vo}
-      <li class="text-muted">{$vo.title}</li>
-      {/foreach}
-      <li class="text-muted">新增规则</li>
+        <li><i class="fa fa-map-marker"></i></li>
+        {foreach $positionlink as $vo}
+        <li class="text-muted">{$vo.title}</li>
+        {/foreach}
+        <li class="text-muted">编辑规则</li>
     </ul>
+
     <!-- 主体内容区域 -->
     <div class="tab-content ct-tab-content">
 
         <div class="panel-body">
             <div class="builder formbuilder-box">
+
+
                 <div class="builder-container">
                     <div class="row">
                         <div class="col-xs-12">
-                            <form action="{:U('save')}" method="post"  class="form-horizontal form form-builder">
+                            <form action="{:U('update')}" method="put" class="form-horizontal form form-builder">
                                 <div class="form-type-list">
+                                    <div class="form-group hidden item_id ">
+                                        <label class="left control-label">ID：</label>
+                                        <div class="right">
+                                            <input type="hidden" class="form-control input" name="id" value="{$data.id}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group hidden item_group ">
+                                        <label class="left control-label">菜单类型：</label>
+                                        <div class="right">
+                                            <input type="hidden" class="form-control input" name="type" value="admin">
+                                        </div>
+                                    </div>
                                     <div class="form-group item_pid ">
-                                        <label class="left control-label">所属组：</label>
+                                        <label class="left control-label">分组：</label>
                                         <div class="right">
                                             <select name="group" class="form-control cui-select select">
                                                 {foreach  $topmenu as $vo}
-                                                <option value="{$vo.group}"> {$vo.title} </option>
+                                                <option value="{$vo.group}"
+                                                {if condition="$vo['group'] eq $data['group'] "} selected
+                                                {else /}
+                                                {/if}> {$vo.title} </option>
                                                 {/foreach}
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group item_title ">
-                                        <label class="left control-label">规则说明：</label>
+                                        <label class="left control-label">规则名称：</label>
                                         <div class="right">
-                                            <input type="text" class="form-control input text" name="title" value="" placeholder="分配权限里面显示的名称">
+                                            <input type="text" class="form-control input text" name="title" value="{$data.title}" placeholder="导航前台显示标题" />
                                         </div>
                                     </div>
 
-                                    <div class="form-group item_url ">
-                                        <label class="left control-label">URL地址：</label>
+                                    <div class="form-group item_title ">
+                                        <label class="left control-label">URL：</label>
                                         <div class="right">
-                                            <input type="text" class="form-control input text" name="name" value="" placeholder="仅支持TP的U函数解析格式">
+                                            <input type="text" class="form-control input text" name="name" value="{$data.name}" placeholder="仅支持TP的U函数解析格式" />
                                         </div>
                                     </div>
+
+
+
 
                                     <div class="form-group item_sort ">
                                         <label class="left control-label">排序：</label>
                                         <div class="right">
-                                            <input type="text" class="form-control input num" name="sort" value="100" placeholder="用于显示的顺序">
+                                            <input type="text" class="form-control input num" name="sort" value="{$data.sort}" placeholder="用于显示的顺序">
                                         </div>
                                     </div>
 
+
+
                                     <div class="form-group item_target ">
-                                        <label class="left control-label">状态：</label>
+                                        <label class="left control-label">显示状态：</label>
                                         <div class="right">
                                             <div class="radio-inline cui-control cui-radio">
                                                 <label for="target">
-                                                        <input type="radio"  class="radio" name="status" value="0" / >
+                                                        <input type="radio"  class="radio" name="status" value="1" {eq name="data.status" value="1"} checked {/eq}  / >
                                                         <span class="cui-control-indicator"></span>
-                                                        <span>无效</span>
+                                                        <span>启用</span>
                                                   </label>
                                             </div>
                                             <div class="radio-inline cui-control cui-radio"> <label for="target_blank">
-                                                      <input type="radio" class="radio"  name="status"  value="1" checked />
+                                                      <input type="radio" class="radio"
+                                                      {eq name="data.status" value="0"} checked {/eq} name="status"  value="0" />
                                                       <span class="cui-control-indicator"></span>
-                                                      <span>有效</span>
+                                                      <span>禁用</span>
                                                   </label>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <!-- <div class="form-group item_title ">
-                                        <label class="left control-label">附加规则：</label>
-                                        <div class="right">
-                                            <input type="text" class="form-control input text" name="condition" value="" placeholder="">
-                                        </div>
-                                    </div> -->
-
 
                                     <div class="form-group"></div>
                                     <div class="form-group bottom_button_list">
@@ -86,3 +102,9 @@
                         </div>
                     </div>
                 </div>
+
+                <script type="text/javascript">
+                    function changeicon() {
+                        alert("aaa");
+                    }
+                </script>
