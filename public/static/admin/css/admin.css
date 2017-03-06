@@ -1,4 +1,4 @@
-/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-03-05"P"14:03:26 UTC */
+/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-03-06"A"03:03:02 UTC */
 /* ==========================================================================
    Component: Base
  ============================================================================ */
@@ -14547,6 +14547,26 @@ tbody.am-collapse.am-in {
 .am-wechatpay .am-wechatpay-btn {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+.message-page {
+  margin: 4rem 0 14rem;
+}
+.system-message {
+  width: 40%;
+  margin: 4rem auto;
+}
+.system-message i {
+  font-size: 8rem;
+}
+.system-message h1 {
+  margin: 2.8rem 0 0;
+  color: #00A0E8;
+}
+.system-message span {
+  color: #35c0ff;
+}
+.system-message.jump {
+  text-align: center;
 }
 html,
 body {

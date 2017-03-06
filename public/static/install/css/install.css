@@ -1,4 +1,4 @@
-/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-03-05"P"14:03:26 UTC */
+/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-03-06"A"03:03:02 UTC */
 /* ==========================================================================
    Component: Base
  ============================================================================ */
@@ -14548,6 +14548,26 @@ tbody.am-collapse.am-in {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+.message-page {
+  margin: 4rem 0 14rem;
+}
+.system-message {
+  width: 40%;
+  margin: 4rem auto;
+}
+.system-message i {
+  font-size: 8rem;
+}
+.system-message h1 {
+  margin: 2.8rem 0 0;
+  color: #3cc3fc;
+}
+.system-message span {
+  color: #3e5163;
+}
+.system-message.jump {
+  text-align: center;
+}
 .header {
   border-bottom: 1px solid #dedede;
   padding: 1rem 0;
@@ -14744,26 +14764,6 @@ tbody.am-collapse.am-in {
 .complete-page .app-list p {
   margin: 1rem 0;
   color: #dedede;
-}
-.message-page {
-  margin: 4rem 0 14rem;
-}
-.system-message {
-  width: 40%;
-  margin: 4rem auto;
-}
-.system-message i {
-  font-size: 8rem;
-}
-.system-message h1 {
-  margin: 2.8rem 0 0;
-  color: #3cc3fc;
-}
-.system-message span {
-  color: #3e5163;
-}
-.system-message.jump {
-  text-align: center;
 }
 .footer {
   border-top: 1px solid #dedede;
