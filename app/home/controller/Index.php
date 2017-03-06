@@ -15,7 +15,6 @@ class Index extends HomeBaseController {
      * @return \think\response\View
      */
     public function index() {
-
         return view('/index');
     }
 }
