@@ -11,16 +11,15 @@
 
 
 namespace app\install\controller;
-
 /**
- * Class Complete
+ * 安装向导
+ * Class InstallWizard
  * @package app\install\controller
  */
-class Step3 extends InstallWizard {
-    /**
-     * @return \think\response\View
-     */
-    public function index() {
-        return view();
+abstract class InstallWizard extends InstallBaseController {
+    public function __construct() {
+        parent::__construct();
+        //检查是否安装
+        $this->checkInstall();
     }
 }

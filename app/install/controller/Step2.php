@@ -17,7 +17,7 @@ namespace app\install\controller;
  * Class Complete
  * @package app\install\controller
  */
-class Step2 extends InstallBaseController {
+class Step2 extends InstallWizard {
     /**
      * @return \think\response\View
      */

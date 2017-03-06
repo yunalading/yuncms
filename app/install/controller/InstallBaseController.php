@@ -27,4 +27,12 @@ abstract class InstallBaseController extends BaseController {
         parent::__construct();
     }
 
+    /**
+     * 检查是否安装，已安装提示
+     */
+    protected function checkInstall() {
+        if (Install::checkInstall()) {
+            $this->success('安装成功', url('/'), '系统已安装，可正常使用！');
+        }
+    }
 }

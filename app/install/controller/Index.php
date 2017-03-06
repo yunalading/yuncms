@@ -15,7 +15,7 @@ namespace app\install\controller;
  * Class Index
  * @package app\install\controller
  */
-class Index extends InstallBaseController {
+class Index extends InstallWizard {
 
     /**
      * @return \think\response\View
