@@ -18,13 +18,16 @@ use think\Model;
  */
 abstract class BaseModel extends Model {
     protected $del_lock_field = '';
+    const DEL_LOCK_ON = 1;
+    const DEL_LOCK_OFF = 0;
+
     public function __construct($data = []) {
         parent::__construct($data);
         //添加删除锁处理
-        static::event('before_delete',function ($model){
-            if($this->del_lock_field){
+        static::event('before_delete', function ($model) {
+            if ($this->del_lock_field) {
                 //已开启删除锁
-                if($model[$this->del_lock_field] > 0){
+                if ($model[$this->del_lock_field] == BaseModel::DEL_LOCK_ON) {
                     //不删除
                     return false;
                 }

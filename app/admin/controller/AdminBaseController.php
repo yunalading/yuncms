@@ -29,6 +29,7 @@ abstract class AdminBaseController extends BaseController {
         if(!in_array($this->request->action(),$this->allow_actions)){
             //验证是否登录
             Log::debug('验证是否登录');
+            echo url($this->request->module().'/'.$this->request->controller().'/'.$this->request->action());
         }
     }
 
