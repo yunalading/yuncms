@@ -53,7 +53,7 @@ return [
                 [
                     'id' => 'member-list',
                     'name' => '用户列表',
-                    'href' => '/admin/member'
+                    'href' => '/admin/member',
                 ]
             ]
         ], [
@@ -169,7 +169,12 @@ return [
                         [
                             'id' => 'qq-login',
                             'name' => 'QQ',
-                            'href' => '/admin/oauth/qq'
+                            'href' => '/admin/oauth/qq',
+                            'actives'=>[
+                                [
+                                    'name'=>'添加'
+                                ]
+                            ]
                         ], [
                             'id' => 'wechat-login',
                             'name' => '微信',
@@ -198,6 +203,10 @@ return [
                     'id' => 'area-manager',
                     'name' => '地区管理',
                     'href' => '/admin/area'
+                ], [
+                    'id' => 'edu-level',
+                    'name' => '文化程度',
+                    'href' => '/admin/edu/level'
                 ], [
                     'id' => 'upload',
                     'name' => '上传设置',

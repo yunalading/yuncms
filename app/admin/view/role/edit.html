@@ -1,0 +1,70 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<div class="content-page">
+    <div class="am-container">
+        <div class="page-title"><h1 class="am-inline">添加角色</h1></div>
+        <form class="edit-form role-access-form">
+            <div class="input-group">
+                <label>角色名</label>
+                <input type="text" placeholder="请填写角色名称">
+                <span class="error">* sfa</span>
+            </div>
+            <div>
+                <h3>权限信息</h3>
+                <div>
+                    {volist name="actions" id="ac"}
+                    <div class="role-nav">
+                        <div class="nav-title"><label class="am-checkbox">
+                            <input type="checkbox" value="" data-am-ucheck>
+                            {$ac.name}
+                        </label>
+                        </div>
+                        <div class="nav-body">
+                            {volist name="ac.submenus" id="act"}
+                            <div class="role-menus am-panel am-panel-default">
+                                <div class="am-panel-hd"><label class="am-checkbox">
+                                    <input type="checkbox" value="" data-am-ucheck>
+                                    {$act.name}
+                                </label></div>
+                                <div class="am-panel-bd">
+                                    {notempty name="act.submenus"}
+                                        {volist name="act.submenus" id="men"}
+                                        <div>
+                                            <label class="am-checkbox">
+                                                <input type="checkbox" value="" data-am-ucheck>
+                                                {$men.name}
+                                            </label>
+                                            {notempty name="men.actives"}
+                                            {volist name="men.actives" id="acti"}
+                                            <div class="sub-active">
+                                                <label class="am-checkbox">
+                                                    <input type="checkbox" value="" data-am-ucheck>
+                                                    {$acti.name}
+                                                </label>
+                                            </div>
+                                            {/volist}
+                                            {/notempty}
+                                        </div>
+                                        {/volist}
+                                    {/notempty}
+                                    {notempty name="act.actives"}
+                                        {volist name="act.actives" id="acti"}
+                                        <div>
+                                            <label class="am-checkbox">
+                                                <input type="checkbox" value="" data-am-ucheck>
+                                                {$acti.name}
+                                            </label>
+                                        </div>
+                                        {/volist}
+                                    {/notempty}
+                                </div>
+                            </div>
+                            {/volist}
+                        </div>
+                    </div>
+                    {/volist}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="footer" /}

@@ -12,15 +12,10 @@
 
 namespace app\admin\controller;
 
-/**
- * Class Area
- * @package app\admin\controller
- */
-class Area extends AdminBaseController {
-    /**
-     * @return \think\response\View
-     */
-    public function index() {
+
+class Edu extends AdminBaseController {
+
+    public function level() {
         return view();
     }
 }

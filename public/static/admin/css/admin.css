@@ -1,4 +1,4 @@
-/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-03-06"A"03:03:02 UTC */
+/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-03-06"A"09:03:56 UTC */
 /* ==========================================================================
    Component: Base
  ============================================================================ */
@@ -14682,6 +14682,36 @@ body {
 }
 .search-form {
   margin: 2rem 0 1rem;
+}
+.edit-form {
+  margin-top: 1rem;
+}
+.edit-form .input-group {
+  margin: 1rem auto;
+}
+.edit-form .input-group label {
+  font-weight: 400;
+  margin-right: 1rem;
+}
+.edit-form .input-group .error {
+  color: #dd514c;
+}
+.role-access-form h3 {
+  margin: 1rem auto;
+}
+.role-access-form .role-nav .nav-body {
+  padding-left: 2rem;
+}
+.role-access-form .role-nav .nav-body .role-menus {
+  display: inline-table;
+  margin-left: 1rem;
+  width: 200px;
+}
+.role-access-form .role-nav .nav-body .role-menus .am-panel-hd label {
+  margin: 0 auto;
+}
+.role-access-form .role-nav .nav-body .role-menus .am-panel-bd .sub-active {
+  margin-left: 2rem;
 }
 .footer {
   border-top: 1px solid #dedede;

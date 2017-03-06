@@ -18,9 +18,20 @@ namespace app\admin\controller;
  */
 class Role extends AdminBaseController {
     /**
+     * 角色列表
      * @return \think\response\View
      */
     public function index() {
         return view();
     }
+
+    public function edit() {
+        $this->assign('actions',config('authorization.menus'));
+        return view();
+    }
+
+    public function del() {
+
+    }
+
 }
