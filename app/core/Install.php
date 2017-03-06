@@ -37,4 +37,13 @@ class Install {
         //写入安装时间
         $file->fwrite(time());
     }
+
+    /**
+     * 获取安装时间
+     * @return int
+     */
+    public static function getInstallTime() {
+        $file = new \SplFileObject('data/install.lock');
+        return $file->getCurrentLine();
+    }
 }
