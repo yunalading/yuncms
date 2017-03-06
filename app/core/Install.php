@@ -20,4 +20,21 @@ class Install {
      * 3.填写配置信息(1.数据库，2网站)
      * 4.执行安装
      */
+
+    /**
+     * 检查是否安装
+     * @return bool
+     */
+    public static function checkInstall() {
+        return file_exists('data/install.lock');
+    }
+
+    /**
+     * 写入安装锁
+     */
+    public static function writeInstallLock() {
+        $file = new \SplFileObject('data/install.lock', 'w+');
+        //写入安装时间
+        $file->fwrite(time());
+    }
 }

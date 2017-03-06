@@ -13,6 +13,7 @@
 namespace app\install\controller;
 
 use app\common\controller\BaseController;
+use app\core\Install;
 
 /**
  * Class InstallBaseController
@@ -24,6 +25,6 @@ abstract class InstallBaseController extends BaseController {
      */
     public function __construct() {
         parent::__construct();
-        //检测是否已经安装
     }
+
 }

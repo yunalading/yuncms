@@ -11,6 +11,7 @@
 
 namespace app\common\controller;
 
+use app\core\Install;
 use think\Controller;
 
 /**
@@ -31,5 +32,14 @@ abstract class BaseController extends Controller {
      */
     protected function getCurrentRequestURL() {
         return url($this->request->module() . '/' . $this->request->controller() . '/' . $this->request->action());
+    }
+
+    /**
+     * 检查是否已安装，未安装进入安装流程。
+     */
+    protected function checkInstall() {
+        if (!Install::checkInstall()) {
+            $this->redirect(url('/install'));
+        }
     }
 }

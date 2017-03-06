@@ -27,6 +27,9 @@ abstract class AdminBaseController extends BaseController {
      */
     public function __construct() {
         parent::__construct();
+        //检查是否已安装
+        $this->checkInstall();
+        //是否需要登录验证
         if (!in_array($this->request->action(), $this->allow_actions)) {
             //验证是否登录
             Log::debug('验证是否登录');

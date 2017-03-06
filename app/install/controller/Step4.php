@@ -23,4 +23,13 @@ class Step4 extends InstallBaseController {
     public function index() {
         return view();
     }
+
+    /**
+     * 执行安装
+     * @return string
+     */
+    public function setup() {
+
+        return json_encode([]);
+    }
 }
