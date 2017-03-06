@@ -25,7 +25,7 @@ abstract class HomeBaseController extends BaseController {
      */
     public function __construct() {
         parent::__construct();
-        //设置主题路径
+        //设置模板路径开启多主题
         $this->view->config('view_path', App::$modulePath . 'view' . DS . config('app.theme') . DS);
     }
 }

@@ -21,15 +21,16 @@ use think\Log;
  */
 abstract class AdminBaseController extends BaseController {
     protected $allow_actions = [];
+
     /**
      * AdminBaseController constructor.
      */
     public function __construct() {
         parent::__construct();
-        if(!in_array($this->request->action(),$this->allow_actions)){
+        if (!in_array($this->request->action(), $this->allow_actions)) {
             //验证是否登录
             Log::debug('验证是否登录');
-            echo url($this->request->module().'/'.$this->request->controller().'/'.$this->request->action());
+
         }
     }
 

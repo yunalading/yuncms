@@ -13,3 +13,5 @@ YunCMS实现了简单的RBAC权限控制系统。
 - RBAC权限管理系统的授权目录。
 
 需要登录才可以访问的控制器是需要权限验证的,只有通过权限验证才可以继续访问。
+
+在`app\admin\controller\AdminBaseController.php`中使用了`$allow_actions`用来设置控制器的操作是否忽略登录验证。

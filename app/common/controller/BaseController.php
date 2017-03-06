@@ -24,4 +24,12 @@ abstract class BaseController extends Controller {
     public function __construct() {
         parent::__construct();
     }
+
+    /**
+     * 获取当前请求URL
+     * @return string
+     */
+    protected function getCurrentRequestURL() {
+        return url($this->request->module() . '/' . $this->request->controller() . '/' . $this->request->action());
+    }
 }
