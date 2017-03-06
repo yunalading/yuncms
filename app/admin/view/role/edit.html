@@ -12,20 +12,20 @@
                 <h3>权限信息</h3>
                 <div>
                     {volist name="actions" id="ac"}
-                    <div class="role-nav">
-                        <div class="nav-title"><label class="am-checkbox">
+                    <div class="role-nav am-panel am-panel-default">
+                        <div class="am-panel-hd"><label class="am-checkbox">
                             <input type="checkbox" value="" data-am-ucheck>
                             {$ac.name}
                         </label>
                         </div>
-                        <div class="nav-body">
+                        <div class="am-panel-bd">
                             {volist name="ac.submenus" id="act"}
-                            <div class="role-menus am-panel am-panel-default">
-                                <div class="am-panel-hd"><label class="am-checkbox">
+                            <div class="role-menus">
+                                <div class="menu-title"><label class="am-checkbox">
                                     <input type="checkbox" value="" data-am-ucheck>
                                     {$act.name}
                                 </label></div>
-                                <div class="am-panel-bd">
+                                <div class="menu-list">
                                     {notempty name="act.submenus"}
                                         {volist name="act.submenus" id="men"}
                                         <div>
