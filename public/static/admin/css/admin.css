@@ -1,4 +1,4 @@
-/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-03-06"P"12:03:50 UTC */
+/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-03-07"A"07:03:21 UTC */
 /* ==========================================================================
    Component: Base
  ============================================================================ */
@@ -14690,14 +14690,23 @@ body {
   margin: 1rem auto;
 }
 .edit-form .input-group label {
-  font-weight: 400;
   margin-right: 1rem;
 }
-.edit-form .input-group .error {
-  color: #dd514c;
+.edit-form .input-group label span {
+  font-weight: 400;
+  font-size: 1.4rem;
+  display: none;
+}
+.edit-form .input-group.am-form-error label span {
+  display: inline-block;
 }
 .role-access-form h3 {
   margin: 1rem auto;
+  font-weight: 400;
+}
+.role-access-form .am-form-field {
+  width: 20rem;
+  display: inline-block;
 }
 .role-access-form .role-nav {
   display: inline-table;
