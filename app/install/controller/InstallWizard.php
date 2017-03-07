@@ -11,6 +11,7 @@
 
 
 namespace app\install\controller;
+use app\core\Install;
 /**
  * 安装向导
  * Class InstallWizard

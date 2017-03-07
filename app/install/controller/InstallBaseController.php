@@ -13,7 +13,6 @@
 namespace app\install\controller;
 
 use app\common\controller\BaseController;
-use app\core\Install;
 
 /**
  * Class InstallBaseController
