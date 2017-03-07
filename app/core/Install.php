@@ -13,6 +13,8 @@
 namespace app\core;
 
 
+use think\Log;
+
 class Install {
     /**
      * 1.检查环境
