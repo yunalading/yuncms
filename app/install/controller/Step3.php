@@ -21,6 +21,7 @@ class Step3 extends InstallWizard {
      * @return \think\response\View
      */
     public function index() {
+
         return view();
     }
 }
