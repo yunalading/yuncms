@@ -13,5 +13,10 @@ return [
     'dispatch_error_tmpl' => APP_PATH . 'admin' . DS . 'view' . DS . 'dispatch_jump.html',
     'template' => [
         'view_depr' => DS,
-    ]
+    ],
+    'paginate' => [
+        'type' => 'app\core\paginator\Amazeui',
+        'var_page' => 'page',
+        'list_rows' => 15,
+    ],
 ];
