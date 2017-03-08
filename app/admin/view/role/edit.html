@@ -2,11 +2,13 @@
 <div class="content-page">
     <div class="am-container">
         <div class="page-title"><h1 class="am-inline">添加角色</h1></div>
-        <form class="edit-form role-access-form">
-            <div class="input-group">
-                <label>角色名</label>
-                <input type="text" placeholder="请填写角色名称">
-                <span class="error">* sfa</span>
+        <form class="edit-form role-access-form" data-am-validator>
+            <div class="am-form-group input-group">
+                <label>角色名称<span>(请填写角色名称)</span></label>
+                <div>
+                    <input type="text" class="am-form-field" placeholder="请填写角色名称" required>
+                    <input type="submit" class="am-btn am-btn-primary" value="提交">
+                </div>
             </div>
             <div>
                 <h3>权限信息</h3>

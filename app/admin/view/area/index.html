@@ -16,10 +16,11 @@
             </tr>
             </thead>
             <tbody>
+            {volist name='list' id='area'}
             <tr>
-                <td>超级管理员</td>
-                <td>0</td>
-                <td>0</td>
+                <td>{$area.area_name}</td>
+                <td>{$area.area_sort}</td>
+                <td>{$area.area_region}</td>
                 <td>
                     <div class="am-btn-group am-btn-group-xs">
                         <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
@@ -27,17 +28,10 @@
                     </div>
                 </td>
             </tr>
+            {/volist}
             </tbody>
         </table>
-        <ul class="am-pagination am-pagination-right">
-            <li class="am-disabled"><a href="#">&laquo;</a></li>
-            <li class="am-active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">&raquo;</a></li>
-        </ul>
+        {$page}
     </div>
 </div>
 {include file="footer" /}

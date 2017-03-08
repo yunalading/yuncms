@@ -12,15 +12,24 @@
 
 namespace app\admin\controller;
 
+use app\admin\model\AreaModel;
+use think\Request;
+
 /**
  * Class Area
  * @package app\admin\controller
  */
 class Area extends AdminBaseController {
     /**
+     * 地区列表
      * @return \think\response\View
      */
     public function index() {
+        $areaModel = new AreaModel();
+        $list = $areaModel->order('area_sort desc')->paginate();
+        $page = $list->render();
+        $this->assign('list', $list);
+        $this->assign('page', $page);
         return view();
     }
 }

@@ -21,7 +21,6 @@ use think\Log;
  */
 abstract class AdminBaseController extends BaseController {
     protected $allow_actions = [];
-
     /**
      * AdminBaseController constructor.
      */

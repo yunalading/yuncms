@@ -2,42 +2,15 @@
 /* 数据库结构文件                                                 */
 /*==============================================================*/
 
-drop table if exists yc_ad_code;
-drop table if exists yc_ad_images;
-drop table if exists yc_ad_text;
-drop table if exists yc_area;
-drop index category_unique on yc_category;
-drop table if exists yc_category;
-drop table if exists yc_comments;
-drop table if exists yc_content_tags;
-drop index content_unique on yc_contents;
-drop table if exists yc_contents;
-drop table if exists yc_edu_level;
-drop table if exists yc_guestbook;
-drop index img_type_unique on yc_img_type;
-drop table if exists yc_img_type;
-drop table if exists yc_imgs;
-drop table if exists yc_links;
-drop index member_unique on yc_members;
-drop table if exists yc_members;
-drop table if exists yc_menus;
-drop index model_unique on yc_model;
-drop table if exists yc_model;
-drop table if exists yc_model_properties;
-drop table if exists yc_navs;
-drop index oauth_member_unique on yc_oauth_members;
-drop table if exists yc_oauth_members;
-drop index page_unique on yc_pages;
-drop table if exists yc_pages;
-drop index role_unique on yc_role;
-drop table if exists yc_role;
-drop table if exists yc_slides;
-drop table if exists yc_slides_imgs;
-drop index tag_unique on yc_tags;
-drop table if exists yc_tags;
-drop table if exists yc_user_role_access;
-drop index user_unique on yc_users;
-drop table if exists yc_users;
+DROP DATABASE IF EXISTS yuncms;
+
+CREATE DATABASE yuncms
+  DEFAULT CHARSET utf8
+  COLLATE utf8_general_ci;
+
+USE yuncms;
+
+
 /*==============================================================*/
 /* Table: yc_ad_code                                            */
 /*==============================================================*/
@@ -52,7 +25,9 @@ create table yc_ad_code
    create_time          int not null comment '创建时间',
    primary key (ad_code_key)
 );
+
 alter table yc_ad_code comment '代码广告表';
+
 /*==============================================================*/
 /* Table: yc_ad_images                                          */
 /*==============================================================*/
@@ -62,14 +37,16 @@ create table yc_ad_images
    cover                varchar(200) not null comment '封面',
    title                varchar(20) not null comment '标题',
    href                 varchar(500) not null comment '链接',
-   ad_desc              varbinary(200) comment '描述',
+   ad_desc              varchar(200) comment '描述',
    content              text comment '内容',
    delete_time          int default NULL comment '软删除',
    update_time          int default NULL comment '更新时间',
    create_time          int not null comment '创建时间',
    primary key (ad_img_key)
 );
+
 alter table yc_ad_images comment '图片广告表';
+
 /*==============================================================*/
 /* Table: yc_ad_text                                            */
 /*==============================================================*/
@@ -84,7 +61,9 @@ create table yc_ad_text
    create_time          int not null comment '创建时间',
    primary key (ad_text_key)
 );
+
 alter table yc_ad_text comment '文字广告表';
+
 /*==============================================================*/
 /* Table: yc_area                                               */
 /*==============================================================*/
@@ -98,7 +77,9 @@ create table yc_area
    area_region          varchar(20) comment '大区名称',
    primary key (area_id)
 );
+
 alter table yc_area comment '区域表';
+
 /*==============================================================*/
 /* Table: yc_category                                           */
 /*==============================================================*/
@@ -121,7 +102,9 @@ create table yc_category
    del_lock             int default 0 comment '删除锁',
    primary key (category_id)
 );
+
 alter table yc_category comment '类别表';
+
 /*==============================================================*/
 /* Index: category_unique                                       */
 /*==============================================================*/
@@ -129,6 +112,7 @@ create unique index category_unique on yc_category
 (
    seo_url
 );
+
 /*==============================================================*/
 /* Table: yc_comments                                           */
 /*==============================================================*/
@@ -148,7 +132,9 @@ create table yc_comments
    create_time          int not null comment '创建时间',
    primary key (content_comment_id)
 );
+
 alter table yc_comments comment '内容评论表';
+
 /*==============================================================*/
 /* Table: yc_content_tags                                       */
 /*==============================================================*/
@@ -159,7 +145,9 @@ create table yc_content_tags
    tag_id               int comment '标签编号',
    primary key (content_tag_id)
 );
+
 alter table yc_content_tags comment '内容标签表';
+
 /*==============================================================*/
 /* Table: yc_contents                                           */
 /*==============================================================*/
@@ -187,7 +175,9 @@ create table yc_contents
    create_time          int not null comment '创建时间',
    primary key (content_id)
 );
+
 alter table yc_contents comment '内容表';
+
 /*==============================================================*/
 /* Index: content_unique                                        */
 /*==============================================================*/
@@ -195,6 +185,7 @@ create unique index content_unique on yc_contents
 (
    seo_url
 );
+
 /*==============================================================*/
 /* Table: yc_edu_level                                          */
 /*==============================================================*/
@@ -204,7 +195,9 @@ create table yc_edu_level
    edu_level_name       varchar(20) not null comment '文化程度名称',
    primary key (edu_level_id)
 );
+
 alter table yc_edu_level comment '文化程度表';
+
 /*==============================================================*/
 /* Table: yc_guestbook                                          */
 /*==============================================================*/
@@ -220,7 +213,9 @@ create table yc_guestbook
    create_time          int not null comment '创建时间',
    primary key (guestbook_id)
 );
+
 alter table yc_guestbook comment '留言表';
+
 /*==============================================================*/
 /* Table: yc_img_type                                           */
 /*==============================================================*/
@@ -232,7 +227,9 @@ create table yc_img_type
    create_time          int not null comment '创建时间',
    primary key (img_type_id)
 );
+
 alter table yc_img_type comment '图片分类表';
+
 /*==============================================================*/
 /* Index: img_type_unique                                       */
 /*==============================================================*/
@@ -240,6 +237,7 @@ create unique index img_type_unique on yc_img_type
 (
    type_name
 );
+
 /*==============================================================*/
 /* Table: yc_imgs                                               */
 /*==============================================================*/
@@ -253,7 +251,9 @@ create table yc_imgs
    create_time          int not null comment '创建时间',
    primary key (img_id)
 );
+
 alter table yc_imgs comment '图片表';
+
 /*==============================================================*/
 /* Table: yc_links                                              */
 /*==============================================================*/
@@ -269,7 +269,9 @@ create table yc_links
    create_time          int not null comment '创建时间',
    primary key (link_id)
 );
+
 alter table yc_links comment '友情链接表';
+
 /*==============================================================*/
 /* Table: yc_members                                            */
 /*==============================================================*/
@@ -297,7 +299,9 @@ create table yc_members
    create_time          int not null comment '创建时间',
    primary key (member_id)
 );
+
 alter table yc_members comment '会员表';
+
 /*==============================================================*/
 /* Index: member_unique                                         */
 /*==============================================================*/
@@ -307,6 +311,7 @@ create unique index member_unique on yc_members
    phone,
    email
 );
+
 /*==============================================================*/
 /* Table: yc_menus                                              */
 /*==============================================================*/
@@ -324,7 +329,9 @@ create table yc_menus
    create_time          int not null comment '创建时间',
    primary key (menu_id)
 );
+
 alter table yc_menus comment '菜单表';
+
 /*==============================================================*/
 /* Table: yc_model                                              */
 /*==============================================================*/
@@ -338,7 +345,9 @@ create table yc_model
    create_time          int not null comment '创建时间',
    primary key (model_id)
 );
+
 alter table yc_model comment '模型表';
+
 /*==============================================================*/
 /* Index: model_unique                                          */
 /*==============================================================*/
@@ -346,6 +355,7 @@ create unique index model_unique on yc_model
 (
    model_name
 );
+
 /*==============================================================*/
 /* Table: yc_model_properties                                   */
 /*==============================================================*/
@@ -359,7 +369,9 @@ create table yc_model_properties
    pro_desc             varchar(200) comment '属性说明',
    primary key (model_properties_id)
 );
+
 alter table yc_model_properties comment '模型属性表';
+
 /*==============================================================*/
 /* Table: yc_navs                                               */
 /*==============================================================*/
@@ -372,7 +384,9 @@ create table yc_navs
    create_time          int not null comment '创建时间',
    primary key (nav_key)
 );
+
 alter table yc_navs comment '导航表';
+
 /*==============================================================*/
 /* Table: yc_oauth_members                                      */
 /*==============================================================*/
@@ -386,7 +400,9 @@ create table yc_oauth_members
    userinfo             varchar(2000) not null comment '第三方平台用户信息',
    primary key (oauth_member_id)
 );
+
 alter table yc_oauth_members comment '第三方登录会员表';
+
 /*==============================================================*/
 /* Index: oauth_member_unique                                   */
 /*==============================================================*/
@@ -394,6 +410,7 @@ create unique index oauth_member_unique on yc_oauth_members
 (
    openid
 );
+
 /*==============================================================*/
 /* Table: yc_pages                                              */
 /*==============================================================*/
@@ -417,7 +434,9 @@ create table yc_pages
    create_time          int not null comment '创建时间',
    primary key (page_id)
 );
+
 alter table yc_pages comment '页面表';
+
 /*==============================================================*/
 /* Index: page_unique                                           */
 /*==============================================================*/
@@ -425,6 +444,7 @@ create unique index page_unique on yc_pages
 (
    seo_url
 );
+
 /*==============================================================*/
 /* Table: yc_role                                               */
 /*==============================================================*/
@@ -438,7 +458,9 @@ create table yc_role
    create_time          int not null comment '创建时间',
    primary key (role_id)
 );
+
 alter table yc_role comment '管理员角色表';
+
 /*==============================================================*/
 /* Index: role_unique                                           */
 /*==============================================================*/
@@ -446,6 +468,7 @@ create unique index role_unique on yc_role
 (
    role_name
 );
+
 /*==============================================================*/
 /* Table: yc_slides                                             */
 /*==============================================================*/
@@ -458,7 +481,9 @@ create table yc_slides
    create_time          int not null comment '创建时间',
    primary key (slide_key)
 );
+
 alter table yc_slides comment '幻灯片广告表';
+
 /*==============================================================*/
 /* Table: yc_slides_imgs                                        */
 /*==============================================================*/
@@ -476,7 +501,9 @@ create table yc_slides_imgs
    create_time          int not null comment '创建时间',
    primary key (slide_img_id)
 );
+
 alter table yc_slides_imgs comment '幻灯片图片表';
+
 /*==============================================================*/
 /* Table: yc_tags                                               */
 /*==============================================================*/
@@ -486,7 +513,9 @@ create table yc_tags
    tag_name             varchar(50) not null comment '标签名称',
    primary key (tag_id)
 );
+
 alter table yc_tags comment '标签表';
+
 /*==============================================================*/
 /* Index: tag_unique                                            */
 /*==============================================================*/
@@ -494,6 +523,7 @@ create unique index tag_unique on yc_tags
 (
    tag_name
 );
+
 /*==============================================================*/
 /* Table: yc_user_role_access                                   */
 /*==============================================================*/
@@ -504,7 +534,9 @@ create table yc_user_role_access
    access               varchar(200) not null comment '角色权限',
    primary key (user_role_access_id)
 );
+
 alter table yc_user_role_access comment '管理员角色权限表';
+
 /*==============================================================*/
 /* Table: yc_users                                              */
 /*==============================================================*/
@@ -528,7 +560,9 @@ create table yc_users
    create_time          int not null comment '创建时间',
    primary key (user_id)
 );
+
 alter table yc_users comment '管理员用户表';
+
 /*==============================================================*/
 /* Index: user_unique                                           */
 /*==============================================================*/
@@ -538,33 +572,49 @@ create unique index user_unique on yc_users
    email,
    phone
 );
+
 alter table yc_category add constraint FK_CATEGORY_MODEL foreign key (model_id)
       references yc_model (model_id) on delete restrict on update restrict;
+
 alter table yc_comments add constraint FK_CONTENT_COMMENTS foreign key (content_id)
       references yc_contents (content_id) on delete restrict on update restrict;
+
 alter table yc_content_tags add constraint FK_CONTENT_TAGS foreign key (content_id)
       references yc_contents (content_id) on delete restrict on update restrict;
+
 alter table yc_content_tags add constraint FK_TAG_CONTENTS foreign key (tag_id)
       references yc_tags (tag_id) on delete restrict on update restrict;
+
 alter table yc_contents add constraint FK_CATEGORY_CONTENTS foreign key (category_id)
       references yc_category (category_id) on delete restrict on update restrict;
+
 alter table yc_contents add constraint FK_USER_CEONTENTS foreign key (user_id)
       references yc_users (user_id) on delete restrict on update restrict;
+
 alter table yc_imgs add constraint FK_TYPE_IMGS foreign key (img_type_id)
       references yc_img_type (img_type_id) on delete restrict on update restrict;
+
 alter table yc_members add constraint FK_MEMBER_AREA foreign key (area_id)
       references yc_area (area_id) on delete restrict on update restrict;
+
 alter table yc_members add constraint FK_MEMBER_EDU_LEVEL foreign key (edu_level_id)
       references yc_edu_level (edu_level_id) on delete restrict on update restrict;
+
 alter table yc_menus add constraint FK_NAV_MENUS foreign key (nav_key)
       references yc_navs (nav_key) on delete restrict on update restrict;
+
 alter table yc_model_properties add constraint FK_MODEL_PROPERTIES foreign key (model_id)
       references yc_model (model_id) on delete restrict on update restrict;
+
 alter table yc_oauth_members add constraint FK_MEMBER_OAUTH foreign key (member_id)
       references yc_members (member_id) on delete restrict on update restrict;
+
 alter table yc_slides_imgs add constraint FK_SLIDE_IMGS foreign key (slide_key)
       references yc_slides (slide_key) on delete restrict on update restrict;
+
 alter table yc_user_role_access add constraint FK_ROLE_ACCESS foreign key (role_id)
       references yc_role (role_id) on delete restrict on update restrict;
+
 alter table yc_users add constraint FK_ROLE_USERS foreign key (role_id)
       references yc_role (role_id) on delete restrict on update restrict;
+
