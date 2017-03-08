@@ -15,5 +15,15 @@ return [
     'index' => 'home/index/index',
     'about' => function () {
         echo 'about';
-    }
+    },
+    /**
+     * 获取子地区
+     * $id 为数据库的parent_id
+     */
+    'area/:id' => function ($id) {
+        echo $id;
+    },
+    'area' => function ($id = 0) {
+        echo $id;
+    },
 ];
