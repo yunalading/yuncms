@@ -24,6 +24,7 @@ class Step4 extends InstallWizard {
     public function index() {
         $request = Request::instance();
         $param = $request->param();
+        echo '<pre>';
         print_r($param);
         die();
         return view();

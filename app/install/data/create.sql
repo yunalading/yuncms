@@ -10,7 +10,6 @@ CREATE DATABASE yuncms
 
 USE yuncms;
 
-
 /*==============================================================*/
 /* Table: yc_ad_code                                            */
 /*==============================================================*/
@@ -94,7 +93,7 @@ create table yc_category
    category_name        varchar(20) not null comment '类别名称',
    list_template        varchar(200) not null comment '列表页模板',
    info_template        varchar(200) not null comment '详情页模板',
-   category_sort        int not null default 0 comment '排序',
+   category_sort        int default 0 comment '排序',
    parent_category_id   int comment '上级类别编号',
    delete_time          int default NULL comment '软删除',
    update_time          int default NULL comment '更新时间',
@@ -125,8 +124,8 @@ create table yc_comments
    nickname             varchar(20) comment '昵称',
    phone                varchar(20) comment '手机',
    email                varchar(50) comment '邮箱',
-   comment_content      varchar(500) comment '评论内容',
-   comment_state        int not null default 0 comment '状态',
+   comment_content      varchar(500) not null comment '评论内容',
+   comment_state        int default 0 comment '状态',
    comment_push_time    int comment '发布时间',
    parent_commit_id     int comment '上级评论编号',
    create_time          int not null comment '创建时间',
@@ -157,18 +156,18 @@ create table yc_contents
    category_id          int comment '类别编号',
    user_id              int comment '管理员用户编号',
    title                varchar(50) not null comment '标题',
-   cover                varchar(200) comment '封面',
+   cover                varchar(200) not null comment '封面',
    intro                varchar(500) not null comment '简介',
    content              text not null comment '内容',
-   read_number          int not null default 0 comment '阅读量',
-   comment_number       int not null default 0 comment '评论量',
+   read_number          int default 0 comment '阅读量',
+   comment_number       int default 0 comment '评论量',
    seo_title            varchar(200) comment 'SEO标题',
    seo_url              varchar(200) not null comment 'SEOURL',
    seo_key              varchar(200) comment 'SEO关键词',
    seo_desc             varchar(200) comment 'SEO描述',
    model_vlues          varchar(2000) comment '模型属性值',
-   content_sort         int not null default 0 comment '排序',
-   content_state        int not null default 0 comment '状态',
+   content_sort         int default 0 comment '排序',
+   content_state        int default 0 comment '状态',
    push_time            int comment '发布时间',
    delete_time          int default NULL comment '软删除',
    update_time          int default NULL comment '更新时间',
@@ -209,7 +208,7 @@ create table yc_guestbook
    email                varchar(50) comment '邮箱',
    guestbook_title      varchar(50) not null comment '标题',
    guestbook_content    varchar(500) not null comment '内容',
-   guestbook_state      int not null default 0 comment '状态',
+   guestbook_state      int default 0 comment '状态',
    create_time          int not null comment '创建时间',
    primary key (guestbook_id)
 );
@@ -265,7 +264,7 @@ create table yc_links
    link_href            varchar(255) not null comment '链接地址',
    link_target          varchar(50) comment '打开方式',
    link_is_home         int comment '是否是首页',
-   link_sort            int not null default 0 comment '排序编号',
+   link_sort            int default 0 comment '排序编号',
    create_time          int not null comment '创建时间',
    primary key (link_id)
 );
@@ -280,8 +279,8 @@ create table yc_members
    member_id            int not null auto_increment comment '会员编号',
    area_id              int comment '地区编号',
    edu_level_id         int comment '文化程度编号',
-   username             varchar(20) comment '用户名',
-   password             varchar(200) comment '密码',
+   username             varchar(20) not null comment '用户名',
+   password             varchar(200) not null comment '密码',
    nicename             varchar(50) comment '昵称',
    avatar               varchar(200) comment '头像',
    phone                varchar(15) comment '手机',
@@ -290,10 +289,10 @@ create table yc_members
    email_verify         int comment '邮箱是否验证',
    qq                   varchar(15) comment 'QQ号',
    member_addr          varchar(200) comment '详细地址',
-   sex                  int comment '性别',
+   sex                  int default 0 comment '性别',
    birthday             int comment '生日',
    summary              varchar(200) comment '简介',
-   state                int not null default 0 comment '状态',
+   state                int default 0 comment '状态',
    delete_time          int default NULL comment '软删除',
    update_time          int default NULL comment '更新时间',
    create_time          int not null comment '创建时间',
@@ -307,9 +306,7 @@ alter table yc_members comment '会员表';
 /*==============================================================*/
 create unique index member_unique on yc_members
 (
-   username,
-   phone,
-   email
+   username
 );
 
 /*==============================================================*/
@@ -319,11 +316,11 @@ create table yc_menus
 (
    menu_id              int not null auto_increment comment '菜单编号',
    nav_key              varchar(200) comment '导航标识',
-   nav_name             varchar(20) not null comment '菜单名称',
-   nav_type             int not null comment '菜单分类',
-   nav_value            varchar(255) not null comment '菜单值',
-   nav_target           varchar(10) comment '菜单打开方式',
-   nav_sort             int not null default 0 comment '菜单排序',
+   menu_name            varchar(20) not null comment '菜单名称',
+   menu_type            int not null comment '菜单分类',
+   menu_value           varchar(255) not null comment '菜单值',
+   menu_target          varchar(10) comment '菜单打开方式',
+   menu_sort            int default 0 comment '菜单排序',
    parent_menu_id       int comment '上级菜单编号',
    update_time          int default NULL comment '更新时间',
    create_time          int not null comment '创建时间',
@@ -379,7 +376,7 @@ create table yc_navs
 (
    nav_key              varchar(200) not null comment '导航标识',
    nav_name             varchar(200) not null comment '导航名称',
-   del_lock             int not null default 0 comment '删除锁',
+   del_lock             int default 0 comment '删除锁',
    update_time          int default NULL comment '更新时间',
    create_time          int not null comment '创建时间',
    primary key (nav_key)
@@ -395,9 +392,9 @@ create table yc_oauth_members
    oauth_member_id      int not null auto_increment comment '编号',
    member_id            int comment '会员编号',
    platform_type        int not null comment '平台类别',
-   openid               varchar(50) not null comment '第三方平台用户标识',
+   openid               varchar(50) not null comment '平台用户标识',
    token                varchar(200) not null comment '口令',
-   userinfo             varchar(2000) not null comment '第三方平台用户信息',
+   userinfo             varchar(2000) not null comment '平台用户信息',
    primary key (oauth_member_id)
 );
 
@@ -417,18 +414,18 @@ create unique index oauth_member_unique on yc_oauth_members
 create table yc_pages
 (
    page_id              int not null auto_increment comment '页面编号',
-   title                varchar(50) comment '标题',
-   cover                varchar(200) comment '封面',
-   intro                varchar(500) comment '简介',
+   title                varchar(50) not null comment '标题',
+   cover                varchar(200) not null comment '封面',
+   intro                varchar(500) not null comment '简介',
    seo_title            varchar(200) comment 'SEO标题',
    seo_url              varchar(200) not null comment 'SEOURL',
    seo_key              varchar(200) comment 'SEO关键词',
    seo_desc             varchar(200) comment 'SEO描述',
-   content              text comment '内容',
+   content              text not null comment '内容',
    template             varchar(200) not null comment '模板',
-   read_number          int not null default 0 comment '阅读量',
-   page_sort            int not null default 0 comment '排序',
-   page_state           int not null default 0 comment '状态',
+   read_number          int default 0 comment '阅读量',
+   page_sort            int default 0 comment '排序',
+   page_state           int default 0 comment '状态',
    delete_time          int default NULL comment '软删除',
    update_time          int default NULL comment '更新时间',
    create_time          int not null comment '创建时间',
@@ -452,7 +449,7 @@ create table yc_role
 (
    role_id              int not null auto_increment comment '管理员角色编号',
    role_name            varchar(50) not null comment '角色名称',
-   del_lock             int not null default 0 comment '删除锁',
+   del_lock             int default 0 comment '删除锁',
    delete_time          int default NULL comment '软删除',
    update_time          int default NULL comment '更新时间',
    create_time          int not null comment '创建时间',
@@ -496,7 +493,7 @@ create table yc_slides_imgs
    href                 varchar(500) not null comment '链接',
    ad_desc              varchar(200) comment '描述',
    content              text comment '内容',
-   sort                 int not null default 0 comment '排序',
+   sort                 int default 0 comment '排序',
    update_time          int default NULL comment '更新时间',
    create_time          int not null comment '创建时间',
    primary key (slide_img_id)
@@ -553,8 +550,8 @@ create table yc_users
    qq                   varchar(15) comment 'QQ号',
    last_login_time      int comment '最后登陆时间',
    last_login_ip        varchar(20) comment '最后登陆IP',
-   del_lock             int not null default 0 comment '删除锁',
-   state                int not null default 0 comment '状态',
+   del_lock             int default 0 comment '删除锁',
+   state                int default 0 comment '状态',
    delete_time          int default NULL comment '软删除',
    update_time          int default NULL comment '更新时间',
    create_time          int not null comment '创建时间',
@@ -568,9 +565,7 @@ alter table yc_users comment '管理员用户表';
 /*==============================================================*/
 create unique index user_unique on yc_users
 (
-   username,
-   email,
-   phone
+   username
 );
 
 alter table yc_category add constraint FK_CATEGORY_MODEL foreign key (model_id)
@@ -617,4 +612,3 @@ alter table yc_user_role_access add constraint FK_ROLE_ACCESS foreign key (role_
 
 alter table yc_users add constraint FK_ROLE_USERS foreign key (role_id)
       references yc_role (role_id) on delete restrict on update restrict;
-

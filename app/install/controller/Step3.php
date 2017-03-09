@@ -12,6 +12,8 @@
 
 namespace app\install\controller;
 
+use think\Cookie;
+
 /**
  * Class Complete
  * @package app\install\controller
@@ -21,7 +23,7 @@ class Step3 extends InstallWizard {
      * @return \think\response\View
      */
     public function index() {
-
-        return view();
+       Install::checkStep2();
+       return view();
     }
 }
