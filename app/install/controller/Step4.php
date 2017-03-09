@@ -11,6 +11,7 @@
 
 
 namespace app\install\controller;
+use think\Request;
 
 /**
  * Class Complete
@@ -21,6 +22,10 @@ class Step4 extends InstallWizard {
      * @return \think\response\View
      */
     public function index() {
+        $request = Request::instance();
+        $param = $request->param();
+        print_r($param);
+        die();
         return view();
     }
 

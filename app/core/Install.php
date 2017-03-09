@@ -9,8 +9,8 @@
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
 
-
 namespace app\core;
+
 use app\core\system\check\env\PhpVersionCheck;
 use app\core\system\check\env\GdCheck;
 use app\core\system\check\env\OsCheck;
@@ -18,7 +18,6 @@ use app\core\system\check\env\DiskCheck;
 use app\core\system\check\env\FileCheck;
 use app\core\system\check\file\FileWriteCheck;
 use app\core\system\check\func\FunctionCheck;
-
 use think\Log;
 
 class Install {
