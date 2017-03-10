@@ -1,4 +1,4 @@
-/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-03-09"P"13:03:17 UTC */
+/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-03-10"A"08:03:23 UTC */
 /* ==========================================================================
    Component: Base
  ============================================================================ */
@@ -14716,8 +14716,7 @@ body {
 .role-access-form .role-nav .am-panel-hd label {
   margin: 0 auto;
 }
-.role-access-form .role-nav .am-panel-bd .menu-list,
-.role-access-form .role-nav .am-panel-bd .sub-active {
+.role-access-form .role-nav .am-panel-bd div div {
   margin-left: 2rem;
 }
 .footer {
