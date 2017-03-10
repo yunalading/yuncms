@@ -6,20 +6,20 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: chenqianhao <68527761@qq.com>
+// | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
 
 return [
     // 数据库类型
     'type' => 'mysql',
     // 服务器地址
-    'hostname' => 'localhost',
+    'hostname' => 'mysql',
     // 数据库名
     'database' => 'yuncms',
     // 用户名
     'username' => 'root',
     // 密码
-    'password' => '',
+    'password' => '123456',
     // 端口
     'hostport' => '3306',
     // 连接dsn

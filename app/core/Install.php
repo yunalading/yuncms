@@ -19,6 +19,8 @@ use app\core\system\check\env\FileCheck;
 use app\core\system\check\file\FileWriteCheck;
 use app\core\system\check\func\FunctionCheck;
 use think\Log;
+use think\Cookie;
+use think\Request;
 
 class Install {
     /**
@@ -99,4 +101,37 @@ class Install {
         $info['checkno']=$checkno;
         return $info;
     }
+    /**
+     * 选择数据安装方式[步骤二]
+     * @return bool
+     */
+    public static function checkStep2() {
+        $info=self::checkStep1();
+        if(!empty($info['checkno'])){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    /**
+     * 填写配置信息[步骤三]
+     * @return bool|array
+     */
+    public static function checkStep3() {
+        $info = self::checkStep2();
+        if(!$info){
+            return false;
+        }
+        if(!Cookie::has('install-mode')){
+            return false;
+        }
+        //直接刷新，没有表单提交,进行跳转
+        $request = Request::instance();
+        $param = $request->param();
+        if(empty($param)){
+            return false;
+        }
+        return $param;
+    }
+
 }

@@ -14,7 +14,33 @@
 /**
  * 写入配置文件
  */
-function writeConfig($config_path, $old_config = array(), $new_config = array()) {
+function writeConfig($config_path,$new_config = array()) {
+    //return substr(sprintf('%o', fileperms($config_path)), -4);//0755
+//    $old_config = file_get_contents($config_path);
+//    if(!empty($new_config)){
+//        file_put_contents($config_path,var_export($new_config,true));
+//    }
+//    return $old_config;
+
+    $path_array = explode('/',$config_path);
+    $tpl_name = end($path_array);
+    if (!empty($new_config)) {
+        //读取配置内容
+        $conf = file_get_contents(APP_PATH.'tpl/'.$tpl_name);
+        //替换配置项
+        foreach ($new_config as $name => $value) {
+            if(is_array($value)){
+                $value = json_encode($value);
+            }
+            $conf = str_replace("[{$name}]", $value, $conf);
+        }
+        //写入应用配置文件
+        if (file_put_contents($config_path, $conf)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }
 
