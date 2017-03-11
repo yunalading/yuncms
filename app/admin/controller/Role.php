@@ -32,7 +32,7 @@ class Role extends AdminBaseController {
     public function update() {
 
         if ($this->request->isPost()) {
-            print_r($this->request);
+            print_r($this->request->post());
             exit;
         }
         $this->assign('actions', config('authorization.menus'));
