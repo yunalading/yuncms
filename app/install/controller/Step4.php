@@ -14,6 +14,7 @@ namespace app\install\controller;
 use app\core\Install;
 use app\core\db\DbHelp;
 use think\Config;
+use think\Db;
 
 /**
  * Class Complete
@@ -29,6 +30,8 @@ class Step4 extends InstallWizard {
             return $this->redirect('/install/step3');
         }
         $db = $param['db'];
+        //验证数据
+
         try{
             $dbconfig = DbHelp::getDbConfig($db);
             $coon = \think\Db::connect($dbconfig);
@@ -49,6 +52,7 @@ class Step4 extends InstallWizard {
                 //$this->error($e->getMessage());
             }
         }
+        //写入数据库配置
         $dbconfig['database'] = $param['db']['database'];
         $path_config = APP_PATH.'database.php';
         if (!is_writable($path_config)) {
@@ -58,8 +62,22 @@ class Step4 extends InstallWizard {
         if(!writeConfig($path_config,$dbconfig)){
             $this->error("配置文件".$path_config."写入失败!");
         }
-
-
+        //写入网站配置
+        $param['app']['email'] = $param['users']['email'];
+        $app_config = array_merge(Config::get('app'),$param['app']);
+        $path_app = APP_PATH.'extra/app.php';
+        if (!is_writable($path_app)) {
+            $this->error("配置文件".$path_app."没有写入权限!");
+        }
+        if(!writeConfig($path_app,$app_config)){
+            $this->error("配置文件".$path_app."写入失败!");
+        }
+        //写入用户信息
+//        $users = param['users'];
+//        unset($users['con-password']);
+//        $users['nickname'] = "超级管理员";
+//        $users['password'] = md5(md5($users['password']));
+//        $users['create_time'] = time();
         return view();
     }
 

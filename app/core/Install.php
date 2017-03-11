@@ -78,6 +78,8 @@ class Install {
         //目录、文件权限检查
         $file_check = [
             new FileWriteCheck('runtime'),
+            new FileWriteCheck('app/database.php'),
+            new FileWriteCheck('app/extra/app.php'),
             new FileWriteCheck('upload/images'),
         ];
         foreach($file_check as $v){

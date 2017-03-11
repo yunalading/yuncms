@@ -42,4 +42,28 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(
+        $.ajax( {
+            url:"<?= url('/install/step4/setup');?>",
+            data:{
+                '__token__' : '{$Request.token}',
+            },
+            type:'post',
+            cache:false,
+            dataType:'json',
+            success:function(data) {
+                if(data.msg =="true" ){
+                    alert("安装完成！");
+                    window.location.href="<?= url('/install/complete');?>";
+                }else{
+                    view(data.msg);
+                }
+            },
+            error : function() {
+                alert("异常！");
+            }
+        });
+    }
+</script>
 {include file="footer" /}

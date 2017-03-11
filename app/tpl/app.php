@@ -9,7 +9,7 @@
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 return [
-    'site_name' => 'yuncms',//网站名称
-    'theme' => 'default',//默认主题
-    'email' => '68527761@qq.com',//管理员邮箱
+    'site_name' => '[site_name]',//网站名称
+    'theme' => '[theme]',//默认主题
+    'email' => '[email]',//管理员邮箱
 ];
