@@ -43,3 +43,16 @@
     </div>
 </div>
 {include file="footer" /}
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="alert-modal">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd"></div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#alert-modal').find('.am-modal-bd').html('fdsafdas');
+        $('#alert-modal').modal('open').delay(3000).show(function () {
+            $('#alert-modal').modal('close');
+        });
+    });
+</script>

@@ -1,4 +1,4 @@
-/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-03-10"A"08:03:23 UTC */
+/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-03-11"A"02:03:57 UTC */
 /* ==========================================================================
    Component: Base
  ============================================================================ */
@@ -14567,6 +14567,9 @@ tbody.am-collapse.am-in {
 }
 .system-message.jump {
   text-align: center;
+}
+#alert-modal .am-modal-dialog {
+  border-radius: 5px;
 }
 .header {
   border-bottom: 1px solid #dedede;
