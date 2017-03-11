@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-03-08"A"09:03:40 UTC */ 
 =======
 /*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-03-07"A"07:03:21 UTC */ 
@@ -7,16 +8,17 @@
 =======
 /*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-03-09"A"08:03:05 UTC */ 
 >>>>>>> upstream/develop
+=======
+/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-03-11"A"02:03:57 UTC */ 
+>>>>>>> upstream/develop
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-(function (global){
 'use strict';
-var $ = (typeof window !== "undefined" ? window['jQuery'] : typeof global !== "undefined" ? global['jQuery'] : null);
 require('../../common/js/jump-message');
 require('../../common/js/captcha');
 require('./manager-box');
+require('./role-check-box');
 
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../../common/js/captcha":3,"../../common/js/jump-message":4,"./manager-box":2}],2:[function(require,module,exports){
+},{"../../common/js/captcha":4,"../../common/js/jump-message":5,"./manager-box":2,"./role-check-box":3}],2:[function(require,module,exports){
 (function (global){
 'use strict';
 var $ = (typeof window !== "undefined" ? window['jQuery'] : typeof global !== "undefined" ? global['jQuery'] : null);
@@ -31,13 +33,42 @@ $(function () {
 'use strict';
 var $ = (typeof window !== "undefined" ? window['jQuery'] : typeof global !== "undefined" ? global['jQuery'] : null);
 $(function () {
+    $('.am-panel-bd .am-ucheck-checkbox').change(function () {
+        if ($(this).is(':checked')) {
+            //向上添加
+            $(this).parents('.am-panel').find('.am-panel-hd .am-ucheck-checkbox').uCheck('check');
+            $(this).parents('.node-1').find('.node-1-title .am-ucheck-checkbox').uCheck('check');
+            $(this).parents('.node-2').find('.node-2-title .am-ucheck-checkbox').uCheck('check');
+        } else {
+            //向下取消
+            if ($(this).parent('label').is('.node-1-title')) {
+                $(this).parents('.node-1').find('.node-2 .am-ucheck-checkbox').uCheck('uncheck');
+            }
+            if ($(this).parent('label').is('.node-2-title')) {
+                $(this).parents('.node-2').find('div .am-ucheck-checkbox').uCheck('uncheck');
+            }
+        }
+    });
+    $('.am-panel-hd .am-ucheck-checkbox').change(function () {
+        if (!$(this).is(':checked')) {
+            $(this).parents('.am-panel').find('.am-panel-bd .am-ucheck-checkbox').uCheck('uncheck');
+        }
+    });
+});
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],4:[function(require,module,exports){
+(function (global){
+'use strict';
+var $ = (typeof window !== "undefined" ? window['jQuery'] : typeof global !== "undefined" ? global['jQuery'] : null);
+$(function () {
     $('#captcha').click(function () {
        $(this).attr('src',$(this).attr('src'));
     });
 });
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 (function (global){
 'use strict';
 var $ = (typeof window !== "undefined" ? window['jQuery'] : typeof global !== "undefined" ? global['jQuery'] : null);

@@ -18,10 +18,10 @@ namespace app\install\controller;
  * @package app\install\controller
  */
 class Complete extends InstallBaseController {
-    public function __construct() {
-        parent::__construct();
-        $this->checkInstall();
-    }
+//    public function __construct() {
+//        parent::__construct();
+//        $this->checkInstall();
+//    }
 
     /**
      * @return \think\response\View

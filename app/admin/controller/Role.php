@@ -25,13 +25,47 @@ class Role extends AdminBaseController {
         return view();
     }
 
-    public function edit() {
-        $this->assign('actions',config('authorization.menus'));
+    /**
+     * 添加或修改角色
+     * @return \think\response\View
+     */
+    public function update() {
+
+        if ($this->request->isPost()) {
+            print_r($this->request);
+            exit;
+        }
+        $this->assign('actions', config('authorization.menus'));
         return view();
     }
 
-    public function del() {
+    /**
+     * 软删除
+     */
+    public function remove() {
 
     }
 
+    /**
+     * 回收站
+     * @return \think\response\View
+     */
+    public function trash() {
+
+        return view();
+    }
+
+    /**
+     * 硬删除
+     */
+    public function destroy() {
+
+    }
+
+    /**
+     * 清空回收站
+     */
+    public function emptyTrash() {
+
+    }
 }

@@ -136,4 +136,17 @@ class Install {
         return $param;
     }
 
+    /**
+     * 填写配置信息[步骤四]
+     * @return bool|array
+     */
+    public static function checkStep4() {
+        //直接刷新，没有表单提交,进行跳转
+        $request = Request::instance();
+        $param = $request->param();
+        if(empty($param)){
+            return false;
+        }
+        return $param;
+    }
 }

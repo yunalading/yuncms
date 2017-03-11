@@ -15,6 +15,8 @@ use app\core\Install;
 use app\core\db\DbHelp;
 use think\Config;
 use think\Db;
+use app\install\model\InstallModel;
+use think\Log;
 
 /**
  * Class Complete
@@ -73,11 +75,12 @@ class Step4 extends InstallWizard {
             $this->error("配置文件".$path_app."写入失败!");
         }
         //写入用户信息
-//        $users = param['users'];
-//        unset($users['con-password']);
-//        $users['nickname'] = "超级管理员";
-//        $users['password'] = md5(md5($users['password']));
-//        $users['create_time'] = time();
+        $users = $param['users'];
+        unset($users['con-password']);
+        $users['nickname'] = "超级管理员";
+        $users['password'] = md5(md5($users['password']));
+        $users['create_time'] = time();
+        $this->assign('users',json_encode($users));
         return view();
     }
 
@@ -86,7 +89,59 @@ class Step4 extends InstallWizard {
      * @return string
      */
     public function setup() {
+        $param = Install::checkStep4();
+        if(!$param){
+            $res['msg'] = "请先填写网站配置信息再执行安装!";
+            $res['url'] = '/install/step3';
+            $res['code'] = 2;
+            return json_encode($res);
+        }
+        $model = new InstallModel();
+//        $users = json_decode($param['users']);
+//        //$users['__token__'] = $param['__token__'];
+//        $verify_res = $model -> verify($users);//验证ajax数据
+//        return json($verify_res);
+//        if($verify_res['code'] == 0){
+//            return json_encode($verify_res);
+//        }
 
-        return json_encode([]);
+        //导入数据库[进度条]
+        $path_sql = ROOT_PATH.'app'.DS.'install'.DS.'data'.DS.'create.sql';
+        if(!DbHelp::sourceSql($path_sql)){
+            $res['msg'] = "插入数据库文件".$path_sql."失败!";
+            $res['code'] = 0;
+            return json_encode($res);
+        }
+//        $res['msg'] = "失败!";
+//        $res['code'] = 8;
+//        return json_encode($res);
+        //初始化数据
+        $path_sql = ROOT_PATH.'app'.DS.'install'.DS.'data'.DS.'init.sql';
+        if(!DbHelp::sourceSql($path_sql)){
+            $res['msg'] = "插入初始化数据库文件".$path_sql."失败!";
+            $res['code'] = 0;
+            return json_encode($res);
+        }
+        $install_mode = Cookie::has('install-mode')?Cookie::get('install-mode'):'default';
+        //演示数据
+        if($install_mode == 'demo') {
+            $path_sql = ROOT_PATH.'app'.DS.'install'.DS.'data'.DS.'data.sql';
+            if (!DbHelp::sourceSql($path_sql)) {
+                $res['msg'] = "插入演示数据库文件" . $path_sql . "失败!";
+                $res['code'] = 0;
+                return json_encode($res);
+            }
+        }
+        //插入用户数据
+        $user = $param['users'];
+        $model->insert($user);
+//        if($model->insertGetId($user)>0){
+//            $res['msg'] = "插入用户数据成功!";
+//            $res['code'] = 1;
+//        }
+        $res['msg'] = "安装数据成功!";
+        $res['code'] = 1;
+        return json_encode($res);
+        //return json_encode([]);
     }
 }

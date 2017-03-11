@@ -100,6 +100,29 @@ class DbHelp extends \think\Db {
           }
         }
 
+    /**
+     *  导入sql到数据库
+     *  @author [chenqianhao] <68527761@qq.com>
+     *  @return bool
+     */
+    public static function sourceSql($path_sql){
+//        $sql="source ".$path_sql;
+//        $a = Db::execute($sql);
+//        if($a){
+//            return true;
+//        }else{
+//            return fale;
+//        }
+          $_sql = file_get_contents($path_sql);
+          $_arr = explode(';', $_sql);
+          foreach ($_arr as $_value) {
+              if(trim($_value) !='' ){
+                  Db::query($_value.';');
+              }
+          }
+    }
+
+
 //        /**
 //         *  判断某数据库是否存在
 //         *  @author [chenqianhao] <68527761@qq.com>

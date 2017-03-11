@@ -42,28 +42,45 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $(document).ready(
+
+{include file="footer" /}
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="alert-modal">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd"></div>
+    </div>
+</div>
+<script>
+    $(function () {
         $.ajax( {
             url:"<?= url('/install/step4/setup');?>",
             data:{
                 '__token__' : '{$Request.token}',
+                'users' : '{$users}'
             },
             type:'post',
             cache:false,
             dataType:'json',
             success:function(data) {
-                if(data.msg =="true" ){
-                    alert("安装完成！");
-                    window.location.href="<?= url('/install/complete');?>";
+                console.log(data);
+                if(data.code ==1 ){
+                    $('#alert-modal').find('.am-modal-bd').html('安装完成!');
+                    $('#alert-modal').modal('open').delay(3000).show(function () {
+                        $('#alert-modal').modal('close');
+                    });
+                    setTimeout("tiaohzuan('/install/complete')",5000);
                 }else{
                     view(data.msg);
                 }
             },
             error : function() {
-                alert("异常！");
+                $('#alert-modal').find('.am-modal-bd').html('异常');
+                $('#alert-modal').modal('open').delay(3000).show(function () {
+                    $('#alert-modal').modal('close');
+                });
             }
         });
+    });
+    function tiaohzuan(url){
+        window.location.href="<?= url('"+url+"');?>";
     }
 </script>
-{include file="footer" /}
