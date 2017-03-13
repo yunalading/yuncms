@@ -11,12 +11,13 @@
 namespace app\common\model\ad;
 
 use app\common\model\BaseAdModel;
-
+use traits\model\SoftDelete;
 /**
  * 幻灯片
  * Class BaseSlideModel
  * @package app\common\model
  */
 abstract class BaseSlideModel extends BaseAdModel {
+    use SoftDelete;
     protected $name = 'slides';
 }

@@ -9,11 +9,15 @@
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
 namespace app\common\model;
+
+use traits\model\SoftDelete;
+
 /**
  * 模型
  * Class BaseModelModel
  * @package app\common\model
  */
 abstract class BaseModelModel extends BaseModel {
+    use SoftDelete;
     protected $name = 'model';
 }

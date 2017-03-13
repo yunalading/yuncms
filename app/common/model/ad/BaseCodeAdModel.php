@@ -12,12 +12,13 @@
 namespace app\common\model\ad;
 
 use app\common\model\BaseAdModel;
-
+use traits\model\SoftDelete;
 /**
  * 代码广告
  * Class CodeAdModel
  * @package app\common\model\ad
  */
 abstract class BaseCodeAdModel extends BaseAdModel {
+    use SoftDelete;
     protected $name = 'ad_code';
 }

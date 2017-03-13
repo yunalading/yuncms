@@ -20,5 +20,5 @@ use traits\model\SoftDelete;
 abstract class BaseUserModel extends BaseModel {
     use SoftDelete;
     protected $name = 'users';
-    
+
 }
