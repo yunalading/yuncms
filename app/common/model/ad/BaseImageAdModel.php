@@ -20,6 +20,7 @@ use traits\model\SoftDelete;
  * @package app\common\model\ad
  */
 abstract class BaseImageAdModel extends BaseAdModel {
+    //开启软删除
     use SoftDelete;
     protected $name = 'ad_images';
 }

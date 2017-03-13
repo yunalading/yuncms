@@ -17,8 +17,11 @@ use think\Model;
  * @package app\common\model
  */
 abstract class BaseModel extends Model {
+    //设置删除锁字段，如果设置就会开启删除锁
     protected $del_lock_field = '';
+    //不允许删除
     const DEL_LOCK_ON = 1;
+    //允许删除
     const DEL_LOCK_OFF = 0;
 
     public function __construct($data = []) {

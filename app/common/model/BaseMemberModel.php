@@ -18,6 +18,7 @@ use traits\model\SoftDelete;
  * @package app\common\model
  */
 abstract class BaseMemberModel extends BaseModel {
+    //开启软删除
     use SoftDelete;
     protected $name = 'members';
 }

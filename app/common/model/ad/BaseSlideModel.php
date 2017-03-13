@@ -18,6 +18,7 @@ use traits\model\SoftDelete;
  * @package app\common\model
  */
 abstract class BaseSlideModel extends BaseAdModel {
+    //开启软删除
     use SoftDelete;
     protected $name = 'slides';
 }

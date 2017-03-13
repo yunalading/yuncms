@@ -19,6 +19,7 @@ use traits\model\SoftDelete;
  * @package app\common\model\ad
  */
 abstract class BaseCodeAdModel extends BaseAdModel {
+    //开启软删除
     use SoftDelete;
     protected $name = 'ad_code';
 }

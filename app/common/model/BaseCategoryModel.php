@@ -18,7 +18,9 @@ use traits\model\SoftDelete;
  * @package app\common\model
  */
 abstract class BaseCategoryModel extends BaseModel {
+    //开启软删除
     use SoftDelete;
-
+    //开启删除锁
+    protected $del_lock_field = 'del_lock';
     protected $name = 'category';
 }
