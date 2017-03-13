@@ -17,6 +17,7 @@ use think\Config;
 use think\Db;
 use app\install\model\InstallModel;
 use think\Log;
+use think\Cookie;
 
 /**
  * Class Complete
@@ -27,13 +28,13 @@ class Step4 extends InstallWizard {
      * @return \think\response\View
      */
     public function index() {
+
         $param = Install::checkStep3();
         if($param === false){
             return $this->redirect('/install/step3');
         }
         $db = $param['db'];
         //验证数据
-
         try{
             $dbconfig = DbHelp::getDbConfig($db);
             $coon = \think\Db::connect($dbconfig);
@@ -50,10 +51,11 @@ class Step4 extends InstallWizard {
                     $this->error("请检查数据库账号或密码是否输入有误!");
                 }
             }else {
-                $this->error("请检查数据库账号或密码是否输入有误!");
-                //$this->error($e->getMessage());
+                //$this->error("请检查数据库账号或密码是否输入有误!");
+                $this->error($e->getMessage());
             }
         }
+
         //写入数据库配置
         $dbconfig['database'] = $param['db']['database'];
         $path_config = APP_PATH.'database.php';
@@ -67,7 +69,7 @@ class Step4 extends InstallWizard {
         //写入网站配置
         $param['app']['email'] = $param['users']['email'];
         $app_config = array_merge(Config::get('app'),$param['app']);
-        $path_app = APP_PATH.'extra/app.php';
+        $path_app = APP_PATH.'extra'.DS.'app.php';
         if (!is_writable($path_app)) {
             $this->error("配置文件".$path_app."没有写入权限!");
         }
@@ -94,15 +96,17 @@ class Step4 extends InstallWizard {
             $res['msg'] = "请先填写网站配置信息再执行安装!";
             $res['url'] = '/install/step3';
             $res['code'] = 2;
-            return json_encode($res);
+            return $res;
         }
         $model = new InstallModel();
+        $user = json_decode($param['users']);
+        $user = object_array($user);//变成数组
 //        $users = json_decode($param['users']);
 //        //$users['__token__'] = $param['__token__'];
 //        $verify_res = $model -> verify($users);//验证ajax数据
 //        return json($verify_res);
 //        if($verify_res['code'] == 0){
-//            return json_encode($verify_res);
+//            return $verify_res;
 //        }
 
         //导入数据库[进度条]
@@ -110,38 +114,26 @@ class Step4 extends InstallWizard {
         if(!DbHelp::sourceSql($path_sql)){
             $res['msg'] = "插入数据库文件".$path_sql."失败!";
             $res['code'] = 0;
-            return json_encode($res);
+            return $res;
         }
-//        $res['msg'] = "失败!";
-//        $res['code'] = 8;
-//        return json_encode($res);
+
         //初始化数据
         $path_sql = ROOT_PATH.'app'.DS.'install'.DS.'data'.DS.'init.sql';
-        if(!DbHelp::sourceSql($path_sql)){
-            $res['msg'] = "插入初始化数据库文件".$path_sql."失败!";
-            $res['code'] = 0;
-            return json_encode($res);
-        }
-        $install_mode = Cookie::has('install-mode')?Cookie::get('install-mode'):'default';
+        DbHelp::sourceSql($path_sql);
+
+       $install_mode = Cookie::has('install-mode')?Cookie::get('install-mode'):'default';
         //演示数据
         if($install_mode == 'demo') {
             $path_sql = ROOT_PATH.'app'.DS.'install'.DS.'data'.DS.'data.sql';
-            if (!DbHelp::sourceSql($path_sql)) {
-                $res['msg'] = "插入演示数据库文件" . $path_sql . "失败!";
-                $res['code'] = 0;
-                return json_encode($res);
-            }
+            DbHelp::sourceSql($path_sql);
         }
+
         //插入用户数据
-        $user = $param['users'];
         $model->insert($user);
-//        if($model->insertGetId($user)>0){
-//            $res['msg'] = "插入用户数据成功!";
-//            $res['code'] = 1;
-//        }
+        Install::writeInstallLock();
         $res['msg'] = "安装数据成功!";
         $res['code'] = 1;
-        return json_encode($res);
+        return $res;
         //return json_encode([]);
     }
 }

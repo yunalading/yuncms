@@ -60,16 +60,19 @@
             type:'post',
             cache:false,
             dataType:'json',
-            success:function(data) {
-                console.log(data);
-                if(data.code ==1 ){
+            success:function(res) {
+                console.log(res);
+                if(res['code'] == 1 ){
                     $('#alert-modal').find('.am-modal-bd').html('安装完成!');
                     $('#alert-modal').modal('open').delay(3000).show(function () {
                         $('#alert-modal').modal('close');
                     });
-                    setTimeout("tiaohzuan('/install/complete')",5000);
+                    setTimeout("tiaohzuan('/install/complete/index')",3000);
                 }else{
-                    view(data.msg);
+                    $('#alert-modal').find('.am-modal-bd').html(res.msg);
+                    $('#alert-modal').modal('open').delay(3000).show(function () {
+                        $('#alert-modal').modal('close');
+                    });
                 }
             },
             error : function() {
@@ -81,6 +84,6 @@
         });
     });
     function tiaohzuan(url){
-        window.location.href="<?= url('"+url+"');?>";
+        window.location.href='http://'+document.domain+url;
     }
 </script>

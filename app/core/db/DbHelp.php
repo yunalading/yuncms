@@ -105,22 +105,25 @@ class DbHelp extends \think\Db {
      *  @author [chenqianhao] <68527761@qq.com>
      *  @return bool
      */
-    public static function sourceSql($path_sql){
-//        $sql="source ".$path_sql;
-//        $a = Db::execute($sql);
-//        if($a){
-//            return true;
-//        }else{
-//            return fale;
-//        }
-          $_sql = file_get_contents($path_sql);
-          $_arr = explode(';', $_sql);
-          foreach ($_arr as $_value) {
-              if(trim($_value) !='' ){
-                  Db::query($_value.';');
-              }
-          }
+    public static function sourceSql($path_sql=''){
+        $_sql = preg_replace("/\/\*.*?\*\//s", '', file_get_contents($path_sql));//获取sql语句，去除注释
+        $prefix = Config::get('database.prefix');
+        if($prefix !='yc_'){
+            $_sql = str_replace('yc_',$prefix,$_sql);
+        }
+        //前缀替换
+        $_arr = explode(';', $_sql);
+        if(!empty($_arr)){
+            foreach ($_arr as $_value) {
+                if(trim($_value) !='' ){
+                    Db::query($_value.';');
+                }
+            }
+            return true;
+        }
+        return false;
     }
+
 
 
 //        /**

@@ -35,14 +35,14 @@ class Install {
      * @return bool
      */
     public static function checkInstall() {
-        return file_exists('data/install.lock');
+        return file_exists(ROOT_PATH.'app'.DS.'install'.DS.'data'.DS.'install.lock');
     }
 
     /**
      * 写入安装锁
      */
     public static function writeInstallLock() {
-        $file = new \SplFileObject('data/install.lock', 'w+');
+        $file = new \SplFileObject(ROOT_PATH.'app'.DS.'install'.DS.'data'.DS.'install.lock', 'w+');
         //写入安装时间
         $file->fwrite(time());
     }
@@ -80,6 +80,7 @@ class Install {
             new FileWriteCheck('runtime'),
             new FileWriteCheck('app/database.php'),
             new FileWriteCheck('app/extra/app.php'),
+            new FileWriteCheck('app/install/data'),
             new FileWriteCheck('upload/images'),
         ];
         foreach($file_check as $v){
