@@ -12,6 +12,8 @@
 
 namespace app\admin\controller;
 
+use app\admin\model\RoleModel;
+
 /**
  * Class Role
  * @package app\admin\controller
@@ -30,7 +32,8 @@ class Role extends AdminBaseController {
      * @return \think\response\View
      */
     public function update() {
-
+        $roleModel = new RoleModel();
+        $roleModel->access();
         if ($this->request->isPost()) {
             print_r($this->request->post());
             exit;

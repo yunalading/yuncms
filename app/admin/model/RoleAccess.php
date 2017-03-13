@@ -8,14 +8,13 @@
 // +----------------------------------------------------------------------
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
+
+
 namespace app\admin\model;
 
-use app\common\model\BaseAreaModel;
 
-/**
- * Class Area
- * @package app\admin\model
- */
-class AreaModel extends BaseAreaModel {
-    
+use app\common\model\BaseRoleAccessModel;
+
+class RoleAccess extends BaseRoleAccessModel {
+
 }

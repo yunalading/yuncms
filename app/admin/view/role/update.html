@@ -17,7 +17,7 @@
                     <div class="role-nav am-panel am-panel-default">
                         <div class="am-panel-hd">
                             <label class="am-checkbox">
-                                <input type="checkbox" value="{notempty name='ac.href'}{:url($ac.href)}{/notempty}" data-am-ucheck>
+                                <input type="checkbox" name="ac[]" value="{notempty name='ac.href'}{:url($ac.href)}{/notempty}" data-am-ucheck>
                                 {$ac.name}
                             </label>
                         </div>
@@ -25,21 +25,21 @@
                             {volist name="ac.submenus" id="act"}
                             <div class="node-1">
                                 <label class="am-checkbox node-1-title">
-                                    <input type="checkbox" value="{notempty name='act.href'}{:url($act.href)}{/notempty}" data-am-ucheck>
+                                    <input type="checkbox" name="ac[]" value="{notempty name='act.href'}{:url($act.href)}{/notempty}" data-am-ucheck>
                                     {$act.name}
                                 </label>
                                 {notempty name="act.submenus"}
                                 {volist name="act.submenus" id="men"}
                                 <div class="node-2">
                                     <label class="am-checkbox node-2-title">
-                                        <input type="checkbox" value="{notempty name='men.href'}{:url($men.href)}{/notempty}" data-am-ucheck>
+                                        <input type="checkbox" name="ac[]" value="{notempty name='men.href'}{:url($men.href)}{/notempty}" data-am-ucheck>
                                         {$men.name}
                                     </label>
                                     {notempty name="men.actives"}
                                     {volist name="men.actives" id="acti"}
                                     <div>
                                         <label class="am-checkbox">
-                                            <input type="checkbox" value="{notempty name='acti.href'}{:url($acti.href)}{/notempty}" data-am-ucheck>
+                                            <input type="checkbox" name="ac[]" value="{notempty name='acti.href'}{:url($acti.href)}{/notempty}" data-am-ucheck>
                                             {$acti.name}
                                         </label>
                                     </div>
@@ -52,7 +52,7 @@
                                 {volist name="act.actives" id="acti"}
                                 <div>
                                     <label class="am-checkbox">
-                                        <input type="checkbox" value="{notempty name='acti.href'}{:url($acti.href)}{/notempty}" data-am-ucheck>
+                                        <input type="checkbox" name="ac[]" value="{notempty name='acti.href'}{:url($acti.href)}{/notempty}" data-am-ucheck>
                                         {$acti.name}
                                     </label>
                                 </div>

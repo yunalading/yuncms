@@ -8,14 +8,18 @@
 // +----------------------------------------------------------------------
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
+
+
 namespace app\admin\model;
 
-use app\common\model\BaseAreaModel;
+use app\common\model\BaseRoleModel;
 
 /**
- * Class Area
+ * Class RoleModel
  * @package app\admin\model
  */
-class AreaModel extends BaseAreaModel {
-    
+class RoleModel extends BaseRoleModel {
+    public function access(){
+        return $this->hasMany('role_access','role_id');
+    }
 }
