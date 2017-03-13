@@ -20,4 +20,7 @@ use app\common\model\BaseRoleModel;
  */
 class RoleModel extends BaseRoleModel {
 
+    public function addRole($role_name) {
+
+    }
 }

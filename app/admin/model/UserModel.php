@@ -8,25 +8,15 @@
 // +----------------------------------------------------------------------
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
-namespace app\common\model;
 
-use traits\model\SoftDelete;
+namespace app\admin\model;
+
+use app\common\model\BaseUserModel;
 
 /**
- * 角色
- * Class BaseRoleModel
- * @package app\common\model
+ * Class UserModel
+ * @package app\admin\model
  */
-abstract class BaseRoleModel extends BaseModel {
-    use SoftDelete;
+class UserModel extends BaseUserModel {
 
-    protected $name = 'role';
-
-    /**
-     * 获取角色权限
-     * @return \think\model\relation\HasMany\
-     */
-    public function access() {
-        return $this->hasMany('role_access', 'role_id');
-    }
 }
