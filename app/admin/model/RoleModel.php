@@ -19,7 +19,5 @@ use app\common\model\BaseRoleModel;
  * @package app\admin\model
  */
 class RoleModel extends BaseRoleModel {
-    public function access(){
-        return $this->hasMany('role_access','role_id');
-    }
+
 }

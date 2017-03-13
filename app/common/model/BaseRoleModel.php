@@ -16,4 +16,12 @@ namespace app\common\model;
  */
 abstract class BaseRoleModel extends BaseModel {
     protected $name = 'role';
+
+    /**
+     * 获取角色权限
+     * @return \think\model\relation\HasMany\
+     */
+    public function access() {
+        return $this->hasMany('role_access', 'role_id');
+    }
 }
