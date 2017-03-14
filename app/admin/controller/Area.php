@@ -38,6 +38,18 @@ class Area extends AdminBaseController {
     }
 
     public function remove() {
-        print_r($this->param);
+        if (!empty($this->param) && $this->param['id']) {
+            try {
+                if (AreaModel::destroy($this->param['id'])) {
+                    $this->success('删除成功!');
+                } else {
+                    $this->error('删除失败!');
+                }
+            } catch (\Exception $e) {
+                $this->error($e->getMessage());
+            }
+        } else {
+            $this->error('参数错误!');
+        }
     }
 }

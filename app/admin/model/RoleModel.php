@@ -19,11 +19,19 @@ use app\common\model\BaseRoleModel;
  * @package app\admin\model
  */
 class RoleModel extends BaseRoleModel {
-    /**
-     * 添加角色
-     * @param $data
-     */
-    public function addRole($data) {
 
+    /**
+     * 添加角色权限
+     * @param $access
+     */
+    public function updateAccess($access = []) {
+        $this->access()->delete();
+        $data = array();
+        foreach ($access as $key => $value) {
+            $data[] = array('role_id' => $this->role_id, 'access' => $value);
+        }
+        if (!empty($data)) {
+            $this->access()->saveAll($data);
+        }
     }
 }

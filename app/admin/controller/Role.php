@@ -14,6 +14,7 @@ namespace app\admin\controller;
 
 use app\admin\model\RoleModel;
 use app\admin\validate\RoleValidate;
+use think\exception\PDOException;
 
 /**
  * Class Role
@@ -48,22 +49,25 @@ class Role extends AdminBaseController {
             }
             try {
                 //添加或更新角色
-                $roleModel->saveAll([$role_data]);
-                //添加或更新权限
-
-
-            } catch (\Exception $e) {
+                $role = $roleModel->saveAll([$role_data])[0];
+                if (!empty($this->post['ac'])) {
+                    //添加或更新权限
+                    $access = array_filter($this->post['ac']);
+                    $role->updateAccess($access);
+                }
+                $this->success('操作成功!', url('/admin/role'));
+            } catch (PDOException $e) {
                 //角色名已存在
                 if ($e->getCode() == 10501) {
                     $this->error('角色已存在，操作失败');
                 }
             }
-        }
-        if (!empty($this->param) && $this->param['id']) {
-            //编辑页面初始化数据
-            $role = RoleModel::get($this->param['id']);
-            $this->assign('role', $role);
-
+        } else {
+            if (!empty($this->param) && $this->param['id']) {
+                //编辑页面初始化数据
+                $role = RoleModel::get($this->param['id']);
+                $this->assign('role', $role);
+            }
         }
         $this->assign('actions', config('authorization.menus'));
         return view();
@@ -74,10 +78,14 @@ class Role extends AdminBaseController {
      */
     public function remove() {
         if (!empty($this->param) && $this->param['id']) {
-            if (RoleModel::destroy($this->param['id'])) {
-                $this->success('删除成功!');
-            } else {
-                $this->error('删除失败!');
+            try {
+                if (RoleModel::destroy($this->param['id'])) {
+                    $this->success('删除成功!');
+                } else {
+                    $this->error('删除失败!');
+                }
+            } catch (\Exception $e) {
+                $this->error($e->getMessage());
             }
         } else {
             $this->error('参数错误!');
