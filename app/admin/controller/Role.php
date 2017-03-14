@@ -25,6 +25,11 @@ class Role extends AdminBaseController {
      * @return \think\response\View
      */
     public function index() {
+        $roleModel = new RoleModel();
+        $list = $roleModel->paginate();
+        $page = $list->render();
+        $this->assign('list', $list);
+        $this->assign('page', $page);
         return view();
     }
 
@@ -34,18 +39,31 @@ class Role extends AdminBaseController {
      */
     public function update() {
         $roleModel = new RoleModel();
-
         if ($this->request->isPost()) {
-            $role_data = [
-                'role_name' => $this->request->post('role_name'),
-            ];
+            //验证数据
+            $role_data = array_filter($this->post['role']);
             $roleValidate = new RoleValidate();
-            if (!$roleValidate->check($role_data, null, 'update')) {
+            if (!$roleValidate->check($role_data, [], 'update')) {
                 $this->error($roleValidate->getError());
             }
+            try {
+                //添加或更新角色
+                $roleModel->saveAll([$role_data]);
+                //添加或更新权限
 
-            print_r($this->request->post());
-            exit;
+
+            } catch (\Exception $e) {
+                //角色名已存在
+                if ($e->getCode() == 10501) {
+                    $this->error('角色已存在，操作失败');
+                }
+            }
+        }
+        if (!empty($this->param) && $this->param['id']) {
+            //编辑页面初始化数据
+            $role = RoleModel::get($this->param['id']);
+            $this->assign('role', $role);
+
         }
         $this->assign('actions', config('authorization.menus'));
         return view();
@@ -55,7 +73,15 @@ class Role extends AdminBaseController {
      * 软删除
      */
     public function remove() {
-
+        if (!empty($this->param) && $this->param['id']) {
+            if (RoleModel::destroy($this->param['id'])) {
+                $this->success('删除成功!');
+            } else {
+                $this->error('删除失败!');
+            }
+        } else {
+            $this->error('参数错误!');
+        }
     }
 
     /**

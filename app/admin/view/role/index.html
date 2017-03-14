@@ -17,26 +17,20 @@
             </tr>
             </thead>
             <tbody>
+            {volist name='list' id='role'}
             <tr>
-                <td>超级管理员</td>
+                <td>{$role.role_name}</td>
                 <td>
                     <div class="am-btn-group am-btn-group-xs">
-                        <a href="<?= URL('/admin/role/update',array('role_id',1));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                        <a href="<?= URL('/admin/role/update',array('id'=>$role['role_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
+                        {if condition="$role.del_lock neq 1"}<a href="<?= URL('/admin/role/remove',array('id'=>$role['role_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>{/if}
                     </div>
                 </td>
             </tr>
+            {/volist}
             </tbody>
         </table>
-        <ul class="am-pagination am-pagination-right">
-            <li class="am-disabled"><a href="#">&laquo;</a></li>
-            <li class="am-active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">&raquo;</a></li>
-        </ul>
+        {$page}
     </div>
 </div>
 {include file="footer" /}

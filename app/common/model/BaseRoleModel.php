@@ -20,9 +20,14 @@ use traits\model\SoftDelete;
 abstract class BaseRoleModel extends BaseModel {
     //开启软删除
     use SoftDelete;
+
+    protected $name = 'role';
+    
     //开启删除锁
     protected $del_lock_field = 'del_lock';
-    protected $name = 'role';
+    protected $auto = [
+        'del_lock' => BaseRoleModel::DEL_LOCK_OFF,
+    ];
 
     /**
      * 获取角色权限

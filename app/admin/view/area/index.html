@@ -23,8 +23,8 @@
                 <td>{$area.area_region}</td>
                 <td>
                     <div class="am-btn-group am-btn-group-xs">
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                        <a href="<?= URL('/admin/area/update',array('id'=>$area['area_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
+                        <a href="<?= URL('/admin/area/remove',array('id'=>$area['area_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
                     </div>
                 </td>
             </tr>

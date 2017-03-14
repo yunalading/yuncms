@@ -13,7 +13,6 @@
 namespace app\admin\controller;
 
 use app\admin\model\AreaModel;
-use think\Request;
 
 /**
  * Class Area
@@ -31,5 +30,14 @@ class Area extends AdminBaseController {
         $this->assign('list', $list);
         $this->assign('page', $page);
         return view();
+    }
+
+    public function update() {
+
+        return view();
+    }
+
+    public function remove() {
+        print_r($this->param);
     }
 }
