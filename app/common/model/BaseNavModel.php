@@ -15,5 +15,7 @@ namespace app\common\model;
  * @package app\common\model
  */
 abstract class BaseNavModel extends BaseModel {
+    //开启删除锁
+    protected $del_lock_field = 'del_lock';
     protected $name = 'navs';
 }

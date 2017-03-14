@@ -73,13 +73,15 @@
                     $('#alert-modal').modal('open').delay(3000).show(function () {
                         $('#alert-modal').modal('close');
                     });
+                    setTimeout("tiaohzuan('/install/step3')",3000);
                 }
             },
             error : function() {
-                $('#alert-modal').find('.am-modal-bd').html('异常');
+                $('#alert-modal').find('.am-modal-bd').html('数据异常');
                 $('#alert-modal').modal('open').delay(3000).show(function () {
                     $('#alert-modal').modal('close');
                 });
+                setTimeout("tiaohzuan('/install/step3')",3000);
             }
         });
     });

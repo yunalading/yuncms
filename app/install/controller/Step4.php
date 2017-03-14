@@ -18,6 +18,7 @@ use think\Db;
 use app\install\model\InstallModel;
 use think\Log;
 use think\Cookie;
+use think\Validate;
 
 /**
  * Class Complete
@@ -34,7 +35,41 @@ class Step4 extends InstallWizard {
             return $this->redirect('/install/step3');
         }
         $db = $param['db'];
-        //验证数据
+        //验证数据库数据
+        $db['__token__'] = $param['__token__'];
+        $rules = [
+            'hostname' => 'require|token',
+            'database' => 'require',
+            'username'  => 'require',
+            'prefix'   => 'require|min:2|max:10',
+        ];
+        $msg = [
+            'hostname.require' => '服务器主机必须填写',
+            'database.require' => '创建的数据库名称必须填写',
+            'username.require' => '数据库名称必须',
+            'prefix.min'     => '数据库前缀最少2个字符',
+            'prefix.max'     => '数据库前缀最多10个字符',
+        ];
+        $validate = new Validate($rules,$msg);
+        if (!$validate->check($db)) {
+            $this->error($validate->getError());
+        }
+        unset($db['__token__']);
+        //验证网站数据
+        $param['app']['email'] = $param['users']['email'];
+        $validate = new Validate(
+            [
+                'site_name' => 'require',
+                'email' => 'email',
+            ],
+            [
+                'site_name.require' => '网站名称必须填写',
+                'email' => '管理员邮箱格式填写错误',
+            ]
+        );
+        if (!$validate->check($param['app'])) {
+            $this->error($validate->getError());
+        }
         try{
             $dbconfig = DbHelp::getDbConfig($db);
             $coon = \think\Db::connect($dbconfig);
@@ -55,7 +90,6 @@ class Step4 extends InstallWizard {
                 $this->error($e->getMessage());
             }
         }
-
         //写入数据库配置
         $dbconfig['database'] = $param['db']['database'];
         $path_config = APP_PATH.'database.php';
@@ -67,7 +101,6 @@ class Step4 extends InstallWizard {
             $this->error("配置文件".$path_config."写入失败!");
         }
         //写入网站配置
-        $param['app']['email'] = $param['users']['email'];
         $app_config = array_merge(Config::get('app'),$param['app']);
         $path_app = APP_PATH.'extra'.DS.'app.php';
         if (!is_writable($path_app)) {
@@ -101,13 +134,26 @@ class Step4 extends InstallWizard {
         $model = new InstallModel();
         $user = json_decode($param['users']);
         $user = object_array($user);//变成数组
-//        $users = json_decode($param['users']);
-//        //$users['__token__'] = $param['__token__'];
-//        $verify_res = $model -> verify($users);//验证ajax数据
-//        return json($verify_res);
-//        if($verify_res['code'] == 0){
-//            return $verify_res;
-//        }
+        $user['__token__'] = $param['__token__'];
+        $validate = new Validate(
+            [
+                'username'  => 'require|min:5|token',
+                'password'   => 'require',
+                'email'     => 'email',
+            ],
+            [
+                'userame.require' => '名称必须',
+                'username.min'     => '名称最少5个字符',
+                'password.require' => '管理员密码必须填写',
+                'email'        => '邮箱格式错误',
+            ]
+        );
+        if (!$validate->check($user)) {
+            $res['code'] = 0;
+            $res['msg'] = $validate->getError();
+            return $res;
+        }
+        unset($user['__token__']);
 
         //导入数据库[进度条]
         $path_sql = ROOT_PATH.'app'.DS.'install'.DS.'data'.DS.'create.sql';

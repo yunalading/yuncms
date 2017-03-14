@@ -70,6 +70,26 @@ function byteFormat($bytes, $unit = "", $decimals = 2) {
     return sprintf('%.'.$decimals.'f'.$unit, $value);
 }
 
+
+/**
+ * 判断变量的类型
+ */
+function returnType($param){
+    if(is_object($param)){
+        return 'object';
+    }
+    if(is_array($param)){
+        return 'array';
+    }
+    if(is_string($param)){
+        return 'string';
+    }
+    if(is_bool($param)){
+        return 'bool';
+    }
+    return 'unknow';
+}
+
 /*
  * 对象转数组
  */

@@ -8,17 +8,15 @@
 // +----------------------------------------------------------------------
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
-namespace app\common\model;
 
-use traits\model\SoftDelete;
+namespace app\admin\model;
+
+use app\common\model\BaseUserModel;
 
 /**
- * 会员
- * Class BaseMemberModel
- * @package app\common\model
+ * Class UserModel
+ * @package app\admin\model
  */
-abstract class BaseMemberModel extends BaseModel {
-    //开启软删除
-    use SoftDelete;
-    protected $name = 'members';
+class UserModel extends BaseUserModel {
+
 }
