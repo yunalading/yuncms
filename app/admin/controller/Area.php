@@ -13,6 +13,7 @@
 namespace app\admin\controller;
 
 use app\admin\model\AreaModel;
+use think\exception\PDOException;
 
 /**
  * Class Area
@@ -45,7 +46,7 @@ class Area extends AdminBaseController {
                 } else {
                     $this->error('删除失败!');
                 }
-            } catch (\Exception $e) {
+            } catch (PDOException $e) {
                 $this->error($e->getMessage());
             }
         } else {

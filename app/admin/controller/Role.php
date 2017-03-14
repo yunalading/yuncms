@@ -84,7 +84,7 @@ class Role extends AdminBaseController {
                 } else {
                     $this->error('删除失败!');
                 }
-            } catch (\Exception $e) {
+            } catch (PDOException $e) {
                 $this->error($e->getMessage());
             }
         } else {
