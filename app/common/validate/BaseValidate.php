@@ -20,6 +20,13 @@ use think\Validate;
  * @package app\common\validate
  */
 abstract class BaseValidate extends Validate {
+    /**
+     * 重写check方法，自动从POST中添加token数据
+     * @param array $data
+     * @param array $rules
+     * @param string $scene
+     * @return bool
+     */
     public function check($data, $rules = [], $scene = '') {
         $request = Request::instance();
         if ($request->isPost()) {
