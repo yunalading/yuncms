@@ -10,20 +10,18 @@
 // +----------------------------------------------------------------------
 
 
-namespace app\admin\model;
+namespace app\admin\validate;
 
-use app\common\model\BaseRoleModel;
+use app\common\validate\BaseRoleValidate;
 
 /**
- * Class RoleModel
- * @package app\admin\model
+ * Class RoleValidate
+ * @package app\admin\validate
  */
-class RoleModel extends BaseRoleModel {
-    /**
-     * 添加角色
-     * @param $data
-     */
-    public function addRole($data) {
-
-    }
+class RoleValidate extends BaseRoleValidate {
+    protected $scene = [
+        'update' => [
+            'role_name' => 'require|token'
+        ]
+    ];
 }

@@ -13,6 +13,7 @@
 namespace app\admin\controller;
 
 use app\admin\model\RoleModel;
+use app\admin\validate\RoleValidate;
 
 /**
  * Class Role
@@ -33,8 +34,16 @@ class Role extends AdminBaseController {
      */
     public function update() {
         $roleModel = new RoleModel();
-        $roleModel->access();
+
         if ($this->request->isPost()) {
+            $role_data = [
+                'role_name' => $this->request->post('role_name'),
+            ];
+            $roleValidate = new RoleValidate();
+            if (!$roleValidate->check($role_data, null, 'update')) {
+                $this->error($roleValidate->getError());
+            }
+
             print_r($this->request->post());
             exit;
         }

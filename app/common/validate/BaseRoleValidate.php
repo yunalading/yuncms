@@ -10,20 +10,18 @@
 // +----------------------------------------------------------------------
 
 
-namespace app\admin\model;
-
-use app\common\model\BaseRoleModel;
+namespace app\common\validate;
 
 /**
- * Class RoleModel
- * @package app\admin\model
+ * Class RoleValidate
+ * @package app\common\validate
  */
-class RoleModel extends BaseRoleModel {
-    /**
-     * 添加角色
-     * @param $data
-     */
-    public function addRole($data) {
+abstract class BaseRoleValidate extends BaseValidate {
+    protected $rule = [
+        'role_name' => 'require',
 
-    }
+    ];
+    protected $message = [
+        'role_name.require' => '角色名称为空',
+    ];
 }
