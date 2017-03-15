@@ -1,0 +1,33 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<div class="content-page">
+    <div class="am-container">
+        <div class="page-title"><h1 class="am-inline">回收站</h1>
+            <a href="<?= URL('/admin/role/emptytrash');?>" class="am-btn am-btn-default am-btn-xs am-radius">
+                <i class="am-icon-trash"></i>清空回收站
+            </a>
+        </div>
+        <table class="am-table">
+            <thead>
+            <tr>
+                <th>角色名</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {volist name='list' id='role'}
+            <tr>
+                <td>{$role.role_name}</td>
+                <td>
+                    <div class="am-btn-group am-btn-group-xs">
+                        <a href="<?= URL('/admin/role/recovery',array('id'=>$role['role_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-history"></i></a>
+                        <a href="<?= URL('/admin/role/destroy',array('id'=>$role['role_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                    </div>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+        {$page}
+    </div>
+</div>
+{include file="footer" /}

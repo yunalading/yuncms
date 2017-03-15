@@ -22,7 +22,7 @@ abstract class BaseRoleModel extends BaseModel {
     use SoftDelete;
 
     protected $name = 'role';
-    
+
     //开启删除锁
     protected $del_lock_field = 'del_lock';
     protected $auto = [
