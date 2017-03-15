@@ -2,7 +2,7 @@
 <div class="content-page">
     <div class="am-container">
         <div class="page-title"><h1 class="am-inline">地区列表</h1>
-            <a href="#" class="am-btn am-btn-primary am-btn-xs am-radius">
+            <a href="<?= URL('/admin/area/update');?>" class="am-btn am-btn-primary am-btn-xs am-radius">
                 <i class="am-icon am-icon-edit"></i>添加地区
             </a>
         </div>
@@ -23,8 +23,8 @@
                 <td>{$area.area_region}</td>
                 <td>
                     <div class="am-btn-group am-btn-group-xs">
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                        <a href="<?= URL('/admin/area/update',array('id'=>$area['area_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
+                        <a href="<?= URL('/admin/area/remove',array('id'=>$area['area_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
                     </div>
                 </td>
             </tr>

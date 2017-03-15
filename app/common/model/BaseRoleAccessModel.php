@@ -15,5 +15,6 @@ namespace app\common\model;
  * @package app\common\model
  */
 abstract class BaseRoleAccessModel extends BaseModel {
-    protected $name = 'user_role_access';
+    protected $name = 'role_access';
+    protected $autoWriteTimestamp = false;
 }

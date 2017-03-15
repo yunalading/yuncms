@@ -8,32 +8,20 @@
 // +----------------------------------------------------------------------
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
-namespace app\common\model;
 
-use traits\model\SoftDelete;
+
+namespace app\admin\validate;
+
+use app\common\validate\BaseRoleValidate;
 
 /**
- * 角色
- * Class BaseRoleModel
- * @package app\common\model
+ * Class RoleValidate
+ * @package app\admin\validate
  */
-abstract class BaseRoleModel extends BaseModel {
-    //开启软删除
-    use SoftDelete;
-
-    protected $name = 'role';
-    
-    //开启删除锁
-    protected $del_lock_field = 'del_lock';
-    protected $auto = [
-        'del_lock' => BaseRoleModel::DEL_LOCK_OFF,
+class RoleValidate extends BaseRoleValidate {
+    protected $scene = [
+        'update' => [
+            'role_name' => 'require|token'
+        ]
     ];
-
-    /**
-     * 获取角色权限
-     * @return \think\model\relation\HasMany\
-     */
-    public function access() {
-        return $this->hasMany('role_access', 'role_id');
-    }
 }

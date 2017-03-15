@@ -6,7 +6,8 @@
             <div class="am-form-group input-group">
                 <label>角色名称<span>(请填写角色名称)</span></label>
                 <div>
-                    <input type="text" name="role[name]" class="am-form-field" placeholder="请填写角色名称" required>
+                    <input type="text" name="role[role_name]" value="{notempty name='$role'}{$role.role_name}{/notempty}" class="am-form-field" placeholder="请填写角色名称" required>
+                    <input type="hidden" name="role[role_id]" value="{notempty name='$role'}{$role.role_id}{/notempty}">
                     <input type="submit" class="am-btn am-btn-primary" value="提交">
                 </div>
             </div>
@@ -17,7 +18,8 @@
                     <div class="role-nav am-panel am-panel-default">
                         <div class="am-panel-hd">
                             <label class="am-checkbox">
-                                <input type="checkbox" name="ac[]" value="{notempty name='ac.href'}{:url($ac.href)}{/notempty}" data-am-ucheck>
+                                <input type="checkbox" name="ac[]"
+                                       value="{notempty name='ac.href'}{:url($ac.href)}{/notempty}" data-am-ucheck>
                                 {$ac.name}
                             </label>
                         </div>
@@ -25,21 +27,27 @@
                             {volist name="ac.submenus" id="act"}
                             <div class="node-1">
                                 <label class="am-checkbox node-1-title">
-                                    <input type="checkbox" name="ac[]" value="{notempty name='act.href'}{:url($act.href)}{/notempty}" data-am-ucheck>
+                                    <input type="checkbox" name="ac[]"
+                                           value="{notempty name='act.href'}{:url($act.href)}{/notempty}"
+                                           data-am-ucheck>
                                     {$act.name}
                                 </label>
                                 {notempty name="act.submenus"}
                                 {volist name="act.submenus" id="men"}
                                 <div class="node-2">
                                     <label class="am-checkbox node-2-title">
-                                        <input type="checkbox" name="ac[]" value="{notempty name='men.href'}{:url($men.href)}{/notempty}" data-am-ucheck>
+                                        <input type="checkbox" name="ac[]"
+                                               value="{notempty name='men.href'}{:url($men.href)}{/notempty}"
+                                               data-am-ucheck>
                                         {$men.name}
                                     </label>
                                     {notempty name="men.actives"}
                                     {volist name="men.actives" id="acti"}
                                     <div>
                                         <label class="am-checkbox">
-                                            <input type="checkbox" name="ac[]" value="{notempty name='acti.href'}{:url($acti.href)}{/notempty}" data-am-ucheck>
+                                            <input type="checkbox" name="ac[]"
+                                                   value="{notempty name='acti.href'}{:url($acti.href)}{/notempty}"
+                                                   data-am-ucheck>
                                             {$acti.name}
                                         </label>
                                     </div>
@@ -52,7 +60,9 @@
                                 {volist name="act.actives" id="acti"}
                                 <div>
                                     <label class="am-checkbox">
-                                        <input type="checkbox" name="ac[]" value="{notempty name='acti.href'}{:url($acti.href)}{/notempty}" data-am-ucheck>
+                                        <input type="checkbox" name="ac[]"
+                                               value="{notempty name='acti.href'}{:url($acti.href)}{/notempty}"
+                                               data-am-ucheck>
                                         {$acti.name}
                                     </label>
                                 </div>
@@ -65,6 +75,7 @@
                     {/volist}
                 </div>
             </div>
+            {:token()}
         </form>
     </div>
 </div>

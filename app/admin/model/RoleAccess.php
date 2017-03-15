@@ -16,5 +16,5 @@ namespace app\admin\model;
 use app\common\model\BaseRoleAccessModel;
 
 class RoleAccess extends BaseRoleAccessModel {
-
+    
 }

@@ -291,7 +291,7 @@
 ### 关系
 - `yc_users.role_id` = `yc_role.role_id`
 
-## yc_user_role_access（管理员角色权限表）
+## yc_role_access（管理员角色权限表）
 
 |字段|类型|主键|可为空|默认值|是否唯一|说明|
 |------|------|------|------|------|------|------|
@@ -300,7 +300,7 @@
 |access|varchar(200)|||||角色权限|
 
 ### 关系
-- `yc_user_role_access.role_id` = `yc_role.role_id`
+- `yc_role_access.role_id` = `yc_role.role_id`
 
 ## yc_area（地区表）
 

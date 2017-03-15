@@ -20,7 +20,18 @@ use app\common\model\BaseRoleModel;
  */
 class RoleModel extends BaseRoleModel {
 
-    public function addRole($role_name) {
-
+    /**
+     * 添加角色权限
+     * @param $access
+     */
+    public function updateAccess($access = []) {
+        $this->access()->delete();
+        $data = array();
+        foreach ($access as $key => $value) {
+            $data[] = array('role_id' => $this->role_id, 'access' => $value);
+        }
+        if (!empty($data)) {
+            $this->access()->saveAll($data);
+        }
     }
 }

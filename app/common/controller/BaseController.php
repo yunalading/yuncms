@@ -20,17 +20,30 @@ use think\Controller;
  */
 abstract class BaseController extends Controller {
     /**
+     * 请求的POST数据
+     * @var array|mixed
+     */
+    protected $post = [];
+    /**
+     * 请求的数据，用来获取get数据
+     * @var array|mixed
+     */
+    protected $param = [];
+
+    /**
      * BaseController constructor.
      */
     public function __construct() {
         parent::__construct();
+        $this->post = $this->request->post();
+        $this->param = $this->request->param();
     }
 
     /**
-     * 获取当前请求URL
+     * 获取当前请求资源
      * @return string
      */
-    protected function getCurrentRequestURL() {
+    protected function getCurrentAccess() {
         return url($this->request->module() . '/' . $this->request->controller() . '/' . $this->request->action());
     }
 

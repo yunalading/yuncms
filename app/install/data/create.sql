@@ -459,6 +459,19 @@ create unique index role_unique on yc_role
 );
 
 /*==============================================================*/
+/* Table: yc_role_access                                        */
+/*==============================================================*/
+create table yc_role_access
+(
+   user_role_access_id  int not null auto_increment comment '管理员角色权限编号',
+   role_id              int comment '管理员角色编号',
+   access               varchar(200) not null comment '角色权限',
+   primary key (user_role_access_id)
+);
+
+alter table yc_role_access comment '管理员角色权限表';
+
+/*==============================================================*/
 /* Table: yc_slides                                             */
 /*==============================================================*/
 create table yc_slides
@@ -514,19 +527,6 @@ create unique index tag_unique on yc_tags
 );
 
 /*==============================================================*/
-/* Table: yc_user_role_access                                   */
-/*==============================================================*/
-create table yc_user_role_access
-(
-   user_role_access_id  int not null auto_increment comment '管理员角色权限编号',
-   role_id              int comment '管理员角色编号',
-   access               varchar(200) not null comment '角色权限',
-   primary key (user_role_access_id)
-);
-
-alter table yc_user_role_access comment '管理员角色权限表';
-
-/*==============================================================*/
 /* Table: yc_users                                              */
 /*==============================================================*/
 create table yc_users
@@ -561,46 +561,46 @@ create unique index user_unique on yc_users
 );
 
 alter table yc_category add constraint FK_CATEGORY_MODEL foreign key (model_id)
-      references yc_model (model_id) on delete restrict on update restrict;
+references yc_model (model_id) on delete restrict on update restrict;
 
 alter table yc_comments add constraint FK_CONTENT_COMMENTS foreign key (content_id)
-      references yc_contents (content_id) on delete restrict on update restrict;
+references yc_contents (content_id) on delete restrict on update restrict;
 
 alter table yc_content_tags add constraint FK_CONTENT_TAGS foreign key (content_id)
-      references yc_contents (content_id) on delete restrict on update restrict;
+references yc_contents (content_id) on delete restrict on update restrict;
 
 alter table yc_content_tags add constraint FK_TAG_CONTENTS foreign key (tag_id)
-      references yc_tags (tag_id) on delete restrict on update restrict;
+references yc_tags (tag_id) on delete restrict on update restrict;
 
 alter table yc_contents add constraint FK_CATEGORY_CONTENTS foreign key (category_id)
-      references yc_category (category_id) on delete restrict on update restrict;
+references yc_category (category_id) on delete restrict on update restrict;
 
 alter table yc_contents add constraint FK_USER_CEONTENTS foreign key (user_id)
-      references yc_users (user_id) on delete restrict on update restrict;
+references yc_users (user_id) on delete restrict on update restrict;
 
 alter table yc_imgs add constraint FK_TYPE_IMGS foreign key (img_type_id)
-      references yc_img_type (img_type_id) on delete restrict on update restrict;
+references yc_img_type (img_type_id) on delete restrict on update restrict;
 
 alter table yc_members add constraint FK_MEMBER_AREA foreign key (area_id)
-      references yc_area (area_id) on delete restrict on update restrict;
+references yc_area (area_id) on delete restrict on update restrict;
 
 alter table yc_members add constraint FK_MEMBER_EDU_LEVEL foreign key (edu_level_id)
-      references yc_edu_level (edu_level_id) on delete restrict on update restrict;
+references yc_edu_level (edu_level_id) on delete restrict on update restrict;
 
 alter table yc_menus add constraint FK_NAV_MENUS foreign key (nav_key)
-      references yc_navs (nav_key) on delete restrict on update restrict;
+references yc_navs (nav_key) on delete restrict on update restrict;
 
 alter table yc_model_properties add constraint FK_MODEL_PROPERTIES foreign key (model_id)
-      references yc_model (model_id) on delete restrict on update restrict;
+references yc_model (model_id) on delete restrict on update restrict;
 
 alter table yc_oauth_members add constraint FK_MEMBER_OAUTH foreign key (member_id)
-      references yc_members (member_id) on delete restrict on update restrict;
+references yc_members (member_id) on delete restrict on update restrict;
+
+alter table yc_role_access add constraint FK_ROLE_ACCESS foreign key (role_id)
+references yc_role (role_id) on delete restrict on update restrict;
 
 alter table yc_slides_imgs add constraint FK_SLIDE_IMGS foreign key (slide_key)
-      references yc_slides (slide_key) on delete restrict on update restrict;
-
-alter table yc_user_role_access add constraint FK_ROLE_ACCESS foreign key (role_id)
-      references yc_role (role_id) on delete restrict on update restrict;
+references yc_slides (slide_key) on delete restrict on update restrict;
 
 alter table yc_users add constraint FK_ROLE_USERS foreign key (role_id)
-      references yc_role (role_id) on delete restrict on update restrict;
+references yc_role (role_id) on delete restrict on update restrict;
