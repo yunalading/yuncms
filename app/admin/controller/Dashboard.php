@@ -11,6 +11,9 @@
 
 
 namespace app\admin\controller;
+use think\Request;
+use think\Log;
+
 
 /**
  * Class Dashboard
@@ -21,6 +24,10 @@ class Dashboard extends AdminBaseController {
      * @return \think\response\View
      */
     public function index() {
+        $request = Request::instance();
+        $param = $request -> param();
+        dump($param);
+        die();
         $this->assign('menus',json_encode(config('authorization')));
         return view();
     }

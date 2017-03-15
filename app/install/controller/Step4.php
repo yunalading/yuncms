@@ -47,6 +47,7 @@ class Step4 extends InstallWizard {
             'hostname.require' => '服务器主机必须填写',
             'database.require' => '创建的数据库名称必须填写',
             'username.require' => '数据库名称必须',
+            'prefix.require'     => '数据库前缀必须填写',
             'prefix.min'     => '数据库前缀最少2个字符',
             'prefix.max'     => '数据库前缀最多10个字符',
         ];
