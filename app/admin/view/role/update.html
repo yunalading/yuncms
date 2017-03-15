@@ -82,6 +82,7 @@
     </div>
 </div>
 {include file="footer" /}
+{notempty name='$access'}
 <script type="text/javascript">
     var access = {$access};
     function checkDefaultAccess(url) {
@@ -103,3 +104,4 @@
         });
     });
 </script>
+{/notempty}
