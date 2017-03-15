@@ -19,13 +19,19 @@ use app\common\model\BaseRoleModel;
  * @package app\admin\model
  */
 class RoleModel extends BaseRoleModel {
+    /**
+     * 清空权限
+     * @return mixed
+     */
+    public function clearAccess() {
+        return $this->access()->delete();
+    }
 
     /**
      * 添加角色权限
      * @param $access
      */
     public function updateAccess($access = []) {
-        $this->access()->delete();
         $data = array();
         foreach ($access as $key => $value) {
             $data[] = array('role_id' => $this->role_id, 'access' => $value);

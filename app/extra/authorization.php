@@ -169,12 +169,7 @@ return [
                         [
                             'id' => 'qq-login',
                             'name' => 'QQ',
-                            'href' => '/admin/oauth/qq',
-                            'actives'=>[
-                                [
-                                    'name'=>'添加'
-                                ]
-                            ]
+                            'href' => '/admin/oauth/qq'
                         ], [
                             'id' => 'wechat-login',
                             'name' => '微信',

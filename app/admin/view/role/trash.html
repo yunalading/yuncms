@@ -2,7 +2,7 @@
 <div class="content-page">
     <div class="am-container">
         <div class="page-title"><h1 class="am-inline">回收站</h1>
-            <a href="<?= URL('/admin/role/trash');?>" class="am-btn am-btn-default am-btn-xs am-radius">
+            <a href="<?= URL('/admin/role/emptytrash');?>" class="am-btn am-btn-default am-btn-xs am-radius">
                 <i class="am-icon-trash"></i>清空回收站
             </a>
         </div>
@@ -19,8 +19,8 @@
                 <td>{$role.role_name}</td>
                 <td>
                     <div class="am-btn-group am-btn-group-xs">
-                        <a href="<?= URL('/admin/role/update',array('id'=>$role['role_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
-                        <a href="<?= URL('/admin/role/remove',array('id'=>$role['role_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                        <a href="<?= URL('/admin/role/recovery',array('id'=>$role['role_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-history"></i></a>
+                        <a href="<?= URL('/admin/role/destroy',array('id'=>$role['role_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
                     </div>
                 </td>
             </tr>

@@ -47,7 +47,8 @@ class Area extends AdminBaseController {
                     $this->error('删除失败!');
                 }
             } catch (PDOException $e) {
-                $this->error($e->getMessage());
+                Log::error($e);
+                $this->error('删除失败!');
             }
         } else {
             $this->error('参数错误!');
