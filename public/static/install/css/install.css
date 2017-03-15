@@ -1,4 +1,4 @@
-/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-02-10"A"01:02:40 UTC */
+/*! yuncms v1.0.0 | by yunalading Team | http://www.yunalading.com | (c) 2017 HTTGO, Inc. |  | 2017-03-11"A"02:03:57 UTC */
 /* ==========================================================================
    Component: Base
  ============================================================================ */
@@ -14548,6 +14548,29 @@ tbody.am-collapse.am-in {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+.message-page {
+  margin: 4rem 0 14rem;
+}
+.system-message {
+  width: 40%;
+  margin: 4rem auto;
+}
+.system-message i {
+  font-size: 8rem;
+}
+.system-message h1 {
+  margin: 2.8rem 0 0;
+  color: #3cc3fc;
+}
+.system-message span {
+  color: #3e5163;
+}
+.system-message.jump {
+  text-align: center;
+}
+#alert-modal .am-modal-dialog {
+  border-radius: 5px;
+}
 .header {
   border-bottom: 1px solid #dedede;
   padding: 1rem 0;
@@ -14568,9 +14591,6 @@ tbody.am-collapse.am-in {
 }
 .license-box .license {
   margin: 2rem 0;
-  border: 1px solid #dedede;
-  -webkit-box-shadow: 0 0 10px;
-          box-shadow: 0 0 10px;
   height: 60rem;
   padding: 1rem;
   overflow-y: scroll;
@@ -14696,6 +14716,57 @@ tbody.am-collapse.am-in {
 }
 .mode .mode-item h3 {
   margin-top: 0;
+}
+.install-form {
+  margin-top: 6rem;
+}
+.center-form {
+  width: 80%;
+  margin: auto;
+}
+.center-form fieldset legend {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.center-form fieldset .am-form-group label span {
+  font-weight: 400;
+  font-size: 1.4rem;
+  display: none;
+}
+.center-form fieldset .am-form-group.am-form-error label span {
+  display: inline-block;
+}
+.install-load {
+  margin: 8rem 0 10rem;
+}
+.install-load .loading {
+  text-align: center;
+}
+.install-load .loading i {
+  font-size: 8rem;
+  color: #3cc3fc;
+}
+.install-load .loading span {
+  display: block;
+  color: #3e5163;
+}
+.complete-page {
+  margin: 4rem 0 14rem;
+}
+.complete-page .app-list {
+  width: 40%;
+  text-align: center;
+  margin: 4rem auto;
+}
+.complete-page .app-list i {
+  font-size: 4rem;
+}
+.complete-page .app-list h3 {
+  margin: 0;
+}
+.complete-page .app-list p {
+  margin: 1rem 0;
+  color: #dedede;
 }
 .footer {
   border-top: 1px solid #dedede;

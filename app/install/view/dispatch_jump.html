@@ -1,0 +1,25 @@
+{include file="header" title="官方安装程序" keywords="" description=""/}
+<div class="message-page">
+    <div class="am-container">
+        <div class="am-g system-message">
+            <div class="am-u-sm-6 am-text-right">
+                <?php switch ($code) {?>
+                <?php case 1:?>
+                <i class="am-icon-check-circle am-text-success"></i>
+                <?php break;?>
+                <?php case 0:?>
+                <i class="am-icon-exclamation-circle am-text-danger"></i>
+                <?php break;?>
+                <?php } ?>
+            </div>
+            <div class="am-u-sm-6">
+                <h1><?php echo(strip_tags($msg));?></h1>
+                <span><?php echo(strip_tags($data));?></span>
+            </div>
+        </div>
+        <p id="system-message" class="system-message jump">
+            页面自动 <a id="href" href="<?php echo($url);?>">跳转</a> 等待时间： <b id="wait"><?php echo($wait);?></b>
+        </p>
+    </div>
+</div>
+{include file="footer" /}

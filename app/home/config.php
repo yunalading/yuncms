@@ -9,4 +9,6 @@
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
 return [
+    'dispatch_success_tmpl' => APP_PATH . 'home' . DS . 'view' . DS . config('app.theme') . DS . 'dispatch_jump.html',
+    'dispatch_error_tmpl' => APP_PATH . 'home' . DS . 'view' . DS . config('app.theme') . DS . 'dispatch_jump.html',
 ];

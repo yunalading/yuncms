@@ -11,57 +11,16 @@
 
 namespace app\install\controller;
 
-use app\common\controller\InstallBaseController;
-use think\App;
-use think\view\driver\Think;
-
 /**
  * Class Index
  * @package app\install\controller
  */
-class Index extends InstallBaseController {
+class Index extends InstallWizard {
+
     /**
-     * 首页
      * @return \think\response\View
      */
     public function index() {
-        return view();
-    }
-
-    /**
-     *
-     * @return \think\response\View
-     */
-    public function step1() {
-        return view();
-    }
-
-    /**
-     * @return \think\response\View
-     */
-    public function step2() {
-        return view();
-    }
-
-    /**
-     * @return \think\response\View
-     */
-    public function step3() {
-        return view();
-    }
-
-    /**
-     * @return \think\response\View
-     */
-    public function step4() {
-        return view();
-    }
-
-    /**
-     *
-     * @return \think\response\View
-     */
-    public function message() {
         return view();
     }
 }

@@ -1,0 +1,120 @@
+{include file="header" title="官方安装程序" keywords="" description=""/}
+<div class="step-bar">
+    <div class="am-container">
+        <div class="am-g setp-title">
+            <div class="am-u-sm-6 am-text-right">
+                <h1>Step.1</h1>
+            </div>
+            <div class="am-u-sm-6 am-text-left">
+                <h3>开始安装</h3>
+                <p>检测服务器环境及文件目录权限</p>
+            </div>
+        </div>
+        <div class="am-g step">
+            <div class="am-u-sm-3 am-active">
+                <i class="am-icon am-icon-search"></i>
+                <div class="line"></div>
+                <spa>检查安装环境</spa>
+            </div>
+            <div class="am-u-sm-3">
+                <i class="am-icon am-icon-cogs"></i>
+                <div class="line"></div>
+                <span>选择安装方式</span>
+            </div>
+            <div class="am-u-sm-3">
+                <i class="am-icon am-icon-database"></i>
+                <div class="line"></div>
+                <span>创建数据库</span>
+            </div>
+            <div class="am-u-sm-3">
+                <i class="am-icon am-icon-bullseye"></i>
+                <div class="line"></div>
+                <span>安装</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="check-table">
+    <div class="am-container">
+        <h2>环境检查</h2>
+        <table class="am-table am-table-striped">
+            <tr>
+                <th>项目</th>
+                <th>最低配置</th>
+                <th>最佳配置</th>
+                <th>当前配置</th>
+            </tr>
+            <tr>
+                <td>操作系统</td>
+                <td>无限制</td>
+                <td>Linux</td>
+                <td><i class="am-icon am-icon-check-circle am-text-primary"></i>Linux</td>
+            </tr>
+            <tr>
+                <td>PHP版本</td>
+                <td>5.5.9</td>
+                <td>5.5.9</td>
+                <td><i class="am-icon am-icon-minus-circle am-text-danger"></i>5.2.9</td>
+            </tr>
+            <tr>
+                <td>GD库</td>
+                <td>2.0</td>
+                <td>2.0</td>
+                <td><i class="am-icon am-icon-check-circle am-text-primary"></i>2.0</td>
+            </tr>
+            <tr>
+                <td>附件上传</td>
+                <td>未限制</td>
+                <td>2M</td>
+                <td><i class="am-icon am-icon-check-circle am-text-primary"></i>2M</td>
+            </tr>
+            <tr>
+                <td>磁盘空间</td>
+                <td>100M</td>
+                <td>>100M</td>
+                <td><i class="am-icon am-icon-check-circle am-text-primary"></i>10000M</td>
+            </tr>
+        </table>
+        <h2>目录、文件权限检查</h2>
+        <table class="am-table am-table-striped">
+            <tr>
+                <th>目录文件</th>
+                <th>所需状态</th>
+                <th>当前状态</th>
+            </tr>
+            <tr>
+                <td>data/cache</td>
+                <td>可写</td>
+                <td><i class="am-icon am-icon-check-circle am-text-primary"></i>可写</td>
+            </tr>
+            <tr>
+                <td>data/cache/adv</td>
+                <td>可写</td>
+                <td><i class="am-icon am-icon-minus-circle am-text-danger"></i>不可写</td>
+            </tr>
+        </table>
+        <h2>函数检查</h2>
+        <table class="am-table am-table-striped">
+            <tr>
+                <th>函数名称</th>
+                <th>所需状态</th>
+                <th>当前状态</th>
+            </tr>
+            <tr>
+                <td>mysql_connect()</td>
+                <td>支持</td>
+                <td><i class="am-icon am-icon-check-circle am-text-primary"></i>可写</td>
+            </tr>
+            <tr>
+                <td>fsockopen()</td>
+                <td>支持</td>
+                <td><i class="am-icon am-icon-minus-circle am-text-danger"></i>不支持</td>
+            </tr>
+        </table>
+        <p class="am-text-center am-margin-top-xl">
+            <a href="<?= url('/install');?>" class="am-btn am-btn-primary am-radius" disabled>上一步</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="<?= url('/install/step2');?>" class="am-btn am-btn-primary am-radius">下一步</a>
+        </p>
+    </div>
+</div>
+{include file="footer" /}

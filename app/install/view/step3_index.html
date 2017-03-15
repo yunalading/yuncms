@@ -1,0 +1,100 @@
+{include file="header" title="官方安装程序" keywords="" description=""/}
+<div class="step-bar">
+    <div class="am-container">
+        <div class="am-g setp-title">
+            <div class="am-u-sm-6 am-text-right">
+                <h1>Step.2</h1>
+            </div>
+            <div class="am-u-sm-6 am-text-left">
+                <h3>开始安装</h3>
+                <p>检测服务器环境及文件目录权限</p>
+            </div>
+        </div>
+        <div class="am-g step">
+            <div class="am-u-sm-3 am-active">
+                <i class="am-icon am-icon-search"></i>
+                <div class="line"></div>
+                <spa>检查安装环境</spa>
+            </div>
+            <div class="am-u-sm-3 am-active">
+                <i class="am-icon am-icon-cogs"></i>
+                <div class="line"></div>
+                <span>选择安装方式</span>
+            </div>
+            <div class="am-u-sm-3 am-active">
+                <i class="am-icon am-icon-database"></i>
+                <div class="line"></div>
+                <span>创建数据库</span>
+            </div>
+            <div class="am-u-sm-3">
+                <i class="am-icon am-icon-bullseye"></i>
+                <div class="line"></div>
+                <span>安装</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="install-form">
+    <div class="am-container">
+        <div class="center-form">
+            <form class="am-form" method="post" action="<?= url('/install/step4');?>" data-am-validator>
+                <fieldset>
+                    <legend>数据库信息</legend>
+                    <div class="am-form-group">
+                        <label>数据库服务器<span>(请填写数据库服务器IP或域名)</span></label>
+                        <input type="text" class="am-form-field am-radius" value="localhost" placeholder="请填写数据库服务器IP或域名" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>数据库名<span>(请填写数据库名称)</span></label>
+                        <input type="text" class="am-form-field am-radius" value="yuncms" placeholder="请填写数据库名称" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>数据库用户名<span>(请填写数据库用户名)</span></label>
+                        <input type="text" class="am-form-field am-radius" value="root" placeholder="请填写数据库用户名" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>数据库密码<span>(请填写数据库密码)</span></label>
+                        <input type="text" class="am-form-field am-radius" placeholder="请填写数据库密码" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>数据库表前缀<span>(请填写表前缀)</span></label>
+                        <input type="text" class="am-form-field am-radius" value="yc_" placeholder="请填写表前缀" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>数据库端口<span>(请填写数据库端口号)</span></label>
+                        <input type="number" class="am-form-field am-radius" value="3306" placeholder="请填写数据库端口号" required>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>网站信息</legend>
+                    <div class="am-form-group">
+                        <label>站点名称<span>(请填写网站名称)</span></label>
+                        <input type="text" class="am-form-field am-radius" placeholder="请填写网站名称" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>管理员帐号<span>(请填写管理员账号)</span></label>
+                        <input type="text" class="am-form-field am-radius" placeholder="请填写管理员账号" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>管理员密码<span>(请填写管理员密码不少于6个字符)</span></label>
+                        <input type="password" class="am-form-field am-radius" id="admin-pwd" placeholder="请填写管理员密码" required minlength="6">
+                    </div>
+                    <div class="am-form-group">
+                        <label>确认密码<span>(请重新输入管理员密码)</span></label>
+                        <input type="password" class="am-form-field am-radius" placeholder="请重新输入管理员密码" data-equal-to="#admin-pwd" required>
+                    </div>
+                    <div class="am-form-group">
+                        <label>管理员邮箱<span>(请填写管理员邮箱)</span></label>
+                        <input type="email" class="am-form-field am-radius" placeholder="请填写管理员邮箱" required>
+                    </div>
+                </fieldset>
+                {:token()}
+                <p class="am-text-center am-margin-top-xl">
+                    <a href="<?= url('/install/step2');?>" class="am-btn am-btn-primary am-radius">上一步</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="submit" class="am-btn am-btn-primary am-radius">确定安装</button>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+{include file="footer" /}

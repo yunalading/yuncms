@@ -11,7 +11,9 @@
 
 // 应用公共文件
 
-
-function write_config(){
+/**
+ * 写入配置文件
+ */
+function writeConfig($config_path, $old_config = array(), $new_config = array()) {
 
 }
