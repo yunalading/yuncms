@@ -8,28 +8,31 @@
 // +----------------------------------------------------------------------
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
+namespace app\core\system\check\env;
+use app\core\system\check\BaseENVCheck;
 
+class OsCheck extends BaseENVCheck {
+    public $name = '操作系统';
+    public $min = '无限制';
+    public $best = 'Linux';
 
-namespace app\install\controller;
-
-use app\core\Install;
-use think\Log;
-
-
-/**
- * Class Complete
- * @package app\install\controller
- */
-class Step1 extends InstallWizard {
     /**
-     * @return \think\response\View
+     * 查询电脑系统版本
+     * @return string
      */
-    public function index() {
-        //print_r(get_loaded_extensions());
-        //echo extension_loaded('PDO')?'yes':'no';
-        $info=Install::checkStep1();
-        $this->assign('info',$info);
-        Log::debug("安装第一步");
-        return view();
+    function getCurrentValue() {
+        return PHP_OS;
+    }
+    /**
+     * 查询当前系统是否匹配
+     *@return int
+     */
+    function ComparisonConfig() {
+//        if($this->getCurrentValue() == $this->best){
+//            return 1;
+//        }else{
+//            return 0;
+//        }
+        return 1;
     }
 }

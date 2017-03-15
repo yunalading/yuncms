@@ -11,7 +11,7 @@
 
 
 namespace app\install\controller;
-
+use app\core\Install;
 
 /**
  * Class Complete
@@ -22,6 +22,10 @@ class Step2 extends InstallWizard {
      * @return \think\response\View
      */
     public function index() {
+        $info=Install::checkStep1();
+        if(!empty($info['checkno'])){
+            $this->redirect('/install/step1');
+        }
         return view();
     }
 }

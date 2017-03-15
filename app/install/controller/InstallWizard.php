@@ -34,4 +34,6 @@ abstract class InstallWizard extends InstallBaseController {
             $this->success('安装成功', url('/'), '系统已安装，可正常使用！');
         }
     }
+
+
 }

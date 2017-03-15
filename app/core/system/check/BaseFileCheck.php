@@ -6,16 +6,23 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: jabber <2898117012@qq.com>
+// | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
-namespace app\common\model;
 
+namespace app\core\system\check;
+use app\core\system\BaseCheck;
 /**
- * 地区
- * Class BaseAreaModel
- * @package app\common\model
+ * 目录、文件权限检查
  */
-abstract class BaseAreaModel extends BaseModel {
-    protected $name = 'area';
 
+abstract class BaseFileCheck extends BaseCheck {
+    public $path = '';
+    public $require = 1;
+    public $current = 0;
+    public $comparison = 0;
+    public function __construct($path='') {
+        $this->path = $path;
+        $this->current = $this->getCurrentValue($this->path);
+        $this->comparison = $this->ComparisonConfig();
+    }
 }

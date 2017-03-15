@@ -6,16 +6,20 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: jabber <2898117012@qq.com>
+// | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
-namespace app\common\model;
+
+namespace app\core\system;
+use think\Log;
 
 /**
- * 地区
- * Class BaseAreaModel
- * @package app\common\model
+ * Class BaseCheck
+ * 1.检测系统环境
+ * 2.目录、文件权限检查
+ * 3.常用函数支持检查
  */
-abstract class BaseAreaModel extends BaseModel {
-    protected $name = 'area';
 
+abstract class BaseCheck {
+    abstract function getCurrentValue();
+    abstract function ComparisonConfig();
 }

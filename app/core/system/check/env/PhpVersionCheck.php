@@ -9,27 +9,31 @@
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 
-
-namespace app\install\controller;
-
-use app\core\Install;
-use think\Log;
+namespace app\core\system\check\env;
 
 
-/**
- * Class Complete
- * @package app\install\controller
- */
-class Step1 extends InstallWizard {
+use app\core\system\check\BaseENVCheck;
+
+class PhpVersionCheck extends BaseENVCheck {
+    public $name  = 'PHP版本';
+    public $min = '5.5.9';
+    public $best = '5.5.9';
     /**
-     * @return \think\response\View
+     * 查询服务器php版本
+     * @return string
      */
-    public function index() {
-        //print_r(get_loaded_extensions());
-        //echo extension_loaded('PDO')?'yes':'no';
-        $info=Install::checkStep1();
-        $this->assign('info',$info);
-        Log::debug("安装第一步");
-        return view();
+    function getCurrentValue() {
+        return PHP_VERSION;
+    }
+    /**
+     * 查询当前系统是否最优配置
+     *@return int
+     */
+    function ComparisonConfig() {
+        if($this->getCurrentValue() >= intval(str_replace('>=','',$this->best))){
+            return 1;
+        }else{
+            return 0;
+        }
     }
 }

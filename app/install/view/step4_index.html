@@ -3,7 +3,7 @@
     <div class="am-container">
         <div class="am-g setp-title">
             <div class="am-u-sm-6 am-text-right">
-                <h1>Step.2</h1>
+                <h1>Step.4</h1>
             </div>
             <div class="am-u-sm-6 am-text-left">
                 <h3>开始安装</h3>
@@ -42,6 +42,7 @@
         </div>
     </div>
 </div>
+
 {include file="footer" /}
 <div class="am-modal am-modal-no-btn" tabindex="-1" id="alert-modal">
     <div class="am-modal-dialog">
@@ -50,9 +51,41 @@
 </div>
 <script>
     $(function () {
-        $('#alert-modal').find('.am-modal-bd').html('fdsafdas');
-        $('#alert-modal').modal('open').delay(3000).show(function () {
-            $('#alert-modal').modal('close');
+        $.ajax( {
+            url:"<?= url('/install/step4/setup');?>",
+            data:{
+                '__token__' : '{$Request.token}',
+                'users' : '{$users}'
+            },
+            type:'post',
+            cache:false,
+            dataType:'json',
+            success:function(res) {
+                console.log(res);
+                if(res['code'] == 1 ){
+                    $('#alert-modal').find('.am-modal-bd').html('安装完成!');
+                    $('#alert-modal').modal('open').delay(3000).show(function () {
+                        $('#alert-modal').modal('close');
+                    });
+                    setTimeout("tiaohzuan('/install/complete/index')",3000);
+                }else{
+                    $('#alert-modal').find('.am-modal-bd').html(res.msg);
+                    $('#alert-modal').modal('open').delay(3000).show(function () {
+                        $('#alert-modal').modal('close');
+                    });
+                    setTimeout("tiaohzuan('/install/step3')",3000);
+                }
+            },
+            error : function() {
+                $('#alert-modal').find('.am-modal-bd').html('数据异常');
+                $('#alert-modal').modal('open').delay(3000).show(function () {
+                    $('#alert-modal').modal('close');
+                });
+                setTimeout("tiaohzuan('/install/step3')",3000);
+            }
         });
     });
+    function tiaohzuan(url){
+        window.location.href='http://'+document.domain+url;
+    }
 </script>

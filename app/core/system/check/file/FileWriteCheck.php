@@ -6,16 +6,30 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: jabber <2898117012@qq.com>
+// | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
-namespace app\common\model;
 
-/**
- * 地区
- * Class BaseAreaModel
- * @package app\common\model
- */
-abstract class BaseAreaModel extends BaseModel {
-    protected $name = 'area';
+namespace app\core\system\check\file;
 
+
+use app\core\system\check\BaseFileCheck;
+
+class FileWriteCheck extends BaseFileCheck {
+
+    public $path = '';
+    public $require = 1;
+
+    function getCurrentValue($path='') {
+        if($path != ''){
+            if (is_writable(ROOT_PATH.$path)){
+                return 1;
+            }
+        }else{
+            return 0;
+        }
+    }
+
+    function ComparisonConfig() {
+        return $this->require && $this->current?1:0;
+    }
 }

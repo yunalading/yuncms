@@ -6,16 +6,23 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: jabber <2898117012@qq.com>
+// | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
-namespace app\common\model;
 
+namespace app\core\system\check;
+use app\core\system\BaseCheck;
 /**
- * 地区
- * Class BaseAreaModel
- * @package app\common\model
+ * 检测php函数是否支持
  */
-abstract class BaseAreaModel extends BaseModel {
-    protected $name = 'area';
 
+abstract class BaseFunCheck extends BaseCheck {
+    public $name = '';
+    public $require = 1;
+    public $current = 0;
+    public $comparison = 0;
+    public function __construct($name='') {
+        $this->name = $name;
+        $this->current = $this->getCurrentValue($this->name);
+        $this->comparison = $this->ComparisonConfig();
+    }
 }

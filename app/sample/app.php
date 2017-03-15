@@ -6,16 +6,10 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: jabber <2898117012@qq.com>
+// | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
-namespace app\common\model;
-
-/**
- * 地区
- * Class BaseAreaModel
- * @package app\common\model
- */
-abstract class BaseAreaModel extends BaseModel {
-    protected $name = 'area';
-
-}
+return [
+    'site_name' => '[site_name]',//网站名称
+    'theme' => '[theme]',//默认主题
+    'email' => '[email]',//管理员邮箱
+];
