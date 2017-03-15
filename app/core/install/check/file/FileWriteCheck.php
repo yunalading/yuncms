@@ -9,23 +9,30 @@
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 
-namespace app\core\system\check;
+namespace app\core\install\check\file;
+
+use app\core\install\check\BaseFileCheck;
 
 /**
- * 检测系统环境(操作系统 PHP版本 GD库 附件上传 磁盘空间)
- * @return array
+ * Class FileWriteCheck
+ * @package app\core\install\check\file
  */
-use app\core\system\BaseCheck;
+class FileWriteCheck extends BaseFileCheck {
 
-abstract class BaseENVCheck extends BaseCheck {
-    public $name = '';
-    public $min = '';
-    public $best = '';
-    public $current = '';
-    public $comparison = 0;
+    public $path = '';
+    public $require = 1;
 
-    public function __construct() {
-        $this->current = $this->getCurrentValue();
-        $this->comparison = $this->ComparisonConfig();
+    function getCurrentValue($path='') {
+        if($path != ''){
+            if (is_writable(ROOT_PATH.$path)){
+                return 1;
+            }
+        }else{
+            return 0;
+        }
+    }
+
+    function comparisonConfig() {
+        return $this->require && $this->current?1:0;
     }
 }

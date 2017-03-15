@@ -11,7 +11,7 @@
 
 namespace app\common\controller;
 
-use app\core\Install;
+use app\core\install\Install;
 use think\Controller;
 
 /**

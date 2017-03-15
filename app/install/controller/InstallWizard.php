@@ -12,7 +12,7 @@
 
 namespace app\install\controller;
 
-use app\core\Install;
+use app\core\install\Install;
 
 /**
  * 安装向导

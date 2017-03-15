@@ -9,20 +9,23 @@
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 
-namespace app\core\system\check;
-use app\core\system\BaseCheck;
-/**
- * 目录、文件权限检查
- */
+namespace app\core\install\check;
 
-abstract class BaseFileCheck extends BaseCheck {
-    public $path = '';
+use app\core\install\BaseCheck;
+
+/**
+ * Class BaseFunCheck
+ * @package app\core\system\check
+ */
+abstract class BaseFunCheck extends BaseCheck {
+    public $name = '';
     public $require = 1;
     public $current = 0;
     public $comparison = 0;
-    public function __construct($path='') {
-        $this->path = $path;
-        $this->current = $this->getCurrentValue($this->path);
-        $this->comparison = $this->ComparisonConfig();
+
+    public function __construct($name = '') {
+        $this->name = $name;
+        $this->current = $this->getCurrentValue($this->name);
+        $this->comparison = $this->comparisonConfig();
     }
 }

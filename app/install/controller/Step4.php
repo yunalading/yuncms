@@ -11,12 +11,10 @@
 
 
 namespace app\install\controller;
-use app\core\Install;
+
+use app\core\install\Install;
 use app\core\db\DbHelp;
 use think\Config;
-use think\Db;
-use app\install\model\InstallModel;
-use think\Log;
 use think\Cookie;
 use think\Validate;
 
@@ -31,7 +29,7 @@ class Step4 extends InstallWizard {
     public function index() {
 
         $param = Install::checkStep3();
-        if($param === false){
+        if ($param === false) {
             return $this->redirect('/install/step3');
         }
         $db = $param['db'];
@@ -40,18 +38,18 @@ class Step4 extends InstallWizard {
         $rules = [
             'hostname' => 'require|token',
             'database' => 'require',
-            'username'  => 'require',
-            'prefix'   => 'require|min:2|max:10',
+            'username' => 'require',
+            'prefix' => 'require|min:2|max:10',
         ];
         $msg = [
             'hostname.require' => '服务器主机必须填写',
             'database.require' => '创建的数据库名称必须填写',
             'username.require' => '数据库名称必须',
-            'prefix.require'     => '数据库前缀必须填写',
-            'prefix.min'     => '数据库前缀最少2个字符',
-            'prefix.max'     => '数据库前缀最多10个字符',
+            'prefix.require' => '数据库前缀必须填写',
+            'prefix.min' => '数据库前缀最少2个字符',
+            'prefix.max' => '数据库前缀最多10个字符',
         ];
-        $validate = new Validate($rules,$msg);
+        $validate = new Validate($rules, $msg);
         if (!$validate->check($db)) {
             $this->error($validate->getError());
         }
@@ -71,44 +69,44 @@ class Step4 extends InstallWizard {
         if (!$validate->check($param['app'])) {
             $this->error($validate->getError());
         }
-        try{
+        try {
             $dbconfig = DbHelp::getDbConfig($db);
             $coon = \think\Db::connect($dbconfig);
-            DbHelp::addDb($db['database'],$coon);
-        }catch(\PDOException $e){
-            if(substr($e->getMessage(),0,39) == 'SQLSTATE[HY000] [1049] Unknown database'){
-                try{
+            DbHelp::addDb($db['database'], $coon);
+        } catch (\PDOException $e) {
+            if (substr($e->getMessage(), 0, 39) == 'SQLSTATE[HY000] [1049] Unknown database') {
+                try {
                     $dbname = $db['database'];
-                    $db['database']='mysql';
+                    $db['database'] = 'mysql';
                     $dbconfig = DbHelp::getDbConfig($db);
                     $coon = \think\Db::connect($dbconfig);
-                    DbHelp::addDb($dbname,$coon);
-                }catch(\PDOException $e){
+                    DbHelp::addDb($dbname, $coon);
+                } catch (\PDOException $e) {
                     $this->error("请检查数据库账号或密码是否输入有误!");
                 }
-            }else {
+            } else {
                 //$this->error("请检查数据库账号或密码是否输入有误!");
                 $this->error($e->getMessage());
             }
         }
         //写入数据库配置
         $dbconfig['database'] = $param['db']['database'];
-        $path_config = APP_PATH.'database.php';
+        $path_config = APP_PATH . 'database.php';
         if (!is_writable($path_config)) {
-            $this->error("配置文件".$path_config."没有写入权限!");
+            $this->error("配置文件" . $path_config . "没有写入权限!");
         }
         //writeConfig($path_config,$dbconfig);
-        if(!writeConfig($path_config,$dbconfig)){
-            $this->error("配置文件".$path_config."写入失败!");
+        if (!writeConfig($path_config, $dbconfig)) {
+            $this->error("配置文件" . $path_config . "写入失败!");
         }
         //写入网站配置
-        $app_config = array_merge(Config::get('app'),$param['app']);
-        $path_app = APP_PATH.'extra'.DS.'app.php';
+        $app_config = array_merge(Config::get('app'), $param['app']);
+        $path_app = APP_PATH . 'extra' . DS . 'app.php';
         if (!is_writable($path_app)) {
-            $this->error("配置文件".$path_app."没有写入权限!");
+            $this->error("配置文件" . $path_app . "没有写入权限!");
         }
-        if(!writeConfig($path_app,$app_config)){
-            $this->error("配置文件".$path_app."写入失败!");
+        if (!writeConfig($path_app, $app_config)) {
+            $this->error("配置文件" . $path_app . "写入失败!");
         }
         //写入用户信息
         $users = $param['users'];
@@ -116,7 +114,7 @@ class Step4 extends InstallWizard {
         $users['nickname'] = "超级管理员";
         $users['password'] = md5(md5($users['password']));
         $users['create_time'] = time();
-        $this->assign('users',json_encode($users));
+        $this->assign('users', json_encode($users));
         return view();
     }
 
@@ -126,7 +124,7 @@ class Step4 extends InstallWizard {
      */
     public function setup() {
         $param = Install::checkStep4();
-        if(!$param){
+        if (!$param) {
             $res['msg'] = "请先填写网站配置信息再执行安装!";
             $res['url'] = '/install/step3';
             $res['code'] = 2;
@@ -138,15 +136,15 @@ class Step4 extends InstallWizard {
         $user['__token__'] = $param['__token__'];
         $validate = new Validate(
             [
-                'username'  => 'require|min:5|token',
-                'password'   => 'require',
-                'email'     => 'email',
+                'username' => 'require|min:5|token',
+                'password' => 'require',
+                'email' => 'email',
             ],
             [
                 'userame.require' => '名称必须',
-                'username.min'     => '名称最少5个字符',
+                'username.min' => '名称最少5个字符',
                 'password.require' => '管理员密码必须填写',
-                'email'        => '邮箱格式错误',
+                'email' => '邮箱格式错误',
             ]
         );
         if (!$validate->check($user)) {
@@ -157,21 +155,21 @@ class Step4 extends InstallWizard {
         unset($user['__token__']);
 
         //导入数据库[进度条]
-        $path_sql = ROOT_PATH.'app'.DS.'install'.DS.'data'.DS.'create.sql';
-        if(!DbHelp::sourceSql($path_sql)){
-            $res['msg'] = "插入数据库文件".$path_sql."失败!";
+        $path_sql = ROOT_PATH . 'app' . DS . 'install' . DS . 'data' . DS . 'create.sql';
+        if (!DbHelp::sourceSql($path_sql)) {
+            $res['msg'] = "插入数据库文件" . $path_sql . "失败!";
             $res['code'] = 0;
             return $res;
         }
 
         //初始化数据
-        $path_sql = ROOT_PATH.'app'.DS.'install'.DS.'data'.DS.'init.sql';
+        $path_sql = ROOT_PATH . 'app' . DS . 'install' . DS . 'data' . DS . 'init.sql';
         DbHelp::sourceSql($path_sql);
 
-       $install_mode = Cookie::has('install-mode')?Cookie::get('install-mode'):'default';
+        $install_mode = Cookie::has('install-mode') ? Cookie::get('install-mode') : 'default';
         //演示数据
-        if($install_mode == 'demo') {
-            $path_sql = ROOT_PATH.'app'.DS.'install'.DS.'data'.DS.'data.sql';
+        if ($install_mode == 'demo') {
+            $path_sql = ROOT_PATH . 'app' . DS . 'install' . DS . 'data' . DS . 'data.sql';
             DbHelp::sourceSql($path_sql);
         }
 

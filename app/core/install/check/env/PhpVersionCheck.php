@@ -9,33 +9,35 @@
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 
-namespace app\core\system\check\env;
+namespace app\core\install\check\env;
 
+use app\core\install\check\BaseENVCheck;
 
-use app\core\system\check\BaseENVCheck;
-
-class FileCheck extends BaseENVCheck {
-    public $name = '附件上传';
-    public $min = '未限制';
-    public $best = '2M';
+/**
+ * Class PhpVersionCheck
+ * @package app\core\install\check\env\
+ */
+class PhpVersionCheck extends BaseENVCheck {
+    public $name = 'PHP版本';
+    public $min = '5.5.9';
+    public $best = '5.5.9';
 
     /**
-     * 查询服务器文件上传限制
+     * 查询服务器php版本
      * @return string
      */
     function getCurrentValue() {
-        return @ini_get('file_uploads') ? ini_get('upload_max_filesize') :'unknown';
+        return PHP_VERSION;
     }
+
     /**
      * 查询当前系统是否最优配置
-     *@return int
+     * @return int
      */
-    function ComparisonConfig() {
-        if($this->getCurrentValue()=='unknown'){
-            return  0;
-        }else if(intval($this->getCurrentValue()) >= intval(str_replace('>','',$this->best))){
+    function comparisonConfig() {
+        if (version_compare($this->current, $this->min, '>=')) {
             return 1;
-        }else{
+        } else {
             return 0;
         }
     }

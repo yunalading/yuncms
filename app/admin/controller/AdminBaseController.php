@@ -22,6 +22,12 @@ use think\Log;
  */
 abstract class AdminBaseController extends BaseController {
     /**
+     * 不需要验证登录的action
+     * @var array
+     */
+    protected $allow_actions = [];
+
+    /**
      * AdminBaseController constructor.
      */
     public function __construct() {

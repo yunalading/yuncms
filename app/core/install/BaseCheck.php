@@ -9,31 +9,22 @@
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 
-namespace app\core\system\check\env;
-
-
-use app\core\system\check\BaseENVCheck;
-
-class PhpVersionCheck extends BaseENVCheck {
-    public $name  = 'PHP版本';
-    public $min = '5.5.9';
-    public $best = '5.5.9';
+namespace app\core\install;
+/**
+ * 环境检查基础类
+ * Class BaseCheck
+ * @package app\core\system
+ */
+abstract class BaseCheck {
     /**
-     * 查询服务器php版本
-     * @return string
+     * 获取当前配置值
+     * @return mixed
      */
-    function getCurrentValue() {
-        return PHP_VERSION;
-    }
+    abstract function getCurrentValue();
+
     /**
-     * 查询当前系统是否最优配置
-     *@return int
+     * 比较配置
+     * @return mixed
      */
-    function ComparisonConfig() {
-        if($this->getCurrentValue() >= intval(str_replace('>=','',$this->best))){
-            return 1;
-        }else{
-            return 0;
-        }
-    }
+    abstract function comparisonConfig();
 }

@@ -9,17 +9,23 @@
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 
-namespace app\core\system;
-use think\Log;
+namespace app\core\install\check;
+
+use app\core\install\BaseCheck;
 
 /**
- * Class BaseCheck
- * 1.检测系统环境
- * 2.目录、文件权限检查
- * 3.常用函数支持检查
+ * 目录文件检查
+ * Class BaseFileCheck
+ * @package app\core\install\check
  */
-
-abstract class BaseCheck {
-    abstract function getCurrentValue();
-    abstract function ComparisonConfig();
+abstract class BaseFileCheck extends BaseCheck {
+    public $path = '';
+    public $require = 1;
+    public $current = 0;
+    public $comparison = 0;
+    public function __construct($path='') {
+        $this->path = $path;
+        $this->current = $this->getCurrentValue($this->path);
+        $this->comparison = $this->comparisonConfig();
+    }
 }

@@ -34,8 +34,6 @@
         </div>
     </div>
 </div>
-
-<!--<form action="<?= url('/install/step2');?>" method="post">-->
 <div class="check-table">
     <div class="am-container">
         <h2>环境检查</h2>
@@ -48,20 +46,19 @@
             </tr>
 
             {volist name="info.env_check" id="vo"}
-                <tr>
-                    <td>{$vo->name}</td>
-                    <td>{$vo->min}</td>
-                    <td>{$vo->best}</td>
-                    <td>
-                        {if condition="$vo->comparison eq 1"}
-                            <i class="am-icon am-icon-check-circle am-text-primary"></i>
-                        {else /}
-                            <i class="am-icon am-icon-minus-circle am-text-danger"></i>
-                            <!--<input type="hidden" value="{$vo->name}" name="checkno[]" />-->
-                        {/if}
-                        {$vo->current}
-                    </td>
-                </tr>
+            <tr>
+                <td>{$vo->name}</td>
+                <td>{$vo->min}</td>
+                <td>{$vo->best}</td>
+                <td>
+                    {if condition="$vo->comparison eq 1"}
+                    <i class="am-icon am-icon-check-circle am-text-primary"></i>
+                    {else /}
+                    <i class="am-icon am-icon-minus-circle am-text-danger"></i>
+                    {/if}
+                    {$vo->current}
+                </td>
+            </tr>
             {/volist}
 
         </table>
@@ -81,25 +78,11 @@
                     <i class="am-icon am-icon-check-circle am-text-primary"></i>
                     {else /}
                     <i class="am-icon am-icon-minus-circle am-text-danger"></i>
-                    <!--<input type="hidden" value="{$vo->path}" name="checkno[]" />-->
                     {/if}
                     {$vo->current == 1 ? '可写' : '不可写'}
                 </td>
             </tr>
             {/volist}
-
-<!--
-            <tr>
-                <td>data/cache</td>
-                <td>可写</td>
-                <td><i class="am-icon am-icon-check-circle am-text-primary"></i>可写</td>
-            </tr>
-            <tr>
-                <td>data/cache/adv</td>
-                <td>可写</td>
-                <td><i class="am-icon am-icon-minus-circle am-text-danger"></i>不可写</td>
-            </tr>
--->
         </table>
         <h2>函数检查</h2>
         <table class="am-table am-table-striped">
@@ -117,34 +100,16 @@
                     <i class="am-icon am-icon-check-circle am-text-primary"></i>
                     {else /}
                     <i class="am-icon am-icon-minus-circle am-text-danger"></i>
-                    <!--<input type="hidden" value="{$vo->name}" name="checkno[]" />-->
                     {/if}
                     {$vo->current == 1 ? '支持' : '不支持'}
                 </td>
             </tr>
             {/volist}
-<!--
-            <tr>
-                <td>mysql_connect()</td>
-                <td>支持</td>
-                <td><i class="am-icon am-icon-check-circle am-text-primary"></i>可写</td>
-            </tr>
-            <tr>
-                <td>fsockopen()</td>
-                <td>支持</td>
-                <td><i class="am-icon am-icon-minus-circle am-text-danger"></i>不支持</td>
-            </tr>
- -->
-
         </table>
         <p class="am-text-center am-margin-top-xl">
-            <a href="<?= url('/install');?>" class="am-btn am-btn-primary am-radius" disabled>上一步</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="<?= url('/install');?>" class="am-btn am-btn-primary am-radius">上一步</a>&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="<?= url('/install/step2');?>" class="am-btn am-btn-primary am-radius">下一步</a>
-            <!--<button class="am-btn am-btn-primary am-radius">下一步</button>-->
         </p>
     </div>
-    <!--<input type="hidden" value="1" name="step" />-->
-    <!--<input type="hidden" value="yuncms" name="install" />-->
 </div>
-<!--</form>-->
 {include file="footer" /}

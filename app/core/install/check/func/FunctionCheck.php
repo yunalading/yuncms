@@ -9,20 +9,28 @@
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 
-namespace app\core\system\check;
-use app\core\system\BaseCheck;
-/**
- * 检测php函数是否支持
- */
+namespace app\core\install\check\func;
 
-abstract class BaseFunCheck extends BaseCheck {
+use app\core\install\check\BaseFunCheck;
+
+/**
+ * Class FunctionCheck
+ * @package app\core\install\check\func
+ */
+class FunctionCheck extends BaseFunCheck {
+
     public $name = '';
     public $require = 1;
-    public $current = 0;
-    public $comparison = 0;
-    public function __construct($name='') {
-        $this->name = $name;
-        $this->current = $this->getCurrentValue($this->name);
-        $this->comparison = $this->ComparisonConfig();
+
+    function getCurrentValue($name = '') {
+        if (function_exists($name)) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    function comparisonConfig() {
+        return $this->require && $this->current ? 1 : 0;
     }
 }

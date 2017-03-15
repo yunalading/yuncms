@@ -8,9 +8,14 @@
 // +----------------------------------------------------------------------
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
-namespace app\core\system\check\env;
-use app\core\system\check\BaseENVCheck;
+namespace app\core\install\check\env;
 
+use app\core\install\check\BaseENVCheck;
+
+/**
+ * Class OsCheck
+ * @package app\core\install\check\env
+ */
 class OsCheck extends BaseENVCheck {
     public $name = '操作系统';
     public $min = '无限制';
@@ -23,16 +28,12 @@ class OsCheck extends BaseENVCheck {
     function getCurrentValue() {
         return PHP_OS;
     }
+
     /**
      * 查询当前系统是否匹配
-     *@return int
+     * @return int
      */
-    function ComparisonConfig() {
-//        if($this->getCurrentValue() == $this->best){
-//            return 1;
-//        }else{
-//            return 0;
-//        }
+    function comparisonConfig() {
         return 1;
     }
 }
