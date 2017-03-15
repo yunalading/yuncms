@@ -33,13 +33,13 @@ class DiskCheck extends BaseENVCheck {
 
     /**
      * 查询当前系统是否最优配置
-     * @return int
+     * @return bool
      */
     function comparisonConfig() {
         if (floatval($this->current) >= floatval($this->min)) {
-            return 1;
+            return true;
         } else {
-            return 0;
+            return false;
         }
     }
 }

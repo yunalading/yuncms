@@ -20,17 +20,13 @@ use app\core\install\check\BaseFunCheck;
 class FunctionCheck extends BaseFunCheck {
 
     public $name = '';
-    public $require = 1;
-
-    function getCurrentValue($name = '') {
-        if (function_exists($name)) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
+    public $require = '支持';
 
     function comparisonConfig() {
-        return $this->require && $this->current ? 1 : 0;
+        if (function_exists($this->name)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

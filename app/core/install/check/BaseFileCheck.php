@@ -20,12 +20,11 @@ use app\core\install\BaseCheck;
  */
 abstract class BaseFileCheck extends BaseCheck {
     public $path = '';
-    public $require = 1;
-    public $current = 0;
-    public $comparison = 0;
-    public function __construct($path='') {
+    public $require = '';
+    public $comparison = true;
+
+    public function __construct($path = '') {
         $this->path = $path;
-        $this->current = $this->getCurrentValue($this->path);
         $this->comparison = $this->comparisonConfig();
     }
 }

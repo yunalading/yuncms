@@ -16,15 +16,10 @@ namespace app\core\install;
  * @package app\core\system
  */
 abstract class BaseCheck {
-    /**
-     * 获取当前配置值
-     * @return mixed
-     */
-    abstract function getCurrentValue();
 
     /**
      * 比较配置
-     * @return mixed
+     * @return bool
      */
     abstract function comparisonConfig();
 }

@@ -13,8 +13,6 @@
 namespace app\install\controller;
 
 use app\core\install\Install;
-use think\Log;
-
 
 /**
  * Class Complete
@@ -25,9 +23,10 @@ class Step1 extends InstallWizard {
      * @return \think\response\View
      */
     public function index() {
-        $info=Install::checkStep1();
-        $this->assign('info',$info);
-        Log::debug("安装第一步");
+        $list = Install::getEnvList();
+        $flag = Install::checkEnv();
+        $this->assign('list', $list);
+        $this->assign('flag', $flag);
         return view();
     }
 }

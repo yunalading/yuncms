@@ -20,19 +20,15 @@ use app\core\install\check\BaseFileCheck;
 class FileWriteCheck extends BaseFileCheck {
 
     public $path = '';
-    public $require = 1;
-
-    function getCurrentValue($path='') {
-        if($path != ''){
-            if (is_writable(ROOT_PATH.$path)){
-                return 1;
-            }
-        }else{
-            return 0;
-        }
-    }
+    public $require = '可写';
 
     function comparisonConfig() {
-        return $this->require && $this->current?1:0;
+        if ($this->path != '') {
+            if (is_writable($this->path)) {
+                return true;
+            }
+        } else {
+            return false;
+        }
     }
 }

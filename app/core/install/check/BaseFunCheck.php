@@ -19,13 +19,11 @@ use app\core\install\BaseCheck;
  */
 abstract class BaseFunCheck extends BaseCheck {
     public $name = '';
-    public $require = 1;
-    public $current = 0;
-    public $comparison = 0;
+    public $require = '';
+    public $comparison = true;
 
     public function __construct($name = '') {
         $this->name = $name;
-        $this->current = $this->getCurrentValue($this->name);
         $this->comparison = $this->comparisonConfig();
     }
 }

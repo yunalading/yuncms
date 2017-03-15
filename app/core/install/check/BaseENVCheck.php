@@ -43,7 +43,7 @@ abstract class BaseENVCheck extends BaseCheck {
      * 是否满足
      * @var int
      */
-    public $comparison = 0;
+    public $comparison = true;
 
     public function __construct() {
         //获取当前配置
@@ -51,4 +51,10 @@ abstract class BaseENVCheck extends BaseCheck {
         //获取配置比较结果
         $this->comparison = $this->comparisonConfig();
     }
+
+    /**
+     * 获取当前配置值
+     * @return mixed
+     */
+    abstract function getCurrentValue();
 }

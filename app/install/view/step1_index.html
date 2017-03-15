@@ -45,7 +45,7 @@
                 <th>当前配置</th>
             </tr>
 
-            {volist name="info.env_check" id="vo"}
+            {volist name="list.env" id="vo"}
             <tr>
                 <td>{$vo->name}</td>
                 <td>{$vo->min}</td>
@@ -69,17 +69,16 @@
                 <th>所需状态</th>
                 <th>当前状态</th>
             </tr>
-            {volist name="info.file_check" id="vo"}
+            {volist name="list.file" id="vo"}
             <tr>
                 <td>{$vo->path}</td>
-                <td>{$vo->require == 1 ? '可写' : '不可写'}</td>
+                <td>{$vo->require}</td>
                 <td>
-                    {if condition="$vo->comparison eq 1"}
-                    <i class="am-icon am-icon-check-circle am-text-primary"></i>
+                    {if condition="$vo->comparison"}
+                    <i class="am-icon am-icon-check-circle am-text-primary"></i>可写
                     {else /}
-                    <i class="am-icon am-icon-minus-circle am-text-danger"></i>
+                    <i class="am-icon am-icon-minus-circle am-text-danger"></i>不可写
                     {/if}
-                    {$vo->current == 1 ? '可写' : '不可写'}
                 </td>
             </tr>
             {/volist}
@@ -91,17 +90,16 @@
                 <th>所需状态</th>
                 <th>当前状态</th>
             </tr>
-            {volist name="info.fun_check" id="vo"}
+            {volist name="list.fun" id="vo"}
             <tr>
                 <td>{$vo->name}</td>
-                <td>{$vo->require == 1 ? '支持' : '不支持'}</td>
+                <td>{$vo->require}</td>
                 <td>
-                    {if condition="$vo->comparison eq 1"}
-                    <i class="am-icon am-icon-check-circle am-text-primary"></i>
+                    {if condition="$vo->comparison"}
+                    <i class="am-icon am-icon-check-circle am-text-primary"></i>支持
                     {else /}
-                    <i class="am-icon am-icon-minus-circle am-text-danger"></i>
+                    <i class="am-icon am-icon-minus-circle am-text-danger"></i>不支持
                     {/if}
-                    {$vo->current == 1 ? '支持' : '不支持'}
                 </td>
             </tr>
             {/volist}

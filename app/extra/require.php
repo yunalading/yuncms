@@ -33,19 +33,19 @@ return [
     'file' => [
         [
             'name' => 'runtime',
-            'path' => ROOT_PATH . DS . 'runtime'
+            'path' => ROOT_PATH . 'runtime'
         ], [
             'name' => 'database',
-            'path' => ROOT_PATH . DS . 'app' . DS . 'database.php'
+            'path' => ROOT_PATH . 'app' . DS . 'database.php'
         ], [
             'name' => 'app',
-            'path' => ROOT_PATH . DS . 'app' . DS . 'extra' . DS . 'app.php'
+            'path' => ROOT_PATH . 'app' . DS . 'extra' . DS . 'app.php'
         ], [
             'name' => 'data',
-            'path' => ROOT_PATH . DS . 'public' . DS . 'data'
+            'path' => ROOT_PATH . 'public' . DS . 'data'
         ]
     ],
-    'fun' => [
+    'funs' => [
         [
             'name' => 'json',
             'fun' => 'json_encode'

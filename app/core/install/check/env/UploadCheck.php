@@ -32,9 +32,9 @@ class UploadCheck extends BaseENVCheck {
 
     /**
      * 查询当前系统是否最优配置
-     * @return int
+     * @return bool
      */
     function comparisonConfig() {
-        return 1;
+        return true;
     }
 }

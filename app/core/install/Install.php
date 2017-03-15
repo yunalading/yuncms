@@ -56,52 +56,56 @@ class Install {
     }
 
     /**
-     * 检查环境[步骤一]
+     * 获取环境列表
      * @return array
      */
-    public static function checkStep1() {
-        $info = array();
-        $checkno = array();
-        $env_check = [
-            'phpversion' => new PhpVersionCheck(),
-            'os' => new OsCheck(),
-            'gd' => new GdCheck(),
-            'upload' => new UploadCheck(),
-            'disk' => new DiskCheck(),
-        ];
-        foreach ($env_check as $v) {
-            if ($v->comparison < 1) {
-                $checkno[] = $v->name;
+    public static function getEnvList() {
+        $env_array = array();
+        $file_array = array();
+        $fun_array = array();
+        /**
+         * 创建环境检查列表
+         */
+        foreach (config('require.env') as $env) {
+            $env_check = new $env['class'];
+            $env_array[] = $env_check;
+        }
+        /**
+         * 创建文件检查列表
+         */
+        foreach (config('require.file') as $file) {
+            $file_check = new FileWriteCheck($file['path']);
+            $file_array[] = $file_check;
+        }
+        /**
+         * 创建函数检查列表
+         */
+        foreach (config('require.funs') as $fun) {
+            $fun_check = new FunctionCheck($fun['fun']);
+            $fun_array[] = $fun_check;
+        }
+        return array('env' => $env_array, 'file' => $file_array, 'fun' => $fun_array);
+    }
+
+    /**
+     * 检查环境
+     * @return bool
+     */
+    public static function checkEnv() {
+        $list = self::getEnvList();
+        $flag = true;
+        foreach ($list['env'] as $env) {
+            if ($env->comparison){
+
             }
         }
-        //目录、文件权限检查
-        $file_check = [
-            new FileWriteCheck('runtime'),
-            new FileWriteCheck('app/database.php'),
-            new FileWriteCheck('app/extra/app.php'),
-            new FileWriteCheck('app/install/data'),
-            new FileWriteCheck('public/data/upload'),
-        ];
-        foreach ($file_check as $v) {
-            if ($v->comparison < 1) {
-                $checkno[] = $v->path;
-            }
+        foreach ($list['file'] as $file) {
+
         }
-        //函数检查
-        $fun_check = [
-            new FunctionCheck('json_encode'),
-            new FunctionCheck('fsockopen'),
-        ];
-        foreach ($fun_check as $v) {
-            if ($v->comparison < 1) {
-                $checkno[] = $v->path;
-            }
+        foreach ($list['fun'] as $fun) {
+
         }
-        $info['env_check'] = $env_check;
-        $info['file_check'] = $file_check;
-        $info['fun_check'] = $fun_check;
-        $info['checkno'] = $checkno;
-        return $info;
+        return $flag;
     }
 
     /**
@@ -109,7 +113,7 @@ class Install {
      * @return bool
      */
     public static function checkStep2() {
-        $info = self::checkStep1();
+        $info = self::checkEnv();
         if (!empty($info['checkno'])) {
             return false;
         } else {
