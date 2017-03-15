@@ -28,17 +28,11 @@ abstract class AdminBaseController extends BaseController {
         parent::__construct();
         //检查是否已安装
         $this->checkInstall();
-        //url去除伪静态后缀
-        $url = str_replace(".".config('url_html_suffix'),"",$this->request->url());
-        //无需验证登录的控制器
-        $notlogin = config('notlogin');
         //是否需要登录验证
-        if (!in_array($url,$notlogin)) {
+        if (!in_array($this->request->action(), $this->allow_actions)) {
             //验证是否登录
             Log::debug('验证是否登录');
-            if (!session('islogin')) {
-                $this->redirect(url('/admin/user/login'));
-            }
+
         }
     }
 

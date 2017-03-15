@@ -9,4 +9,4 @@
 /.project
 /.buildpath
 /composer.lock
-!/public/data/install.lock
+/public/data/install.lock
