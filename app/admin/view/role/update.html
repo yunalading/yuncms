@@ -6,7 +6,9 @@
             <div class="am-form-group input-group">
                 <label>角色名称<span>(请填写角色名称)</span></label>
                 <div>
-                    <input type="text" name="role[role_name]" value="{notempty name='$role'}{$role.role_name}{/notempty}" class="am-form-field" placeholder="请填写角色名称" required>
+                    <input type="text" name="role[role_name]"
+                           value="{notempty name='$role'}{$role.role_name}{/notempty}" class="am-form-field"
+                           placeholder="请填写角色名称" required>
                     <input type="hidden" name="role[role_id]" value="{notempty name='$role'}{$role.role_id}{/notempty}">
                     <input type="submit" class="am-btn am-btn-primary" value="提交">
                 </div>
@@ -80,3 +82,24 @@
     </div>
 </div>
 {include file="footer" /}
+<script type="text/javascript">
+    var access = {$access};
+    function checkDefaultAccess(url) {
+        for (var i in access) {
+            if (access[i].access == url) {
+                return true;
+            }
+        }
+        return false;
+    }
+    $(function () {
+        $('.am-ucheck-checkbox').each(function () {
+            if ($(this).val()) {
+                if (checkDefaultAccess($(this).val())) {
+                    $(this).uCheck('check');
+                    $(this).trigger('change');
+                }
+            }
+        });
+    });
+</script>

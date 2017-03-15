@@ -67,6 +67,7 @@ class Role extends AdminBaseController {
                 //编辑页面初始化数据
                 $role = RoleModel::get($this->param['id']);
                 $this->assign('role', $role);
+                $this->assign('access', json_encode($role->access()->select()));
             }
         }
         $this->assign('actions', config('authorization.menus'));
