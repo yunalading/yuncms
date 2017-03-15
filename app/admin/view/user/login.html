@@ -3,16 +3,16 @@
     <div class="am-container">
         <div class="login">
             <p class="am-text-center"><img class="logo am-img-responsive" src="/static/images/logo.png" title="{$Think.const.APP_NAME}后台管理系统" alt="{$Think.const.APP_NAME}后台管理系统"></p>
-            <form class="am-form" action="<?= URL('/admin/dashboard');?>" method="post" data-am-validator>
+            <form class="am-form" action="<?= URL('/admin/dashboard/index');?>" method="post" data-am-validator>
                 <fieldset>
                     <legend>管理员登录</legend>
                     <div class="am-form-group">
                         <label>用户名<span>(请填写用户名)</span></label>
-                        <input type="text" class="am-form-field am-radius" placeholder="请填写用户名" name="username" required>
+                        <input type="text" class="am-form-field am-radius" placeholder="请填写用户名" name="username" value="admin" required>
                     </div>
                     <div class="am-form-group">
                         <label>密码<span>(请填写密码，密码至少为6个字符)</span></label>
-                        <input type="password" class="am-form-field am-radius" placeholder="请填写密码" name="password" required minlength="6">
+                        <input type="password" class="am-form-field am-radius" placeholder="请填写密码" name="password" value="admin888" required minlength="6">
                     </div>
                     <div class="am-form-group">
                         <label>验证码<span>(请填写验证码)</span></label>
