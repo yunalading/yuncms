@@ -15,6 +15,7 @@ use app\core\install\check\file\FileIsWriteCheck;
 use app\core\install\check\func\FunctionCheck;
 use think\Cookie;
 use think\Request;
+use think\Session;
 
 class Install {
     /**
@@ -107,6 +108,10 @@ class Install {
         return $flag;
     }
 
+    /**
+     * 获取安装方式
+     * @return mixed|string
+     */
     public static function getMode() {
         return Cookie::has('install-mode') ? Cookie::get('install-mode') : 'default';
     }
@@ -120,31 +125,35 @@ class Install {
     }
 
     /**
-     * 检查配置信息
-     * @return bool|array
+     * 保存安装配置
+     * @param $config
      */
-    public static function checkConfig() {
+    public static function saveConfig($config) {
 
-        //直接刷新，没有表单提交,进行跳转
-        $request = Request::instance();
-        $param = $request->param();
-        if (empty($param)) {
-            return false;
-        }
-        return $param;
     }
 
     /**
-     * 填写配置信息[步骤四]
-     * @return bool|array
+     * 获取安装配置
+     * @return mixed
      */
-    public static function checkStep4() {
-        //直接刷新，没有表单提交,进行跳转
-        $request = Request::instance();
-        $param = $request->param();
-        if (empty($param)) {
-            return false;
-        }
-        return $param;
+    public static function getConfig() {
+        return Session::get('install-config');
+    }
+
+    /**
+     * 测试安装配置
+     * @return bool
+     */
+    public static function testConfig() {
+
+        return true;
+    }
+
+    /**
+     * 检查配置信息
+     * @return bool
+     */
+    public static function checkConfig() {
+        return self::testConfig();
     }
 }

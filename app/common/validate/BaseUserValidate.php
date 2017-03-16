@@ -18,10 +18,9 @@ namespace app\common\validate;
  */
 abstract class BaseUserValidate extends BaseValidate {
     protected $rule = [
-        'username' => 'require|token',
+        'username' => 'require',
         'password' => 'require|min:6',
-        'captcha'=>'require|captcha',
-
+        'captcha' => 'require|captcha',
     ];
     protected $message = [
         'username.require' => '用户名不能为空',
