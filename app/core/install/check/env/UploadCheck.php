@@ -19,8 +19,6 @@ use app\core\install\check\BaseENVCheck;
  */
 class UploadCheck extends BaseENVCheck {
     public $name = '附件上传';
-    public $min = '未限制';
-    public $best = '2M';
 
     /**
      * 查询服务器文件上传限制

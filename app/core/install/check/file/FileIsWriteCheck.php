@@ -17,7 +17,7 @@ use app\core\install\check\BaseFileCheck;
  * Class FileWriteCheck
  * @package app\core\install\check\file
  */
-class FileWriteCheck extends BaseFileCheck {
+class FileIsWriteCheck extends BaseFileCheck {
 
     public $path = '';
     public $require = '可写';

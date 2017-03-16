@@ -19,8 +19,6 @@ use app\core\install\check\BaseENVCheck;
  */
 class GdCheck extends BaseENVCheck {
     public $name = 'GD库';
-    public $min = '2.0';
-    public $best = '2.0';
 
     /**
      * 查询服务器GD库版本

@@ -11,12 +11,7 @@
 
 namespace app\core\install;
 
-use app\core\install\check\env\PhpVersionCheck;
-use app\core\install\check\env\GdCheck;
-use app\core\install\check\env\OsCheck;
-use app\core\install\check\env\DiskCheck;
-use app\core\install\check\env\UploadCheck;
-use app\core\install\check\file\FileWriteCheck;
+use app\core\install\check\file\FileIsWriteCheck;
 use app\core\install\check\func\FunctionCheck;
 use think\Cookie;
 use think\Request;
@@ -67,14 +62,14 @@ class Install {
          * 创建环境检查列表
          */
         foreach (config('require.env') as $env) {
-            $env_check = new $env['class'];
+            $env_check = new $env['class']($env['min'], $env['good']);
             $env_array[] = $env_check;
         }
         /**
          * 创建文件检查列表
          */
         foreach (config('require.file') as $file) {
-            $file_check = new FileWriteCheck($file['path']);
+            $file_check = new FileIsWriteCheck($file['path']);
             $file_array[] = $file_check;
         }
         /**
@@ -95,44 +90,41 @@ class Install {
         $list = self::getEnvList();
         $flag = true;
         foreach ($list['env'] as $env) {
-            if ($env->comparison){
-
+            if (!$env->comparison) {
+                $flag = false;
             }
         }
         foreach ($list['file'] as $file) {
-
+            if (!$file->comparison) {
+                $flag = false;
+            }
         }
         foreach ($list['fun'] as $fun) {
-
+            if (!$fun->comparison) {
+                $flag = false;
+            }
         }
         return $flag;
     }
 
-    /**
-     * 选择数据安装方式[步骤二]
-     * @return bool
-     */
-    public static function checkStep2() {
-        $info = self::checkEnv();
-        if (!empty($info['checkno'])) {
-            return false;
-        } else {
-            return true;
-        }
+    public static function getMode() {
+        return Cookie::has('install-mode') ? Cookie::get('install-mode') : 'default';
     }
 
     /**
-     * 填写配置信息[步骤三]
+     * 检查安装方式
+     * @return bool
+     */
+    public static function checkMode() {
+        return self::getMode() ? true : false;
+    }
+
+    /**
+     * 检查配置信息
      * @return bool|array
      */
-    public static function checkStep3() {
-        $info = self::checkStep2();
-        if (!$info) {
-            return false;
-        }
-        if (!Cookie::has('install-mode')) {
-            return false;
-        }
+    public static function checkConfig() {
+
         //直接刷新，没有表单提交,进行跳转
         $request = Request::instance();
         $param = $request->param();

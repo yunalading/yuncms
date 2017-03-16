@@ -33,7 +33,7 @@ abstract class BaseENVCheck extends BaseCheck {
      * 最佳配置
      * @var string
      */
-    public $best = '';
+    public $good = '';
     /**
      * 当前配置
      * @var string
@@ -45,7 +45,9 @@ abstract class BaseENVCheck extends BaseCheck {
      */
     public $comparison = true;
 
-    public function __construct() {
+    public function __construct($min, $good) {
+        $this->min = $min;
+        $this->good = $good;
         //获取当前配置
         $this->current = $this->getCurrentValue();
         //获取配置比较结果

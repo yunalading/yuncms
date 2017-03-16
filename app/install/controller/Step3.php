@@ -24,12 +24,9 @@ class Step3 extends InstallWizard {
      * @return \think\response\View
      */
     public function index() {
-        $info = Install::checkStep2();
-        if (!$info) {
-            $this->redirect('/install/step1');
+        if (!Install::checkEnv() && !Install::checkMode()) {
+            $this->redirect(url('/install/step1'));
         }
-        $install_mode = Cookie::has('install-mode') ? Cookie::get('install-mode') : 'default';
-        Cookie::set('install-mode', $install_mode, 3600);
         return view();
     }
 }

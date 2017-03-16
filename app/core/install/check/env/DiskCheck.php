@@ -19,8 +19,6 @@ use app\core\install\check\BaseENVCheck;
  */
 class DiskCheck extends BaseENVCheck {
     public $name = '磁盘空间';
-    public $min = '100MB';
-    public $best = '>100MB';
 
     /**
      * 查询服务器文件上传限制

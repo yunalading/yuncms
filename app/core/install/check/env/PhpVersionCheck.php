@@ -19,8 +19,6 @@ use app\core\install\check\BaseENVCheck;
  */
 class PhpVersionCheck extends BaseENVCheck {
     public $name = 'PHP版本';
-    public $min = '5.5.9';
-    public $best = '5.5.9';
 
     /**
      * 查询服务器php版本

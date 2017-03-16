@@ -15,18 +15,28 @@ return [
     'env' => [
         [
             'name' => 'phpversion',
+            'min' => '5.5.9',
+            'good' => '5.5.9',
             'class' => '\app\core\install\check\env\PhpVersionCheck'
         ], [
             'name' => 'os',
+            'min' => '无限制',
+            'good' => 'Linux',
             'class' => '\app\core\install\check\env\OsCheck'
         ], [
             'name' => 'gd',
+            'min' => '2.0',
+            'good' => '2.0',
             'class' => '\app\core\install\check\env\GdCheck'
         ], [
             'name' => 'upload',
+            'min' => '未限制',
+            'good' => '2M',
             'class' => '\app\core\install\check\env\UploadCheck'
         ], [
             'name' => 'disk',
+            'min' => '100MB',
+            'good' => '>100MB',
             'class' => '\app\core\install\check\env\DiskCheck'
         ]
     ],

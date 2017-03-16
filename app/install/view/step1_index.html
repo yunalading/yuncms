@@ -49,7 +49,7 @@
             <tr>
                 <td>{$vo->name}</td>
                 <td>{$vo->min}</td>
-                <td>{$vo->best}</td>
+                <td>{$vo->good}</td>
                 <td>
                     {if condition="$vo->comparison eq 1"}
                     <i class="am-icon am-icon-check-circle am-text-primary"></i>
@@ -106,7 +106,8 @@
         </table>
         <p class="am-text-center am-margin-top-xl">
             <a href="<?= url('/install');?>" class="am-btn am-btn-primary am-radius">上一步</a>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="<?= url('/install/step2');?>" class="am-btn am-btn-primary am-radius">下一步</a>
+            <a href="<?= url('/install/step2');?>" class="am-btn am-btn-primary am-radius" {if
+               condition="$flag == false" }disabled{/if}>下一步</a>
         </p>
     </div>
 </div>

@@ -11,6 +11,7 @@
 
 
 namespace app\install\controller;
+
 use app\core\install\Install;
 
 /**
@@ -22,9 +23,8 @@ class Step2 extends InstallWizard {
      * @return \think\response\View
      */
     public function index() {
-        $info=Install::checkEnv();
-        if(!empty($info['checkno'])){
-            $this->redirect('/install/step1');
+        if (!Install::checkEnv()) {
+            $this->redirect(url('/install/step1'));
         }
         return view();
     }

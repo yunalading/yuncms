@@ -18,8 +18,6 @@ use app\core\install\check\BaseENVCheck;
  */
 class OsCheck extends BaseENVCheck {
     public $name = '操作系统';
-    public $min = '无限制';
-    public $best = 'Linux';
 
     /**
      * 查询电脑系统版本
