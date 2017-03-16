@@ -24,7 +24,7 @@ class Step3 extends InstallWizard {
      * @return \think\response\View
      */
     public function index() {
-        if (!Install::checkEnv() && !Install::checkMode()) {
+        if (!Install::checkEnv() || !Install::checkMode()) {
             $this->redirect(url('/install/step1'));
         }
         return view();

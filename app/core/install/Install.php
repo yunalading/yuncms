@@ -129,7 +129,7 @@ class Install {
      * @param $config
      */
     public static function saveConfig($config) {
-
+        
     }
 
     /**

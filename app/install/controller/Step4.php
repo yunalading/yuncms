@@ -27,11 +27,11 @@ class Step4 extends InstallWizard {
      * @return \think\response\View
      */
     public function index() {
+        if (!Install::checkEnv() || !Install::checkMode()) {
+            return $this->redirect(url('/install/step1'));
+        }
 
         $param = Install::checkStep3();
-        if ($param === false) {
-            return $this->redirect('/install/step3');
-        }
         $db = $param['db'];
         //验证数据库数据
         $db['__token__'] = $param['__token__'];
