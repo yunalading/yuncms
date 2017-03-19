@@ -12,9 +12,11 @@
 
 namespace app\install\controller;
 
+use app\core\install\FormValidateInterface;
 use app\core\install\Install;
 use app\core\db\DbHelp;
-use think\Config;
+use app\install\validate\AppValidate;
+use app\install\validate\DbValidate;
 use think\Cookie;
 use think\Validate;
 
@@ -22,16 +24,32 @@ use think\Validate;
  * Class Complete
  * @package app\install\controller
  */
-class Step4 extends InstallWizard {
+class Step4 extends InstallWizard implements FormValidateInterface {
     /**
      * @return \think\response\View
      */
     public function index() {
-        if (!Install::checkEnv() || !Install::checkMode() || !Install::checkConfig()) {
+        if (!Install::checkEnv() || !Install::checkMode() || !Install::checkConfig($this)) {
             return $this->redirect(url('/install/step1'));
         }
-
         return view();
+    }
+
+    /**
+     * 验证安装表单
+     * @return bool
+     */
+    public function validateForm() {
+        $dbValidate = new DbValidate();
+        $appValidate = new AppValidate();
+        $dbDate = $this->post['db'];
+        $appDate = $this->post['app'];
+        $flag = $dbValidate->check($dbDate, [], 'install') && $appValidate->check($appDate, [], 'install');
+        if ($flag) {
+            //保存安装表单
+            Install::saveConfig($this->post);
+        }
+        return $flag;
     }
 
     /**

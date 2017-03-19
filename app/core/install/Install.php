@@ -14,7 +14,6 @@ namespace app\core\install;
 use app\core\install\check\file\FileIsWriteCheck;
 use app\core\install\check\func\FunctionCheck;
 use think\Cookie;
-use think\Request;
 use think\Session;
 
 class Install {
@@ -129,7 +128,7 @@ class Install {
      * @param $config
      */
     public static function saveConfig($config) {
-        
+        Session::set('install-config', $config);
     }
 
     /**
@@ -141,19 +140,31 @@ class Install {
     }
 
     /**
-     * 测试安装配置
+     * 测试安装配置的数据库连接
      * @return bool
      */
     public static function testConfig() {
-
+        $config = self::getConfig();
+        $dbConfig = $config['db'];
+        $host = $dbConfig['hostname'];
+        $username = $dbConfig['username'];
+        $password = $dbConfig['password'];
+        $port = $dbConfig['hostport'];
+        //todo 数据库连接测试
+        exit();
         return true;
     }
 
     /**
-     * 检查配置信息
+     * 验证安装配置
+     * @param FormValidateInterface $validate
      * @return bool
      */
-    public static function checkConfig() {
-        return self::testConfig();
+    public static function checkConfig(FormValidateInterface $validate) {
+        if ($validate->validateForm()) {
+            return self::testConfig();
+        } else {
+            return false;
+        }
     }
 }

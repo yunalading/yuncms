@@ -73,19 +73,19 @@
                     </div>
                     <div class="am-form-group">
                         <label>管理员帐号<span>(请填写管理员账号)</span></label>
-                        <input type="text" class="am-form-field am-radius" placeholder="请填写管理员账号" value="" name="users[username]" required>
+                        <input type="text" class="am-form-field am-radius" placeholder="请填写管理员账号" value="" name="app[username]" required>
                     </div>
                     <div class="am-form-group">
                         <label>管理员密码<span>(请填写管理员密码不少于6个字符)</span></label>
-                        <input type="password" class="am-form-field am-radius" id="admin-pwd" value="" name="users[password]" placeholder="请填写管理员密码" required minlength="6">
+                        <input type="password" class="am-form-field am-radius" id="admin-pwd" value="" name="app[password]" placeholder="请填写管理员密码" required minlength="6">
                     </div>
                     <div class="am-form-group">
                         <label>确认密码<span>(请重新输入管理员密码)</span></label>
-                        <input type="password" class="am-form-field am-radius" placeholder="请重新输入管理员密码" value="" name="users[password2]" data-equal-to="#admin-pwd" required>
+                        <input type="password" class="am-form-field am-radius" placeholder="请重新输入管理员密码" value="" name="app[password2]" data-equal-to="#admin-pwd" required>
                     </div>
                     <div class="am-form-group">
                         <label>管理员邮箱<span>(请填写管理员邮箱)</span></label>
-                        <input type="email" class="am-form-field am-radius" placeholder="请填写管理员邮箱" value="" name="users[email]" required>
+                        <input type="email" class="am-form-field am-radius" placeholder="请填写管理员邮箱" value="" name="app[email]" required>
                     </div>
                 </fieldset>
                 {:token()}
