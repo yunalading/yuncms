@@ -27,94 +27,10 @@ class Step4 extends InstallWizard {
      * @return \think\response\View
      */
     public function index() {
-        if (!Install::checkEnv() || !Install::checkMode()) {
+        if (!Install::checkEnv() || !Install::checkMode() || !Install::checkConfig()) {
             return $this->redirect(url('/install/step1'));
         }
 
-        $param = Install::checkStep3();
-        $db = $param['db'];
-        //验证数据库数据
-        $db['__token__'] = $param['__token__'];
-        $rules = [
-            'hostname' => 'require|token',
-            'database' => 'require',
-            'username' => 'require',
-            'prefix' => 'require|min:2|max:10',
-        ];
-        $msg = [
-            'hostname.require' => '服务器主机必须填写',
-            'database.require' => '创建的数据库名称必须填写',
-            'username.require' => '数据库名称必须',
-            'prefix.require' => '数据库前缀必须填写',
-            'prefix.min' => '数据库前缀最少2个字符',
-            'prefix.max' => '数据库前缀最多10个字符',
-        ];
-        $validate = new Validate($rules, $msg);
-        if (!$validate->check($db)) {
-            $this->error($validate->getError());
-        }
-        unset($db['__token__']);
-        //验证网站数据
-        $param['app']['email'] = $param['users']['email'];
-        $validate = new Validate(
-            [
-                'site_name' => 'require',
-                'email' => 'email',
-            ],
-            [
-                'site_name.require' => '网站名称必须填写',
-                'email' => '管理员邮箱格式填写错误',
-            ]
-        );
-        if (!$validate->check($param['app'])) {
-            $this->error($validate->getError());
-        }
-        try {
-            $dbconfig = DbHelp::getDbConfig($db);
-            $coon = \think\Db::connect($dbconfig);
-            DbHelp::addDb($db['database'], $coon);
-        } catch (\PDOException $e) {
-            if (substr($e->getMessage(), 0, 39) == 'SQLSTATE[HY000] [1049] Unknown database') {
-                try {
-                    $dbname = $db['database'];
-                    $db['database'] = 'mysql';
-                    $dbconfig = DbHelp::getDbConfig($db);
-                    $coon = \think\Db::connect($dbconfig);
-                    DbHelp::addDb($dbname, $coon);
-                } catch (\PDOException $e) {
-                    $this->error("请检查数据库账号或密码是否输入有误!");
-                }
-            } else {
-                //$this->error("请检查数据库账号或密码是否输入有误!");
-                $this->error($e->getMessage());
-            }
-        }
-        //写入数据库配置
-        $dbconfig['database'] = $param['db']['database'];
-        $path_config = APP_PATH . 'database.php';
-        if (!is_writable($path_config)) {
-            $this->error("配置文件" . $path_config . "没有写入权限!");
-        }
-        //writeConfig($path_config,$dbconfig);
-        if (!writeConfig($path_config, $dbconfig)) {
-            $this->error("配置文件" . $path_config . "写入失败!");
-        }
-        //写入网站配置
-        $app_config = array_merge(Config::get('app'), $param['app']);
-        $path_app = APP_PATH . 'extra' . DS . 'app.php';
-        if (!is_writable($path_app)) {
-            $this->error("配置文件" . $path_app . "没有写入权限!");
-        }
-        if (!writeConfig($path_app, $app_config)) {
-            $this->error("配置文件" . $path_app . "写入失败!");
-        }
-        //写入用户信息
-        $users = $param['users'];
-        unset($users['con-password']);
-        $users['nickname'] = "超级管理员";
-        $users['password'] = md5(md5($users['password']));
-        $users['create_time'] = time();
-        $this->assign('users', json_encode($users));
         return view();
     }
 
