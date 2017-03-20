@@ -11,6 +11,8 @@
 
 namespace app\core\install;
 
+use app\core\db\helper\Mysql;
+use app\core\exception\Exception;
 use app\core\install\check\file\FileIsWriteCheck;
 use app\core\install\check\func\FunctionCheck;
 use think\Cookie;
@@ -146,13 +148,8 @@ class Install {
     public static function testConfig() {
         $config = self::getConfig();
         $dbConfig = $config['db'];
-        $host = $dbConfig['hostname'];
-        $username = $dbConfig['username'];
-        $password = $dbConfig['password'];
-        $port = $dbConfig['hostport'];
-        //todo 数据库连接测试
-        exit();
-        return true;
+        $mysqlDBHelper = new Mysql($dbConfig['hostname'], $dbConfig['username'], $dbConfig['password'], $dbConfig['hostport']);
+        return $mysqlDBHelper->connectionTest();
     }
 
     /**

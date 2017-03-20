@@ -29,9 +29,13 @@ class Step4 extends InstallWizard implements FormValidateInterface {
      * @return \think\response\View
      */
     public function index() {
-        if (!Install::checkEnv() || !Install::checkMode() || !Install::checkConfig($this)) {
+        if (!Install::checkEnv() || !Install::checkMode()) {
             return $this->redirect(url('/install/step1'));
         }
+        if (!Install::checkConfig($this)) {
+            $this->error('数据库连接失败!');
+        }
+        
         return view();
     }
 
