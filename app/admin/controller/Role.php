@@ -61,10 +61,9 @@ class Role extends AdminBaseController {
                 $this->success('操作成功!', url('/admin/role'));
             } catch (PDOException $e) {
                 Log::error($e);
-                print_r($e);
                 //角色名已存在
                 if ($e->getCode() == 10501) {
-                    //$this->error('角色已存在，操作失败');
+                    $this->error('角色已存在，操作失败');
                 }
             }
         } else {
