@@ -25,7 +25,7 @@ class Step3 extends InstallWizard {
      */
     public function index() {
         if (!Install::checkEnv() || !Install::checkMode()) {
-            $this->redirect(url('/install/step1'));
+            $this->error('请检查安装环境!', url('/install/step1'));
         }
         return view();
     }

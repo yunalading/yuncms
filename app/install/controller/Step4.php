@@ -13,94 +13,77 @@
 namespace app\install\controller;
 
 use app\core\install\Install;
-use app\core\db\DbHelp;
 use app\install\validate\InstallFormValidate;
-use think\Cookie;
-use think\Validate;
 
 /**
  * Class Complete
  * @package app\install\controller
  */
 class Step4 extends InstallWizard {
+
+    public function __construct() {
+        parent::__construct();
+        if (!$this->request->isPost()) {
+            $this->error('无效操作！');
+        }
+    }
+
     /**
      * @return \think\response\View
      */
     public function index() {
         if (!Install::checkEnv() || !Install::checkMode()) {
-            return $this->redirect(url('/install/step1'));
+            $this->error('请检查安装环境!', url('/install/step1'));
         }
         if (!Install::checkConfig(new InstallFormValidate($this->post))) {
             $this->error('数据库连接失败!');
         }
         if (Install::checkDatabaseExists()) {
-            $this->error('数据库已经存在!');
+            $this->error('数据库已经存在,不能进行安装!');
         }
-
         return view();
     }
 
     /**
      * 执行安装
-     * @return string
+     * @return array
      */
     public function setup() {
-        $param = Install::checkStep4();
-        if (!$param) {
-            $res['msg'] = "请先填写网站配置信息再执行安装!";
-            $res['url'] = '/install/step3';
-            $res['code'] = 2;
-            return $res;
+        $result = array();
+        if (!Install::checkEnv() || !Install::checkMode()) {
+            $result['code'] = -1;
+            $result['message'] = '请检查安装环境!';
+            return $result;
         }
-        $model = new InstallModel();
-        $user = json_decode($param['users']);
-        $user = object_array($user);//变成数组
-        $user['__token__'] = $param['__token__'];
-        $validate = new Validate(
-            [
-                'username' => 'require|min:5|token',
-                'password' => 'require',
-                'email' => 'email',
-            ],
-            [
-                'userame.require' => '名称必须',
-                'username.min' => '名称最少5个字符',
-                'password.require' => '管理员密码必须填写',
-                'email' => '邮箱格式错误',
-            ]
-        );
-        if (!$validate->check($user)) {
-            $res['code'] = 0;
-            $res['msg'] = $validate->getError();
-            return $res;
+        $config = Install::getConfig();
+        $config['__token__'] = $this->post['__token__'];
+        if (!Install::checkConfig(new InstallFormValidate($config))) {
+            $result['code'] = -1;
+            $result['message'] = '数据库连接失败!';
+            return $result;
         }
-        unset($user['__token__']);
-
-        //导入数据库[进度条]
-        $path_sql = ROOT_PATH . 'app' . DS . 'install' . DS . 'data' . DS . 'create.sql';
-        if (!DbHelp::sourceSql($path_sql)) {
-            $res['msg'] = "插入数据库文件" . $path_sql . "失败!";
-            $res['code'] = 0;
-            return $res;
+        if (Install::checkDatabaseExists()) {
+            $result['code'] = -1;
+            $result['message'] = '数据库已经存在,不能进行安装!';
+            return $result;
         }
+        //创建数据库
+        
+        //创建表结构 create.sql
 
-        //初始化数据
-        $path_sql = ROOT_PATH . 'app' . DS . 'install' . DS . 'data' . DS . 'init.sql';
-        DbHelp::sourceSql($path_sql);
+        //添加初始数据 init.sql
 
-        $install_mode = Cookie::has('install-mode') ? Cookie::get('install-mode') : 'default';
-        //演示数据
-        if ($install_mode == 'demo') {
-            $path_sql = ROOT_PATH . 'app' . DS . 'install' . DS . 'data' . DS . 'data.sql';
-            DbHelp::sourceSql($path_sql);
-        }
+        //修改配置文件
+        //app
+        //database
 
-        //插入用户数据
-        $model->insert($user);
+        //创建管理员账号
+
+        //演示数据 data.sql
+
+        //写入安装锁
         Install::writeInstallLock();
-        $res['msg'] = "安装数据成功!";
-        $res['code'] = 1;
-        return $res;
-        //return json_encode([]);
+        //返回安装成功信息
+        return array('code' => 1);
     }
 }

@@ -43,7 +43,7 @@ class Mysql extends DbHelper {
         return $this->connectionTest();
     }
 
-    public function createDatabase($database, $charset) {
+    public function createDatabase($database, $charset = 'utf8') {
         $this->connection()->query('CREATE DATABASE ' . $database . ' DEFAULT CHARSET ' . $charset);
         return $this->databaseExists($database);
     }

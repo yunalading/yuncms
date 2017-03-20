@@ -141,7 +141,11 @@ class Install {
         return Session::get('install-config');
     }
 
-    private static function getDbHelper() {
+    /**
+     * 获取数据库帮助类
+     * @return Mysql
+     */
+    public static function getDbHelper() {
         $config = self::getConfig();
         $dbConfig = $config['db'];
         return new Mysql($dbConfig['hostname'], $dbConfig['username'], $dbConfig['password'], $dbConfig['hostport']);
