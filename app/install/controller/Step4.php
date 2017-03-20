@@ -13,6 +13,7 @@
 namespace app\install\controller;
 
 use app\core\install\Install;
+use app\install\model\UserModel;
 use app\install\validate\InstallFormValidate;
 
 /**
@@ -68,19 +69,18 @@ class Step4 extends InstallWizard {
             return $result;
         }
         //创建数据库
-        
-        //创建表结构 create.sql
-
-        //添加初始数据 init.sql
-
-        //修改配置文件
-        //app
-        //database
-
-        //创建管理员账号
-
-        //演示数据 data.sql
-
+        Install::createDabase();
+        //创建表结构
+        Install::createTables();
+        //添加初始数据
+        Install::initData();
+        //保存配置文件
+        Install::writeConfig();
+        //配置管理员账号
+        $userModel = UserModel::get(1);
+        $userModel->save(['username' => $config['app']['username'], 'password' => $userModel->createPassWord($config['app']['password'])]);
+        //演示数据
+        Install::initDemo();
         //写入安装锁
         Install::writeInstallLock();
         //返回安装成功信息

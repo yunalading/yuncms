@@ -12,7 +12,6 @@
 namespace app\core\install;
 
 use app\core\db\helper\Mysql;
-use app\core\exception\Exception;
 use app\core\install\check\file\FileIsWriteCheck;
 use app\core\install\check\func\FunctionCheck;
 use think\Cookie;
@@ -178,5 +177,68 @@ class Install {
      */
     public static function checkDatabaseExists() {
         return self::getDbHelper()->databaseExists(self::getConfig()['db']['database']);
+    }
+
+    /**
+     * 创建数据库
+     * @return bool
+     */
+    public static function createDabase() {
+        return self::getDbHelper()->createDatabase(self::getConfig()['db']['database']);
+    }
+
+    /**
+     * 处理表前缀
+     * @param string $sql
+     * @return string
+     */
+    private static function tablePrefix($sql = '') {
+        return str_replace('yc_', self::getConfig()['db']['prefix'], $sql);
+    }
+
+    /**
+     * 创建数据表
+     * @return int
+     */
+    public static function createTables() {
+        $dbHelper = self::getDbHelper();
+        $dbHelper->setDatabase(self::getConfig()['db']['database']);
+        $sql = file_get_contents(APP_PATH . 'install' . DS . 'data' . DS . 'create.sql');
+        return $dbHelper->exeSQL(self::tablePrefix($sql));
+    }
+
+    /**
+     * 初始化数据
+     * @return int
+     */
+    public static function initData() {
+        $dbHelper = self::getDbHelper();
+        $dbHelper->setDatabase(self::getConfig()['db']['database']);
+        $sql = file_get_contents(APP_PATH . 'install' . DS . 'data' . DS . 'init.sql');
+        return $dbHelper->exeSQL(self::tablePrefix($sql));
+    }
+
+    /**
+     * 保存配置文件
+     */
+    public static function writeConfig() {
+        $db = config('database');
+        $newConfig = array_merge($db, self::getConfig()['db']);
+        writeConfig(APP_PATH . 'database.php', APP_PATH . 'sample' . DS . 'database.php', $newConfig);
+        $app = config('app');
+        $newApp = array_merge($app, self::getConfig()['app']);
+        writeConfig(APP_PATH . 'extra' . DS . 'app.php', APP_PATH . 'sample' . DS . 'app.php', $newApp);
+    }
+
+    /**
+     * 导入演示数据
+     */
+    public static function initDemo() {
+        if (self::getMode() != 'default') {
+            $dbHelper = self::getDbHelper();
+            $dbHelper->setDatabase(self::getConfig()['db']['database']);
+            $sql = file_get_contents(APP_PATH . 'install' . DS . 'data' . DS . 'data.sql');
+            return $dbHelper->exeSQL(self::tablePrefix($sql));
+        }
     }
 }

@@ -11,6 +11,8 @@
 
 namespace app\install\controller;
 
+use app\core\install\Install;
+
 /**
  * Class Index
  * @package app\install\controller

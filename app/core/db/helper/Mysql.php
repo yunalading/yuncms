@@ -54,6 +54,6 @@ class Mysql extends DbHelper {
     }
 
     public function exeSQL($sql) {
-        return $this->connection()->execute($sql);
+        return $this->connection()->batchQuery(array_filter(explode(';', $sql)));
     }
 }

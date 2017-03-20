@@ -13,35 +13,26 @@
 
 /**
  * 写入配置文件
+ * @param $save_path 保存路径
+ * @param $tpl_path 模板路径
+ * @param array $config 新的配置数据
  */
-function writeConfig($config_path,$new_config = array(),$tpl_path='') {
-    if (!empty($new_config)) {
-        if(file_exists($tpl_path)){
-            $conf = file_get_contents($tpl_path);
-        }else{
-            $path_array = explode(DS,$config_path);
-            $tpl_name = end($path_array);
-            //读取配置内容
-            $conf = file_get_contents(APP_PATH.'sample'.DS.$tpl_name);//默认存放模板路径
-        }
-        //替换配置项
-        foreach ($new_config as $name => $value) {
-            if(is_array($value)){
-                $value = json_encode($value);
+function writeConfig($save_path, $tpl_path, $config = array()) {
+    if (!empty($config)) {
+        if (file_exists($tpl_path)) {
+            $tpl = file_get_contents($tpl_path);
+            foreach ($config as $key => $value) {
+                if (is_array($value)) {
+                    $value = json_encode($value);
+                }
+                $tpl = str_replace("[{$key}]", $value, $tpl);
             }
-            $conf = str_replace("[{$name}]", $value, $conf);
-        }
-        //写入应用配置文件
-        if (file_put_contents($config_path, $conf)) {
-            return true;
-        } else {
-            return false;
+            file_put_contents($save_path, $tpl);
         }
     }
-
 }
 
-/*
+/**
  * PHP 的字节格式化函数：byteFormat
  * echo byteFormat(1073741824, "B", 0) . "\n";
  * echo byteFormat(1073741824, "KB", 0) . "\n";
@@ -49,58 +40,25 @@ function writeConfig($config_path,$new_config = array(),$tpl_path='') {
  * echo byteFormat(1073741824) . "\n";
  * echo byteFormat(1073741824, "TB", 10) . "\n";
  * echo byteFormat(1099511627776, "PB", 6) . "\n";
+ * @param $bytes
+ * @param string $unit
+ * @param int $decimals
+ * @return string
  */
 function byteFormat($bytes, $unit = "", $decimals = 2) {
     $units = array('B' => 0, 'KB' => 1, 'MB' => 2, 'GB' => 3, 'TB' => 4, 'PB' => 5, 'EB' => 6, 'ZB' => 7, 'YB' => 8);
-
     $value = 0;
     if ($bytes > 0) {
         if (!array_key_exists($unit, $units)) {
-            $pow = floor(log($bytes)/log(1024));
+            $pow = floor(log($bytes) / log(1024));
             $unit = array_search($pow, $units);
         }
 
-        $value = ($bytes/pow(1024,floor($units[$unit])));
+        $value = ($bytes / pow(1024, floor($units[$unit])));
     }
 
     if (!is_numeric($decimals) || $decimals < 0) {
         $decimals = 2;
     }
-
-    return sprintf('%.'.$decimals.'f'.$unit, $value);
-}
-
-
-/**
- * 判断变量的类型
- */
-function returnType($param){
-    if(is_object($param)){
-        return 'object';
-    }
-    if(is_array($param)){
-        return 'array';
-    }
-    if(is_string($param)){
-        return 'string';
-    }
-    if(is_bool($param)){
-        return 'bool';
-    }
-    return 'unknow';
-}
-
-/*
- * 对象转数组
- */
-function object_array($array) {
-    if(is_object($array)) {
-        $array = (array)$array;
-    }
-    if(is_array($array)) {
-        foreach($array as $key=>$value) {
-            $array[$key] = object_array($value);
-        }
-    }
-    return $array;
+    return sprintf('%.' . $decimals . 'f' . $unit, $value);
 }
