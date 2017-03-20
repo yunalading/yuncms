@@ -18,12 +18,6 @@ use think\Cookie;
 use think\Session;
 
 class Install {
-    /**
-     * 1.检查环境
-     * 2.选择安装方式
-     * 3.填写配置信息(1.数据库，2网站)
-     * 4.执行安装
-     */
 
     /**
      * 检查是否安装
