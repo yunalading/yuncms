@@ -32,4 +32,12 @@ class System extends AdminBaseController {
     public function general() {
         return view();
     }
+
+    /**
+     * 清空缓存
+     * @return \think\response\View
+     */
+    public function clear() {
+        return view();
+    }
 }
