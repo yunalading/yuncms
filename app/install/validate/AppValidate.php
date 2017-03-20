@@ -12,11 +12,13 @@
 
 namespace app\install\validate;
 
+use app\common\validate\BaseValidate;
+
 /**
  * Class SiteValidate
  * @package app\install\validate
  */
-class AppValidate extends InstallValidate {
+class AppValidate extends BaseValidate {
     protected $rule = [
         'site_name' => 'require',
         'username' => 'require',

@@ -141,15 +141,18 @@ class Install {
         return Session::get('install-config');
     }
 
+    private static function getDbHelper() {
+        $config = self::getConfig();
+        $dbConfig = $config['db'];
+        return new Mysql($dbConfig['hostname'], $dbConfig['username'], $dbConfig['password'], $dbConfig['hostport']);
+    }
+
     /**
      * 测试安装配置的数据库连接
      * @return bool
      */
     public static function testConfig() {
-        $config = self::getConfig();
-        $dbConfig = $config['db'];
-        $mysqlDBHelper = new Mysql($dbConfig['hostname'], $dbConfig['username'], $dbConfig['password'], $dbConfig['hostport']);
-        return $mysqlDBHelper->connectionTest();
+        return self::getDbHelper()->connectionTest();
     }
 
     /**
@@ -163,5 +166,13 @@ class Install {
         } else {
             return false;
         }
+    }
+
+    /**
+     * 验证数据库是否存在
+     * @return bool
+     */
+    public static function checkDatabaseExists() {
+        return self::getDbHelper()->databaseExists(self::getConfig()['db']['database']);
     }
 }

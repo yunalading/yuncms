@@ -12,11 +12,9 @@
 
 namespace app\install\controller;
 
-use app\core\install\FormValidateInterface;
 use app\core\install\Install;
 use app\core\db\DbHelp;
-use app\install\validate\AppValidate;
-use app\install\validate\DbValidate;
+use app\install\validate\InstallFormValidate;
 use think\Cookie;
 use think\Validate;
 
@@ -24,7 +22,7 @@ use think\Validate;
  * Class Complete
  * @package app\install\controller
  */
-class Step4 extends InstallWizard implements FormValidateInterface {
+class Step4 extends InstallWizard {
     /**
      * @return \think\response\View
      */
@@ -32,28 +30,14 @@ class Step4 extends InstallWizard implements FormValidateInterface {
         if (!Install::checkEnv() || !Install::checkMode()) {
             return $this->redirect(url('/install/step1'));
         }
-        if (!Install::checkConfig($this)) {
+        if (!Install::checkConfig(new InstallFormValidate($this->post))) {
             $this->error('数据库连接失败!');
         }
-        
-        return view();
-    }
-
-    /**
-     * 验证安装表单
-     * @return bool
-     */
-    public function validateForm() {
-        $dbValidate = new DbValidate();
-        $appValidate = new AppValidate();
-        $dbDate = $this->post['db'];
-        $appDate = $this->post['app'];
-        $flag = $dbValidate->check($dbDate, [], 'install') && $appValidate->check($appDate, [], 'install');
-        if ($flag) {
-            //保存安装表单
-            Install::saveConfig($this->post);
+        if (Install::checkDatabaseExists()) {
+            $this->error('数据库已经存在!');
         }
-        return $flag;
+
+        return view();
     }
 
     /**

@@ -39,12 +39,8 @@ class Mysql extends DbHelper {
     }
 
     public function databaseExists($database) {
-        try {
-            $this->database = $database;
-            return $this->connectionTest();
-        } catch (\PDOException $e) {
-            return false;
-        }
+        $this->database = $database;
+        return $this->connectionTest();
     }
 
     public function createDatabase($database, $charset) {

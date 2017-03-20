@@ -12,11 +12,13 @@
 
 namespace app\install\validate;
 
+use app\common\validate\BaseValidate;
+
 /**
  * Class DbValidate
  * @package app\install\validate
  */
-class DbValidate extends InstallValidate {
+class DbValidate extends BaseValidate {
     protected $rule = [
         'hostname' => 'require',
         'database' => 'require',
