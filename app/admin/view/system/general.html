@@ -1,5 +1,52 @@
 {include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
-<div class="am-container">
-
+<div class="content-page">
+    <div class="am-container">
+        <div class="page-title"><h1 class="am-inline">网站信息</h1></div>
+        <form class="am-form edit-form" method="post" data-am-validator>
+            <div class="am-form-group">
+                <div>
+                    <select data-am-selected placeholder="请选择主题" required>
+                        <option></option>
+                        <option value="default">default</option>
+                    </select>
+                </div>
+            </div>
+            <div class="am-form-group">
+                <label>网站名称</label>
+                <input type="email">
+            </div>
+            <div class="am-form-group">
+                <label>用户名<span>(请填写用户名)</span></label>
+                <input type="email" required>
+            </div>
+            <div class="am-form-group">
+                <label>密码<span>(请填写密码)</span></label>
+                <input type="password" id="password" name="user[password]" required minlength="6">
+            </div>
+            <div class="am-form-group">
+                <label>确认密码<span>(请填写确认密码)</span></label>
+                <input type="password" name="user[password2]" required data-equal-to="#password">
+            </div>
+            <div class="am-form-group">
+                <label>邮箱</label>
+                <input type="email">
+            </div>
+            <div class="am-form-group">
+                <label>手机</label>
+                <input type="email">
+            </div>
+            <div class="am-form-group">
+                <label>QQ</label>
+                <input type="email">
+            </div>
+            <div class="am-form-group">
+                <label>状态</label>
+                <div><input type="checkbox" data-am-switch data-size="xs" data-on-text="关闭" data-off-text="开启"></div>
+            </div>
+            <div class="am-form-group">
+                <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
+            </div>
+        </form>
+    </div>
 </div>
 {include file="footer" /}
