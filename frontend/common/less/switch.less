@@ -1,0 +1,182 @@
+@switch-base: am-switch;
+@switch-radius: 1px;
+
+.@{switch-base} {
+    display: inline-block;
+    direction: ltr;
+    cursor: pointer;
+    border-radius: @switch-radius;
+    border: 1px solid;
+    border-color: @btn-default-border;
+    position: relative;
+    text-align: left;
+    overflow: hidden;
+    line-height: 8px;
+    z-index: 0;
+    user-select: none;
+    vertical-align: middle;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+
+    .@{switch-base}-container {
+        display: inline-block;
+        top: 0;
+        border-radius: @switch-radius;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .@{switch-base}-handle-on,
+    .@{switch-base}-handle-off,
+    .@{switch-base}-label {
+        box-sizing: border-box;
+        cursor: pointer;
+        display: inline-block !important;
+        height: 100%;
+        padding: 0.625em 0.875em;
+        font-size: @btn-font-size;
+        line-height: @btn-line-height;
+    }
+
+    .@{switch-base}-handle-on,
+    .@{switch-base}-handle-off {
+        text-align: center;
+        z-index: 1;
+
+        &.@{switch-base}-primary {
+            color: #fff;
+            background: @btn-primary-bg;
+        }
+
+        &.@{switch-base}-secondary {
+            color: #fff;
+            background: @btn-secondary-bg;
+        }
+
+        &.@{switch-base}-success {
+            color: #fff;
+            background: @btn-success-bg;
+        }
+
+        &.@{switch-base}-warning {
+            background: @btn-warning-bg;
+            color: #fff;
+        }
+
+        &.@{switch-base}-danger {
+            color: #fff;
+            background: @btn-danger-bg;
+        }
+
+        &.@{switch-base}-default {
+            color: #000;
+            background: @gray-lighter;
+        }
+    }
+
+    .@{switch-base}-label {
+        text-align: center;
+        margin-top: -1px;
+        margin-bottom: -1px;
+        z-index: 100;
+        color: @btn-default-color;
+        background: #fff;
+    }
+
+    .@{switch-base}-handle-on {
+        .border-left-radius(@switch-radius - 1);
+    }
+
+    .@{switch-base}-handle-off {
+        .border-right-radius(@switch-radius - 1);
+    }
+
+    input[type='radio'],
+    input[type='checkbox'] {
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        z-index: -1;
+
+        &.form-control {
+            height: auto;
+        }
+    }
+
+    // size
+    &.@{switch-base}-xs {
+        .@{switch-base}-handle-on,
+        .@{switch-base}-handle-off,
+        .@{switch-base}-label {
+            font-size: @font-size-xs;
+        }
+    }
+
+    &.@{switch-base}-sm {
+        .@{switch-base}-handle-on,
+        .@{switch-base}-handle-off,
+        .@{switch-base}-label {
+            font-size: @font-size-sm;
+        }
+    }
+
+    &.@{switch-base}-lg {
+        .@{switch-base}-handle-on,
+        .@{switch-base}-handle-off,
+        .@{switch-base}-label {
+            font-size: @font-size-lg;
+        }
+    }
+
+    &.@{switch-base}-disabled,
+    &.@{switch-base}-readonly,
+    &.@{switch-base}-indeterminate {
+        cursor: default !important;
+
+        .@{switch-base}-handle-on,
+        .@{switch-base}-handle-off,
+        .@{switch-base}-label {
+            opacity: .5;
+            cursor: default !important;
+        }
+    }
+
+    &.@{switch-base}-animate {
+        .@{switch-base}-container {
+            transition: margin-left .5s;
+        }
+    }
+
+    &.@{switch-base}-inverse {
+        .@{switch-base}-handle-on {
+            .border-left-radius(0);
+            .border-right-radius(@switch-radius - 1);
+        }
+
+        .@{switch-base}-handle-off {
+            .border-right-radius(0);
+            .border-left-radius(@switch-radius - 1);
+        }
+    }
+
+    &.@{switch-base}-focused {
+        @color-rgba: rgba(red(@input-border-focus), green(@input-border-focus), blue(@input-border-focus), .6);
+        border-color: @input-border-focus;
+        outline: 0;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px @color-rgba;
+    }
+
+    &.@{switch-base}-on,
+    &.@{switch-base}-inverse.@{switch-base}-off {
+        .@{switch-base}-label {
+            .border-right-radius(@switch-radius - 1);
+        }
+    }
+
+    &.@{switch-base}-off,
+    &.@{switch-base}-inverse.@{switch-base}-on {
+
+        .@{switch-base}-label {
+            .border-left-radius(@switch-radius - 1);
+        }
+    }
+}

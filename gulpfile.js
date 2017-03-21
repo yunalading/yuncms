@@ -164,8 +164,11 @@ gulp.task('copy:handlebars', function () {
 gulp.task('copy:amazeui', function () {
     gulp.src('./node_modules/amazeui/dist/**/*').pipe(gulp.dest('./public/static/common/amazeui'));
 });
+gulp.task('copy:amazeui-switch', function () {
+    gulp.src('./node_modules/amazeui-switch/*.js').pipe(gulp.dest('./public/static/common/amazeui-switch/js'));
+});
 
-gulp.task('copy:common', ['copy:jquery', 'copy:handlebars', 'copy:amazeui']);
+gulp.task('copy:common', ['copy:jquery', 'copy:handlebars', 'copy:amazeui', 'copy:amazeui-switch']);
 
 gulp.task('build', ['build:core-js', 'build:admin-js', 'build:home-js', 'build:install-js', 'build:core-less', 'build:admin-less', 'build:home-less', 'build:install-less']);
 
