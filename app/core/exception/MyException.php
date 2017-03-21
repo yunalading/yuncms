@@ -12,6 +12,6 @@
 
 namespace app\core\exception;
 
-class Exception extends \think\Exception {
+class MyException extends \think\Exception {
 
 }
