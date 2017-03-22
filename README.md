@@ -75,4 +75,5 @@ YunCMS遵循Apache2开源协议发布。Apache Licence是著名的非盈利开�
 - XunSearch
 
 # 联系方式
+- 官方网站：http://www.yunalading.com
 - QQ交流群：340078051
