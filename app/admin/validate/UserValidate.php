@@ -20,10 +20,16 @@ use app\common\validate\BaseUserValidate;
  */
 class UserValidate extends BaseUserValidate {
     protected $scene = [
-        'index' => [
+        'login' => [
             'username',
             'password',
             'captcha',
+        ],
+        'update' => [
+            'username' => 'require|token',
+            'role_id' => 'require|integer',
+            'password' => 'require|min:6',
+            'password2' => 'require|confirm:password',
         ]
     ];
 }

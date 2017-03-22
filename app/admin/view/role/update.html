@@ -82,9 +82,9 @@
     </div>
 </div>
 {include file="footer" /}
-{notempty name='$access'}
+{notempty name='$role'}
 <script type="text/javascript">
-    var access = {$access};
+    var access = {$role.access|json_encode};
     function checkDefaultAccess(url) {
         for (var i in access) {
             if (access[i].access == url) {
