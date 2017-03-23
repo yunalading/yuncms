@@ -8,18 +8,18 @@
                     <select data-am-selected name="user[role_id]" placeholder="请选择角色" required>
                         <option></option>
                         {volist name='role_list' id='role'}
-                            <option value="{$role.role_id}">{$role.role_name}</option>
+                            <option value="{$role.role_id}" {notempty name="user"}{if condition="$role.role_id == $user.role.role_id"}selected{/if}{/notempty}>{$role.role_name}</option>
                         {/volist}
                     </select>
                 </div>
             </div>
             <div class="am-form-group">
                 <label>昵称</label>
-                <input type="text" name="user[nickname]" placeholder="请输入昵称">
+                <input type="text" name="user[nickname]" placeholder="请输入昵称" {notempty name="user"}value="{$user.nickname}"{/notempty}>
             </div>
             <div class="am-form-group">
                 <label>用户名<span>(请填写用户名)</span></label>
-                <input type="text" name="user[username]" required placeholder="请输入用户名">
+                <input type="text" name="user[username]" required placeholder="请输入用户名" {notempty name="user"}value="{$user.username}"{/notempty}>
             </div>
             <div class="am-form-group">
                 <label>密码<span>(请填写密码)</span></label>
@@ -31,23 +31,24 @@
             </div>
             <div class="am-form-group">
                 <label>邮箱</label>
-                <input type="email" name="user[email]" placeholder="请输入邮箱地址">
+                <input type="email" name="user[email]" placeholder="请输入邮箱地址" {notempty name="user"}value="{$user.email}"{/notempty}>
             </div>
             <div class="am-form-group">
                 <label>手机</label>
-                <input type="text" name="user[phone]" placeholder="请输入手机号">
+                <input type="text" name="user[phone]" placeholder="请输入手机号" {notempty name="user"}value="{$user.phone}"{/notempty}>
             </div>
             <div class="am-form-group">
                 <label>QQ</label>
-                <input type="text" name="user[qq]" placeholder="请输入QQ号">
+                <input type="text" name="user[qq]" placeholder="请输入QQ号" {notempty name="user"}value="{$user.qq}"{/notempty}>
             </div>
             <div class="am-form-group">
                 <label>状态</label>
-                <div><input type="checkbox" name="user[state]" value="1" data-am-switch data-size="xs" data-on-text="停用" data-off-text="启用"></div>
+                <div><input type="checkbox" name="user[state]" value="1" data-am-switch data-size="xs" data-on-text="停用" data-off-text="启用" {notempty name="user"}{$user.state? 'checked' : '' }{/notempty}></div>
             </div>
             <div class="am-form-group">
                 <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
             </div>
+            <input type="hidden" name="user[user_id]" value="{notempty name='user'}{$user.user_id}{/notempty}">
             {:token()}
         </form>
     </div>

@@ -9,7 +9,7 @@
                     <input type="text" name="role[role_name]"
                            value="{notempty name='$role'}{$role.role_name}{/notempty}" class="am-form-field"
                            placeholder="请填写角色名称" required>
-                    <input type="hidden" name="role[role_id]" value="{notempty name='$role'}{$role.role_id}{/notempty}">
+                    <input type="hidden" name="role[role_id]" value="{notempty name='role'}{$role.role_id}{/notempty}">
                     <input type="submit" class="am-btn am-btn-primary" value="提交">
                 </div>
             </div>
@@ -82,7 +82,7 @@
     </div>
 </div>
 {include file="footer" /}
-{notempty name='$role'}
+{notempty name='role'}
 <script type="text/javascript">
     var access = {$role.access|json_encode};
     function checkDefaultAccess(url) {
