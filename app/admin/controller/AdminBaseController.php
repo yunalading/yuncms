@@ -40,6 +40,7 @@ abstract class AdminBaseController extends BaseController {
             Log::debug('验证是否登录');
             if (BaseUserModel::isLogin()) {
                 //验证权限
+                Log::debug('验证验证权限');
                 
             } else {
                 //去登录
