@@ -387,6 +387,6 @@
 |link_logo|varchar(255)| |是| | |链接图标|
 |link_href|varchar(255)| | | | |链接地址|
 |link_target|varchar(50)| |是| | |打开方式|
-|link_is_home|int| |是| | |是否是首页|
+|link_is_home|int| |是|0| |是否是首页|
 |link_sort|int| |是|0| |排序编号|
 |create_time|int| | | | |创建时间|

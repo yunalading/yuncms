@@ -10,25 +10,15 @@
 // +----------------------------------------------------------------------
 
 
-namespace app\admin\controller;
+namespace app\admin\model;
 
-use app\admin\model\LinkModel;
+
+use app\common\model\BaseLinkModel;
 
 /**
- * Class Links
- * @package app\admin\controller
+ * Class LinkModel
+ * @package app\admin\model
  */
-class Links extends AdminBaseController {
-    /**
-     * 友情链接列表
-     * @return \think\response\View
-     */
-    public function index() {
-        $linkModel = new LinkModel();
-        $list = $linkModel->paginate();
-        $page = $list->render();
-        $this->assign('list', $list);
-        $this->assign('page', $page);
-        return view();
-    }
+class LinkModel extends BaseLinkModel {
+
 }

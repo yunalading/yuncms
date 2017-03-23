@@ -1,3 +1,4 @@
+
 create table yc_ad_code
 (
    ad_code_key          varchar(100) not null comment '代码广告标识',
@@ -203,7 +204,7 @@ create table yc_links
    link_logo            varchar(255) comment '链接图标',
    link_href            varchar(255) not null comment '链接地址',
    link_target          varchar(50) comment '打开方式',
-   link_is_home         int comment '是否是首页',
+   link_is_home         int default 0 comment '是否是首页',
    link_sort            int default 0 comment '排序编号',
    create_time          int not null comment '创建时间',
    primary key (link_id)

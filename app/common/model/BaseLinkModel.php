@@ -16,4 +16,5 @@ namespace app\common\model;
  */
 abstract class BaseLinkModel extends BaseModel {
     protected $name = 'links';
+    protected $auto = ['create_time'];
 }
