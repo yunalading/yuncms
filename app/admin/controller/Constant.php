@@ -31,6 +31,10 @@ class Constant extends AdminBaseController {
         return view();
     }
 
+    /**
+     * 添加或更改常量
+     * @return \think\response\View
+     */
     public function update() {
         $action_name = '添加';
         $list = config('custom');
@@ -62,6 +66,9 @@ class Constant extends AdminBaseController {
         return view();
     }
 
+    /**
+     * 删除常量
+     */
     public function remove() {
         $key = $this->param['key'];
         $list = config('custom');
