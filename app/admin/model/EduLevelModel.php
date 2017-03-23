@@ -10,22 +10,11 @@
 // +----------------------------------------------------------------------
 
 
-namespace app\admin\controller;
+namespace app\admin\model;
 
-use app\admin\model\EduLevelModel;
 
-/**
- * Class Edu
- * @package app\admin\controller
- */
-class Edu extends AdminBaseController {
+use app\common\model\BaseEduLevelModel;
 
-    public function index() {
-        $eduLevelModel = new EduLevelModel();
-        $list = $eduLevelModel->paginate();
-        $page = $list->render();
-        $this->assign('list', $list);
-        $this->assign('page', $page);
-        return view();
-    }
+class EduLevelModel extends BaseEduLevelModel {
+
 }
