@@ -1,0 +1,34 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<div class="content-page">
+    <div class="am-container">
+        <div class="page-title"><h1 class="am-inline">常量列表</h1>
+            <a href="<?= URL('/admin/constant/update');?>" class="am-btn am-btn-primary am-btn-xs am-radius">
+                <i class="am-icon am-icon-edit"></i>添加常量
+            </a>
+        </div>
+        <table class="am-table">
+            <thead>
+            <tr>
+                <th>常量名</th>
+                <th>常量值</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {foreach $list as $key=>$value}
+            <tr>
+                <td>{$key}</td>
+                <td>{$value}</td>
+                <td>
+                    <div class="am-btn-group am-btn-group-xs">
+                        <a href="<?= URL('/admin/constant/update',array('key'=>$key));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
+                        <a href="<?= URL('/admin/constant/remove',array('key'=>$key));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                    </div>
+                </td>
+            </tr>
+            {/foreach}
+            </tbody>
+        </table>
+    </div>
+</div>
+{include file="footer" /}
