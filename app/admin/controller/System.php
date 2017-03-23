@@ -12,6 +12,8 @@
 
 namespace app\admin\controller;
 
+use think\Cache;
+
 /**
  * Class System
  * @package app\admin\controller
@@ -30,6 +32,9 @@ class System extends AdminBaseController {
      * @return \think\response\View
      */
     public function general() {
+        if ($this->request->isPost()) {
+
+        }
         return view();
     }
 
@@ -38,6 +43,7 @@ class System extends AdminBaseController {
      * @return \think\response\View
      */
     public function clear() {
-        return view();
+        Cache::clear();
+        $this->success('操作成功!', url('/admin/system'));
     }
 }
