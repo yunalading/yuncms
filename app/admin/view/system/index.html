@@ -14,27 +14,11 @@
                     <tr>
                         <td>ThinkPHP版本</td><td>V<?= THINK_VERSION?></td>
                     </tr>
+                    {volist name='envs' id='env'}
                     <tr>
-                        <td>服务器操作系统</td><td>Linux</td>
+                        <td>{$env->name}</td><td>{$env->current}</td>
                     </tr>
-                    <tr>
-                        <td>Web环境</td><td>Apache/2.4.23(Unix)</td>
-                    </tr>
-                    <tr>
-                        <td>PHP版本</td><td>v5.6.28</td>
-                    </tr>
-                    <tr>
-                        <td>GD版本</td><td>v2.0</td>
-                    </tr>
-                    <tr>
-                        <td>MYSQL版本</td><td>v10.1.16-MariaDB</td>
-                    </tr>
-                    <tr>
-                        <td>上传限制</td><td>128M</td>
-                    </tr>
-                    <tr>
-                        <td>磁盘空间</td><td>500GB</td>
-                    </tr>
+                    {/volist}
                 </table>
             </div>
         </div>

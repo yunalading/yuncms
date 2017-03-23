@@ -14,6 +14,7 @@ namespace app\admin\controller;
 
 use app\admin\validate\AppValidate;
 use think\Cache;
+use think\Request;
 
 /**
  * Class System
@@ -25,7 +26,21 @@ class System extends AdminBaseController {
      * @return \think\response\View
      */
     public function index() {
-
+        $env = config('require.env');
+        $env[] = [
+            'name' => 'server',
+            'class' => '\app\core\check\env\ServerCheck'
+        ];
+        $env[] = [
+            'name' => 'mysql',
+            'class' => '\app\core\check\env\MySqlCheck'
+        ];
+        $envs = array();
+        foreach ($env as $key => $value) {
+            $en = new $value['class']();
+            $envs[] = $en;
+        }
+        $this->assign('envs', $envs);
         return view();
     }
 
