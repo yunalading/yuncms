@@ -14,7 +14,6 @@ namespace app\admin\controller;
 
 use app\admin\validate\AppValidate;
 use think\Cache;
-use think\Request;
 
 /**
  * Class System
