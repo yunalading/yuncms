@@ -19,7 +19,10 @@ use app\admin\model\EduLevelModel;
  * @package app\admin\controller
  */
 class Edu extends AdminBaseController {
-
+    /**
+     * 文化程度列表
+     * @return \think\response\View
+     */
     public function index() {
         $eduLevelModel = new EduLevelModel();
         $list = $eduLevelModel->paginate();
