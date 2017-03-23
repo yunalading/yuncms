@@ -29,10 +29,10 @@ abstract class BaseUserModel extends BaseModel {
      * @param $password 密码
      * @return mixed
      */
-    public function login($username, $password) {
-        $user = $this->find([
+    public static function login($username, $password) {
+        $user = self::find([
             'username' => $username,
-            'password' => $this->createPassWord($password)
+            'password' => self::createPassWord($password)
         ]);
         Session::set('user', $user);
         return $user;
@@ -42,7 +42,7 @@ abstract class BaseUserModel extends BaseModel {
      * 退出
      * @return bool
      */
-    public function logout() {
+    public static function logout() {
         Session::delete('user');
         return true;
     }
@@ -51,7 +51,7 @@ abstract class BaseUserModel extends BaseModel {
      * 是否登录
      * @return bool
      */
-    public function isLogin() {
+    public static function isLogin() {
         return Session::has('user');
     }
 
@@ -59,7 +59,7 @@ abstract class BaseUserModel extends BaseModel {
      * 获取当前登录的用户信息
      * @return mixed
      */
-    public function currentUser() {
+    public static function currentUser() {
         return Session::get('user');
     }
 

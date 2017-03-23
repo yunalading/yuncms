@@ -185,8 +185,7 @@ class User extends AdminBaseController {
      * 退出
      */
     public function logout() {
-        $userModel = new UserModel();
-        if ($userModel->logout()) {
+        if (UserModel::logout()) {
             $this->success('退出成功', url('/admin'));
         }
     }

@@ -13,7 +13,7 @@
 namespace app\admin\controller;
 
 use app\common\controller\BaseController;
-use think\Config;
+use app\common\model\BaseUserModel;
 use think\Log;
 
 /**
@@ -38,7 +38,13 @@ abstract class AdminBaseController extends BaseController {
         if (!in_array($this->request->action(), $this->allow_actions)) {
             //验证是否登录
             Log::debug('验证是否登录');
-
+            if (BaseUserModel::isLogin()) {
+                //验证权限
+                
+            } else {
+                //去登录
+                $this->redirect(url('/admin/user/login'));
+            }
         }
     }
 
