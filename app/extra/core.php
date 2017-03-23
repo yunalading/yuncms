@@ -20,5 +20,20 @@ define('APP_SITE', 'http://www.yunalading.com');
 //数据库配置文件
 \think\Config::parse(APP_PATH . 'extra' . DS . 'database.json', 'json', 'database');
 
+//应用配置文件
+\think\Config::parse(APP_PATH . 'extra' . DS . 'app.json', 'json', 'app');
+
+//oauth配置文件
+\think\Config::parse(APP_PATH . 'extra' . DS . 'oauth.json', 'json', 'oauth');
+
+//SES配置文件
+\think\Config::parse(APP_PATH . 'extra' . DS . 'ses.json', 'json', 'ses');
+
+//SMS配置文件
+\think\Config::parse(APP_PATH . 'extra' . DS . 'sms.json', 'json', 'sms');
+
+//上传配置文件
+\think\Config::parse(APP_PATH . 'extra' . DS . 'upload.json', 'json', 'upload');
+
 //常量配置文件
 \think\Config::parse(APP_PATH . 'extra' . DS . 'custom.json', 'json', 'custom');

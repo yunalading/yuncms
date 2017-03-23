@@ -14,21 +14,11 @@
 /**
  * 写入配置文件
  * @param $save_path 保存路径
- * @param $tpl_path 模板路径
  * @param array $config 新的配置数据
  */
-function writeConfig($save_path, $tpl_path, $config = array()) {
+function writeConfig($save_path, $config = array()) {
     if (!empty($config)) {
-        if (file_exists($tpl_path)) {
-            $tpl = file_get_contents($tpl_path);
-            foreach ($config as $key => $value) {
-                if (is_array($value)) {
-                    $value = json_encode($value);
-                }
-                $tpl = str_replace("[{$key}]", $value, $tpl);
-            }
-            file_put_contents($save_path, $tpl);
-        }
+        file_put_contents($save_path, json_encode($config));
     }
 }
 
