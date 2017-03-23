@@ -32,26 +32,4 @@ class Area extends AdminBaseController {
         $this->assign('page', $page);
         return view();
     }
-
-    public function update() {
-
-        return view();
-    }
-
-    public function remove() {
-        if (!empty($this->param) && $this->param['id']) {
-            try {
-                if (AreaModel::destroy($this->param['id'])) {
-                    $this->success('删除成功!');
-                } else {
-                    $this->error('删除失败!');
-                }
-            } catch (PDOException $e) {
-                Log::error($e);
-                $this->error('删除失败!');
-            }
-        } else {
-            $this->error('参数错误!');
-        }
-    }
 }
