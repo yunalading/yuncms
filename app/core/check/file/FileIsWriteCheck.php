@@ -9,21 +9,26 @@
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 
-namespace app\core\install\check;
+namespace app\core\check\file;
 
-use app\core\install\BaseCheck;
+use app\core\check\BaseFileCheck;
 
 /**
- * Class BaseFunCheck
- * @package app\core\system\check
+ * Class FileWriteCheck
+ * @package app\core\install\check\file
  */
-abstract class BaseFunCheck extends BaseCheck {
-    public $name = '';
-    public $require = '';
-    public $comparison = true;
+class FileIsWriteCheck extends BaseFileCheck {
 
-    public function __construct($name = '') {
-        $this->name = $name;
-        $this->comparison = $this->comparisonConfig();
+    public $path = '';
+    public $require = '可写';
+
+    function comparisonConfig() {
+        if ($this->path != '') {
+            if (is_writable($this->path)) {
+                return true;
+            }
+        } else {
+            return false;
+        }
     }
 }

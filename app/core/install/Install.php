@@ -12,8 +12,8 @@
 namespace app\core\install;
 
 use app\core\db\helper\Mysql;
-use app\core\install\check\file\FileIsWriteCheck;
-use app\core\install\check\func\FunctionCheck;
+use app\core\check\file\FileIsWriteCheck;
+use app\core\check\func\FunctionCheck;
 use think\Cookie;
 use think\Session;
 

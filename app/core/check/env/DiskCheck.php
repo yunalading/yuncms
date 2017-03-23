@@ -9,23 +9,24 @@
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 
-namespace app\core\install\check\env;
+namespace app\core\check\env;
 
-use app\core\install\check\BaseENVCheck;
+use app\core\check\BaseENVCheck;
 
 /**
- * Class FileCheck
+ * Class DiskCheck
  * @package app\core\install\check\env
  */
-class UploadCheck extends BaseENVCheck {
-    public $name = '附件上传';
+class DiskCheck extends BaseENVCheck {
+    public $name = '磁盘空间';
 
     /**
      * 查询服务器文件上传限制
      * @return string
      */
     function getCurrentValue() {
-        return @ini_get('file_uploads') ? ini_get('upload_max_filesize') : 'unknown';
+        $size = disk_free_space(ROOT_PATH);
+        return byteFormat($size, "MB", 0);
     }
 
     /**
@@ -33,6 +34,10 @@ class UploadCheck extends BaseENVCheck {
      * @return bool
      */
     function comparisonConfig() {
-        return true;
+        if (floatval($this->current) >= floatval($this->min)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

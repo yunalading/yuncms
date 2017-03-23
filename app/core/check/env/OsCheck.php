@@ -8,35 +8,30 @@
 // +----------------------------------------------------------------------
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
+namespace app\core\check\env;
 
-namespace app\core\install\check\env;
-
-use app\core\install\check\BaseENVCheck;
+use app\core\check\BaseENVCheck;
 
 /**
- * Class PhpVersionCheck
- * @package app\core\install\check\env\
+ * Class OsCheck
+ * @package app\core\install\check\env
  */
-class PhpVersionCheck extends BaseENVCheck {
-    public $name = 'PHP版本';
+class OsCheck extends BaseENVCheck {
+    public $name = '操作系统';
 
     /**
-     * 查询服务器php版本
+     * 查询电脑系统版本
      * @return string
      */
     function getCurrentValue() {
-        return PHP_VERSION;
+        return PHP_OS;
     }
 
     /**
-     * 查询当前系统是否最优配置
+     * 查询当前系统是否匹配
      * @return bool
      */
     function comparisonConfig() {
-        if (version_compare($this->current, $this->min, '>=')) {
-            return true;
-        } else {
-            return false;
-        }
+        return true;
     }
 }

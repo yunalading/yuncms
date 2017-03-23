@@ -25,6 +25,7 @@ class System extends AdminBaseController {
      * @return \think\response\View
      */
     public function index() {
+
         return view();
     }
 

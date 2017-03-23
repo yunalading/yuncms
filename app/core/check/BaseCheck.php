@@ -9,7 +9,7 @@
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 
-namespace app\core\install;
+namespace app\core\check;
 /**
  * 环境检查基础类
  * Class BaseCheck

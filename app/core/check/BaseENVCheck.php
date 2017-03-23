@@ -9,9 +9,7 @@
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 
-namespace app\core\install\check;
-
-use app\core\install\BaseCheck;
+namespace app\core\check;
 
 /**
  * 环境检查
@@ -45,7 +43,7 @@ abstract class BaseENVCheck extends BaseCheck {
      */
     public $comparison = true;
 
-    public function __construct($min, $good) {
+    public function __construct($min = '', $good = '') {
         $this->min = $min;
         $this->good = $good;
         //获取当前配置

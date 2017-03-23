@@ -9,26 +9,23 @@
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 
-namespace app\core\install\check\env;
+namespace app\core\check\env;
 
-use app\core\install\check\BaseENVCheck;
+use app\core\check\BaseENVCheck;
 
 /**
- * Class GdCheck
- * @package app\core\install\check\env
+ * Class PhpVersionCheck
+ * @package app\core\install\check\env\
  */
-class GdCheck extends BaseENVCheck {
-    public $name = 'GD库';
+class PhpVersionCheck extends BaseENVCheck {
+    public $name = 'PHP版本';
 
     /**
-     * 查询服务器GD库版本
+     * 查询服务器php版本
      * @return string
      */
     function getCurrentValue() {
-        $tmp = function_exists('gd_info') ? gd_info() : array();
-        preg_match("/[\d.]+/", $tmp['GD Version'], $match);
-        unset($tmp);
-        return $match[0];
+        return PHP_VERSION;
     }
 
     /**
@@ -36,7 +33,7 @@ class GdCheck extends BaseENVCheck {
      * @return bool
      */
     function comparisonConfig() {
-        if ($this->current >= $this->min) {
+        if (version_compare($this->current, $this->min, '>=')) {
             return true;
         } else {
             return false;

@@ -9,22 +9,24 @@
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 
-namespace app\core\install\check;
+namespace app\core\check\func;
 
-use app\core\install\BaseCheck;
+use app\core\check\BaseFunCheck;
 
 /**
- * 目录文件检查
- * Class BaseFileCheck
- * @package app\core\install\check
+ * Class FunctionCheck
+ * @package app\core\install\check\func
  */
-abstract class BaseFileCheck extends BaseCheck {
-    public $path = '';
-    public $require = '';
-    public $comparison = true;
+class FunctionCheck extends BaseFunCheck {
 
-    public function __construct($path = '') {
-        $this->path = $path;
-        $this->comparison = $this->comparisonConfig();
+    public $name = '';
+    public $require = '支持';
+
+    function comparisonConfig() {
+        if (function_exists($this->name)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
