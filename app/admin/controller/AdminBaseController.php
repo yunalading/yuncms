@@ -41,10 +41,10 @@ abstract class AdminBaseController extends BaseController {
             if (BaseUserModel::isLogin()) {
                 //验证权限
                 Log::debug('验证验证权限');
-                
+
             } else {
                 //去登录
-                $this->redirect(url('/admin/user/login'));
+                //$this->redirect(url('/admin/user/login'));
             }
         }
     }
