@@ -218,10 +218,10 @@ class Install {
     public static function writeConfig() {
         $db = config('database');
         $newConfig = array_merge($db, self::getConfig()['db']);
-        writeConfig(APP_PATH . 'extra' . DS . 'database.json', $newConfig);
+        writeJsonConfig(APP_PATH . 'extra' . DS . 'database.json', $newConfig);
         $app = config('app');
         $newApp = array_merge($app, self::getConfig()['app']);
-        writeConfig(APP_PATH . 'extra' . DS . 'app.json', $newApp);
+        writeJsonConfig(APP_PATH . 'extra' . DS . 'app.json', $newApp);
     }
 
     /**

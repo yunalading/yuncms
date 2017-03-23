@@ -16,7 +16,7 @@
  * @param $save_path 保存路径
  * @param array $config 新的配置数据
  */
-function writeConfig($save_path, $config = array()) {
+function writeJsonConfig($save_path, $config = array()) {
     if (!empty($config)) {
         file_put_contents($save_path, json_encode($config));
     }

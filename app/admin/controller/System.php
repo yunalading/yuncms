@@ -59,7 +59,7 @@ class System extends AdminBaseController {
             }
             $app = config('app');
             $newApp = array_merge($app, $app_data);
-            writeConfig(APP_PATH . 'extra' . DS . 'app.json', $newApp);
+            writeJsonConfig(APP_PATH . 'extra' . DS . 'app.json', $newApp);
             $this->success('操作成功');
         }
         $this->assign('themes', themes());
