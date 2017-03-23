@@ -8,11 +8,22 @@
 // +----------------------------------------------------------------------
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
-return [
-    'site_name' => 'yuncms',//网站名称
-    'theme' => 'default',//默认主题
-    'email' => '2898117012@qq.com',//管理员邮箱
-    'tel' => '', //联系电话
-    'icp' => '', //icp备案号
-    'close' => '0' //状态
-];
+
+
+namespace app\admin\validate;
+
+use app\common\validate\BaseAppValidate;
+
+/**
+ * Class AppValidate
+ * @package app\admin\validate
+ */
+class AppValidate extends BaseAppValidate {
+    protected $scene = [
+        'update' => [
+            'site_name' => 'require|token',
+            'theme' => 'require',
+            'email' => 'require|email'
+        ]
+    ];
+}

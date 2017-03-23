@@ -12,4 +12,7 @@ return [
     'site_name' => '[site_name]',//网站名称
     'theme' => '[theme]',//默认主题
     'email' => '[email]',//管理员邮箱
+    'tel' => '[tel]', //联系电话
+    'icp' => '[icp]', //icp备案号
+    'close' => '[close]' //状态
 ];

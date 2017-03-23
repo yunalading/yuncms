@@ -33,6 +33,26 @@ function writeConfig($save_path, $tpl_path, $config = array()) {
 }
 
 /**
+ * 获取系统主题列表
+ * @return array
+ */
+function themes() {
+    $dirs = array();
+    $dir_path = APP_PATH . 'home' . DS . 'view';
+    if (is_dir($dir_path)) {
+        $dir = opendir($dir_path);
+        while (($file = readdir($dir)) !== false) {
+            if ($file == '.' || $file == '..') {
+                continue;
+            }
+            $dirs[] = $file;
+        }
+        closedir($dir);
+    }
+    return $dirs;
+}
+
+/**
  * PHP 的字节格式化函数：byteFormat
  * echo byteFormat(1073741824, "B", 0) . "\n";
  * echo byteFormat(1073741824, "KB", 0) . "\n";

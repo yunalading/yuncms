@@ -12,6 +12,7 @@
 
 namespace app\admin\controller;
 
+use app\admin\validate\AppValidate;
 use think\Cache;
 
 /**
@@ -33,8 +34,21 @@ class System extends AdminBaseController {
      */
     public function general() {
         if ($this->request->isPost()) {
-
+            $app_data = $this->post['app'];
+            $appValidate = new AppValidate();
+            if (!$appValidate->check($app_data, [], 'update')) {
+                $this->error($appValidate->getError());
+            }
+            if (!key_exists('close', $app_data)) {
+                $app_data['close'] = 0;
+            }
+            $app = config('app');
+            $newApp = array_merge($app, $app_data);
+            writeConfig(APP_PATH . 'extra' . DS . 'app.php', APP_PATH . 'sample' . DS . 'app.php', $newApp);
+            $this->success('操作成功');
         }
+        $this->assign('themes', themes());
+        $this->assign('app', config('app'));
         return view();
     }
 
