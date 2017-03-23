@@ -26,5 +26,4 @@ class UserModel extends BaseUserModel {
         return $this->hasOne('RoleModel', 'role_id', 'role_id');
     }
 
-
 }

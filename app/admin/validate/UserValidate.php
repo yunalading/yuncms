@@ -21,9 +21,9 @@ use app\common\validate\BaseUserValidate;
 class UserValidate extends BaseUserValidate {
     protected $scene = [
         'login' => [
-            'username',
-            'password',
-            'captcha',
+            'username' => 'require|token',
+            'password' => 'require|min:6',
+            'captcha' => 'require|captcha',
         ],
         'update' => [
             'username' => 'require|token',

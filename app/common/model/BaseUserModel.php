@@ -30,7 +30,7 @@ abstract class BaseUserModel extends BaseModel {
      * @return mixed
      */
     public static function login($username, $password) {
-        $user = self::find([
+        $user = self::get([
             'username' => $username,
             'password' => self::createPassWord($password)
         ]);
@@ -68,7 +68,7 @@ abstract class BaseUserModel extends BaseModel {
      * @param string $password
      * @return string
      */
-    public function createPassWord($password) {
+    public static function createPassWord($password) {
         return md5(md5($password));
     }
 }

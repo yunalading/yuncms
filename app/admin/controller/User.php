@@ -57,7 +57,7 @@ class User extends AdminBaseController {
                 if (!key_exists('state', $user_data)) {
                     $user_data['state'] = 0;
                 }
-                $user_data['password'] = $userModel->createPassWord($user_data['password']);
+                $user_data['password'] = UserModel::createPassWord($user_data['password']);
                 unset($user_data['password2']);
                 //添加或更新角色
                 $userModel->saveAll([$user_data])[0];
@@ -166,8 +166,21 @@ class User extends AdminBaseController {
      * @return \think\response\View
      */
     public function login() {
+        if (UserModel::isLogin()) {
+            $this->redirect(url('/admin'));
+        }
         if ($this->request->isPost()) {
-
+            $user_data = $this->post['user'];
+            $userValidate = new UserValidate();
+            if (!$userValidate->check($user_data, [], 'login')) {
+                $this->error($userValidate->getError());
+            }
+            $user = UserModel::login($user_data['username'], $user_data['password']);
+            if (!$user) {
+                $this->error('用户名或密码错误!');
+            } else {
+                $this->success('登录成功!');
+            }
         }
         return view();
     }

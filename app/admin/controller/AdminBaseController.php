@@ -44,7 +44,7 @@ abstract class AdminBaseController extends BaseController {
 
             } else {
                 //去登录
-                //$this->redirect(url('/admin/user/login'));
+                $this->redirect(url('/admin/user/login'));
             }
         }
     }
