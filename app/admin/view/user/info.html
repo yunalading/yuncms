@@ -4,48 +4,41 @@
         <div class="page-title"><h1 class="am-inline">修改账号信息</h1></div>
         <form class="am-form edit-form" method="post" data-am-validator>
             <div class="am-form-group">
-                <div>
-                    <select data-am-selected placeholder="请选择角色" required>
-                        <option></option>
-                        <option value="admin">超级管理员</option>
-                    </select>
-                </div>
+                <label>角色</label>
+                <input type="text" value="{$user.role.role_name}" disabled>
             </div>
             <div class="am-form-group">
                 <label>昵称</label>
-                <input type="email">
+                <input type="text" name="user[nickname]" value="{$user.nickname}" placeholder="请输入昵称">
             </div>
             <div class="am-form-group">
                 <label>用户名<span>(请填写用户名)</span></label>
-                <input type="email" required>
+                <input type="text" name="user[username]" value="{$user.username}" required placeholder="请输入用户名">
             </div>
             <div class="am-form-group">
                 <label>密码<span>(请填写密码)</span></label>
-                <input type="password" id="password" name="user[password]" required minlength="6">
+                <input type="password" id="password" name="user[password]" required minlength="6" placeholder="请输入密码">
             </div>
             <div class="am-form-group">
                 <label>确认密码<span>(请填写确认密码)</span></label>
-                <input type="password" name="user[password2]" required data-equal-to="#password">
+                <input type="password" name="user[password2]" required data-equal-to="#password" placeholder="请输入确认密码">
             </div>
             <div class="am-form-group">
                 <label>邮箱</label>
-                <input type="email">
+                <input type="email" name="user[email]" value="{$user.email}" placeholder="请输入邮箱地址">
             </div>
             <div class="am-form-group">
                 <label>手机</label>
-                <input type="email">
+                <input type="text" name="user[phone]" value="{$user.phone}" placeholder="请输入手机号">
             </div>
             <div class="am-form-group">
                 <label>QQ</label>
-                <input type="email">
-            </div>
-            <div class="am-form-group">
-                <label>状态</label>
-                <div><input type="checkbox" class="checkbox-switch" checked></div>
+                <input type="text" name="user[qq]" value="{$user.qq}" placeholder="请输入QQ号">
             </div>
             <div class="am-form-group">
                 <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
             </div>
+            {:token()}
         </form>
     </div>
 </div>

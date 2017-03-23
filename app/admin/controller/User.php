@@ -190,7 +190,20 @@ class User extends AdminBaseController {
      * @return \think\response\View
      */
     public function info() {
-
+        $user = UserModel::currentUser();
+        if ($this->request->isPost()) {
+            //保存用户信息
+            $user_data = $this->post['user'];
+            $userValidate = new UserValidate();
+            if (!$userValidate->check($user_data, [], 'info')) {
+                $this->error($userValidate->getError());
+            }
+            $user_data['password'] = UserModel::createPassWord($user_data['password']);
+            unset($user_data['password2']);
+            $user->save($user_data);
+            $this->success('操作成功!');
+        }
+        $this->assign('user', $user);
         return view();
     }
 

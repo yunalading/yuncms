@@ -30,6 +30,11 @@ class UserValidate extends BaseUserValidate {
             'role_id' => 'require|integer',
             'password' => 'require|min:6',
             'password2' => 'require|confirm:password',
+        ],
+        'info' => [
+            'username' => 'require|token',
+            'password' => 'require|min:6',
+            'password2' => 'require|confirm:password',
         ]
     ];
 }
