@@ -161,7 +161,6 @@ create table yc_guestbook
    email                varchar(50) comment '邮箱',
    guestbook_title      varchar(50) not null comment '标题',
    guestbook_content    varchar(500) not null comment '内容',
-   guestbook_state      int default 0 comment '状态',
    create_time          int not null comment '创建时间',
    primary key (guestbook_id)
 );
@@ -426,7 +425,6 @@ create table yc_users
    user_id              int not null auto_increment comment '管理员用户编号',
    role_id              int comment '管理员角色编号',
    nickname             varchar(50) comment '昵称',
-   avatar               varchar(200) comment '头像',
    username             varchar(200) not null comment '用户名',
    password             varchar(200) not null comment '密码',
    email                varchar(50) comment '邮箱',

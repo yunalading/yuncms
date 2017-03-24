@@ -12,6 +12,8 @@
 
 namespace app\admin\controller;
 
+use app\admin\model\GuestBookModel;
+
 /**
  * Class Guestbook
  * @package app\admin\controller
@@ -21,6 +23,11 @@ class Guestbook extends AdminBaseController {
      * @return \think\response\View
      */
     public function index() {
+        $guestBookModel = new GuestBookModel();
+        $list = $guestBookModel->paginate();
+        $page = $list->render();
+        $this->assign('list', $list);
+        $this->assign('page', $page);
         return view();
     }
 }

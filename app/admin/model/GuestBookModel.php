@@ -8,15 +8,17 @@
 // +----------------------------------------------------------------------
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
-namespace app\common\model;
+
+
+namespace app\admin\model;
+
+
+use app\common\model\BaseGuestBookModel;
+
 /**
- * 留言
- * Class BaseGuestBookModel
- * @package app\common\model
+ * Class GuestBookModel
+ * @package app\admin\model
  */
-abstract class BaseGuestBookModel extends BaseModel {
-    protected $name = 'guestbook';
-    protected $auto = [
-        'create_time'
-    ];
+class GuestBookModel extends BaseGuestBookModel {
+
 }
