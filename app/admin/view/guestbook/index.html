@@ -24,8 +24,8 @@
                 <td>{$guestbook.create_time}</td>
                 <td>
                     <div class="am-btn-group am-btn-group-xs">
-                        <a href="<?= URL('/admin/links/update',array('id'=>$guestbook['guestbook_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-eye"></i></a>
-                        <a href="<?= URL('/admin/links/remove',array('id'=>$guestbook['guestbook_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                        <a href="<?= URL('/admin/guestbook/viewer',array('id'=>$guestbook['guestbook_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-eye"></i></a>
+                        <a href="<?= URL('/admin/guestbook/remove',array('id'=>$guestbook['guestbook_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
                     </div>
                 </td>
             </tr>

@@ -1,0 +1,33 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<div class="content-page">
+    <div class="am-container">
+        <div class="page-title"><h1 class="am-inline">查看留言</h1></div>
+        <form class="am-form edit-form" method="post" data-am-validator>
+            <div class="am-form-group">
+                <label>昵称</label>
+                <input type="text" {notempty name="guestbook"}value="{$guestbook.nickname}"{/notempty} readonly>
+            </div>
+            <div class="am-form-group">
+                <label>手机</label>
+                <input type="text" {notempty name="guestbook"}value="{$guestbook.phone}"{/notempty} readonly>
+            </div>
+            <div class="am-form-group">
+                <label>邮箱</label>
+                <input type="text" {notempty name="guestbook"}value="{$guestbook.email}"{/notempty} readonly>
+            </div>
+            <div class="am-form-group">
+                <label>标题</label>
+                <input type="text" {notempty name="guestbook"}value="{$guestbook.guestbook_title}"{/notempty} readonly>
+            </div>
+            <div class="am-form-group">
+                <label>留言时间</label>
+                <input type="text" {notempty name="guestbook"}value="{$guestbook.create_time}"{/notempty} readonly>
+            </div>
+            <div class="am-form-group">
+                <label>内容</label>
+                <textarea readonly>{notempty name="guestbook"}{$guestbook.guestbook_content}{/notempty}</textarea>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="footer" /}
