@@ -17,4 +17,5 @@ namespace app\common\model;
 abstract class BaseLinkModel extends BaseModel {
     protected $name = 'links';
     protected $auto = ['create_time'];
+    public static $targets = ['_blank', '_self', '_parent', '_top'];
 }
