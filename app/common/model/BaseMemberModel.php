@@ -21,4 +21,8 @@ abstract class BaseMemberModel extends BaseModel {
     //开启软删除
     use SoftDelete;
     protected $name = 'members';
+
+    public function createPassWord($password) {
+        return md5(md5($password));
+    }
 }

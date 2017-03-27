@@ -1,0 +1,51 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<div class="content-page">
+    <div class="am-container">
+        <div class="page-title"><h1 class="am-inline">回收站</h1>
+            <a href="<?= URL('/admin/user/emptytrash');?>" class="am-btn am-btn-default am-btn-xs am-radius">
+                <i class="am-icon-trash"></i>清空回收站
+            </a>
+        </div>
+        <table class="am-table">
+            <thead>
+            <tr>
+                <th>头像</th>
+                <th>昵称</th>
+                <th>用户名</th>
+                <th>邮箱</th>
+                <th>手机</th>
+                <th>QQ</th>
+                <th>角色</th>
+                <th>最后登录时间</th>
+                <th>最后登录IP</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {volist name='list' id='user'}
+            <tr>
+                <td><img src="{$user.avatar}"></td>
+                <td>{$user.nickname}</td>
+                <td>{$user.username}</td>
+                <td>{$user.email}</td>
+                <td>{$user.phone}</td>
+                <td>{$user.qq}</td>
+                <td>{$user.role.role_name}</td>
+                <td>{$user.last_login_time}</td>
+                <td>{$user.last_login_ip}</td>
+                <td>{$user.state?'停用':'启用'}</td>
+                <td>
+                    <div class="am-btn-group am-btn-group-xs">
+                        <a href="<?= URL('/admin/user/recovery',array('id'=>$user['user_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-history"></i></a>
+                        <a href="<?= URL('/admin/user/destroy',array('id'=>$user['user_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                    </div>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+        {$page}
+    </div>
+</div>
+{include file="footer" /}

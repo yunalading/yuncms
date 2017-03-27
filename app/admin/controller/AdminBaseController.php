@@ -13,6 +13,7 @@
 namespace app\admin\controller;
 
 use app\common\controller\BaseController;
+use app\common\model\BaseUserModel;
 use think\Log;
 
 /**
@@ -20,7 +21,12 @@ use think\Log;
  * @package app\common\controller
  */
 abstract class AdminBaseController extends BaseController {
+    /**
+     * 不需要验证登录的action
+     * @var array
+     */
     protected $allow_actions = [];
+
     /**
      * AdminBaseController constructor.
      */
@@ -32,7 +38,14 @@ abstract class AdminBaseController extends BaseController {
         if (!in_array($this->request->action(), $this->allow_actions)) {
             //验证是否登录
             Log::debug('验证是否登录');
+            if (BaseUserModel::isLogin()) {
+                //验证权限
+                Log::debug('验证验证权限');
 
+            } else {
+                //去登录
+                $this->redirect(url('/admin/user/login'));
+            }
         }
     }
 

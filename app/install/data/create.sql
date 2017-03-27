@@ -1,18 +1,4 @@
-/*==============================================================*/
-/* 数据库结构文件                                                 */
-/*==============================================================*/
 
-DROP DATABASE IF EXISTS yuncms;
-
-CREATE DATABASE yuncms
-  DEFAULT CHARSET utf8
-  COLLATE utf8_general_ci;
-
-USE yuncms;
-
-/*==============================================================*/
-/* Table: yc_ad_code                                            */
-/*==============================================================*/
 create table yc_ad_code
 (
    ad_code_key          varchar(100) not null comment '代码广告标识',
@@ -27,9 +13,6 @@ create table yc_ad_code
 
 alter table yc_ad_code comment '代码广告表';
 
-/*==============================================================*/
-/* Table: yc_ad_images                                          */
-/*==============================================================*/
 create table yc_ad_images
 (
    ad_img_key           varchar(100) not null comment '图片广告标识',
@@ -46,9 +29,6 @@ create table yc_ad_images
 
 alter table yc_ad_images comment '图片广告表';
 
-/*==============================================================*/
-/* Table: yc_ad_text                                            */
-/*==============================================================*/
 create table yc_ad_text
 (
    ad_text_key          varchar(100) not null comment '文字广告标识',
@@ -63,9 +43,6 @@ create table yc_ad_text
 
 alter table yc_ad_text comment '文字广告表';
 
-/*==============================================================*/
-/* Table: yc_area                                               */
-/*==============================================================*/
 create table yc_area
 (
    area_id              int not null auto_increment comment '地区编号',
@@ -79,9 +56,6 @@ create table yc_area
 
 alter table yc_area comment '区域表';
 
-/*==============================================================*/
-/* Table: yc_category                                           */
-/*==============================================================*/
 create table yc_category
 (
    category_id          int not null auto_increment comment '类别编号',
@@ -104,17 +78,11 @@ create table yc_category
 
 alter table yc_category comment '类别表';
 
-/*==============================================================*/
-/* Index: category_unique                                       */
-/*==============================================================*/
 create unique index category_unique on yc_category
 (
    seo_url
 );
 
-/*==============================================================*/
-/* Table: yc_comments                                           */
-/*==============================================================*/
 create table yc_comments
 (
    content_comment_id   int not null auto_increment comment '内容评论编号',
@@ -134,9 +102,6 @@ create table yc_comments
 
 alter table yc_comments comment '内容评论表';
 
-/*==============================================================*/
-/* Table: yc_content_tags                                       */
-/*==============================================================*/
 create table yc_content_tags
 (
    content_tag_id       int not null auto_increment comment '内容标签编号',
@@ -147,9 +112,6 @@ create table yc_content_tags
 
 alter table yc_content_tags comment '内容标签表';
 
-/*==============================================================*/
-/* Table: yc_contents                                           */
-/*==============================================================*/
 create table yc_contents
 (
    content_id           int not null auto_increment comment '内容编号',
@@ -177,17 +139,11 @@ create table yc_contents
 
 alter table yc_contents comment '内容表';
 
-/*==============================================================*/
-/* Index: content_unique                                        */
-/*==============================================================*/
 create unique index content_unique on yc_contents
 (
    seo_url
 );
 
-/*==============================================================*/
-/* Table: yc_edu_level                                          */
-/*==============================================================*/
 create table yc_edu_level
 (
    edu_level_id         int not null auto_increment comment '文化程度编号',
@@ -197,9 +153,6 @@ create table yc_edu_level
 
 alter table yc_edu_level comment '文化程度表';
 
-/*==============================================================*/
-/* Table: yc_guestbook                                          */
-/*==============================================================*/
 create table yc_guestbook
 (
    guestbook_id         int not null auto_increment comment '留言编号',
@@ -208,16 +161,12 @@ create table yc_guestbook
    email                varchar(50) comment '邮箱',
    guestbook_title      varchar(50) not null comment '标题',
    guestbook_content    varchar(500) not null comment '内容',
-   guestbook_state      int default 0 comment '状态',
    create_time          int not null comment '创建时间',
    primary key (guestbook_id)
 );
 
 alter table yc_guestbook comment '留言表';
 
-/*==============================================================*/
-/* Table: yc_img_type                                           */
-/*==============================================================*/
 create table yc_img_type
 (
    img_type_id          int not null auto_increment comment '图片分类编号',
@@ -229,17 +178,11 @@ create table yc_img_type
 
 alter table yc_img_type comment '图片分类表';
 
-/*==============================================================*/
-/* Index: img_type_unique                                       */
-/*==============================================================*/
 create unique index img_type_unique on yc_img_type
 (
    type_name
 );
 
-/*==============================================================*/
-/* Table: yc_imgs                                               */
-/*==============================================================*/
 create table yc_imgs
 (
    img_id               int not null auto_increment comment '图片编号',
@@ -253,9 +196,6 @@ create table yc_imgs
 
 alter table yc_imgs comment '图片表';
 
-/*==============================================================*/
-/* Table: yc_links                                              */
-/*==============================================================*/
 create table yc_links
 (
    link_id              int not null auto_increment comment '友情链接编号',
@@ -263,7 +203,7 @@ create table yc_links
    link_logo            varchar(255) comment '链接图标',
    link_href            varchar(255) not null comment '链接地址',
    link_target          varchar(50) comment '打开方式',
-   link_is_home         int comment '是否是首页',
+   link_is_home         int default 0 comment '是否是首页',
    link_sort            int default 0 comment '排序编号',
    create_time          int not null comment '创建时间',
    primary key (link_id)
@@ -271,9 +211,6 @@ create table yc_links
 
 alter table yc_links comment '友情链接表';
 
-/*==============================================================*/
-/* Table: yc_members                                            */
-/*==============================================================*/
 create table yc_members
 (
    member_id            int not null auto_increment comment '会员编号',
@@ -301,17 +238,11 @@ create table yc_members
 
 alter table yc_members comment '会员表';
 
-/*==============================================================*/
-/* Index: member_unique                                         */
-/*==============================================================*/
 create unique index member_unique on yc_members
 (
    username
 );
 
-/*==============================================================*/
-/* Table: yc_menus                                              */
-/*==============================================================*/
 create table yc_menus
 (
    menu_id              int not null auto_increment comment '菜单编号',
@@ -329,9 +260,6 @@ create table yc_menus
 
 alter table yc_menus comment '菜单表';
 
-/*==============================================================*/
-/* Table: yc_model                                              */
-/*==============================================================*/
 create table yc_model
 (
    model_id             int not null auto_increment comment '模型编号',
@@ -345,17 +273,11 @@ create table yc_model
 
 alter table yc_model comment '模型表';
 
-/*==============================================================*/
-/* Index: model_unique                                          */
-/*==============================================================*/
 create unique index model_unique on yc_model
 (
    model_name
 );
 
-/*==============================================================*/
-/* Table: yc_model_properties                                   */
-/*==============================================================*/
 create table yc_model_properties
 (
    model_properties_id  int not null auto_increment comment '模型属性编号',
@@ -369,9 +291,6 @@ create table yc_model_properties
 
 alter table yc_model_properties comment '模型属性表';
 
-/*==============================================================*/
-/* Table: yc_navs                                               */
-/*==============================================================*/
 create table yc_navs
 (
    nav_key              varchar(200) not null comment '导航标识',
@@ -384,9 +303,6 @@ create table yc_navs
 
 alter table yc_navs comment '导航表';
 
-/*==============================================================*/
-/* Table: yc_oauth_members                                      */
-/*==============================================================*/
 create table yc_oauth_members
 (
    oauth_member_id      int not null auto_increment comment '编号',
@@ -400,17 +316,11 @@ create table yc_oauth_members
 
 alter table yc_oauth_members comment '第三方登录会员表';
 
-/*==============================================================*/
-/* Index: oauth_member_unique                                   */
-/*==============================================================*/
 create unique index oauth_member_unique on yc_oauth_members
 (
    openid
 );
 
-/*==============================================================*/
-/* Table: yc_pages                                              */
-/*==============================================================*/
 create table yc_pages
 (
    page_id              int not null auto_increment comment '页面编号',
@@ -434,17 +344,11 @@ create table yc_pages
 
 alter table yc_pages comment '页面表';
 
-/*==============================================================*/
-/* Index: page_unique                                           */
-/*==============================================================*/
 create unique index page_unique on yc_pages
 (
    seo_url
 );
 
-/*==============================================================*/
-/* Table: yc_role                                               */
-/*==============================================================*/
 create table yc_role
 (
    role_id              int not null auto_increment comment '管理员角色编号',
@@ -458,17 +362,11 @@ create table yc_role
 
 alter table yc_role comment '管理员角色表';
 
-/*==============================================================*/
-/* Index: role_unique                                           */
-/*==============================================================*/
 create unique index role_unique on yc_role
 (
    role_name
 );
 
-/*==============================================================*/
-/* Table: yc_role_access                                        */
-/*==============================================================*/
 create table yc_role_access
 (
    user_role_access_id  int not null auto_increment comment '管理员角色权限编号',
@@ -479,9 +377,6 @@ create table yc_role_access
 
 alter table yc_role_access comment '管理员角色权限表';
 
-/*==============================================================*/
-/* Table: yc_slides                                             */
-/*==============================================================*/
 create table yc_slides
 (
    slide_key            varchar(100) not null comment '幻灯片标识',
@@ -494,9 +389,6 @@ create table yc_slides
 
 alter table yc_slides comment '幻灯片广告表';
 
-/*==============================================================*/
-/* Table: yc_slides_imgs                                        */
-/*==============================================================*/
 create table yc_slides_imgs
 (
    slide_img_id         int not null auto_increment comment '幻灯片图片编号',
@@ -514,9 +406,6 @@ create table yc_slides_imgs
 
 alter table yc_slides_imgs comment '幻灯片图片表';
 
-/*==============================================================*/
-/* Table: yc_tags                                               */
-/*==============================================================*/
 create table yc_tags
 (
    tag_id               int not null auto_increment comment '标签编号',
@@ -526,23 +415,16 @@ create table yc_tags
 
 alter table yc_tags comment '标签表';
 
-/*==============================================================*/
-/* Index: tag_unique                                            */
-/*==============================================================*/
 create unique index tag_unique on yc_tags
 (
    tag_name
 );
 
-/*==============================================================*/
-/* Table: yc_users                                              */
-/*==============================================================*/
 create table yc_users
 (
    user_id              int not null auto_increment comment '管理员用户编号',
    role_id              int comment '管理员角色编号',
    nickname             varchar(50) comment '昵称',
-   avatar               varchar(200) comment '头像',
    username             varchar(200) not null comment '用户名',
    password             varchar(200) not null comment '密码',
    email                varchar(50) comment '邮箱',
@@ -560,9 +442,6 @@ create table yc_users
 
 alter table yc_users comment '管理员用户表';
 
-/*==============================================================*/
-/* Index: user_unique                                           */
-/*==============================================================*/
 create unique index user_unique on yc_users
 (
    username
@@ -611,4 +490,4 @@ alter table yc_slides_imgs add constraint FK_SLIDE_IMGS foreign key (slide_key)
 references yc_slides (slide_key) on delete restrict on update restrict;
 
 alter table yc_users add constraint FK_ROLE_USERS foreign key (role_id)
-references yc_role (role_id) on delete restrict on update restrict;
+references yc_role (role_id) on delete restrict on update restrict

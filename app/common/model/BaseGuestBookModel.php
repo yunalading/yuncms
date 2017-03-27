@@ -16,4 +16,7 @@ namespace app\common\model;
  */
 abstract class BaseGuestBookModel extends BaseModel {
     protected $name = 'guestbook';
+    protected $auto = [
+        'create_time'
+    ];
 }

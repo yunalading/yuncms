@@ -6,12 +6,13 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: jabber <2898117012@qq.com>
+// | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 
 
 namespace app\install\controller;
 
+use app\core\install\Install;
 
 /**
  * Class Complete
@@ -22,6 +23,10 @@ class Step1 extends InstallWizard {
      * @return \think\response\View
      */
     public function index() {
+        $list = Install::getEnvList();
+        $flag = Install::checkEnv();
+        $this->assign('list', $list);
+        $this->assign('flag', $flag);
         return view();
     }
 }

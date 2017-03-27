@@ -18,5 +18,12 @@ use app\common\model\BaseUserModel;
  * @package app\admin\model
  */
 class UserModel extends BaseUserModel {
+    /**
+     * 获取角色信息
+     * @return \think\model\relation\HasOne
+     */
+    public function role() {
+        return $this->hasOne('RoleModel', 'role_id', 'role_id');
+    }
 
 }

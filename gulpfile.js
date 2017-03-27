@@ -40,7 +40,7 @@ gulp.task('build:core-js', function () {
             console.log(err);
             this.emit('end');
         }
-    })).pipe(jshint()).pipe(gulp.dest('./public/static/core/js')).pipe(uglify()).pipe($.rename({
+    })).pipe(jshint()).pipe(uglify()).pipe($.rename({
         'suffix': '.min',
         'extname': '.js'
     })).pipe(sourcemaps.write('./')).pipe(gulp.dest('./public/static/core/js'));
@@ -55,7 +55,7 @@ gulp.task('build:core-less', function () {
             console.log(err);
             this.emit('end');
         }
-    })).pipe($.less()).pipe($.autoprefixer({browsers: config.AUTOPREFIXER_BROWSERS})).pipe(gulp.dest('./public/static/core/css')).pipe(minify()).pipe($.rename({
+    })).pipe($.less()).pipe($.autoprefixer({browsers: config.AUTOPREFIXER_BROWSERS})).pipe(minify()).pipe($.rename({
         'suffix': '.min',
         'extname': '.css'
     })).pipe(sourcemaps.write('./')).pipe(gulp.dest('./public/static/core/css'));
@@ -70,7 +70,7 @@ gulp.task('build:admin-js', function () {
             console.log(err);
             this.emit('end');
         }
-    })).pipe(jshint()).pipe(gulp.dest('./public/static/admin/js')).pipe(uglify()).pipe($.rename({
+    })).pipe(jshint()).pipe(uglify()).pipe($.rename({
         'suffix': '.min',
         'extname': '.js'
     })).pipe(sourcemaps.write('./')).pipe(gulp.dest('./public/static/admin/js'));
@@ -85,7 +85,7 @@ gulp.task('build:admin-less', function () {
             console.log(err);
             this.emit('end');
         }
-    })).pipe($.less()).pipe($.autoprefixer({browsers: config.AUTOPREFIXER_BROWSERS})).pipe(gulp.dest('./public/static/admin/css')).pipe(minify()).pipe($.rename({
+    })).pipe($.less()).pipe($.autoprefixer({browsers: config.AUTOPREFIXER_BROWSERS})).pipe(minify()).pipe($.rename({
         'suffix': '.min',
         'extname': '.css'
     })).pipe(sourcemaps.write('./')).pipe(gulp.dest('./public/static/admin/css'));
@@ -100,7 +100,7 @@ gulp.task('build:home-js', function () {
             console.log(err);
             this.emit('end');
         }
-    })).pipe(jshint()).pipe(gulp.dest('./public/static/home')).pipe(uglify()).pipe($.rename({
+    })).pipe(jshint()).pipe(uglify()).pipe($.rename({
         'suffix': '.min',
         'extname': '.js'
     })).pipe(sourcemaps.write('./')).pipe(gulp.dest('./public/static/home'));
@@ -117,7 +117,7 @@ gulp.task('build:home-less', function () {
         }
     })).pipe($.less()).pipe($.autoprefixer({browsers: config.AUTOPREFIXER_BROWSERS})).pipe($.rename(function (path) {
         path.dirname = path.dirname.replace('less', 'css');
-    })).pipe(gulp.dest('./public/static/home')).pipe(minify()).pipe($.rename({
+    })).pipe(minify()).pipe($.rename({
         'suffix': '.min',
         'extname': '.css'
     })).pipe(sourcemaps.write('./')).pipe(gulp.dest('./public/static/home'));
@@ -132,7 +132,7 @@ gulp.task('build:install-js', function () {
             console.log(err);
             this.emit('end');
         }
-    })).pipe(jshint()).pipe(gulp.dest('./public/static/install/js')).pipe(uglify()).pipe($.rename({
+    })).pipe(jshint()).pipe(uglify()).pipe($.rename({
         'suffix': '.min',
         'extname': '.js'
     })).pipe(sourcemaps.write('./')).pipe(gulp.dest('./public/static/install/js'));
@@ -147,7 +147,7 @@ gulp.task('build:install-less', function () {
             console.log(err);
             this.emit('end');
         }
-    })).pipe($.less()).pipe($.autoprefixer({browsers: config.AUTOPREFIXER_BROWSERS})).pipe(gulp.dest('./public/static/install/css')).pipe(minify()).pipe($.rename({
+    })).pipe($.less()).pipe($.autoprefixer({browsers: config.AUTOPREFIXER_BROWSERS})).pipe(minify()).pipe($.rename({
         'suffix': '.min',
         'extname': '.css'
     })).pipe(sourcemaps.write('./')).pipe(gulp.dest('./public/static/install/css'));
@@ -164,8 +164,11 @@ gulp.task('copy:handlebars', function () {
 gulp.task('copy:amazeui', function () {
     gulp.src('./node_modules/amazeui/dist/**/*').pipe(gulp.dest('./public/static/common/amazeui'));
 });
+gulp.task('copy:amazeui-switch', function () {
+    gulp.src('./node_modules/amazeui-switch/*.js').pipe(gulp.dest('./public/static/common/amazeui-switch/js'));
+});
 
-gulp.task('copy:common', ['copy:jquery', 'copy:handlebars', 'copy:amazeui']);
+gulp.task('copy:common', ['copy:jquery', 'copy:handlebars', 'copy:amazeui', 'copy:amazeui-switch']);
 
 gulp.task('build', ['build:core-js', 'build:admin-js', 'build:home-js', 'build:install-js', 'build:core-less', 'build:admin-less', 'build:home-less', 'build:install-less']);
 

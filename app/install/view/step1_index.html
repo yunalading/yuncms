@@ -44,36 +44,23 @@
                 <th>最佳配置</th>
                 <th>当前配置</th>
             </tr>
+
+            {volist name="list.env" id="vo"}
             <tr>
-                <td>操作系统</td>
-                <td>无限制</td>
-                <td>Linux</td>
-                <td><i class="am-icon am-icon-check-circle am-text-primary"></i>Linux</td>
+                <td>{$vo->name}</td>
+                <td>{$vo->min}</td>
+                <td>{$vo->good}</td>
+                <td>
+                    {if condition="$vo->comparison eq 1"}
+                    <i class="am-icon am-icon-check-circle am-text-primary"></i>
+                    {else /}
+                    <i class="am-icon am-icon-minus-circle am-text-danger"></i>
+                    {/if}
+                    {$vo->current}
+                </td>
             </tr>
-            <tr>
-                <td>PHP版本</td>
-                <td>5.5.9</td>
-                <td>5.5.9</td>
-                <td><i class="am-icon am-icon-minus-circle am-text-danger"></i>5.2.9</td>
-            </tr>
-            <tr>
-                <td>GD库</td>
-                <td>2.0</td>
-                <td>2.0</td>
-                <td><i class="am-icon am-icon-check-circle am-text-primary"></i>2.0</td>
-            </tr>
-            <tr>
-                <td>附件上传</td>
-                <td>未限制</td>
-                <td>2M</td>
-                <td><i class="am-icon am-icon-check-circle am-text-primary"></i>2M</td>
-            </tr>
-            <tr>
-                <td>磁盘空间</td>
-                <td>100M</td>
-                <td>>100M</td>
-                <td><i class="am-icon am-icon-check-circle am-text-primary"></i>10000M</td>
-            </tr>
+            {/volist}
+
         </table>
         <h2>目录、文件权限检查</h2>
         <table class="am-table am-table-striped">
@@ -82,16 +69,19 @@
                 <th>所需状态</th>
                 <th>当前状态</th>
             </tr>
+            {volist name="list.file" id="vo"}
             <tr>
-                <td>data/cache</td>
-                <td>可写</td>
-                <td><i class="am-icon am-icon-check-circle am-text-primary"></i>可写</td>
+                <td>{$vo->path}</td>
+                <td>{$vo->require}</td>
+                <td>
+                    {if condition="$vo->comparison"}
+                    <i class="am-icon am-icon-check-circle am-text-primary"></i>可写
+                    {else /}
+                    <i class="am-icon am-icon-minus-circle am-text-danger"></i>不可写
+                    {/if}
+                </td>
             </tr>
-            <tr>
-                <td>data/cache/adv</td>
-                <td>可写</td>
-                <td><i class="am-icon am-icon-minus-circle am-text-danger"></i>不可写</td>
-            </tr>
+            {/volist}
         </table>
         <h2>函数检查</h2>
         <table class="am-table am-table-striped">
@@ -100,20 +90,24 @@
                 <th>所需状态</th>
                 <th>当前状态</th>
             </tr>
+            {volist name="list.fun" id="vo"}
             <tr>
-                <td>mysql_connect()</td>
-                <td>支持</td>
-                <td><i class="am-icon am-icon-check-circle am-text-primary"></i>可写</td>
+                <td>{$vo->name}</td>
+                <td>{$vo->require}</td>
+                <td>
+                    {if condition="$vo->comparison"}
+                    <i class="am-icon am-icon-check-circle am-text-primary"></i>支持
+                    {else /}
+                    <i class="am-icon am-icon-minus-circle am-text-danger"></i>不支持
+                    {/if}
+                </td>
             </tr>
-            <tr>
-                <td>fsockopen()</td>
-                <td>支持</td>
-                <td><i class="am-icon am-icon-minus-circle am-text-danger"></i>不支持</td>
-            </tr>
+            {/volist}
         </table>
         <p class="am-text-center am-margin-top-xl">
-            <a href="<?= url('/install');?>" class="am-btn am-btn-primary am-radius" disabled>上一步</a>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="<?= url('/install/step2');?>" class="am-btn am-btn-primary am-radius">下一步</a>
+            <a href="<?= url('/install');?>" class="am-btn am-btn-primary am-radius">上一步</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="<?= url('/install/step2');?>" class="am-btn am-btn-primary am-radius" {if
+               condition="$flag == false" }disabled{/if}>下一步</a>
         </p>
     </div>
 </div>

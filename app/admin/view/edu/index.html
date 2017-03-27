@@ -1,0 +1,23 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<div class="content-page">
+    <div class="am-container">
+        <div class="page-title"><h1 class="am-inline">文化程度列表</h1>
+        </div>
+        <table class="am-table">
+            <thead>
+            <tr>
+                <th>文化程度</th>
+            </tr>
+            </thead>
+            <tbody>
+            {volist name='list' id='edu'}
+            <tr>
+                <td>{$edu.edu_level_name}</td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+        {$page}
+    </div>
+</div>
+{include file="footer" /}

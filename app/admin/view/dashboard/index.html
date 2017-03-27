@@ -6,10 +6,10 @@
     <div>
         <ul class="am-nav am-nav-pills am-topbar-nav" id="main-menus"></ul>
         <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right manager-tools-btn">
-            <li><a href="myinfo.html" target="context-page"><span class="am-icon-user"></span> admin</a></li>
-            <li><a href="clear.html" target="context-page"><span class="am-icon-trash"></span> 清空缓存</a></li>
+            <li><a href="<?= URL('/admin/user/info');?>" target="context-page"><span class="am-icon-user"></span> admin</a></li>
+            <li><a href="<?= URL('/admin/system/clear');?>" target="context-page"><span class="am-icon-trash"></span> 清空缓存</a></li>
             <li><a href="http://help.yunalading.com" target="_blank"><span class="am-icon-question-circle"></span> 帮助</a></li>
-            <li><a href="logout.html"><span class="am-icon-power-off"></span>退出</a></li>
+            <li><a href="<?= URL('/admin/user/logout');?>"><span class="am-icon-power-off"></span> 退出</a></li>
         </ul>
     </div>
 </header>

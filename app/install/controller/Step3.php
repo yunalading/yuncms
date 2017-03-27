@@ -12,6 +12,7 @@
 
 namespace app\install\controller;
 
+use app\core\install\Install;
 use think\Cookie;
 
 /**
@@ -23,7 +24,9 @@ class Step3 extends InstallWizard {
      * @return \think\response\View
      */
     public function index() {
-        echo Cookie::get('install-mode');
+        if (!Install::checkEnv() || !Install::checkMode()) {
+            $this->error('请检查安装环境!', url('/install/step1'));
+        }
         return view();
     }
 }

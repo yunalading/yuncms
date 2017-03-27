@@ -28,12 +28,5 @@ abstract class BaseRoleModel extends BaseModel {
     protected $auto = [
         'del_lock' => BaseRoleModel::DEL_LOCK_OFF,
     ];
-
-    /**
-     * 获取角色权限
-     * @return \think\model\relation\HasMany\
-     */
-    public function access() {
-        return $this->hasMany('role_access', 'role_id');
-    }
+    
 }

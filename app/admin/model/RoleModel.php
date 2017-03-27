@@ -19,6 +19,15 @@ use app\common\model\BaseRoleModel;
  * @package app\admin\model
  */
 class RoleModel extends BaseRoleModel {
+
+    /**
+     * 获取角色权限
+     * @return \think\model\relation\HasMany\
+     */
+    public function access() {
+        return $this->hasMany('RoleAccessModel', 'role_id');
+    }
+
     /**
      * 清空权限
      * @return mixed

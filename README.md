@@ -1,5 +1,7 @@
 <h1><a target="_blank" href="http://www.yunalading.com/" title="YunCMS 官网"><img width="500" src="docs/images/logo.png" alt="YunCMS Logo"/></a></h1>
 
+[![Join the chat at https://gitter.im/yunalading/yuncms](https://badges.gitter.im/yunalading/yuncms.svg)](https://gitter.im/yunalading/yuncms?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 YunCMS是基于ThinkPHP5框架的一套CMS系统，方便用户快速建立企业网站，门户网站，个人博客或其他系统的内容管理系统。
 
 # 功能特色
@@ -75,4 +77,5 @@ YunCMS遵循Apache2开源协议发布。Apache Licence是著名的非盈利开�
 - XunSearch
 
 # 联系方式
+- 官方网站：http://www.yunalading.com
 - QQ交流群：340078051

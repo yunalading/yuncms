@@ -1,5 +1,44 @@
 {include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
-<div class="am-container">
-
+<div class="content-page">
+    <div class="am-container">
+        <div class="page-title"><h1 class="am-inline">基本信息</h1></div>
+        <form class="am-form edit-form" method="post" data-am-validator>
+            <div class="am-form-group">
+                <label>主题</label>
+                <div>
+                    <select data-am-selected name="app[theme]" placeholder="请选择主题" required>
+                        <option></option>
+                        {volist name='themes' id='theme'}
+                        <option value="{$theme}" {if condition="$app.theme == $theme"}selected{/if}>{$theme}</option>
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+            <div class="am-form-group">
+                <label>网站名称</label>
+                <input type="text" name="app[site_name]" value="{$app.site_name}" required>
+            </div>
+            <div class="am-form-group">
+                <label>管理员邮箱</label>
+                <input type="email" name="app[email]" value="{$app.email}" required>
+            </div>
+            <div class="am-form-group">
+                <label>联系电话</label>
+                <input type="text" name="app[tel]" value="{$app.tel}">
+            </div>
+            <div class="am-form-group">
+                <label>icp备案号</label>
+                <input type="text" name="app[icp]" value="{$app.icp}">
+            </div>
+            <div class="am-form-group">
+                <label>状态</label>
+                <div><input type="checkbox" name="app[close]" value="1" data-am-switch data-size="xs" data-on-text="关闭" data-off-text="开启" {$app.close?'checked' : '' }></div>
+            </div>
+            <div class="am-form-group">
+                <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
+            </div>
+            {:token()}
+        </form>
+    </div>
 </div>
 {include file="footer" /}

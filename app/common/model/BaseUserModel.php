@@ -10,6 +10,7 @@
 // +----------------------------------------------------------------------
 namespace app\common\model;
 
+use think\Session;
 use traits\model\SoftDelete;
 
 /**
@@ -22,4 +23,52 @@ abstract class BaseUserModel extends BaseModel {
     use SoftDelete;
     protected $name = 'users';
 
+    /**
+     * 登录
+     * @param $username 用户名
+     * @param $password 密码
+     * @return mixed
+     */
+    public static function login($username, $password) {
+        $user = self::get([
+            'username' => $username,
+            'password' => self::createPassWord($password)
+        ]);
+        Session::set('user', $user);
+        return $user;
+    }
+
+    /**
+     * 退出
+     * @return bool
+     */
+    public static function logout() {
+        Session::delete('user');
+        return true;
+    }
+
+    /**
+     * 是否登录
+     * @return bool
+     */
+    public static function isLogin() {
+        return Session::has('user');
+    }
+
+    /**
+     * 获取当前登录的用户信息
+     * @return mixed
+     */
+    public static function currentUser() {
+        return Session::get('user');
+    }
+
+    /**
+     * 创建加密密码
+     * @param string $password
+     * @return string
+     */
+    public static function createPassWord($password) {
+        return md5(md5($password));
+    }
 }

@@ -2,17 +2,16 @@
 <div class="content-page">
     <div class="am-container">
         <div class="page-title"><h1 class="am-inline">管理员列表</h1>
-            <a href="#" class="am-btn am-btn-primary am-btn-xs am-radius">
+            <a href="<?= URL('/admin/user/update');?>" class="am-btn am-btn-primary am-btn-xs am-radius">
                 <i class="am-icon am-icon-edit"></i>添加管理员
             </a>
-            <a href="#" class="am-btn am-btn-default am-btn-xs am-radius">
+            <a href="<?= URL('/admin/user/trash');?>" class="am-btn am-btn-default am-btn-xs am-radius">
                 <i class="am-icon-trash"></i>回收站
             </a>
         </div>
         <table class="am-table">
             <thead>
             <tr>
-                <th>头像</th>
                 <th>昵称</th>
                 <th>用户名</th>
                 <th>邮箱</th>
@@ -22,39 +21,32 @@
                 <th>最后登录时间</th>
                 <th>最后登录IP</th>
                 <th>状态</th>
-                <th>操作</th>
+                <th width="100">操作</th>
             </tr>
             </thead>
             <tbody>
+            {volist name='list' id='user'}
             <tr>
-                <td>超级管理员</td>
-                <td>超级管理员</td>
-                <td>超级管理员</td>
-                <td>超级管理员</td>
-                <td>超级管理员</td>
-                <td>超级管理员</td>
-                <td>超级管理员</td>
-                <td>超级管理员</td>
-                <td>超级管理员</td>
-                <td>超级管理员</td>
+                <td>{$user.nickname}</td>
+                <td>{$user.username}</td>
+                <td>{$user.email}</td>
+                <td>{$user.phone}</td>
+                <td>{$user.qq}</td>
+                <td>{$user.role.role_name}</td>
+                <td>{$user.last_login_time}</td>
+                <td>{$user.last_login_ip}</td>
+                <td>{$user.state?'停用':'启用'}</td>
                 <td>
                     <div class="am-btn-group am-btn-group-xs">
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                        <a href="<?= URL('/admin/user/update',array('id'=>$user['user_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
+                        <a href="<?= URL('/admin/user/remove',array('id'=>$user['user_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
                     </div>
                 </td>
             </tr>
+            {/volist}
             </tbody>
         </table>
-        <ul class="am-pagination am-pagination-right">
-            <li class="am-disabled"><a href="#">&laquo;</a></li>
-            <li class="am-active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">&raquo;</a></li>
-        </ul>
+        {$page}
     </div>
 </div>
 {include file="footer" /}

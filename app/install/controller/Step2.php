@@ -12,6 +12,7 @@
 
 namespace app\install\controller;
 
+use app\core\install\Install;
 
 /**
  * Class Complete
@@ -22,6 +23,9 @@ class Step2 extends InstallWizard {
      * @return \think\response\View
      */
     public function index() {
+        if (!Install::checkEnv()) {
+            $this->error('请检查安装环境!', url('/install/step1'));
+        }
         return view();
     }
 }

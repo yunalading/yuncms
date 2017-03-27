@@ -1,0 +1,45 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<div class="content-page">
+    <div class="am-container">
+        <div class="page-title"><h1 class="am-inline">友情链接列表</h1>
+            <a href="<?= URL('/admin/links/update');?>" class="am-btn am-btn-primary am-btn-xs am-radius">
+                <i class="am-icon am-icon-edit"></i>添加链接
+            </a>
+        </div>
+        <table class="am-table">
+            <thead>
+            <tr>
+                <th>链接名称</th>
+                <th>链接图标</th>
+                <th>链接地址</th>
+                <th>打开方式</th>
+                <th>是否是首页</th>
+                <th>排序</th>
+                <th>添加时间</th>
+                <th width="100">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {volist name='list' id='link'}
+            <tr>
+                <td>{$link.link_name}</td>
+                <td><img src="{$link.link_logo}"></td>
+                <td>{$link.link_href}</td>
+                <td>{$link.link_target}</td>
+                <td>{$link.link_is_home?'是':'否'}</td>
+                <td>{$link.link_sort}</td>
+                <td>{$link.create_time}</td>
+                <td>
+                    <div class="am-btn-group am-btn-group-xs">
+                        <a href="<?= URL('/admin/links/update',array('id'=>$link['link_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
+                        <a href="<?= URL('/admin/links/remove',array('id'=>$link['link_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                    </div>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+        {$page}
+    </div>
+</div>
+{include file="footer" /}

@@ -1,0 +1,26 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<div class="content-page">
+    <div class="am-container">
+        <div class="page-title"><h1 class="am-inline">{$action_name}常量</h1></div>
+        <form class="am-form edit-form" method="post" data-am-validator>
+            <div class="am-form-group">
+                <label>常量名<span>(请填写常量名)</span></label>
+                {notempty name="key"}
+                <input type="text" {notempty name="key"}value="{$key}" disabled{/notempty}>
+                <input type="hidden" name="con[key]" value="{$key}">
+                {else}
+                <input type="text" name="con[key]" required pattern="^[a-zA-Z_]+\d*$" placeholder="请输入常量名">
+                {/notempty}
+            </div>
+            <div class="am-form-group">
+                <label>常量值<span>(请填写常量值)</span></label>
+                <input type="text" name="con[val]" required placeholder="请输入常量值" {notempty name="val"}value="{$val}"{/notempty}>
+            </div>
+            <div class="am-form-group">
+                <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
+            </div>
+            {:token()}
+        </form>
+    </div>
+</div>
+{include file="footer" /}

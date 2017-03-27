@@ -16,4 +16,5 @@ namespace app\common\model;
  */
 abstract class BaseEduLevelModel extends BaseModel {
     protected $name = 'edu_level';
+    protected $autoWriteTimestamp = false;
 }

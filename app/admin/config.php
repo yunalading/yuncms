@@ -9,6 +9,7 @@
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
 return [
+    'default_controller' => 'Dashboard',
     'dispatch_success_tmpl' => APP_PATH . 'admin' . DS . 'view' . DS . 'dispatch_jump.html',
     'dispatch_error_tmpl' => APP_PATH . 'admin' . DS . 'view' . DS . 'dispatch_jump.html',
     'template' => [
@@ -19,4 +20,5 @@ return [
         'var_page' => 'page',
         'list_rows' => 15,
     ],
+
 ];

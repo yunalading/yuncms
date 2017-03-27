@@ -201,7 +201,7 @@ return [
                 ], [
                     'id' => 'edu-level',
                     'name' => '文化程度',
-                    'href' => '/admin/edu/level'
+                    'href' => '/admin/edu'
                 ], [
                     'id' => 'upload',
                     'name' => '上传设置',

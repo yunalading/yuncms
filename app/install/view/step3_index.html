@@ -3,7 +3,7 @@
     <div class="am-container">
         <div class="am-g setp-title">
             <div class="am-u-sm-6 am-text-right">
-                <h1>Step.2</h1>
+                <h1>Step.3</h1>
             </div>
             <div class="am-u-sm-6 am-text-left">
                 <h3>开始安装</h3>
@@ -42,50 +42,50 @@
                     <legend>数据库信息</legend>
                     <div class="am-form-group">
                         <label>数据库服务器<span>(请填写数据库服务器IP或域名)</span></label>
-                        <input type="text" class="am-form-field am-radius" value="localhost" placeholder="请填写数据库服务器IP或域名" required>
+                        <input type="text" class="am-form-field am-radius" value="localhost" name="db[hostname]" placeholder="请填写数据库服务器IP或域名" required>
                     </div>
                     <div class="am-form-group">
                         <label>数据库名<span>(请填写数据库名称)</span></label>
-                        <input type="text" class="am-form-field am-radius" value="yuncms" placeholder="请填写数据库名称" required>
+                        <input type="text" class="am-form-field am-radius" value="yuncms" name="db[database]" placeholder="请填写数据库名称" required>
                     </div>
                     <div class="am-form-group">
                         <label>数据库用户名<span>(请填写数据库用户名)</span></label>
-                        <input type="text" class="am-form-field am-radius" value="root" placeholder="请填写数据库用户名" required>
+                        <input type="text" class="am-form-field am-radius" value="root" name="db[username]" placeholder="请填写数据库用户名" required>
                     </div>
                     <div class="am-form-group">
                         <label>数据库密码<span>(请填写数据库密码)</span></label>
-                        <input type="text" class="am-form-field am-radius" placeholder="请填写数据库密码" required>
+                        <input type="text" class="am-form-field am-radius" value="" name="db[password]" placeholder="请填写数据库密码">
                     </div>
                     <div class="am-form-group">
                         <label>数据库表前缀<span>(请填写表前缀)</span></label>
-                        <input type="text" class="am-form-field am-radius" value="yc_" placeholder="请填写表前缀" required>
+                        <input type="text" class="am-form-field am-radius" value="yc_" name="db[prefix]" placeholder="请填写表前缀" required>
                     </div>
                     <div class="am-form-group">
                         <label>数据库端口<span>(请填写数据库端口号)</span></label>
-                        <input type="number" class="am-form-field am-radius" value="3306" placeholder="请填写数据库端口号" required>
+                        <input type="number" class="am-form-field am-radius" value="3306" name="db[hostport]"  placeholder="请填写数据库端口号" required>
                     </div>
                 </fieldset>
                 <fieldset>
                     <legend>网站信息</legend>
                     <div class="am-form-group">
                         <label>站点名称<span>(请填写网站名称)</span></label>
-                        <input type="text" class="am-form-field am-radius" placeholder="请填写网站名称" required>
+                        <input type="text" class="am-form-field am-radius" placeholder="请填写网站名称" value="" name="app[site_name]" required>
                     </div>
                     <div class="am-form-group">
                         <label>管理员帐号<span>(请填写管理员账号)</span></label>
-                        <input type="text" class="am-form-field am-radius" placeholder="请填写管理员账号" required>
+                        <input type="text" class="am-form-field am-radius" placeholder="请填写管理员账号" value="" name="app[username]" required>
                     </div>
                     <div class="am-form-group">
                         <label>管理员密码<span>(请填写管理员密码不少于6个字符)</span></label>
-                        <input type="password" class="am-form-field am-radius" id="admin-pwd" placeholder="请填写管理员密码" required minlength="6">
+                        <input type="password" class="am-form-field am-radius" id="admin-pwd" value="" name="app[password]" placeholder="请填写管理员密码" required minlength="6">
                     </div>
                     <div class="am-form-group">
                         <label>确认密码<span>(请重新输入管理员密码)</span></label>
-                        <input type="password" class="am-form-field am-radius" placeholder="请重新输入管理员密码" data-equal-to="#admin-pwd" required>
+                        <input type="password" class="am-form-field am-radius" placeholder="请重新输入管理员密码" value="" name="app[password2]" data-equal-to="#admin-pwd" required>
                     </div>
                     <div class="am-form-group">
                         <label>管理员邮箱<span>(请填写管理员邮箱)</span></label>
-                        <input type="email" class="am-form-field am-radius" placeholder="请填写管理员邮箱" required>
+                        <input type="email" class="am-form-field am-radius" placeholder="请填写管理员邮箱" value="" name="app[email]" required>
                     </div>
                 </fieldset>
                 {:token()}

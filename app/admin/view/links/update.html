@@ -1,0 +1,44 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<div class="content-page">
+    <div class="am-container">
+        <div class="page-title"><h1 class="am-inline">{$action_name}友情链接</h1></div>
+        <form class="am-form edit-form" method="post" data-am-validator>
+            <div class="am-form-group am-form-file">
+                <button type="button" class="am-btn am-btn-primary am-btn-sm">
+                    <i class="am-icon-cloud-upload"></i> 选择链接图标</button>
+                <input type="file">
+            </div>
+            <div class="am-form-group">
+                <label>链接名称<span>(请填写常量值)</span></label>
+                <input type="text" name="link[link_name]" required placeholder="请输入链接名称" {notempty name="link"}value="{$link.link_name}"{/notempty}>
+            </div>
+            <div class="am-form-group">
+                <label>链接地址<span>(请填写链接地址)</span></label>
+                <input type="text" name="link[link_href]" required placeholder="请输入链接地址" {notempty name="link"}value="{$link.link_href}"{/notempty}>
+            </div>
+            <div class="am-form-group">
+                <label>打开方式</label>
+                <div>
+                    <select data-am-selected name="link[link_target]">
+                        {volist name='targets' id='target'}
+                        <option value="{$target}" {notempty name="link"}{if condition="$target == $link['link_target']"}selected{/if}{/notempty}>{$target}</option>
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+            <div class="am-form-group">
+                <label>是否是首页</label>
+                <div><input type="checkbox" name="link[link_is_home]" value="1" data-am-switch data-size="xs" data-on-text="否" data-off-text="是" {$link.link_is_home?'checked' : '' }></div>
+            </div>
+            <div class="am-form-group">
+                <label>排序<span></span></label>
+                <input type="text" name="link[link_sort]" value="0">
+            </div>
+            <div class="am-form-group">
+                <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
+            </div>
+            {:token()}
+        </form>
+    </div>
+</div>
+{include file="footer" /}

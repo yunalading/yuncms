@@ -41,6 +41,7 @@ class Role extends AdminBaseController {
      */
     public function update() {
         $roleModel = new RoleModel();
+        $action_name = '添加';
         if ($this->request->isPost()) {
             //验证数据
             $role_data = array_filter($this->post['role']);
@@ -71,9 +72,10 @@ class Role extends AdminBaseController {
                 //编辑页面初始化数据
                 $role = RoleModel::get($this->param['id']);
                 $this->assign('role', $role);
-                $this->assign('access', json_encode($role->access()->select()));
+                $action_name = '编辑';
             }
         }
+        $this->assign('action_name',$action_name);
         $this->assign('actions', config('authorization.menus'));
         return view();
     }

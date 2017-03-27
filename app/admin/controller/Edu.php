@@ -12,10 +12,23 @@
 
 namespace app\admin\controller;
 
+use app\admin\model\EduLevelModel;
 
+/**
+ * Class Edu
+ * @package app\admin\controller
+ */
 class Edu extends AdminBaseController {
-
-    public function level() {
+    /**
+     * 文化程度列表
+     * @return \think\response\View
+     */
+    public function index() {
+        $eduLevelModel = new EduLevelModel();
+        $list = $eduLevelModel->paginate();
+        $page = $list->render();
+        $this->assign('list', $list);
+        $this->assign('page', $page);
         return view();
     }
 }

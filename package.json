@@ -7,6 +7,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "amazeui": "^2.7.0",
+    "amazeui-switch": "^3.3.3",
     "browserify-shim": "^3.8.12",
     "del": "^2.2.1",
     "editor.md": "^1.5.0",

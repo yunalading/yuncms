@@ -21,7 +21,6 @@
 |user_id|int|是| | |是|管理员用户编号(自增长)|
 |role_id|int| | | | |管理员角色编号|
 |nickname|varchar(50)| |是| | |昵称|
-|avatar|varchar(200)| |是| | |头像|
 |username|varchar(200)| | | |是|用户名|
 |password|varchar(200)| | | | |密码|
 |email|varchar(50)| |是| | |邮箱|
@@ -237,7 +236,6 @@
 |email|varchar(50)| |是| | |邮箱|
 |guestbook_title|varchar(50)| | | | |标题|
 |guestbook_content|varchar(500)| | | | |内容|
-|guestbook_state|int| |是|0| |状态|
 |create_time|int| | | | |创建时间|
 
 ## yc_comments（内容评论表）
@@ -387,6 +385,6 @@
 |link_logo|varchar(255)| |是| | |链接图标|
 |link_href|varchar(255)| | | | |链接地址|
 |link_target|varchar(50)| |是| | |打开方式|
-|link_is_home|int| |是| | |是否是首页|
+|link_is_home|int| |是|0| |是否是首页|
 |link_sort|int| |是|0| |排序编号|
 |create_time|int| | | | |创建时间|

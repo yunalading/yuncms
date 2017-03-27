@@ -6,11 +6,15 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: jabber <2898117012@qq.com>
+// | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 
 
 namespace app\admin\controller;
+use app\admin\validate\UserValidate;
+use app\admin\model\UserModel;
+use think\Log;
+
 
 /**
  * Class Dashboard

@@ -17,4 +17,5 @@ namespace app\common\model;
  */
 abstract class BaseAreaModel extends BaseModel {
     protected $name = 'area';
+    protected $autoWriteTimestamp = false;
 }

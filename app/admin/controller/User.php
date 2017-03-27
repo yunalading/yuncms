@@ -12,30 +12,207 @@
 
 namespace app\admin\controller;
 
+use app\admin\model\RoleModel;
+use app\admin\model\UserModel;
+use app\admin\validate\UserValidate;
+use think\exception\PDOException;
+use think\Log;
+
 /**
  * Class User
  * @package app\admin\controller
  */
 class User extends AdminBaseController {
     protected $allow_actions = ['login'];
+
     /**
+     * 管理员列表
      * @return \think\response\View
      */
     public function index() {
+        $userModel = new UserModel();
+        $list = $userModel->paginate();
+        $page = $list->render();
+        $this->assign('list', $list);
+        $this->assign('page', $page);
         return view();
     }
 
     /**
+     * 添加或修改管理员
+     * @return \think\response\View
+     */
+    public function update() {
+        $role_list = RoleModel::all();
+        $userModel = new UserModel();
+        $action_name = '添加';
+        if ($this->request->isPost()) {
+            //验证数据
+            $user_data = array_filter($this->post['user']);
+            $userValidate = new UserValidate();
+            if (!$userValidate->check($user_data, [], 'update')) {
+                $this->error($userValidate->getError());
+            }
+            try {
+                if (!key_exists('state', $user_data)) {
+                    $user_data['state'] = 0;
+                }
+                $user_data['password'] = UserModel::createPassWord($user_data['password']);
+                unset($user_data['password2']);
+                //添加或更新角色
+                $userModel->saveAll([$user_data])[0];
+                $this->success('操作成功!', url('/admin/user'));
+            } catch (PDOException $e) {
+                Log::error($e);
+                if ($e->getCode() == 10501) {
+                    $this->error('用户已存在，操作失败');
+                }
+            }
+        } else {
+            if (!empty($this->param) && $this->param['id']) {
+                $user = UserModel::get($this->param['id']);
+                $this->assign('user', $user);
+                $action_name = '编辑';
+            }
+        }
+        $this->assign('role_list', $role_list);
+        $this->assign('action_name', $action_name);
+        return view();
+    }
+
+    /**
+     * 软删除
+     */
+    public function remove() {
+        $this->delete();
+    }
+
+    /**
+     * 删除
+     * @param bool $flag 是否真删除
+     */
+    private function delete($flag = false) {
+        if (!empty($this->param) && $this->param['id']) {
+            try {
+                if (UserModel::destroy($this->param['id'], $flag)) {
+                    $this->success('删除成功!');
+                } else {
+                    $this->error('删除失败!');
+                }
+            } catch (PDOException $e) {
+                Log::error($e);
+                $this->error('删除失败!');
+            }
+        } else {
+            $this->error('参数错误!');
+        }
+    }
+
+    /**
+     * 回收站
+     * @return \think\response\View
+     */
+    public function trash() {
+        $list = UserModel::onlyTrashed()->paginate();
+        $page = $list->render();
+        $this->assign('list', $list);
+        $this->assign('page', $page);
+        return view();
+    }
+
+    /**
+     * 恢复
+     */
+    public function recovery() {
+        if (!empty($this->param) && $this->param['id']) {
+            try {
+                $user = UserModel::onlyTrashed()->find($this->param['id']);
+                if ($user->restore()) {
+                    $this->success('恢复成功!');
+                } else {
+                    $this->error('恢复失败!');
+                }
+            } catch (PDOException $e) {
+                Log::error($e);
+                $this->error('恢复失败!');
+            }
+        } else {
+            $this->error('参数错误!');
+        }
+    }
+
+    /**
+     * 真删除
+     */
+    public function destroy() {
+        $this->delete(true);
+    }
+
+    /**
+     * 清空回收站
+     */
+    public function emptyTrash() {
+        try {
+            UserModel::onlyTrashed()->delete(true);
+            $this->success('操作成功!');
+        } catch (PDOException $e) {
+            Log::error($e);
+            $this->error('清空失败!');
+        }
+    }
+
+    /**
+     * 登录
      * @return \think\response\View
      */
     public function login() {
+        if (UserModel::isLogin()) {
+            $this->redirect(url('/admin'));
+        }
+        if ($this->request->isPost()) {
+            $user_data = $this->post['user'];
+            $userValidate = new UserValidate();
+            if (!$userValidate->check($user_data, [], 'login')) {
+                $this->error($userValidate->getError());
+            }
+            $user = UserModel::login($user_data['username'], $user_data['password']);
+            if (!$user) {
+                $this->error('用户名或密码错误!');
+            } else {
+                $this->success('登录成功!');
+            }
+        }
         return view();
     }
 
     /**
+     * 用户信息
      * @return \think\response\View
      */
-    public function logout() {
+    public function info() {
+        $user = UserModel::currentUser();
+        if ($this->request->isPost()) {
+            //保存用户信息
+            $user_data = $this->post['user'];
+            $userValidate = new UserValidate();
+            if (!$userValidate->check($user_data, [], 'info')) {
+                $this->error($userValidate->getError());
+            }
+            $user_data['password'] = UserModel::createPassWord($user_data['password']);
+            unset($user_data['password2']);
+            $user->save($user_data);
+            $this->success('操作成功!');
+        }
+        $this->assign('user', $user);
         return view();
+    }
+
+    /**
+     * 退出
+     */
+    public function logout() {
+        if (UserModel::logout()) {
+            $this->success('退出成功', url('/admin'));
+        }
     }
 }
