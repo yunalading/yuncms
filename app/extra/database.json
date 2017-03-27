@@ -1,7 +1,7 @@
 {
   "type": "mysql",
   "dsn": "",
-  "hostname": "mysql",
+  "hostname": "192.168.3.88",
   "database": "yuncms",
   "username": "root",
   "password": "123456",

@@ -6,30 +6,13 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: jabber <2898117012@qq.com>
+// | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 
+namespace app\core\upload;
 
-namespace app\admin\controller;
 
-use app\core\upload\FileMate;
-use phpDocumentor\Reflection\Types\Null_;
-
-/**
- * Class Upload
- * @package app\admin\controller
- */
-class Upload extends AdminBaseController
+class abas
 {
-    /**
-     * @return \think\response\View
-     */
-    public function index()
-    {
-        $upload = \app\core\upload\Upload::getInstent(['uploadType' => 'QiNiu']);
-        echo $upload->upload(null);
 
-        die();
-        return view();
-    }
 }
