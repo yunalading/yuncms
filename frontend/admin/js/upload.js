@@ -149,10 +149,11 @@ $(".admin-info-sex-edit").click(function(){
 //为溢出隐藏添加点击展开事件
 $('.am-table td').each(function(){
    $(this).click(function(){
-       if($(this).css('white-space')=='nowrap'){
+       if($(this).css('white-space')==='nowrap'){
            $(this).css({'white-space':'normal'});
        }else{
            $(this).css({'white-space':'nowrap'});
        }
    });
 });
+//上传设置里验证信息自定义
