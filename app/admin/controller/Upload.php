@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: jabber <2898117012@qq.com>
+// | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 
 
@@ -14,6 +14,7 @@ namespace app\admin\controller;
 
 use app\core\upload\FileMate;
 use phpDocumentor\Reflection\Types\Null_;
+use think\Config;
 
 /**
  * Class Upload
@@ -26,10 +27,17 @@ class Upload extends AdminBaseController
      */
     public function index()
     {
-        $upload = \app\core\upload\Upload::getInstent(['uploadType' => 'QiNiu']);
-        echo $upload->upload(null);
+        //$config =  isset(Config::get('upload.image'))?Config::get('upload.image'):'';
 
-        die();
+//        $upload = \app\core\upload\Upload::getInstance(['uploadType' => 'Server']);
+//        echo $upload->upload(null);
         return view();
+    }
+
+    /**
+     *
+     */
+    public function add(){
+
     }
 }

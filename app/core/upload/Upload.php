@@ -24,9 +24,9 @@ abstract class Upload
      * @param FileMate $mete
      * @return mixed
      */
-    abstract public function upload(FileMate $mete);
+    abstract public function upload(FileMate $mate);
 
-    public static function getInstent($config = [])
+    public static function getInstance($config = [])
     {
         $type = isset($config['uploadType']) ? $config['uploadType'] : 'Server';
         $class = false !== strpos($type, '\\') ? $type : '\\app\\core\\upload\\driver\\' . ucwords($type);
