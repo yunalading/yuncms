@@ -9,16 +9,16 @@ yuncms:
     - 80:80
 
 mysql:
-  image:mysql:latest
+  image: mysql:latest
   volumes:
     - ./mysql:/var/lib/mysql
   environment:
-    MYSQL_ROOT_PASSWORD:123456
+    - MYSQL_ROOT_PASSWORD=123456
   ports:
     - 3306:3306
 
 xunsearch:
-  image:hightman/xunsearch:latest
+  image: hightman/xunsearch:latest
   volumes:
     - ./xunsearch:/usr/local/xunsearch/data
   ports:
