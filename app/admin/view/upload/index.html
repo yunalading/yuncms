@@ -1,0 +1,72 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<div class="content-page">
+    <div class="am-container">
+        <div class="page-title"><h1 class="am-inline">上传设置</h1></div>
+        <form class="am-form edit-form" method="post" data-am-validator>
+            <div class="am-form-group">
+                <label for="uploadType">上传类型</label>
+                <div>
+                    <select data-am-selected name="uploadType"  id="uploadType" placeholder="请选择主题" required>
+                        <option value="Server" >服务器</option>
+                        <option value="QiNiu" >七牛云存储</option>
+                        <option value="Oss" >阿里云OSS</option>
+                    </select>
+                </div>
+            </div>
+            <div class="am-form-group">
+                <label for="maxSize">文件上传大小限制</label>
+                <input type="text" name="maxSize" id="maxSize" required>
+            </div>
+            <div class="am-form-group">
+                <label for="allowExts ">允许上传图片后缀 如：jpg,gif,png,jpeg</label>
+                <input type="text" name="allowExts " id="allowExts " required>
+            </div>
+            <div class="am-form-group">
+                <label for="savePath">默认上传路径</label>
+                <input type="text" name="savePath   " id="savePath" required>
+            </div>
+            <div class="am-form-group">
+                <label for="isThumb">默认是否生成缩略图</label>
+                <div>
+                    <input type="checkbox" name="isThumb" id="isThumb" value="1" data-am-switch data-size="xs" data-on-text="关闭" data-off-text="开启">
+                </div>
+            </div>
+
+            <div class="am-form-group">
+                <label for="thumbPrefix">生成缩略图的图片后缀</label>
+                <input type="text" name="thumbPrefix" id="thumbPrefix" required>
+            </div>
+
+            <div class="am-form-group">
+                <label for="thumbMaxWidth">设置缩略图的最大宽度</label>
+                <input type="text" name="thumbMaxWidth" id="thumbMaxWidth" required>
+            </div>
+
+            <div class="am-form-group">
+                <label for="thumbMaxHeight">设置缩略图的最大高度</label>
+                <input type="text" name="thumbMaxHeight" id="thumbMaxHeight" required>
+            </div>
+
+            <div class="am-form-group">
+                <label for="thumbRemoveOrigin ">是否删除原图</label>
+                <div>
+                    <input type="checkbox" name="thumbRemoveOrigin " id="thumbRemoveOrigin " value="1" checked data-am-switch data-size="xs" data-on-text="关闭" data-off-text="开启">
+                </div>
+            </div>
+
+            <div class="am-form-group">
+                <label for="isWater">是否给缩略图添加水印</label>
+                <div>
+                    <input type="checkbox" name="isWater" id="isWater" value="1" data-am-switch data-size="xs" data-on-text="关闭" data-off-text="开启">
+                </div>
+            </div>
+
+
+            <div class="am-form-group">
+                <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
+            </div>
+            {:token()}
+        </form>
+    </div>
+</div>
+{include file="footer" /}

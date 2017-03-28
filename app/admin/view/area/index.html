@@ -2,26 +2,42 @@
 <div class="content-page">
     <div class="am-container">
         <div class="page-title"><h1 class="am-inline">地区列表</h1>
+            <a href="/index.php/admin/area/edit" class="am-btn am-btn-primary am-btn-xs am-radius">
+                <i class="am-icon am-icon-edit"></i>添加地区
+            </a>
         </div>
         <table class="am-table">
             <thead>
             <tr>
                 <th>地区名称</th>
                 <th>排序</th>
-                <th width="100">大区名称</th>
+                <th>大区名称</th>
+                <th>操作</th>
             </tr>
             </thead>
             <tbody>
-            {volist name='list' id='area'}
             <tr>
-                <td>{$area.area_name}</td>
-                <td>{$area.area_sort}</td>
-                <td>{$area.area_region}</td>
+                <td>超级管理员</td>
+                <td>0</td>
+                <td>0</td>
+                <td>
+                    <div class="am-btn-group am-btn-group-xs">
+                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
+                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                    </div>
+                </td>
             </tr>
-            {/volist}
             </tbody>
         </table>
-        {$page}
+        <ul class="am-pagination am-pagination-right">
+            <li class="am-disabled"><a href="#">&laquo;</a></li>
+            <li class="am-active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
     </div>
 </div>
 {include file="footer" /}

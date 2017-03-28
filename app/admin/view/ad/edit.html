@@ -1,0 +1,24 @@
+
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+
+
+     <!--添加普通广告-->
+     <form  class="am-form am-g margin-top-buttom-20" id="ad-general" data-am-validator="">
+         {:token()}
+         <div class="am-form-group all-width">
+             <h1>添加普通广告</h1>
+             <label for="ad-general-ident">普通广告标识：</label><input type="text" name="ad-general-ç" id="ad-general-ident" maxlength="100" required>
+         </div>
+         <div class="am-form-group all-width">
+             <label for="ad-general-title">标题：</label><input type="text" name="ad-general-title" id="ad-general-title" maxlength="20" required>
+         </div>
+         <div class="am-form-group all-width">
+             <label for="ad-general-link">链接：</label><input type="text" name="ad-general-link" id="ad-general-link" maxlength="500" required>
+         </div>
+         <div class="am-form-group all-width">
+         <label for="ad-general-description">描述：</label><textarea class="ad-textarea-width" name="ad-general-description" id="ad-general-description" maxlength="200"></textarea><input type="submit" class="am-btn am-btn-primary btn-loading-example " value="提交">
+         </div>
+     </form>
+
+
+{include file="footer" /}
