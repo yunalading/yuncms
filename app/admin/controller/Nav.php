@@ -23,5 +23,7 @@ class Nav extends AdminBaseController {
     public function index() {
         return view();
     }
-
+    public function edit() {
+        return view();
+    }
 }

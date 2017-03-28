@@ -32,4 +32,7 @@ class Area extends AdminBaseController {
         $this->assign('page', $page);
         return view();
     }
+    public function edit() {
+        return view();
+    }
 }

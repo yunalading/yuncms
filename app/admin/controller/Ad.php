@@ -40,4 +40,23 @@ class Ad extends AdminBaseController {
     public function slide() {
         return view();
     }
+
+    public function edit(){
+        return view();
+    }
+    public function scriptedit(){
+        return view();
+    }
+    public function slideedit(){
+        return view();
+    }
+    public function delete(){
+        return view();
+    }
+    public function scriptdelete(){
+        return view();
+    }
+    public function slidedelete(){
+        return view();
+    }
 }

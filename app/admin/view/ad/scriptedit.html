@@ -1,0 +1,24 @@
+
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<!--添加脚本广告-->
+<form  class="am-form am-g margin-top-buttom-20" id="ad-script" data-am-validator="">
+    {:token()}
+    <div class="am-form-group all-width">
+        <h1>添加脚本广告</h1>
+        <label for="ad-script-ident">脚本广告标识：</label>
+        <input type="text" name="ad-script-ident" id="ad-script-ident" maxlength="100" required>
+    </div>
+    <div class="am-form-group all-width">
+        <label for="ad-script-name">名称：</label><input class="ad-input-width" type="text" name="ad-script-name"
+                                                      id="ad-script-name" maxlength="50" required>
+    </div>
+    <div class="am-form-group all-width">
+        <label for="ad-script-code">代码：</label><textarea class="ad-textarea-width" name="ad-script-code"
+                                                         id="ad-script-code" maxlength="5000" required></textarea>
+    </div>
+    <div class="am-form-group all-width">
+        <label for="ad-script-description">描述：</label><textarea class="ad-textarea-width" name="ad-script-description" id="ad-script-description" maxlength="200"></textarea>
+        <input type="submit" class="am-btn am-btn-primary btn-loading-example" value="提交">
+    </div>
+</form>
+{include file="footer" /}

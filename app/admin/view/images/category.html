@@ -1,0 +1,41 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+
+
+<div class="content-page">
+    <div class="am-container">
+        <div class="page-title"><h1 class="am-inline">图片列表</h1>
+            <a href="/index.php/admin/images/category"  class="am-btn am-btn-primary am-btn-xs am-radius">
+                <i class="am-icon am-icon-plus"></i>新建图片文件夹
+            </a>
+            <a href="/index.php/admin/images/edit" class="am-btn am-btn-primary am-btn-xs am-radius">
+                <i class="am-icon am-icon-edit"></i>添加图片
+            </a>
+            <a href="/index.php/admin/images/delete" class="am-btn am-btn-default am-btn-xs am-radius">
+                <i class="am-icon-trash"></i>回收站
+            </a>
+        </div>
+
+
+        <form class="img-cate-box">
+            <label>请输入图片分类的名称：<br><input type="text"  name="img-cate-name" id="img-cate-name"></label>
+            <div class="img-cate-footer">
+                <button class="am-btn am-btn-primary btn-loading-example "id="img-cate-confirm">确定</button>
+                <button class="am-btn am-btn-default btn-loading-example "id="img-cate-cancer">清空</button>
+            </div>
+        </form>
+
+        <ul class="am-pagination am-pagination-right">
+            <li class="am-disabled"><a href="#">&laquo;</a></li>
+            <li class="am-active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+
+
+
+    </div>
+</div>
+{include file="footer" /}

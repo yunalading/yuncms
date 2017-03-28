@@ -16,7 +16,7 @@ return [
         'view_depr' => DS,
     ],
     'paginate' => [
-        'type' => 'app\core\paginator\Amazeui',
+        'type' => 'app\core\paginator\AmazeUI',
         'var_page' => 'page',
         'list_rows' => 15,
     ],
