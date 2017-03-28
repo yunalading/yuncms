@@ -2,7 +2,7 @@
 <div class="content-page">
     <div class="am-container">
         <div class="page-title"><h1 class="am-inline">{$action_name}友情链接</h1></div>
-        <form class="am-form edit-form" method="post" data-am-validator>
+        <form class="am-form edit-form" method="post" action="<?= URL('/admin/links/update');?>" data-am-validator>
             <div class="am-form-group am-form-file">
                 <button type="button" class="am-btn am-btn-primary am-btn-sm">
                     <i class="am-icon-cloud-upload"></i> 选择链接图标</button>
@@ -32,7 +32,7 @@
             </div>
             <div class="am-form-group">
                 <label>排序<span></span></label>
-                <input type="text" name="link[link_sort]" value="0">
+                <input type="text" name="link[link_sort]" value="{$link['link_sort']?$link['link_sort']:0}">
             </div>
             <div class="am-form-group">
                 <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>

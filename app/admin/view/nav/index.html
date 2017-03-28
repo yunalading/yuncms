@@ -4,10 +4,10 @@
 <div class="content-page">
     <div class="am-container">
         <div class="page-title"><h1 class="am-inline">导航列表</h1>
-            <a href="/index.php/admin/nav/edit" class="am-btn am-btn-primary am-btn-xs am-radius">
+            <a href="<?= URL('admin/nav/edit');?>" class="am-btn am-btn-primary am-btn-xs am-radius">
                 <i class="am-icon am-icon-edit"></i>添加导航
             </a>
-            <a href="/index.php/admin/nav/delete" class="am-btn am-btn-default am-btn-xs am-radius">
+            <a href="<?= URL('admin/nav/delete');?>" class="am-btn am-btn-default am-btn-xs am-radius">
                 <i class="am-icon-trash"></i>回收站
             </a>
         </div>
@@ -30,45 +30,24 @@
             </tr>
             </thead>
             <tbody>
+            {volist name='list' id='nav'}
             <tr>
-                <td><a target="_blank" href="#">世界您好</a></td>
-                <td><a href="#">admin</a></td>
-                <td><a href="#">未分类</a></td>
-                <td>2017-1-18 15:43:26</td>
-                <td><a href="#">未发布</a></td>
+                <td>{$nav.nav_key}</td>
+                <td><a href="#">{$nav.nav_name}</a></td>
+                <td></td>
+                <td>{$nav.update_time}</td>
+                <td><a href="#">{$nav.create_time}</a></td>
                 <td>
                     <div class="am-btn-group am-btn-group-xs">
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                        <a href="<?= URL('admin/nav/edit',array('nav_key'=>$nav['nav_key']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
+                        <a href="<?= URL('admin/nav/delete',array('nav_key'=>$nav['nav_key']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td><a target="_blank" href="#">Gulp常用配置</a></td>
-                <td><a href="#">hukei</a></td>
-
-                <td><a href="#">gulp</a>、<a href="#">nodejs</a></td>
-
-                <td>2017-1-28 15:43:26</td>
-                <td><a href="#">已发布</a></td>
-                <td>
-                    <div class="am-btn-group am-btn-group-xs">
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
-                    </div>
-                </td>
-            </tr>
+            {/volist}
             </tbody>
         </table>
-        <ul class="am-pagination am-pagination-right">
-            <li class="am-disabled"><a href="#">&laquo;</a></li>
-            <li class="am-active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">&raquo;</a></li>
-        </ul>
+        {$page}
     </div>
 </div>
 {include file="footer" /}

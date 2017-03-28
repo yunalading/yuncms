@@ -2,11 +2,11 @@
 <div class="content-page">
     <div class="am-container">
         <div class="page-title"><h1 class="am-inline">上传设置</h1></div>
-        <form class="am-form edit-form" method="post" data-am-validator>
+        <form class="am-form edit-form" method="post" action="<?= url('/admin/upload/edit');?>" data-am-validator>
             <div class="am-form-group">
                 <label for="uploadType">上传类型</label>
                 <div>
-                    <select data-am-selected name="uploadType"  id="uploadType" placeholder="请选择主题" required>
+                    <select data-am-selected name="uploadType"  id="uploadType" placeholder="请选择上传方式" required>
                         <option value="Server" >服务器</option>
                         <option value="QiNiu" >七牛云存储</option>
                         <option value="Oss" >阿里云OSS</option>
@@ -15,7 +15,7 @@
             </div>
             <div class="am-form-group">
                 <label for="maxSize">文件上传大小限制</label>
-                <input type="text" name="maxSize" id="maxSize" required>
+                <input type="text" name="maxSize" id="maxSize" value="{$config.maxSize}" required>
             </div>
             <div class="am-form-group">
                 <label for="allowExts ">允许上传图片后缀 如：jpg,gif,png,jpeg</label>
@@ -23,7 +23,7 @@
             </div>
             <div class="am-form-group">
                 <label for="savePath">默认上传路径</label>
-                <input type="text" name="savePath   " id="savePath" required>
+                <input type="text" name="savePath" id="savePath" required>
             </div>
             <div class="am-form-group">
                 <label for="isThumb">默认是否生成缩略图</label>

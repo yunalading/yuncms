@@ -6,16 +6,19 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: jabber <2898117012@qq.com>
+// | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
-namespace app\common\model;
+
+
+namespace app\admin\model;
+
+
+use app\common\model\BaseNavModel;
+
 /**
- * 友情链接
- * Class BaseLinkModel
- * @package app\common\model
+ * Class NavModel
+ * @package app\admin\model
  */
-abstract class BaseLinkModel extends BaseModel {
-    protected $name = 'links';
-    protected $updateTime = false;
-    public static $targets = ['_blank', '_self', '_parent', '_top'];
+class NavModel extends BaseNavModel {
+
 }
