@@ -39,7 +39,7 @@ form .inputfile-hide {
 }
 /*列表的内容居中显示*/
 table th , table td{
-    text-align: center;
+  text-align:center;
 }
 /*管理员信息修改页面*/
 .admin-info{
@@ -173,11 +173,14 @@ table th , table td{
 }
 
 //列表内容溢出隐藏
-.am-table td{
-    white-space:nowrap;
-    overflow:hidden;
-    max-width:400px;
-    min-width:150px;
+.am-table {
+    width:100%;
+            td{
+                  white-space:nowrap;
+                   overflow:hidden;
+                   max-width:400px;
+                min-width:100px;
+            }
 }
 .am-table td:last-of-type{
     min-width:200px;
@@ -201,34 +204,38 @@ table th , table td{
 }
 //邮件配置
 #email-settings{
-    margin-top:30px;
-    //与上个元素同行显示
-    fieldset > div{
-        display:inline-block;
-    }
+
+
     //邮件发送方式宽度随内容撑开
     .am-selected{
         width:auto;
     }
-    //字体恢复正常，加点左边距
-    label{
-        font-weight:normal;
-        margin-left:20px;
+    .am-form-group{
+        width:auto;
+
+    }
+    .am-form-group  > input {
+        width:300px;
+        display:inline-block;
+    }
+    .radio-width{
+        width:300px;
+        display:inline-block;
+
+        label{
+            display:inline-block;
+            margin-left:30px;
+        }
     }
     //按钮图片右边距
     i{
         margin-right:10px;
     }
-    fieldset > span{
-        display:inline-block;
-        width:15%;
-        text-align:right;
+    label{
+        display:block;
     }
-    fieldset >input{
-        width:200px;
-    }
-    .radio-width{
-        width:200px;
-        margin-right:20px;
+    .label-right{
+    display:inline-block;
+
     }
 }
