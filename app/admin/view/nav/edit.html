@@ -5,10 +5,7 @@
     <div class="am-container">
         <div class="page-title"><h1 class="am-inline">导航列表</h1>
             <a href="#" class="am-btn am-btn-primary am-btn-xs am-radius">
-                <i class="am-icon am-icon-edit"></i>添加导航
-            </a>
-            <a href="#" class="am-btn am-btn-default am-btn-xs am-radius">
-                <i class="am-icon-trash"></i>回收站
+                <i class="am-icon am-icon-edit"></i>{$action_name}导航
             </a>
         </div>
 
@@ -17,11 +14,12 @@
         {:token()}
         <div class="all-width">
         <label for="nav-ident">导航标识</label>
-        <input type="text" name="nav[nav_key]" id="nav-ident" maxlength="200" value="{$nav['nav_key']? $nav['nav_key'] : ''}" required>
+        <input type="text" name="nav[nav_key]" id="nav-ident" maxlength="200" {notempty name="nav"} value="{$nav.nav_key}" disabled {/notempty} required>
         <label for="nav-name">导航名称</label>
         <input type="text" name="nav[nav_name]" id="nav-name" maxlength="200" value="{$nav['nav_name']? $nav['nav_name'] : ''}" required>
+            {notempty name="nav"}<input type="hidden" name="id" required placeholder="导航标识" value="{$nav.nav_key}">{/notempty}
         </div>
-        <button class="am-btn am-btn-primary button-text-left ">添加导航</button>
+        <button class="am-btn am-btn-primary button-text-left ">{$action_name}导航</button>
 
     </form>
 </div>

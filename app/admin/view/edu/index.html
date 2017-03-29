@@ -2,17 +2,27 @@
 <div class="content-page">
     <div class="am-container">
         <div class="page-title"><h1 class="am-inline">文化程度列表</h1>
+            <a href="<?= URL('/admin/edu/update');?>" class="am-btn am-btn-primary am-btn-xs am-radius">
+                <i class="am-icon am-icon-edit"></i>添加文化程度
+            </a>
         </div>
         <table class="am-table">
             <thead>
             <tr>
                 <th>文化程度</th>
+                <th width="100">操作</th>
             </tr>
             </thead>
             <tbody>
             {volist name='list' id='edu'}
             <tr>
                 <td>{$edu.edu_level_name}</td>
+                <td>
+                    <div class="am-btn-group am-btn-group-xs">
+                        <a href="<?= URL('/admin/edu/update',array('id'=>$edu['edu_level_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
+                        <a href="<?= URL('/admin/edu/remove',array('id'=>$edu['edu_level_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                    </div>
+                </td>
             </tr>
             {/volist}
             </tbody>

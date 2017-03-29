@@ -6,15 +6,19 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: jabber <2898117012@qq.com>
+// | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
-namespace app\common\model;
+
+
+namespace app\admin\model;
+
+
+use app\common\model\BaseAdImagesModel;
+
 /**
- * 标签
- * Class BaseTagModel
- * @package app\common\model
+ * Class AdTextModel
+ * @package app\admin\model
  */
-abstract class BaseTagModel extends BaseModel {
-    protected $name = 'tags';
-    protected $autoWriteTimestamp = false;
+class AdImagesModel extends BaseAdImagesModel {
+
 }

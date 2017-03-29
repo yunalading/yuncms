@@ -6,15 +6,22 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: jabber <2898117012@qq.com>
+// | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
-namespace app\common\model;
+
+
+namespace app\admin\validate;
+
+use app\common\validate\BaseAdCodeValidate;
+
 /**
- * 标签
- * Class BaseTagModel
- * @package app\common\model
+ * Class AdCodeValidate
+ * @package app\admin\validate
  */
-abstract class BaseTagModel extends BaseModel {
-    protected $name = 'tags';
-    protected $autoWriteTimestamp = false;
+class AdCodeValidate extends BaseAdCodeValidate {
+    protected $scene = [
+        'update' => [
+
+        ]
+    ];
 }
