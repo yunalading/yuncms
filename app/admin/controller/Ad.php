@@ -11,6 +11,12 @@
 
 
 namespace app\admin\controller;
+use app\admin\model\AdTextModel;
+use app\admin\model\AdCodeModel;
+use app\admin\model\AdImagesModel;
+use app\admin\validate\AdTextValidate;
+use app\admin\validate\AdCodeValidate;
+use app\admin\validate\AdImagesValidate;
 
 /**
  * Class Ad
@@ -22,6 +28,7 @@ class Ad extends AdminBaseController {
      * @return \think\response\View
      */
     public function general() {
+        $adTextModel = new AdTextModel();
         return view();
     }
 

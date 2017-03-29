@@ -1,0 +1,20 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<div class="content-page">
+    <div class="am-container">
+        <div class="page-title"><h1 class="am-inline">{$action_name}文化程度</h1></div>
+        <form class="am-form edit-form" method="post" action="<?= URL('/admin/edu/update');?>" data-am-validator>
+
+            <div class="am-form-group">
+                <label>文化程度名称<span>(请填写常量值)</span></label>
+                <input type="text" name="edu[edu_level_name]" required placeholder="请输入链接名称" {notempty name="edu_level"}value="{$edu_level.edu_level_name}"{/notempty}>
+                {notempty name="edu_level"}<input type="hidden" name="id" required placeholder="请输入链接名称" value="{$edu_level.edu_level_id}">{/notempty}
+            </div>
+
+            <div class="am-form-group">
+                <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
+            </div>
+            {:token()}
+        </form>
+    </div>
+</div>
+{include file="footer" /}

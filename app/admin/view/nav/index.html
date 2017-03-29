@@ -7,17 +7,7 @@
             <a href="<?= URL('admin/nav/edit');?>" class="am-btn am-btn-primary am-btn-xs am-radius">
                 <i class="am-icon am-icon-edit"></i>添加导航
             </a>
-            <a href="<?= URL('admin/nav/delete');?>" class="am-btn am-btn-default am-btn-xs am-radius">
-                <i class="am-icon-trash"></i>回收站
-            </a>
         </div>
-        <form class="am-form-inline search-form">
-            {:token()}
-            <div class="am-form-group">
-                <input type="keyword" class="am-form-field" placeholder="关键词">
-            </div>
-            <button type="submit" class="am-btn am-btn-default"><i class="am-icon-search"></i></button>
-        </form>
         <table class="am-table">
             <thead>
             <tr>
@@ -39,8 +29,8 @@
                 <td><a href="#">{$nav.create_time}</a></td>
                 <td>
                     <div class="am-btn-group am-btn-group-xs">
-                        <a href="<?= URL('admin/nav/edit',array('nav_key'=>$nav['nav_key']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
-                        <a href="<?= URL('admin/nav/remove',array('nav_key'=>$nav['nav_key']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                        <a href="<?= URL('admin/nav/edit',array('id'=>$nav['nav_key']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
+                        <a href="<?= URL('admin/nav/remove',array('id'=>$nav['nav_key']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
                     </div>
                 </td>
             </tr>

@@ -11,10 +11,9 @@
 namespace app\common\model;
 /**
  * 标签
- * Class BaseTagModel
+ * Class BaseAdTextModel
  * @package app\common\model
  */
-abstract class BaseTagModel extends BaseModel {
-    protected $name = 'tags';
-    protected $autoWriteTimestamp = false;
+abstract class BaseAdTextModel extends BaseModel {
+    protected $name = 'ad_text';
 }

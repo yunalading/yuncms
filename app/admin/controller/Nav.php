@@ -45,12 +45,17 @@ class Nav extends AdminBaseController {
             if (!$Validate->check($param, [], 'update')) {
                 $this->error($Validate->getError());
             }
-            $model->create($param);
+            if(isset($this->param['id']) && $this->param['id']){
+                $action_name = '修改';
+                $where['nav_key'] = trim($this->param['id']);
+                $model->update($param,$where);
+            }else{
+                $model->create($param);
+            }
             $this->success($action_name.'成功!', url('/admin/nav'));
-
         } else {
-            if (!empty($this->param) && $this->param['nav_key']) {
-                $nav = NavModel::get(trim($this->param['nav_key']));
+            if (!empty($this->param) && $this->param['id']) {
+                $nav = NavModel::get(trim($this->param['id']));//字符串
                 $this->assign('nav', $nav);
                 $action_name = '编辑';
             }
@@ -60,12 +65,12 @@ class Nav extends AdminBaseController {
     }
 
     /**
-     * 删除留言
+     * 删除导航
      */
     public function remove() {
-        if (!empty($this->param) && $this->param['nav_key']) {
+        if (!empty($this->param) && $this->param['id']) {
             try {
-                if (NavModel::destroy($this->param['nav_key'])) {
+                if (NavModel::destroy($this->param['id'])) {
                     $this->success('删除成功!');
                 } else {
                     $this->error('删除失败!');
