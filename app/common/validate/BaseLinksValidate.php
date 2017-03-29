@@ -6,16 +6,20 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: jabber <2898117012@qq.com>
+// | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
-namespace app\common\model;
-/**
- * 友情链接
- * Class BaseLinkModel
- * @package app\common\model
- */
-abstract class BaseLinkModel extends BaseModel {
-    protected $name = 'links';
-    protected $updateTime = false;
-    public static $targets = ['_blank', '_self', '_parent', '_top'];
+
+
+namespace app\common\validate;
+
+
+class BaseLinksValidate extends BaseValidate {
+    protected $rule = [
+        'link_name' => 'require',
+        'link_href' => 'require',
+    ];
+    protected $message = [
+        'link_name.require' => '链接名称必须填写',
+        'link_href.require' => '链接地址必须填写',
+    ];
 }

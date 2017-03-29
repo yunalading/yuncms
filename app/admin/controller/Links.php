@@ -6,13 +6,14 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: jabber <2898117012@qq.com>
+// | Author: chenqianhao <685277861@qq.com>
 // +----------------------------------------------------------------------
 
 
 namespace app\admin\controller;
 
 use app\admin\model\LinkModel;
+use app\admin\validate\LinksValidate;
 use app\common\model\BaseLinkModel;
 
 /**
@@ -39,11 +40,22 @@ class Links extends AdminBaseController {
      */
     public function update() {
         $action_name = '添加';
+        $model = new LinkModel();
         if ($this->request->isPost()) {
+            //验证数据
+            $param = array_filter($this->post['link']);
+            $Validate = new LinksValidate();
+            if (!$Validate->check($param, [], 'update')) {
+                $this->error($Validate->getError());
+            }
+            unset($param['__token__']);
+            $model->saveAll([$param])[0];
+            $this->success($action_name.'成功!', url('/admin/links'));
 
         } else {
             if (!empty($this->param) && $this->param['id']) {
-
+                $link = LinkModel::get($this->param['id']);
+                $this->assign('link', $link);
                 $action_name = '编辑';
             }
         }
