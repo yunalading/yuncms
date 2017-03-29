@@ -13,13 +13,13 @@
         </div>
 
     </div>
-    <form class="am-form am-g margin-top-buttom-20 " action="<?= URL('/admin/nav/update');?>" method="post" data-am-validator="">
+    <form class="am-form am-g margin-top-buttom-20 " action="<?= URL('/admin/nav/edit');?>" method="post" data-am-validator="">
         {:token()}
         <div class="all-width">
         <label for="nav-ident">导航标识</label>
-        <input type="text" name="nav[nav_key]" id="nav-ident" maxlength="200" value="{$navs['nav_key']?$navs['nav_key']:''}" required>
+        <input type="text" name="nav[nav_key]" id="nav-ident" maxlength="200" value="{$nav['nav_key']? $nav['nav_key'] : ''}" required>
         <label for="nav-name">导航名称</label>
-        <input type="text" name="nav[nav_name]" id="nav-name" maxlength="200" value="{$navs['nav_name']?$navs['nav_nav']:''}" required>
+        <input type="text" name="nav[nav_name]" id="nav-name" maxlength="200" value="{$nav['nav_name']? $nav['nav_name'] : ''}" required>
         </div>
         <button class="am-btn am-btn-primary button-text-left ">添加导航</button>
 

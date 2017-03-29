@@ -51,13 +51,31 @@ class Nav extends AdminBaseController {
         } else {
             if (!empty($this->param) && $this->param['nav_key']) {
                 $nav = NavModel::get(trim($this->param['nav_key']));
-                dump(json_decode(json_encode($nav),true));
-                $this->assign('navs', $nav);
+                $this->assign('nav', $nav);
                 $action_name = '编辑';
             }
         }
-//        $this->assign('targets', BaseLinkModel::$targets);
         $this->assign('action_name', $action_name);
         return view();
+    }
+
+    /**
+     * 删除留言
+     */
+    public function remove() {
+        if (!empty($this->param) && $this->param['nav_key']) {
+            try {
+                if (NavModel::destroy($this->param['nav_key'])) {
+                    $this->success('删除成功!');
+                } else {
+                    $this->error('删除失败!');
+                }
+            } catch (PDOException $e) {
+                Log::error($e);
+                $this->error('删除失败!');
+            }
+        } else {
+            $this->error('参数错误!');
+        }
     }
 }

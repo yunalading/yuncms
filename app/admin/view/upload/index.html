@@ -6,105 +6,94 @@
             <div class="am-form-group">
                 <label for="uploadType">上传类型</label>
                 <div>
-<<<<<<< HEAD
-                    <select data-am-selected name="uploadType"  id="uploadType" placeholder="请选择上传方式" required>
-                        <option value="Server" >服务器</option>
-=======
-                    <select data-am-selected name="uploadType"  id="uploadType" placeholder="请选择主题" required>
-                        <option value="Server" >网站服务器</option>
->>>>>>> 9324e150bd383d70f1d42ca6b9bb0c9a6bf69c92
-                        <option value="QiNiu" >七牛云存储</option>
-                        <option value="Oss" >阿里云OSS</option>
+                    <select data-am-selected name="uploadType" id="uploadType" placeholder="请选择上传方式" required>
+                        <option value="Server">服务器</option>
+                        <option value="QiNiu">七牛云存储</option>
+                        <option value="Oss">阿里云OSS</option>
                     </select>
                 </div>
             </div>
             <div class="am-form-group">
                 <label for="maxSize">文件上传大小限制</label>
-<<<<<<< HEAD
                 <input type="text" name="maxSize" id="maxSize" value="{$config.maxSize}" required>
             </div>
             <div class="am-form-group">
                 <label for="allowExts ">允许上传图片后缀 如：jpg,gif,png,jpeg</label>
                 <input type="text" name="allowExts " id="allowExts " required>
-=======
                 <div>
-                    <select data-am-selected name="maxSize"  id="maxSize" placeholder="请选择限制大小" >
-                        <option value="512KB" >512KB</option>
-                        <option value="1MB" >1MB</option>
-                        <option value="2MB" >2MB</option>
+                    <select data-am-selected name="maxSize" id="maxSize" placeholder="请选择限制大小">
+                        <option value="512KB">512KB</option>
+                        <option value="1MB">1MB</option>
+                        <option value="2MB">2MB</option>
                     </select>
                 </div>
->>>>>>> 9324e150bd383d70f1d42ca6b9bb0c9a6bf69c92
             </div>
 
-                <div class="am-g">
+            <div class="am-g">
                 <div>允许上传图片后缀</div>
-                    <label class="am-checkbox  upload-checkbox-style">
-                        <input type="checkbox" name="allowExts" value="jpg"  checked data-am-ucheck>jpg
-                     </label>
-                    <label class="am-checkbox  upload-checkbox-style">
-                    <input type="checkbox" name="allowExts" value="gif" checked data-am-ucheck >gif
+                <label class="am-checkbox  upload-checkbox-style">
+                    <input type="checkbox" name="allowExts" value="jpg" checked data-am-ucheck>jpg
+                </label>
+                <label class="am-checkbox  upload-checkbox-style">
+                    <input type="checkbox" name="allowExts" value="gif" checked data-am-ucheck>gif
                 </label>
                 <label class="am-checkbox upload-checkbox-style ">
-                    <input type="checkbox" name="allowExts" value="png"  checked data-am-ucheck>png
+                    <input type="checkbox" name="allowExts" value="png" checked data-am-ucheck>png
                 </label>
                 <label class="am-checkbox upload-checkbox-style">
                     <input type="checkbox" name="allowExts" value="jpeg" checked data-am-ucheck>jpeg
                 </label>
-                </div>
-
-
-
+            </div>
 
             <div class="am-form-group">
-<<<<<<< HEAD
-                <label for="savePath">默认上传路径</label>
-                <input type="text" name="savePath" id="savePath" required>
-=======
                 <label for="savePath">默认上传路径(目前版本暂不支持修改)</label>
                 <input type="text" name="savePath   " id="savePath" value="data/upload/image" disabled>
->>>>>>> 9324e150bd383d70f1d42ca6b9bb0c9a6bf69c92
             </div>
             <div class="am-form-group">
                 <label for="isThumb">默认是否生成缩略图</label>
                 <div>
-                    <input type="checkbox" name="isThumb" id="isThumb" value="1" data-am-switch data-size="xs" data-on-text="关闭" data-off-text="开启">
+                    <input type="checkbox" name="isThumb" id="isThumb" value="1" data-am-switch data-size="xs"
+                           data-on-text="关闭" data-off-text="开启">
                 </div>
             </div>
 
             <div class="am-form-group">
                 <label for="thumbPrefix">生成缩略图的图片后缀</label>
                 <div>
-                    <select data-am-selected name="thumbPrefix"  id="thumbPrefix" placeholder="请选择限制大小" required>
-                        <option value="jpg" >jpg</option>
-                        <option value="gif" >gif</option>
-                        <option value="png" >png</option>
-                        <option value="jpeg" >jpeg</option>
+                    <select data-am-selected name="thumbPrefix" id="thumbPrefix" placeholder="请选择限制大小" required>
+                        <option value="jpg">jpg</option>
+                        <option value="gif">gif</option>
+                        <option value="png">png</option>
+                        <option value="jpeg">jpeg</option>
                     </select>
                 </div>
             </div>
 
             <div class="am-form-group">
                 <label for="thumbMaxWidth">设置缩略图的最大宽度</label>
-                <input class="type-number-style" type="number" name="thumbMaxWidth" id="thumbMaxWidth" maxlength="3" required><span class="unit-position">px</span>
+                <input class="type-number-style" type="number" name="thumbMaxWidth" id="thumbMaxWidth" maxlength="3"
+                       required><span class="unit-position">px</span>
             </div>
 
             <div class="am-form-group">
                 <label for="thumbMaxHeight">设置缩略图的最大高度</label>
-                <input  class="type-number-style" type="number" name="thumbMaxHeight" id="thumbMaxHeight"  maxlength="3" required><span class="unit-position">px</span>
+                <input class="type-number-style" type="number" name="thumbMaxHeight" id="thumbMaxHeight" maxlength="3"
+                       required><span class="unit-position">px</span>
             </div>
 
             <div class="am-form-group">
                 <label for="thumbRemoveOrigin ">是否删除原图</label>
                 <div>
-                    <input type="checkbox" name="thumbRemoveOrigin " id="thumbRemoveOrigin " value="1" checked data-am-switch data-size="xs" data-on-text="关闭" data-off-text="开启">
+                    <input type="checkbox" name="thumbRemoveOrigin " id="thumbRemoveOrigin " value="1" checked
+                           data-am-switch data-size="xs" data-on-text="关闭" data-off-text="开启">
                 </div>
             </div>
 
             <div class="am-form-group">
                 <label for="isWater">是否给缩略图添加水印</label>
                 <div>
-                    <input type="checkbox" name="isWater" id="isWater" value="1" data-am-switch data-size="xs" data-on-text="关闭" data-off-text="开启">
+                    <input type="checkbox" name="isWater" id="isWater" value="1" data-am-switch data-size="xs"
+                           data-on-text="关闭" data-off-text="开启">
                 </div>
             </div>
 
