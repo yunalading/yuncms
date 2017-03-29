@@ -195,3 +195,36 @@ table th , table td{
 .am-form input[type=number]{
     display:inline-block;
 }
+//邮件配置
+#email-settings{
+    margin-top:30px;
+    //与上个元素同行显示
+    fieldset > div{
+        display:inline-block;
+    }
+    //邮件发送方式宽度随内容撑开
+    .am-selected{
+        width:auto;
+    }
+    //字体恢复正常，加点左边距
+    label{
+        font-weight:normal;
+        margin-left:20px;
+    }
+    //按钮图片右边距
+    i{
+        margin-right:10px;
+    }
+    fieldset > span{
+        display:inline-block;
+        width:15%;
+        text-align:right;
+    }
+    fieldset >input{
+        width:200px;
+    }
+    .radio-width{
+        width:200px;
+        margin-right:20px;
+    }
+}

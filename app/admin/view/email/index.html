@@ -1,0 +1,74 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<form id="email-settings">
+
+    <fieldset class="am-form-group">
+        <span>邮件发送方式：</span>
+        <div >
+            <select data-am-selected name="uploadType"  id="send-mode" placeholder="请选择邮件发送方式" required>
+                <option value="send-sendmail" >通过PHPmail函数的sendmail发送（通常为Unix/Linux主机）</option>
+            </select>
+        </div>
+    </fieldset>
+
+
+
+    <fieldset>
+        <span>SMTP服务器：</span>
+        <input type="text"  name="send-server" id="send-server">
+        <label for="send-server">设置SMTP服务器的地址</label>
+    </fieldset>
+
+    <fieldset>
+        <span>SMTP端口：</span>
+        <input type="text" name="send-port" id="send-port" placeholder="25">
+        <label for="send-port">设置SMTP服务器的端口，默认为25</label>
+    </fieldset>
+
+    <fieldset>
+        <span>SMTP服务器身份验证：</span>
+        <div class="radio-width">
+        <label class="am-radio-inline am-secondary"><input type="radio" name="send-server-if-validate" value="yes" data-am-ucheck>是</label>
+        <label class="am-radio-inline am-secondary"><input type="radio" name="send-server-if-validate" value="no" data-am-ucheck>否</label>
+        </div>
+        <text>如果SMTP服务器要求身份验证才可以发信，请选择“是”</text>
+    </fieldset>
+
+    <fieldset>
+        <span>发送人邮件地址：</span>
+        <input type="email" name="send-email" id="send-email">
+        <label for="send-email">如果需要验证，必须为本服务器的邮件地址</label>
+    </fieldset>
+
+    <fieldset>
+        <span>SMTP身份验证用户名：</span>
+        <input type="text" name="send-username">
+    </fieldset>
+
+    <fieldset>
+        <span>SMTP身份验证密码：</span>
+        <input type="password" name="send-password">
+    </fieldset>
+
+    <fieldset class="am-form-group">
+        <span>邮件头的分隔符：</span>
+        <div >
+            <select data-am-selected name="uploadType"  id="send-tag" placeholder="请选择邮件发送方式" required>
+                <option value="send-CRLF" >使用CRLF作为分隔符（通常为Windows主机）</option>
+                <option value="send-LF" >使用LF作为分隔符（通常为Unix/Linux主机）</option>
+                <option value="send-CR" >使用CR作为分隔符（通常为Mac主机）</option>
+            </select>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <span>测试发件人：</span>
+        <input type="email" name="send-test-email">
+    </fieldset>
+
+    <fieldset>
+        <span>测试收件人：</span>
+        <input type="email" name="send-receive-email">
+        <button class="am-btn am-btn-primary "><i class="am-icon-send"></i>测试邮件发送</button>
+    </fieldset>
+</form>
+{include file="footer" /}
