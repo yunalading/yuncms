@@ -5,12 +5,12 @@
     <div class="am-container">
         <div class="min-height">
         <div class="page-title"><h1 class="am-inline">普通广告列表</h1>
-            <a href="/index.php/admin/ad/edit" class="am-btn am-btn-primary am-btn-xs am-radius">
+            <a href="<?= URL('/admin/ad/generaledit');?>" class="am-btn am-btn-primary am-btn-xs am-radius">
                 <i class="am-icon am-icon-edit"></i>添加广告
             </a>
-            <a href="/index.php/admin/ad/delete" id="general-ad" class="am-btn am-btn-default am-btn-xs am-radius">
-                <i class="am-icon-trash"></i>回收站
-            </a>
+            <!--<a href="/index.php/admin/ad/delete" id="general-ad" class="am-btn am-btn-default am-btn-xs am-radius">-->
+                <!--<i class="am-icon-trash"></i>回收站-->
+            <!--</a>-->
         </div>
         <form class="am-form-inline search-form">
             {:token()}
