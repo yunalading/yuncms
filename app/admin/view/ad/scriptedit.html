@@ -1,23 +1,24 @@
 
 {include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
 <!--添加脚本广告-->
-<form  class="am-form am-g margin-top-buttom-20" id="ad-script" data-am-validator="">
+<form  class="am-form am-g margin-top-buttom-20" id="ad-script" data-am-validator="" method="post" action="<?=URL('/admin/ad/scriptedit');?>">
     {:token()}
     <div class="am-form-group all-width">
-        <h1>添加脚本广告</h1>
+        <h1>{$action_name}脚本广告</h1>
         <label for="ad-script-ident">脚本广告标识：</label>
-        <input type="text" name="ad-script-ident" id="ad-script-ident" maxlength="100" required>
+        <input type="text" name="adcode[ad_code_key]" id="ad-script-ident" maxlength="100" required {notempty name="adcode"}value="{$adcode.ad_code_key}" disabled {/notempty}>
     </div>
     <div class="am-form-group all-width">
-        <label for="ad-script-name">名称：</label><input class="ad-input-width" type="text" name="ad-script-name"
+        <label for="ad-script-name">名称：</label><input class="ad-input-width" type="text" name="adcode[ad_name]" {notempty name="adcode"}value="{$adcode.ad_name}"{/notempty}
                                                       id="ad-script-name" maxlength="50" required>
     </div>
     <div class="am-form-group all-width">
-        <label for="ad-script-code">代码：</label><textarea class="ad-textarea-width" name="ad-script-code"
-                                                         id="ad-script-code" maxlength="5000" required></textarea>
+        <label for="ad-script-code">代码：</label><textarea class="ad-textarea-width" name="adcode[ad_code]"
+                                                         id="ad-script-code" maxlength="5000" required>{notempty name="adcode"}{$adcode.ad_code}{/notempty}</textarea>
     </div>
     <div class="am-form-group all-width">
-        <label for="ad-script-description">描述：</label><textarea class="ad-textarea-width" name="ad-script-description" id="ad-script-description" maxlength="200"></textarea>
+        <label for="ad-script-description">描述：</label><textarea class="ad-textarea-width" name="adcode[ad_desc]"  id="ad-script-description" maxlength="200">{notempty name="adcode"}{$adcode.ad_desc}{/notempty}</textarea>
+        {notempty name="adcode"}<input type="hidden" name="id"  value="{$adcode.ad_code_key}">{/notempty}
         <input type="submit" class="am-btn am-btn-primary btn-loading-example" value="提交">
     </div>
 </form>
