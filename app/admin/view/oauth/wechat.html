@@ -1,0 +1,30 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<div class="content-page">
+    <div class="am-container">
+        <div class="page-title">
+            <h1 class="am-inline">微信</h1>
+        </div>
+        <form  class="am-form edit-form" data-am-validator novalidate="novalidate">
+            <div class="am-form-group">
+                <label for="wechat-appid">APPID：</label>
+                <input type="text" name="wechat-appid" id="wechat-appid" required>
+            </div>
+
+            <div class="am-form-group">
+                <label for="wechat-appkey">APPkey：</label>
+                <input type="text" name="wechat-appkey" id="wechat-appkey" required>
+            </div>
+
+            <div class="am-form-group">
+                <label for="wechat-code">code：</label>
+                <input type="text" name="wechat-code" id="wechat-code" required>
+            </div>
+
+            <div class="am-form-group">
+                <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{include file="footer" /}

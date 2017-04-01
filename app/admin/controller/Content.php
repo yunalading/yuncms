@@ -51,4 +51,7 @@ class Content extends AdminBaseController {
     public function trash() {
         return view();
     }
+    public function editor() {
+        return view();
+    }
 }

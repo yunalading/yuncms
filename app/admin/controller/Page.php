@@ -29,4 +29,7 @@ class Page extends AdminBaseController {
     public function delete(){
         return view();
     }
+    public function editor(){
+        return view();
+    }
 }

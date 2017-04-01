@@ -1,0 +1,95 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+
+<div class="content-page">
+    <div class="am-container">
+        <form  class="am-form edit-form" data-am-validator novalidate="novalidate">
+            <div class="am-form-group">
+                <label>短信服务商：</label>
+                <div >
+                    <select data-am-selected name="msgserver-brand"  id="msgserver-brand" required>
+                        <option value="msgserver-ali"  selected>阿里大于</option>
+                        <option value="msgserver-yunxin">云信</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="msg-settings msg-settings-ali" style="display:block;">
+                <div class="am-form-group">
+                    <label>阿里大于账号:(appkey)</label>
+                    <input type="text" name="msg-username">
+                    <label>阿里大于密码:(secretkey)</label>
+                    <input type="password" name="msg-password">
+                </div>
+
+                <div class="am-form-group">
+                    <label>收件人:</label>
+                    <input type="text" name="receiver">
+                </div>
+
+                <div class="am-form-group">
+                    <label>请选择模板ID：</label>
+                    <div class="msg-tmp-id">
+                        <select data-am-selected name="msg-tmp-id"  id="msg-tmp-id"  required>
+                            <option value="001" >001</option>
+                            <option value="002" >002</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <label>请选择接口功能：</label>
+                    <div class="msg-inter-type">
+                        <select data-am-selected name="msg-inter-type"  id="msg-inter-type"  required>
+                            <option value="msg-verify" >验证码</option>
+                            <option value="msg-custom" >短信通知</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <button class="am-btn am-btn-primary ">确认修改</button>
+                </div>
+                </div>
+            <div class="msg-settings msg-settings-yunxin">
+                <div class="am-form-group">
+                    <label>云信账号:(appkey)</label>
+                    <input type="text" name="msg-username">
+                    <label>云信密码:(secretkey)</label>
+                    <input type="password" name="msg-password">
+                </div>
+
+                <div class="am-form-group">
+                    <label>收件人:</label>
+                    <input type="text" name="receiver">
+                </div>
+
+                <div class="am-form-group">
+                    <label>请选择模板ID：</label>
+                    <div class="msg-tmp-id">
+                        <select data-am-selected name="msg-tmp-id"  id="msg-tmp-id"  required>
+                            <option value="001" >001</option>
+                            <option value="002" >002</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <label>请选择接口功能：</label>
+                    <div class="msg-inter-type">
+                        <select data-am-selected name="msg-inter-type"  id="msg-inter-type"  required>
+                            <option value="msg-verify" >验证码</option>
+                            <option value="msg-custom" >短信通知</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <button class="am-btn am-btn-primary ">确认修改</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{include file="footer" /}

@@ -161,3 +161,26 @@ $('.am-table td').each(function(){
 });
 //上传设置里验证信息自定义
 
+//   文章调用编辑器
+$('.content-md-edit').click(function(){
+    var tds= $(this).parent().parent().parent().parent().children();
+   var title=tds.eq(2).text();
+   var intro=tds.eq(3).text();
+   var content=tds.eq(4).text();
+   var ckey='title,intro,comment';
+   document.cookie= ckey+"="+title+","+intro+","+content;
+
+
+});
+//短信配置选择服务商显示对应页面
+$(function(){
+    $('#msgserver-brand').change(function(){
+    $('.msg-settings').css('display','none');
+    if($(this).find("option:selected").val()==='msgserver-ali'){
+        $('.msg-settings-ali').css('display','block');
+    }else if($(this).find("option:selected").val()==='msgserver-yunxin'){
+        $('.msg-settings-yunxin').css('display','block');
+    }
+});
+
+});

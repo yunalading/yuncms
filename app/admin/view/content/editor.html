@@ -1,0 +1,40 @@
+
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<link rel="stylesheet" href="/static/common/editor/css/editormd.css"/>
+<div class="content-page">
+    <div class="am-container">
+
+        <div class="page-title"><h1 class="am-inline">内容列表</h1>
+
+            <a href="/index.php/admin/content/index" class="am-btn am-btn-default am-btn-xs am-radius">
+                <i class="am-icon-trash"></i>回收站
+            </a>
+        </div>
+
+
+            <div   id="test-editormd" style="margin-left:0;">
+                <textarea style="display:none;" id="ts"></textarea>
+            </div>
+        <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
+
+
+
+    </div>
+</div>
+<script src="/static/common/jquery/jquery.min.js"></script>
+<script src="/static/common/editor/editormd.js"></script>
+<script type="text/javascript">
+    //    调用编辑器
+    var testEditor;
+    $(function() {
+        testEditor = editormd("test-editormd", {
+            width   : "1000px",
+            height  : 640,
+            syncScrolling : "single",
+            path    : "/static/common/editor/lib/"
+
+        });
+    });
+$('#ts').html(document.cookie);
+</script>
+{include file="footer" /}
