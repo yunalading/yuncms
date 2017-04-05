@@ -35,7 +35,7 @@ class Ad extends AdminBaseController
         $adTextModel = new AdTextModel();
         if (isset($this->param['keyword']) && trim($this->param['keyword']) != '') {
             $keyword = trim($this->param['keyword']);
-            $list = $adTextModel->whereLike("title", '%' . $keyword . '%', 'or')->paginate();
+            $list = $adTextModel->whereLike("title", '%' . $keyword . '%', 'and')->paginate();
         } else {
             $list = $adTextModel->paginate();
         }
@@ -215,7 +215,7 @@ class Ad extends AdminBaseController
         $adCodeModel = new AdCodeModel();
         if (isset($this->param['keyword']) && trim($this->param['keyword']) != '') {
             $keyword = trim($this->param['keyword']);
-            $list = $adCodeModel->whereLike("ad_name", '%' . $keyword . '%', 'or')->paginate();
+            $list = $adCodeModel->whereLike("ad_name", '%' . $keyword . '%', 'and')->paginate();
         } else {
             $list = $adCodeModel->paginate();
         }
@@ -234,7 +234,7 @@ class Ad extends AdminBaseController
         $adImagesModel = new AdImagesModel();
         if (isset($this->param['keyword']) && trim($this->param['keyword']) != '') {
             $keyword = trim($this->param['keyword']);
-            $list = $adImagesModel->whereLike("title", '%' . $keyword . '%', 'or')->paginate();
+            $list = $adImagesModel->whereLike("title", '%' . $keyword . '%', 'and')->paginate();
         } else {
             $list = $adImagesModel->paginate();
         }

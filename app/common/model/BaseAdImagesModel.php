@@ -9,11 +9,17 @@
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 namespace app\common\model;
+
+use traits\model\SoftDelete;
+
 /**
  * 标签
  * Class BaseAdImagesModel
  * @package app\common\model
  */
-abstract class BaseAdImagesModel extends BaseModel {
+abstract class BaseAdImagesModel extends BaseModel
+{
+    //开启软删除
+    use SoftDelete;
     protected $name = 'ad_images';
 }

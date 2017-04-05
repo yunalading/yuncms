@@ -3,16 +3,16 @@
     <div class="am-container">
         <div class="min-height">
             <div class="page-title"><h1 class="am-inline">模型列表</h1>
-                <a href="/index.php/admin/model/edit" class="am-btn am-btn-primary am-btn-xs am-radius">
+                <a href="<?=URL('/admin/model/edit');?>" class="am-btn am-btn-primary am-btn-xs am-radius">
                     <i class="am-icon am-icon-edit"></i>添加模型
                 </a>
-                <a href="/index.php/admin/model/delete" class="am-btn am-btn-default am-btn-xs am-radius">
-                    <i class="am-icon-trash"></i>回收站
-                </a>
+                <!--<a href="<?=URL('/admin/model/trash');?>" class="am-btn am-btn-default am-btn-xs am-radius">-->
+                    <!--<i class="am-icon-trash"></i>回收站-->
+                <!--</a>-->
             </div>
             <form class="am-form-inline search-form">
                 <div class="am-form-group">
-                    <input type="keyword" class="am-form-field" placeholder="关键词">
+                    <input type="text" name="keyword" class="am-form-field" placeholder="关键词">
                 </div>
                 <button type="submit" class="am-btn am-btn-default"><i class="am-icon-search"></i></button>
             </form>
@@ -27,42 +27,24 @@
                 </tr>
                 </thead>
                 <tbody>
+                {volist name='list' id='model'}
                 <tr>
-                    <td><a target="_blank" href="#">世界您好</a></td>
-                    <td><a href="#">admin</a></td>
-                    <td><a href="#">5</a></td>
-                    <td>2017-1-18 15:43:26</td>
+                    <td>{$model.model_id}</td>
+                    <td>{$model.model_name}</td>
+                    <td>{$model.update_time}</td>
+                    <td>{$model.create_time}</td>
                     <td>
                         <div class="am-btn-group am-btn-group-xs">
-                            <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
-                            <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                            <a href="<?=URL('/admin/model/edit',array('id'=>$model['model_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
+                            <a href="<?=URL('/admin/model/remove',array('id'=>$model['model_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td><a target="_blank" href="#">Gulp常用配置</a></td>
-                    <td><a href="#">hukei</a></td>
-                    <td><a href="#">20</a></td>
-                    <td>2017-1-28 15:43:26</td>
-                    <td>
-                        <div class="am-btn-group am-btn-group-xs">
-                            <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
-                            <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
-                        </div>
-                    </td>
-                </tr>
+                {/volist}
                 </tbody>
             </table>
         </div>
-        <ul class="am-pagination am-pagination-right ">
-            <li class="am-disabled"><a href="#">&laquo;</a></li>
-            <li class="am-active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">&raquo;</a></li>
-        </ul>
+        {$page}
     </div>
 </div>
 {include file="footer" /}

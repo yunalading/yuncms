@@ -9,11 +9,17 @@
 // | Author: jabber <2898117012@qq.com>
 // +----------------------------------------------------------------------
 namespace app\common\model;
+
+use traits\model\SoftDelete;
+
 /**
  * 标签
  * Class BaseAdTextModel
  * @package app\common\model
  */
-abstract class BaseAdTextModel extends BaseModel {
+abstract class BaseAdTextModel extends BaseModel
+{
+    //开启软删除
+    use SoftDelete;
     protected $name = 'ad_text';
 }

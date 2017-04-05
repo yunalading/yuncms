@@ -5,17 +5,15 @@
     <div class="am-container">
         <div class="min-height">
             <div class="page-title"><h1 class="am-inline">普通广告列表</h1>
-                <a href="<?= URL('/admin/ad/generaledit');?>" class="am-btn am-btn-primary am-btn-xs am-radius">
+                <a href="<?=URL('/admin/ad/generaledit');?>" class="am-btn am-btn-primary am-btn-xs am-radius">
                     <i class="am-icon am-icon-edit"></i>添加广告
                 </a>
-                <!--<a href="<?= URL('/admin/ad/trash',array('style'=>'general'));?>" id="general-ad" class="am-btn am-btn-default am-btn-xs am-radius">-->
-                <!--<i class="am-icon-trash"></i>回收站-->
-                <!--</a>-->
+
             </div>
             <form class="am-form-inline search-form">
                 {:token()}
                 <div class="am-form-group">
-                    <input type="keyword" class="am-form-field" name="am-form-field" placeholder="关键词">
+                    <input type="text" name="keyword" class="am-form-field" name="am-form-field" placeholder="关键词">
                 </div>
                 <button type="submit" class="am-btn am-btn-default"><i class="am-icon-search"></i></button>
             </form>

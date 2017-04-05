@@ -8,18 +8,16 @@
 // +----------------------------------------------------------------------
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
-namespace app\common\model;
 
-use traits\model\SoftDelete;
 
-/**
- * 标签
- * Class BaseAdCodeModel
- * @package app\common\model
- */
-abstract class BaseAdCodeModel extends BaseModel
-{
-    //开启软删除
-    use SoftDelete;
-    protected $name = 'ad_code';
+namespace app\common\validate;
+
+
+class BasePageValidate extends BaseValidate {
+    protected $rule = [
+
+    ];
+    protected $message = [
+
+    ];
 }

@@ -8,18 +8,20 @@
 // +----------------------------------------------------------------------
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
-namespace app\common\model;
 
-use traits\model\SoftDelete;
+
+namespace app\admin\validate;
+
+use app\common\validate\BaseCategoryValidate;
 
 /**
- * 标签
- * Class BaseAdCodeModel
- * @package app\common\model
+ * Class TagValidate
+ * @package app\admin\validate
  */
-abstract class BaseAdCodeModel extends BaseModel
-{
-    //开启软删除
-    use SoftDelete;
-    protected $name = 'ad_code';
+class CategoryValidate extends BaseCategoryValidate {
+    protected $scene = [
+        'update' => [
+
+        ]
+    ];
 }
