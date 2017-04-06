@@ -4,20 +4,23 @@
         <div class="page-title">
             <h1 class="am-inline">QQ</h1>
         </div>
-        <form  class="am-form edit-form" data-am-validator novalidate="novalidate">
+        <form class="am-form edit-form" data-am-validator novalidate="novalidate" method="post">
             <div class="am-form-group">
                 <label for="qq-appid">APPID：</label>
-                <input type="text" name="qq-appid" id="qq-appid" required>
+                <input type="text" name="qq[appid]" id="qq-appid" required {notempty name="qq" }value="{$qq.appid}" {/notempty}
+                >
             </div>
 
             <div class="am-form-group">
                 <label for="qq-appkey">APPkey：</label>
-                <input type="text" name="qq-appkey" id="qq-appkey" required>
+                <input type="text" name="qq[appkey]" id="qq-appkey" required {notempty name="qq" }value="{$qq.appkey}" {/notempty}
+                >
             </div>
 
             <div class="am-form-group">
                 <label for="qq-code">code：</label>
-                <input type="text" name="qq-code" id="qq-code" required>
+                <input type="text" name="qq[code]" id="qq-code" required {notempty name="qq" }value="{$qq.code}" {/notempty}
+                >
             </div>
 
             <div class="am-form-group">

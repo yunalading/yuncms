@@ -4,20 +4,20 @@
         <div class="page-title">
             <h1 class="am-inline">微信</h1>
         </div>
-        <form  class="am-form edit-form" data-am-validator novalidate="novalidate">
+        <form  class="am-form edit-form" data-am-validator novalidate="novalidate" method="post">
             <div class="am-form-group">
                 <label for="wechat-appid">APPID：</label>
-                <input type="text" name="wechat-appid" id="wechat-appid" required>
+                <input type="text" name="wechat[appid]" id="wechat-appid" required {notempty name="wechat" }value="{$wechat.appid}" {/notempty} >
             </div>
 
             <div class="am-form-group">
                 <label for="wechat-appkey">APPkey：</label>
-                <input type="text" name="wechat-appkey" id="wechat-appkey" required>
+                <input type="text" name="wechat[appkey]" id="wechat-appkey" required {notempty name="wechat" }value="{$wechat.appkey}" {/notempty} >
             </div>
 
             <div class="am-form-group">
                 <label for="wechat-code">code：</label>
-                <input type="text" name="wechat-code" id="wechat-code" required>
+                <input type="text" name="wechat[code]" id="wechat-code" required {notempty name="wechat" }value="{$wechat.code}" {/notempty} >
             </div>
 
             <div class="am-form-group">
