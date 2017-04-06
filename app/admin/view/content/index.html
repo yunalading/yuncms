@@ -2,13 +2,15 @@
 
 <div class="content-page">
     <div class="am-container">
-
         <div class="page-title"><h1 class="am-inline">内容列表</h1>
-
-            <a href="#" class="am-btn am-btn-default am-btn-xs am-radius">
-                <i class="am-icon-trash"></i>回收站
+            <a href="<?=URL('admin/content/edit');?>" class="am-btn am-btn-primary am-btn-xs am-radius">
+                <i class="am-icon am-icon-edit"></i>添加文章
             </a>
+            <!--<a href="#" class="am-btn am-btn-default am-btn-xs am-radius">-->
+                <!--<i class="am-icon-trash"></i>回收站-->
+            <!--</a>-->
         </div>
+<!--
         <form class="am-form-inline search-form">
             {:token()}
             <div class="am-form-group">
@@ -22,6 +24,7 @@
             </div>
             <button type="submit" class="am-btn am-btn-default"><i class="am-icon-search"></i></button>
         </form>
+-->
         <table class="am-table">
             <thead>
             <tr>
@@ -37,58 +40,30 @@
             </tr>
             </thead>
             <tbody>
+            {volist name='list' id='content'}
             <tr>
-                <td><a target="_blank" href="#">001</a></td>
-                <td><a href="#">10001</a></td>
-                <td><a href="#">世界多美好</a></td>
-                <td>这个世界充满爱，我们如何感受</td>
-                <td>我对你爱爱爱不完</td>
-                <td><a href="#">9999</a></td>
-                <td><a href="#">999</a></td>
-                <td>2017-1-18 15:43:26</td>
-
+                <td>{$content.content_id}</td>
+                <td>{$content.category_id}</td>
+                <td>{$content.title}</td>
+                <td>{$content.intro}</td>
+                <td>{$content.content}</td>
+                <td>{$content.read_number}</td>
+                <td>{$content.comment_number}</td>
+                <td>{$content.push_time}</td>
                 <td>
                     <div class="am-btn-group am-btn-group-xs">
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-send"></i></a>
-                        <a href="/index.php/admin/content/editor" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit content-md-edit"></i></a>
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                        <!--<a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-send"></i></a>-->
+                        <a href="<?=URL('admin/content/edit',array('id'=>$content['content_id']));?>" class="am-btn am-btn-primary am-radius"><i
+                            class="am-icon-edit content-md-edit"></i></a>
+                        <a href="<?=URL('admin/content/delete',array('id'=>$content['content_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td><a target="_blank" href="#">002</a></td>
-                <td><a href="#">10002</a></td>
-                <td><a href="#">JS面向对象</a></td>
-                <td><a href="#">JS是一门强大的编程语言</a></td>
-                <td><a href="#">大家都觉得JS算不上一门真正的编程语言</a></td>
-                <td><a href="#">5000</a></td>
-                <td><a href="#">200</a></td>
-                <td>2017-1-28 15:43:26</td>
-                <td>
-                    <div class="am-btn-group am-btn-group-xs">
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-send"></i></a>
-                        <a href="/index.php/admin/content/editor" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit content-md-edit"></i></a>
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
-                    </div>
-                </td>
-
-            </tr>
-
+            {/volist}
             </tbody>
         </table>
-
-        <ul class="am-pagination am-pagination-right ">
-            <li class="am-disabled"><a href="#">&laquo;</a></li>
-            <li class="am-active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">&raquo;</a></li>
-        </ul>
-
+        {$page}
     </div>
-
 </div>
 
 {include file="footer" /}
