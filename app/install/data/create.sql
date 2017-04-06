@@ -321,7 +321,7 @@ create unique index oauth_member_unique on yc_oauth_members
    openid
 );
 
-create table yc_pages
+create table yc_s
 (
    page_id              int not null auto_increment comment '页面编号',
    title                varchar(50) not null comment '标题',

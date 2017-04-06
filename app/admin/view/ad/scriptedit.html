@@ -9,7 +9,7 @@
         <input type="text" name="adcode[ad_code_key]" id="ad-script-ident" maxlength="100" required {notempty name="adcode"}value="{$adcode.ad_code_key}" disabled {/notempty}>
     </div>
     <div class="am-form-group all-width">
-        <label for="ad-script-name">名称：</label><input class="ad-input-width" type="text" name="adcode[ad_name]" {notempty name="adcode"}value="{$adcode.ad_name}"{/notempty}
+        <label for="ad-script-name">名称：</label><input class="ad-input-width" type="text" id="ad-script-name" name="adcode[ad_name]" {notempty name="adcode"}value="{$adcode.ad_name}"{/notempty}
                                                       id="ad-script-name" maxlength="50" required>
     </div>
     <div class="am-form-group all-width">
