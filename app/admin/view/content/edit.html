@@ -1,0 +1,43 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+
+<form class="am-form am-g margin-top-buttom-20 " enctype="multipart/form-data" data-am-validator>
+    <div class="am-form-group all-width">
+        <label for="content-title">内容标题:</label>
+        <input type="text" name="page-title" id="content-title" maxlength="50" minlength="3" placeholder="请输入内容标题（至少 3 个字符）" required>
+    </div>
+    <div class="am-form-group all-width">
+        <div class="add-img-backgound">
+            <label for="content-cover">内容封面:</label>
+            <input class="inputfile-hide" type="file" name="content-cover" id="content-cover" required>
+            <br><img class="button-text-left input-img-maxsize" src="" id="content-img"><label for="content-cover" class="add-img-btn"><div class="am-icon-plus-square am-icon-lg add-img-div"></div></label><br>
+        </div>
+    </div>
+    <div class="am-form-group all-width">
+        <label for="content-intro">内容简介:</label>
+        <textarea  name="content-intro" id="content-intro" maxlength="500" placeholder="请输入内容简介" ></textarea>
+    </div>
+    <div class="am-form-group all-width">
+        <label for="content-seo-title">SEO标题:</label>
+        <input  type="text" name="content-seo-title" id="content-seo-title"  maxlength="200"  placeholder="请输入SEO标题" >
+    </div>
+    <div class="am-form-group all-width">
+        <label for="content-seo-url">SEOurl</label>
+        <input type="text" name="content-seo-url" id="content-seo-url"  maxlength="200" minlength="3" placeholder="请输入SEOurl" required>
+    </div>
+    <div class="am-form-group all-width">
+        <label for="content-seo-key">SEO关键字</label>
+        <input  type="text" name="contentn-seo-key" id="content-seo-key" maxlength="200"  placeholder="请输入SEO关键字">
+    </div>
+    <div class="am-form-group all-width">
+        <label for="content-seo-desc">SEO描述</label>
+        <textarea  name="content-seo-desc" id="content-seo-desc" maxlength="200"  placeholder="请输入SEO描述"></textarea>
+    </div>
+    <div class="am-form-group all-width">
+        <label for="content-content">内容</label>
+        <textarea  name="content-content" id="content-content" placeholder="请输入内容"></textarea>
+    </div>
+
+    <button class="am-btn am-btn-primary button-text-left" >添加内容</button>
+</form>
+
+{include file="footer" /}

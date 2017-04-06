@@ -57,6 +57,18 @@ $(function () {
         }
     });
 });
+//将取得的url传入html代码中的img的src中，实现图片上传预览。此段在内容添加页面添加起作用
+$(function () {
+    $("#content-cover").change(function () {
+        var objUrl = getObjectURL(this.files[0]);
+        console.log("objUrl = " + objUrl);
+        if (objUrl) {
+            $("#content-img").attr("src", objUrl);
+        }
+    });
+});
+//如果img标签的src为空，此img就不显示
+
 //delele页面中全选按钮事件
 $("#allcheck").on('click',function(){
     $("input[name='item']").prop('checked',true);
@@ -90,10 +102,9 @@ $('#delete-btn').click(function(){
         return;
     }
     if(confirm("确定删除所选项目？")){
-        var  checkedList = new Array();
+
         $("input[name='item']:checked").each(function(){
-            checkedList.push($(this).val());
-            $("#delete-list").html(checkedList);
+         $(this).parent().parent().parent().remove();
         });
 
     }
@@ -161,8 +172,8 @@ $('.am-table td').each(function(){
 });
 //上传设置里验证信息自定义
 
-//   文章调用编辑器
-$('.content-md-edit').click(function(){
+//   利用cookie给文章编辑器传值
+/*$('.content-md-edit').click(function(){
     var tds= $(this).parent().parent().parent().parent().children();
    var title=tds.eq(2).text();
    var intro=tds.eq(3).text();
@@ -171,7 +182,7 @@ $('.content-md-edit').click(function(){
    document.cookie= ckey+"="+title+","+intro+","+content;
 
 
-});
+});*/
 //短信配置选择服务商显示对应页面
 $(function(){
     $('#msgserver-brand').change(function(){
@@ -182,5 +193,9 @@ $(function(){
         $('.msg-settings-yunxin').css('display','block');
     }
 });
-
 });
+
+
+
+
+

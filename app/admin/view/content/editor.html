@@ -5,16 +5,50 @@
     <div class="am-container">
 
         <div class="page-title"><h1 class="am-inline">内容列表</h1>
-
-            <a href="/index.php/admin/content/index" class="am-btn am-btn-default am-btn-xs am-radius">
-                <i class="am-icon-trash"></i>回收站
-            </a>
         </div>
 
-
-            <div   id="test-editormd" style="margin-left:0;">
-                <textarea style="display:none;" id="ts"></textarea>
+        <form class="am-form edit-form" method="post" data-am-validator>
+            <div class="am-form-group">
+                <label>内容编号</label>
+                <input type="text" disabled name="" value="">
             </div>
+            <div class="am-form-group">
+                <label>类别编号</label>
+                <input type="text" disabled name="" value="">
+            </div>
+            <div class="am-form-group">
+                <label>标题</label>
+                <input type="text"  name="content-title" value="">
+                <div></div>
+            </div>
+            <div class="am-form-group">
+                <label>简介</label>
+                <textarea  name="content-intro"></textarea>
+                <div></div>
+            </div>
+            <div class="am-form-group">
+                <label>内容</label>
+                <textarea></textarea>
+                <div class="editor-position-display">
+                    <div   id="test-editormd" >
+                        <textarea name="content-content" style="display:none;" id="ts"></textarea>
+                    </div>
+                    <button class="am-btn am-btn-primary am-radius" >确定</button>
+                </div>
+
+            </div>
+            <div class="am-form-group">
+                <label>阅读量</label>
+                <input type="text" disabled name="" value="">
+            </div>
+            <div class="am-form-group">
+                <label>评论量</label>
+                <input type="text" disabled name="" value="">
+            </div>
+        </form>
+
+
+
         <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
 
 
@@ -28,13 +62,13 @@
     var testEditor;
     $(function() {
         testEditor = editormd("test-editormd", {
-            width   : "1000px",
+            width   : "1399px",
             height  : 640,
             syncScrolling : "single",
             path    : "/static/common/editor/lib/"
 
         });
     });
-$('#ts').html(document.cookie);
+
 </script>
 {include file="footer" /}
