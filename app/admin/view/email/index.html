@@ -4,78 +4,55 @@
         <div class="page-title">
             <h1 class="am-inline">邮件配置</h1>
         </div>
-<form class="am-form edit-form" id="email-settings" data-am-validator novalidate="novalidate">
+        <form class="am-form edit-form" id="email-settings" data-am-validator novalidate="novalidate" method="post">
+            <div class="am-form-group">
+                <label>SMTP服务器：</label>
+                <input type="text" name="mail[host]" id="send-server" {notempty name="mail" }value="{$mail.host}" {/notempty}
+                >
+                <label class="label-right" for="send-server">设置SMTP服务器的地址</label>
+            </div>
+            <div class="am-form-group">
+                <label>SMTP端口：</label>
+                <input type="text" name="mail[port]" id="send-port" placeholder="25" {notempty name="mail"
+                       }value="{$mail.port}" {/notempty}>
+                <label class="label-right" for="send-port">设置SMTP服务器的端口，默认为25</label>
+            </div>
+            <div class="am-form-group">
+                <label>SMTP 服务器身份验证：</label>
+                <div class="radio-width"><input type="checkbox" name="mail[auth]" data-am-switch
+                                                data-size="xs" data-on-text="关闭" data-off-text="开启" {notempty
+                                                name="mail" }value="{$mail.auth}" {$mail.auth?'checked'
+                    : '' }{/notempty}>
+                </div>
+                <text class="label-right">如果SMTP服务器要求身份验证才可以发信，请选择“是”</text>
+            </div>
+            <div class="am-form-group">
+                <label>发送人邮件地址：</label>
+                <input type="email" name="send-email" id="mail[serveremail]" {notempty name="mail"
+                       }value="{$mail.serveremail}" {/notempty}>
+                <label class="label-right" for="send-email">如果需要验证，必须为本服务器的邮件地址</label>
+            </div>
+            <div class="am-form-group">
+                <label for="send-username">SMTP身份验证用户名：</label>
+                <input type="text" name="mail[servername]" id="send-username" {notempty name="mail"
+                       }value="{$mail.servername}" {/notempty}>
+            </div>
+            <div class="am-form-group">
+                <label for="send-password">SMTP身份验证密码：</label>
+                <input type="password" name="mail[serverpass]" id="send-password" {notempty name="mail"
+                       }value="{$mail.serverpass}" {/notempty}>
+            </div>
 
-    <div class="am-form-group">
-        <label>邮件发送方式：</label>
-        <div >
-            <select data-am-selected name="send-mode"  id="send-mode" placeholder="请选择邮件发送方式" required>
-                <option value="send-sendmail" >通过PHPmail函数的sendmail发送（通常为Unix/Linux主机）</option>
-            </select>
-        </div>
-    </div>
-
-
-
-    <div class="am-form-group">
-        <label>SMTP服务器：</label>
-        <input type="text"  name="send-server" id="send-server">
-        <label  class="label-right"for="send-server">设置SMTP服务器的地址</label>
-    </div>
-
-    <div    class="am-form-group">
-        <label>SMTP端口：</label>
-        <input type="text" name="send-port" id="send-port" placeholder="25">
-        <label  class="label-right"for="send-port">设置SMTP服务器的端口，默认为25</label>
-    </div>
-
-    <div class="am-form-group">
-        <label>SMTP 服务器身份验证：</label>
-        <div class="radio-width"><input type="checkbox" name="app[close]" value="1" data-am-switch data-size="xs" data-on-text="关闭" data-off-text="开启" {$app.close?'checked' : '' }></div>
-        <text  class="label-right">如果SMTP服务器要求身份验证才可以发信，请选择“是”</text>
-    </div>
-
-    <div class="am-form-group">
-        <label>发送人邮件地址：</label>
-        <input type="email" name="send-email" id="send-email">
-        <label   class="label-right" for="send-email">如果需要验证，必须为本服务器的邮件地址</label>
-    </div>
-
-    <div class="am-form-group">
-        <label for="send-username">SMTP身份验证用户名：</label>
-        <input type="text" name="send-username" id="send-username">
-    </div>
-
-    <div class="am-form-group">
-        <label for="send-password">SMTP身份验证密码：</label>
-        <input type="password" name="send-password" id="send-password">
-    </div>
-
-    <div class="am-form-group">
-        <label for="send-tag">邮件头的分隔符：</label>
-        <div >
-            <select data-am-selected name="send-tag"  id="send-tag" placeholder="请选择邮件发送方式" required>
-                <option value="send-CRLF" >使用CRLF作为分隔符（通常为Windows主机）</option>
-                <option value="send-LF" >使用LF作为分隔符（通常为Unix/Linux主机）</option>
-                <option value="send-CR" >使用CR作为分隔符（通常为Mac主机）</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="am-form-group">
-        <label for="send-test-email">测试发件人：</label>
-        <input type="email" name="send-test-email" id="send-test-email">
-    </div>
-
-    <div class="am-form-group">
-        <label for="send-receive-email">测试收件人：</label>
-        <input type="email" name="send-receive-email" id="send-receive-email">
-
-    </div>
-    <div class="am-form-group">
-    <button class="am-btn am-btn-primary "><i class="am-icon-send"></i>测试邮件发送</button>
-    </div>
-</form>
+            <div class="am-form-group">
+                <label for="send-receive-email">测试收件人：</label>
+                <input type="email" name="sendemail" id="send-receive-email" {notempty name="mail"
+                       }value="{$mail.sendemail}" {/notempty}>
+            </div>
+            {:token()}
+            <div class="am-form-group">
+                <button class="am-btn am-btn-primary "><i class="am-icon-send"></i>测试邮件发送</button>
+            </div>
+        </form>
     </div>
 </div>
 {include file="footer" /}
