@@ -18,17 +18,16 @@
                 <label class="label-right" for="send-port">设置SMTP服务器的端口，默认为25</label>
             </div>
             <div class="am-form-group">
-                <label>SMTP 服务器身份验证：</label>
-                <div class="radio-width"><input type="checkbox" name="mail[auth]" data-am-switch
+                <label>SMTP服务器身份验证：</label>
+                <div class="radio-width"><input type="checkbox" name="mail[auth]"  data-am-switch
                                                 data-size="xs" data-on-text="关闭" data-off-text="开启" {notempty
-                                                name="mail" }value="{$mail.auth}" {$mail.auth?'checked'
-                    : '' }{/notempty}>
+                                                name="mail" } {if($mail['auth']==false)}checked{/if} {/notempty} >
                 </div>
                 <text class="label-right">如果SMTP服务器要求身份验证才可以发信，请选择“是”</text>
             </div>
             <div class="am-form-group">
                 <label>发送人邮件地址：</label>
-                <input type="email" name="send-email" id="mail[serveremail]" {notempty name="mail"
+                <input type="email" name="mail[serveremail]" id="send-email" {notempty name="mail"
                        }value="{$mail.serveremail}" {/notempty}>
                 <label class="label-right" for="send-email">如果需要验证，必须为本服务器的邮件地址</label>
             </div>
@@ -42,12 +41,45 @@
                 <input type="password" name="mail[serverpass]" id="send-password" {notempty name="mail"
                        }value="{$mail.serverpass}" {/notempty}>
             </div>
-
+            {:token()}
             <div class="am-form-group">
-                <label for="send-receive-email">测试收件人：</label>
-                <input type="email" name="sendemail" id="send-receive-email" {notempty name="mail"
-                       }value="{$mail.sendemail}" {/notempty}>
+                <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
             </div>
+            {:token()}
+        </form>
+
+        <div class="page-title">
+            <h1 class="am-inline">邮件发送</h1>
+        </div>
+        <form class="am-form edit-form" id="email-sends" data-am-validator novalidate="novalidate" method="post"
+              action="<?=URL('/admin/email/testmail');?>">
+            <div class="am-form-group">
+                <label>测试收件人：</label>
+                <input type="text" name="send[sendemail]" value="68527761@qq.com">
+            </div>
+            <div class="am-form-group">
+                <label>发送标题：</label>
+                <input type="text" name="send[title]" value="phpmailer测试标题">
+            </div>
+            <div class="am-form-group">
+                <label>发送内容：</label>
+                <textarea name="send[content]"><h1>phpmail演示</h1>这是云阿拉丁（<font color=red>www.yunalading.com</font>）对phpmailer的测试内容</textarea>
+            </div>
+            <div class="add-img-backgound">
+                <label for="image-upload">发送文件：</label>
+                <input id="image-upload" class="inputfile-hide" type="file" name="send[filepath]">
+                <br><img src="" id="img" class="input-img-maxsize"><label for="image-upload" class="add-img-btn"/>
+                <div class="am-icon-plus-square am-icon-lg add-img-div"></div>
+                </label><br>
+            </div>
+            <!--<div class="am-form-group">-->
+                <!--<label>回复邮箱：</label>-->
+                <!--<input type="email" name="send[re_email]" value="18671418772@163.com">-->
+            <!--</div>-->
+            <!--<div class="am-form-group">-->
+                <!--<label>回复人：</label>-->
+                <!--<input type="text" name="send[re_name]" value="yald">-->
+            <!--</div>-->
             {:token()}
             <div class="am-form-group">
                 <button class="am-btn am-btn-primary "><i class="am-icon-send"></i>测试邮件发送</button>

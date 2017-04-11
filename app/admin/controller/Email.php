@@ -32,6 +32,11 @@ class Email extends AdminBaseController
             if (!$validate->check($email, [], 'update')) {
                 $this->error($validate->getError());
             }
+            if (!key_exists('auth', $email)) {
+                $email['auth'] = true;
+            }else{
+                $email['auth'] = false;
+            }
             $mail = config('email');
             if(isset($mail) && is_array($mail)){
                 $newMail = array_merge($mail, $email);
@@ -43,51 +48,25 @@ class Email extends AdminBaseController
         }
         $this->assign('mail', config('email'));
         return view();
-
-        /*
-        $mail = new \PHPMailer();
-        try {
-            $mail->IsSMTP();
-            $mail->CharSet='UTF-8'; //设置邮件的字符编码，这很重要，不然中文乱码
-            $mail->SMTPAuth = true; //开启认证
-            $mail->Port = 25;
-            $mail->Host = "smtp.163.com";
-            $mail->Username = "18671418772@163.com";
-            $mail->Password = "frank654321";
-            //$mail->IsSendmail(); //如果没有sendmail组件就注释掉，否则出现“Could not execute: /var/qmail/bin/sendmail ”的错误提示
-            $mail->AddReplyTo("18671418772@163.com","mckee");//回复地址
-            $mail->From = "18671418772@163.com";//发件邮箱
-            $mail->FromName = "www.yunalading.com";//发件人
-            $to = "498931984@qq.com";//发给谁
-            $mail->AddAddress($to);
-            $mail->Subject = "phpmailer测试标题";
-            $mail->Body = "<h1>phpmail演示</h1>这是云阿拉丁（<font color=red>www.yunalading.com</font>）对phpmailer的测试内容";
-            $mail->AltBody = "To view the message, please use an HTML compatible email viewer!"; //当邮件不支持html时备用显示，可以省略
-            $mail->WordWrap = 80; // 设置每行字符串的长度
-            //$mail->AddAttachment("f:/test.png"); //可以添加附件
-            $mail->IsHTML(true);
-            $mail->Send();
-            echo '邮件已发送';
-        } catch (phpmailerException $e) {
-            echo "邮件发送失败：".$e->errorMessage();
-        }
-        */
-
     }
 
     public function testmail(){
-        $mail['title'] = "phpmailer测试标题";
-        $mail['content'] = "<h1>phpmail演示</h1>这是云阿拉丁（<font color=red>www.yunalading.com</font>）对phpmailer的测试内容";
-        $mail['filepath'] = '';
-        $replyTo['email'] = "18671418772@163.com";//回复邮箱
-        $replyTo['name'] = "yald";//回复人
-        $mail['sendemail'] = isset($this->post['sendemail'])?$this->post['sendemail']:$email_config['sendemail'];
-        $mail['title'] = "phpmailer测试标题";
-        $mail['sendemail'] = "phpmailer测试标题";
-        $this->sendEmail($mail,$replyTo);
+        if ($this->request->isPost()) {
+            $send = $this->post['send'];
+            $validate = new MailValidate();
+            if (!$validate->check($send, [], 'send')) {
+                $this->error($validate->getError());
+            }
+            $res = $this->sendEmail($send);
+            if($res['code']>0){
+                $this->success($res['msg']);
+            }else{
+                $this->error($res['msg']);
+            }
+        }
     }
 
-    protected function  sendEmail($mails=array(),$replyTo=array()){
+    protected function  sendEmail($mails=array()){
         $email_config = Config::get('email');
         $mail = new \PHPMailer();
         try {
@@ -99,16 +78,16 @@ class Email extends AdminBaseController
             $mail->Username = isset($mails['servername'])?$mails['servername']:$email_config['servername'];
             $mail->Password = isset($mails['serverpass'])?$mails['serverpass']:$email_config['serverpass'];
             //$mail->IsSendmail(); //如果没有sendmail组件就注释掉，否则出现“Could not execute: /var/qmail/bin/sendmail ”的错误提示
-            $replyTo['email'] = isset($mails['email'])?$mails['email']:$email_config['name'];
-            $replyTo['name'] = isset($mails['name'])?$mails['name']:$email_config['name'];
-            $mail->AddReplyTo($replyTo['email'],$replyTo['name']);//回复地址
-            $mail->From = isset($mails['fromemail'])?$mails['fromemail']:$email_config['fromemail'];//发件邮箱
-            $mail->FromName = isset($mails['serveremail'])?$mails['serveremail']:$email_config['serveremail'];//发件人
-            $mail['sendemail'] =  isset($mails['sendemail'])?$mails['sendemail']:$email_config['sendemail'];//收件人
-            $mail->AddAddress($mail['sendemail']);
+            $mails['re_email'] = isset($mails['re_email'])?$mails['re_email']:$email_config['serveremail'];
+            $mails['re_name'] = isset($mails['re_name'])?$mails['re_name']:$email_config['servername'];
+            $mail->AddReplyTo($mails['re_email'],$mails['re_name']);//回复地址
+            $mail->From = isset($mails['serveremail'])?$mails['serveremail']:$email_config['serveremail'];//发件邮箱
+            $mail->FromName = isset($mails['servername'])?$mails['servername']:$email_config['servername'];//发件人
+            $mails['sendemail'] =  isset($mails['sendemail'])?$mails['sendemail']:$email_config['sendemail'];//收件人
+            $mail->AddAddress($mails['sendemail']);
             $mail->Subject = $mails['title'];
             $mail->Body = $mails['content'];
-            $mail->AltBody = "To view the message, please use an HTML compatible email viewer!"; //当邮件不支持html时备用显示，可以省略
+            $mail->AltBody = "要查看邮件，请使用HTML兼容的电子邮件查看器!"; //当邮件不支持html时备用显示，可以省略
             $mail->WordWrap = 80; // 设置每行字符串的长度
             if(isset($mails['filepath']) && $mails['filepath']!=''){
                 $mail->AddAttachment($mails['filepath']); //可以添加附件

@@ -11,7 +11,6 @@
 
 namespace app\core\upload\driver;
 
-use app\core\upload\FileMate;
 use app\core\upload\Upload;
 
 /**
@@ -19,10 +18,16 @@ use app\core\upload\Upload;
  */
 class Server extends Upload
 {
-    public function upload(FileMate $mete)
+    public function upload($conf,$file)
     {
-        // TODO: Implement upload() method.
-        return self::class;
+        $config = config('upload.image');
+        if(isset($conf) && is_array($conf)){
+            $newConf = array_merge($config, $conf);
+        }else{
+            $newConf =  $config;
+        }
+        $info = $file->move(ROOT_PATH . 'public' . DS . 'data' . DS . 'upload' .DS. 'images');
+        $info->pathUrl =  'data' . DS . 'upload' .DS. 'images' .DS.$info->getSaveName();
+        return $info;
     }
-
 }

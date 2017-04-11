@@ -24,17 +24,17 @@ abstract class Upload
      * @param FileMate $mete
      * @return mixed
      */
-    abstract public function upload(FileMate $mate);
+    abstract public function upload($config,$file);
 
-    public static function getInstance($config = [])
+    public static function getInstance($config = [],$file)
     {
         $type = isset($config['uploadType']) ? $config['uploadType'] : 'Server';
         $class = false !== strpos($type, '\\') ? $type : '\\app\\core\\upload\\driver\\' . ucwords($type);
-        unset($config['uploadType']);
         if (class_exists($class)) {
             // 记录初始化信息
             App::$debug && Log::record('[ ImagesUpload ] INIT ' . $type, 'info');
-            return new $class($config);
+            $upload = new $class();
+            return $upload->upload($config,$file);
         } else {
             throw new ClassNotFoundException('class not exists:' . $class, $class);
         }

@@ -244,7 +244,10 @@ class Ad extends AdminBaseController
         return view();
     }
 
-
+    /**
+     * 脚本广告增加/修改
+     * @return \think\response\View
+     */
     public function scriptedit()
     {
         $action_name = '添加';
@@ -275,6 +278,10 @@ class Ad extends AdminBaseController
         return view();
     }
 
+    /**
+     * 幻灯片广告增加/修改
+     * @return \think\response\View
+     */
     public function slideedit()
     {
         $action_name = '添加';
@@ -285,6 +292,13 @@ class Ad extends AdminBaseController
             $Validate = new AdTextValidate();
             if (!$Validate->check($param, [], 'update')) {
                 $this->error($Validate->getError());
+            }
+            $file = request()->file('uploadimg');
+            if($file && $file!=NULL){
+                $upload = \app\core\upload\Upload::getInstance(['uploadType' => 'Server'],$file);
+                if($upload->pathUrl){
+                    $param['cover'] = $upload->pathUrl;
+                }
             }
             if (isset($this->param['id']) && $this->param['id']) {
                 $action_name = '修改';

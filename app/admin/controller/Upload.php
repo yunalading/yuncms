@@ -13,7 +13,7 @@
 namespace app\admin\controller;
 
 use app\admin\validate\UploadValidate;
-use app\core\upload\FileMate;
+//use app\core\upload\FileMate;
 use think\Config;
 
 /**
