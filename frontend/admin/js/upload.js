@@ -114,6 +114,9 @@ $('#delete-btn').click(function(){
 $('.am-btn-group-xs').children("a:has('.am-icon-trash')").click(function(){
     if(confirm('是否确定删除此项？')){
         $(this).parent().parent().parent('tr').remove();
+
+    } else{
+        return false;
     }
 
 });
@@ -194,8 +197,76 @@ $(function(){
     }
 });
 });
+//模型添加页面相关事件
+$('.model-table-button').click(function(){
+    $(".model-table-add").slideToggle("slow");
+});
 
-
-
-
-
+//模型添加页面字段删除事件处理程序
+$('.model-field-del').click(function(){
+    if(confirm('是否确定删除此项？')){
+        $(this).parent().parent().remove();
+    }else{
+        return false;
+    }
+});
+//模型添加页面根据select选择项切换对应页面显示
+$('.model-field-type').change(function(){
+    if($(this).val()==='model-fieldtype-select'){
+        $('.model-file').css('display','none');
+        $('.model-field-type-select').css('display','block');
+    } else if($(this).val()==='model-fieldtype-radio'){
+        $('.model-file').css('display','none');
+        $('.model-field-type-radio').css('display','block');
+    } else if($(this).val()==='model-fieldtype-checkbox'){
+        $('.model-file').css('display','none');
+      $('.model-field-type-checkbox').css('display','block');
+    }else{
+        $('.model-file').css('display','none');
+        $('.model-fielf-type-default').css('display','block');
+    }
+});
+//模型添加页面字段子表格删除
+$('.model-remove').on('click',function(){
+    if(confirm('是否确定删除此项')){
+        $(this).parent().parent().remove();
+    }else{
+        return false;
+    }
+});
+//模型添加页面字段子表格增加
+$('.model-add').on('click', function  (){
+    if($(this).parent().hasClass('model-field-type-select')){
+        var $selectTable=$(this).parent().children('table');
+        $selectTable.append("<tr><td><input type='text'></td><td>----</td><td><input type='text'</td><td><a  class='model-remove' >删除</a></td></tr>");
+        $selectTable.off('click','**').on('click','.model-remove',function(){
+            if(confirm('是否确定删除此项')){
+                $(this).parent().parent().remove();
+            }else{
+                return false;
+            }
+        });
+    }
+    else if($(this).parent().hasClass('model-field-type-radio')){
+        var $radioTable=$(this).parent().children('table');
+        $radioTable.append("<tr> <td><input type='radio' disabled></td><td><input type='text'></td><td>----</td><td><input type='text'</td><td><a  class='model-remove' >删除</a></td></tr>");
+        $radioTable.off('click','**').on('click','.model-remove',function(){
+            if(confirm('是否确定删除此项')){
+                $(this).parent().parent().remove();
+            }else{
+                return false;
+            }
+        });
+    }
+    else if($(this).parent().hasClass('model-field-type-checkbox')){
+        var $checkboxTable=$(this).parent().children('table');
+        $checkboxTable.append("<tr> <td><input type='checkbox' disabled></td><td><input type='text'></td><td>----</td><td><input type='text'</td><td><a  class='model-remove' >删除</a></td></tr>");
+        $checkboxTable.off('click','**').on('click','.model-remove',function(){
+            if(confirm('是否确定删除此项')){
+                $(this).parent().parent().remove();
+            }else{
+                return false;
+            }
+        });
+    }
+});

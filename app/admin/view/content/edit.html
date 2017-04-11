@@ -1,11 +1,9 @@
 {include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
 <link rel="stylesheet" href="/static/common/editor/css/editormd.css"/>
 <div class="content-page">
-    <div class="am-container">
-        <div class="page-title"><h1 class="am-inline">内容列表</h1>
-        </div>
-        <form class="am-form edit-form" method="post" data-am-validator>
-            <div class="am-form-group">
+
+        <form class="am-g  am-form margin-top-buttom-20" method="post" data-am-validator>
+            <div class="am-form-group all-width">
                 <label>上级栏目</label>
                 <select id="cate-parent-num" name="content[category_id]" maxlength="200" required>
                     {volist name='cate' id='cate'}
@@ -16,11 +14,10 @@
                 </select>
                 <span class="am-form-caret"></span>
             </div>
-            <div class="am-form-group">
+            <div class="am-form-group all-width">
                 <label>标题</label>
-                <input type="text" name="content[title]" {notempty name="content" } value="{$content.title}" {/notempty}
-                >
-                <div></div>
+                <input type="text" name="content[title]" {notempty name="content" } value="{$content.title}" {/notempty}>
+
             </div>
             <div class="am-form-group all-width">
                 <div class="add-img-backgound">
@@ -32,13 +29,13 @@
                 </label><br>
                 </div>
             </div>
-            <div class="am-form-group">
+            <div class="am-form-group all-width">
                 <label>简介</label>
                 <textarea name="content[intro]">{notempty name="content"
                             } {$content.intro} {/notempty}</textarea>
                 <div></div>
             </div>
-            <div class="am-form-group">
+            <div class="am-form-group all-width">
                 <label>内容</label>
                 <div class="editor-position-display">
                     <div id="test-editormd">
@@ -47,21 +44,22 @@
                     </div>
                 </div>
             </div>
+
             <div class="am-form-group all-width">
-                <label for="content-seo-title">SEO标题:</label>
-                <input type="text" name="content[seo_title]" id="content-seo-title" maxlength="200"
+                <label>SEO标题:</label>
+                <input type="text" name="content[seo_title]"  maxlength="200"
                        placeholder="请输入SEO标题" {notempty name="content"
                        } value="{$content.seo_title}" {/notempty}>
             </div>
             <div class="am-form-group all-width">
-                <label for="content-seo-url">SEOurl</label>
-                <input type="text" name="content[seo_url]" id="content-seo-url" maxlength="200" minlength="3"
+                <label >SEOurl</label>
+                <input type="text" name="content[seo_url]" maxlength="200" minlength="3"
                        placeholder="请输入SEOurl" required {notempty name="content"
                        } value="{$content.seo_url}" {/notempty}>
             </div>
-            <div class="am-form-group all-width">
-                <label for="content-seo-key">SEO关键字</label>
-                <input type="text" name="contentn[seo_key]" id="content-seo-key" maxlength="200" placeholder="请输入SEO关键字"
+            <div class="am-form-group  all-width">
+                <label >SEO关键字</label>
+                <input type="text" name="contentn[seo_key]"  maxlength="200" placeholder="请输入SEO关键字"
                        {notempty name="content"
                        } value="{$content.seo_key}" {/notempty}>
             </div>
@@ -77,8 +75,11 @@
                        <!--} value="{$content.read_number}" {/notempty}>-->
             <!--</div>-->
         {notempty name="content"} <input type="hidden" name="id" value="{$content.content_id}"> {/notempty}
-        <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
+            <div class="am-form-group  all-width">
+        <button class="am-btn am-btn-primary am-radius " type="submit">提交</button>
+            </div>
         </form>
+
 
     </div>
 </div>
