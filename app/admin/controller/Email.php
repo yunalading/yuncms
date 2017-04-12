@@ -96,11 +96,11 @@ class Email extends AdminBaseController
             $mail->Send();
             $res['msg'] = '邮件已发送';
             $res['code'] = 1;
-            return $res;
         } catch (phpmailerException $e) {
             $res['msg'] = "邮件发送失败：".$e->errorMessage();
             $res['code'] = 0;
             return $res;
         }
+        return $res;
     }
 }

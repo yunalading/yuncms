@@ -295,9 +295,14 @@ class Ad extends AdminBaseController
             }
             $file = request()->file('uploadimg');
             if($file && $file!=NULL){
-                $upload = \app\core\upload\Upload::getInstance(['uploadType' => 'Server'],$file);
-                if($upload->pathUrl){
-                    $param['cover'] = $upload->pathUrl;
+                //$upload = \app\core\upload\Upload::getInstance($file,['uploadType' => 'Server']);//上传到服务器
+                $upload = \app\core\upload\Upload::getInstance($file,['uploadType' => 'Oss']);
+                if($upload->code == 1){
+                    if($upload->pathUrl){
+                        $param['cover'] = $upload->pathUrl;
+                    }
+                }else{
+                    $this->error($upload->msg);
                 }
             }
             if (isset($this->param['id']) && $this->param['id']) {
