@@ -1,14 +1,20 @@
 {include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
 <div class="content-page">
     <div class="am-container">
-        <div class="page-title">
-            <h1 class="am-inline">邮件配置</h1>
-        </div>
+
+        <div class="tab-control">
+        <div data-am-widget="tabs"  class="am-tabs am-tabs-default ">
+        <ul class="am-tabs-nav am-cf">
+            <li class="am-active"><a href="[data-tab-panel-0]">邮件配置</a></li>
+            <li class=""><a href="[data-tab-panel-1]">邮件发送</a></li>
+        </ul>
+
+            <div class="am-tabs-bd">
+                <div data-tab-panel-0 class="am-tab-panel am-active">
         <form class="am-form edit-form" id="email-settings" data-am-validator novalidate="novalidate" method="post">
             <div class="am-form-group">
                 <label>SMTP服务器：</label>
-                <input type="text" name="mail[host]" id="send-server" {notempty name="mail" }value="{$mail.host}" {/notempty}
-                >
+                <input type="text" name="mail[host]" id="send-server" {notempty name="mail" }value="{$mail.host}" {/notempty}>
                 <label class="label-right" for="send-server">设置SMTP服务器的地址</label>
             </div>
             <div class="am-form-group">
@@ -47,10 +53,12 @@
             </div>
             {:token()}
         </form>
+                </div>
 
-        <div class="page-title">
-            <h1 class="am-inline">邮件发送</h1>
-        </div>
+
+
+
+                <div data-tab-panel-1 class="am-tab-panel ">
         <form class="am-form edit-form" id="email-sends" data-am-validator novalidate="novalidate" method="post"
               action="<?=URL('/admin/email/testmail');?>">
             <div class="am-form-group">
@@ -85,6 +93,10 @@
                 <button class="am-btn am-btn-primary "><i class="am-icon-send"></i>测试邮件发送</button>
             </div>
         </form>
+                </div>
+            </div>
+        </div>
+        </div>
     </div>
 </div>
 {include file="footer" /}
