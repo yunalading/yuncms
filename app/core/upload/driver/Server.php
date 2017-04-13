@@ -25,13 +25,13 @@ class Server extends Upload
 {
     public function upload($file,$conf)
     {
-        $conf = array_merge(config('upload.image'), $conf);
         $config = config('upload.server');
-        if(isset($conf) && is_array($conf)){
-            $newConf = array_merge($config, $conf);
+        if(isset($conf) && is_array($conf)) {
+            $conf = array_merge($config, $conf);
         }else{
-            $newConf =  $config;
+            $conf = $config;
         }
+        $newConf = array_merge(config('upload.image'), $conf);
         $res = (object)array(); //申明一个空对象返回
         try{
             //$info = $file->validate(['size' => $newConf['maxSize'], 'ext' => $newConf['allowExts']])->move(ROOT_PATH . 'public' . DS . 'data' . DS . 'upload' .DS. 'images' .DS. 'oss');

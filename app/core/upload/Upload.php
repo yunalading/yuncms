@@ -28,7 +28,7 @@ abstract class Upload
 
     public static function getInstance($file,$config = [])
     {
-        $type = isset($config['uploadType']) ? $config['uploadType'] : 'Server';
+        $type = isset($config['uploadType']) ? $config['uploadType'] : config('upload.image')['uploadType'];
         $class = false !== strpos($type, '\\') ? $type : '\\app\\core\\upload\\driver\\' . ucwords($type);
         if (class_exists($class)) {
             // 记录初始化信息

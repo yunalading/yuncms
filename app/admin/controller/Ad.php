@@ -18,6 +18,7 @@ use app\admin\model\AdImagesModel;
 use app\admin\validate\AdTextValidate;
 use app\admin\validate\AdCodeValidate;
 use app\admin\validate\AdImagesValidate;
+use app\core\upload\Upload;
 use think\exception\PDOException;
 use think\Log;
 /**
@@ -296,7 +297,9 @@ class Ad extends AdminBaseController
             $file = request()->file('uploadimg');
             if($file && $file!=NULL){
                 //$upload = \app\core\upload\Upload::getInstance($file,['uploadType' => 'Server']);//上传到服务器
-                $upload = \app\core\upload\Upload::getInstance($file,['uploadType' => 'Oss']);
+                //$upload = \app\core\upload\Upload::getInstance($file,['uploadType' => 'Oss']);//上传到阿里云oss
+                //$upload = \app\core\upload\Upload::getInstance($file,['uploadType' => 'QiNiu']);//上传到七牛云存储
+                $upload = Upload::getInstance($file);
                 if($upload->code == 1){
                     if($upload->pathUrl){
                         $param['cover'] = $upload->pathUrl;
