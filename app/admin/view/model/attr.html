@@ -1,0 +1,149 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<form action="" class="am-form am-g margin-top-buttom-20" data-am-validator="">
+    <div class="all-width-six">
+        <table class="model-table">
+            <thead>
+            <tr>
+                <th>字段名</th>
+                <th>字段的值</th>
+                <th>字段类型</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tr>
+                <td>articleTitle</td>
+                <td>500px</td>
+                <td>input text</td>
+                <td>
+                    <a>修改</a>
+                    <a class="model-field-del">删除</a>
+                </td>
+            </tr>
+        </table>
+        <div class="model-table-add">
+            <label>字段类型：</label>
+            <div>
+                <select data-am-selected name="" class="model-field-type" required>
+                    <option selected>请选择字段类型</option>
+                    <option value="model-fieldtype-inputtext">input text</option>
+                    <option value="model-fieldtype-inputfile">input file</option>
+                    <option value="model-fieldtype-textarea">textarea</option>
+                    <option value="model-fieldtype-select">select</option>
+                    <option value="model-fieldtype-radio">radio</option>
+                    <option value="model-fieldtype-checkbox">checbox</option>
+                </select>
+            </div>
+            <div class="model-file model-fielf-type-default">
+                <label for="model-field-default-tips">标题（请输入字段标题，长度不超过30）</label><input type="text" name=""
+                                                                                             id="model-field-default-tips"
+                                                                                             maxlength="30" required/>
+                <label for="model-field-default-name">字段名（请输入字段名 英文字母开头，长度不超过30）</label><input type="text" name=""
+                                                                                               id="model-field-default-name"
+                                                                                               maxlength="30" required/>
+
+
+                <label for="model-field-default-value">字段的显示内容（请输入自定义初始值，用于表单显示）</label><input type="text" name=""
+                                                                                               id="model-field-default-value"
+                                                                                               required/>
+                <label for="model-field-default-define">字段的值（数据表中此字段的值）</label><input type="text" name=""
+                                                                                      id="model-field-default-define"
+                                                                                      required/>
+
+            </div>
+
+            <div class=" model-file model-field-type-select">
+                <label for="model-field-select-tips">标题（请输入标题，长度不超过30）</label><input type="text" name=""
+                                                                                          id="model-field-select-tips"
+                                                                                          maxlength="30" required/>
+                <label for="model-field-select-name">字段名（请输入字段名 英文字母开头，长度不超过30）</label><input type="text" name=""
+                                                                                              id="model-field-select-name"
+                                                                                              maxlength="30" required/>
+                <table class="model-select">
+                    <thead>
+                    <tr>
+                        <th>字段的显示内容（请输入自定义初始值，用于表单显示）</th>
+                        <th></th>
+                        <th>字段的值（数据表中此字段的值）</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td><input type="text" name=""/></td>
+                        <td>----</td>
+                        <td><input type="text" name=""/></td>
+                        <td>
+
+                            <a class="model-remove">删除</a>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+            <div class=" model-file model-field-type-radio">
+                <label for="model-field-radio-tips">标题（请输入标题，长度不超过30）</label><input type="text" name=""
+                                                                                          id="model-field-radio-tips"
+                                                                                          maxlength="30" required/>
+                <label for="model-field-radio-name">字段名（请输入字段名 英文字母开头，长度不超过30）</label><input type="text" name=""
+                                                                                             id="model-field-radio-name"
+                                                                                             maxlength="30" required/>
+                <table class="model-select">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>字段的显示内容（请输入自定义初始值，用于表单显示）</th>
+                        <th></th>
+                        <th>字段的值（数据表中此字段的值）</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td><input type="radio" disabled></td>
+                        <td><input type="text" name=""/></td>
+                        <td>----</td>
+                        <td><input type="text" name=""/></td>
+                        <td>
+                            <a class="model-remove">删除</a>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+            <div class=" model-file model-field-type-checkbox">
+                <label for="model-field-checkbox-tips">标题（请输入标题，长度不超过30）</label><input type="text" name=""
+                                                                                    id="model-field-checkbox-tips"
+                                                                                    maxlength="30" required/>
+                <label for="model-field-checkbox-name">字段名（请输入字段名 英文字母开头，长度不超过30）</label><input type="text" name=""
+                                                                                                id="model-field-checkbox-name"
+                                                                                                maxlength="30"
+                                                                                                required/>
+                <table class="model-select">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>字段的显示内容（请输入自定义初始值，用于表单显示）</th>
+                        <th></th>
+                        <th>字段的值（数据表中此字段的值）</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td><input type="checkbox" disabled></td>
+                        <td><input type="text" name=""/></td>
+                        <td>----</td>
+                        <td><input type="text" name=""/></td>
+                        <td>
+                            <a class="model-remove">删除</a>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+            <button class="am-btn am-btn-primary button-text-left">提交</button>
+        </div>
+
+        <div class="am-icon-plus-square am-icon-lg model-table-button"><span>新增字段</span></div>
+    </div>
+</form>
+{include file="footer" /}

@@ -64,6 +64,13 @@ class Model extends AdminBaseController {
         return view();
     }
 
+    public function attr() {
+        $action_name = '添加';
+
+        $this->assign('action_name', $action_name);
+        return view();
+    }
+
     /**
      * 软删除
      */
