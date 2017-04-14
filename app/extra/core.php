@@ -40,3 +40,6 @@ define('APP_SITE', 'http://www.yunalading.com');
 
 //邮件服务配置文件
 \think\Config::parse(APP_PATH . 'extra' . DS . 'email.json', 'json', 'email');
+
+//模型属性配置文件
+\think\Config::parse(APP_PATH . 'extra' . DS . 'model_attr.json', 'json', 'model_attr');

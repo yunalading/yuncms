@@ -11,18 +11,23 @@
 
 
 namespace app\admin\controller;
+
+use app\admin\model\ModelAttrModel;
 use app\admin\model\ModelModel;
+use app\admin\validate\ModelAttrValidate;
 use app\admin\validate\ModelValidate;
 
 /**
  * Class Model
  * @package app\admin\controller
  */
-class Model extends AdminBaseController {
+class Model extends AdminBaseController
+{
     /**
      * @return \think\response\View
      */
-    public function index() {
+    public function index()
+    {
         $Model = new ModelModel();
         if (isset($this->param['keyword']) && trim($this->param['keyword']) != '') {
             $keyword = trim($this->param['keyword']);
@@ -35,7 +40,9 @@ class Model extends AdminBaseController {
         $this->assign('page', $page);
         return view();
     }
-    public function edit() {
+
+    public function edit()
+    {
         $action_name = '添加';
         $model = new ModelModel();
         if ($this->request->isPost()) {
@@ -64,11 +71,41 @@ class Model extends AdminBaseController {
         return view();
     }
 
-    public function attr() {
-        $action_name = '添加';
+    public function attr()
+    {
+        //判断模型是否存在
+        if (!empty($this->param) && $this->param['id']) {
+            $attr = ModelModel::get($this->param['id']);
+            if (empty($attr)) {
+                $this->error('该模型不存在!', url('/admin/model'));
+            }
+            $model_attr = ModelAttrModel::get(array("model_id" => $this->param['id']));
+            $this->assign('model_attr', $model_attr);
+            //$this->assign('model_id', $this->param['id']);
+            $config = config('model_attr');
+            $this->assign('attr_config', $config);
 
-        $this->assign('action_name', $action_name);
-        return view();
+            if ($this->request->isPost()) {
+                //验证数据
+                $param = array_filter($this->post['attr']);
+                $Validate = new ModelAttrValidate();
+                if (!$Validate->check($param, [], 'update')) {
+                    $this->error($Validate->getError());
+                }
+                if (isset($this->param['attr_id']) && $this->param['attr_id']) {
+                    $attr_one = ModelAttrModel::get($this->param['attr_id']);
+                    $this->assign('attr_one', $attr_one);
+                    $where['id'] = $this->param['attr_id'];
+                    $model->update($param, $where);
+                } else {
+                    $model->create($param);
+                }
+                $this->success('属性修改成功!', url('/admin/model/attr'), array('id' => $this->param['id'], 'attr_id' => $this->param['attr_id']));
+            }
+            return view();
+        } else {
+            $this->error('该模型不存在!', url('/admin/model'));
+        }
     }
 
     /**
@@ -85,7 +122,7 @@ class Model extends AdminBaseController {
      */
     public function destroy($model)
     {
-        $this->delete(true,$model);
+        $this->delete(true, $model);
     }
 
     /**

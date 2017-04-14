@@ -445,15 +445,14 @@ alter table yc_users comment '管理员用户表';
 
 CREATE TABLE `yc_model_attr` (
   `id` int(11) UNSIGNED  NOT NULL primary key AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL DEFAULT '' COMMENT '变量名',
-  `value` text NOT NULL COMMENT '变量值',
+  `name` varchar(50) NOT NULL DEFAULT '' COMMENT '变量英文标识',
   `type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '类型',
-  `model_id` int(11) UNSIGNED DEFAULT '0' COMMENT '如果type=1,此处对应yc_module表的mid',
-  `tips` varchar(50) NOT NULL DEFAULT '' COMMENT '字段中文说明',
+  `model_id` int(11) UNSIGNED DEFAULT '0' COMMENT '对应model表的model_id',
+  `tips` varchar(50) NOT NULL DEFAULT '' COMMENT '字段中文名称',
   `create_time` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '添加时间',
   `update_time` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '修改时间',
   `field_value` text  COMMENT '类型值(如field_type值为"radio"时field_value可设为 "1|开启,0|关闭")'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='自定义配置项';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='模型属性值';
 
 
 create unique index user_unique on yc_users
