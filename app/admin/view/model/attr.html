@@ -4,6 +4,7 @@
         <table class="model-table">
             <thead>
             <tr>
+                <th>标题</th>
                 <th>字段名</th>
                 <th>字段的值</th>
                 <th>字段类型</th>
@@ -11,6 +12,7 @@
             </tr>
             </thead>
             <tr>
+                <td>文章标题</td>
                 <td>articleTitle</td>
                 <td>500px</td>
                 <td>input text</td>
@@ -24,11 +26,11 @@
             <label>字段类型：</label>
             <div>
                 <select data-am-selected name="" class="model-field-type" required>
-                    <option selected>请选择字段类型</option>
+                    <option value="model-fieldtype-unknow">请选择字段类型</option>
                     <option value="model-fieldtype-inputtext">input text</option>
                     <option value="model-fieldtype-inputfile">input file</option>
                     <option value="model-fieldtype-textarea">textarea</option>
-                    <option value="model-fieldtype-select">select</option>
+                    <option value="model-fieldtype-select" selected>select</option>
                     <option value="model-fieldtype-radio">radio</option>
                     <option value="model-fieldtype-checkbox">checbox</option>
                 </select>
@@ -141,6 +143,7 @@
 
             </div>
             <button class="am-btn am-btn-primary button-text-left">提交</button>
+            <a href="/admin/model/index" class="am-btn am-btn-primary button-text-left ">取消</a>
         </div>
 
         <div class="am-icon-plus-square am-icon-lg model-table-button"><span>新增字段</span></div>

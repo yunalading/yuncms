@@ -221,7 +221,29 @@ $('.model-field-type').change(function(){
     } else if($(this).val()==='model-fieldtype-checkbox'){
         $('.model-file').css('display','none');
       $('.model-field-type-checkbox').css('display','block');
-    }else{
+    }else if($(this).val()==='model-fieldtype-unknow'){
+        $('.model-file').css('display','none');
+    }
+    else{
+        $('.model-file').css('display','none');
+        $('.model-fielf-type-default').css('display','block');
+    }
+});
+
+$(function(){
+    if($('.model-field-type').val()==='model-fieldtype-select'){
+        $('.model-file').css('display','none');
+        $('.model-field-type-select').css('display','block');
+    } else if($('.model-field-type').val()==='model-fieldtype-radio'){
+        $('.model-file').css('display','none');
+        $('.model-field-type-radio').css('display','block');
+    } else if($('.model-field-type').val()==='model-fieldtype-checkbox'){
+        $('.model-file').css('display','none');
+        $('.model-field-type-checkbox').css('display','block');
+    }else if($('.model-field-type').val()==='model-fieldtype-unknow'){
+        $('.model-file').css('display','none');
+    }
+    else{
         $('.model-file').css('display','none');
         $('.model-fielf-type-default').css('display','block');
     }
@@ -270,3 +292,4 @@ $('.model-add').on('click', function  (){
         });
     }
 });
+
