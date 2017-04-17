@@ -211,44 +211,34 @@ $('.model-field-del').click(function(){
 });
 //模型添加页面根据select选择项切换对应页面显示
 $('.model-field-type').change(function(){
-
-
- if($(this).val()==='4'){
-     $('.model-file').css('display','none');
-     $('.model-field-type-select').css('display','block');
- } else if($(this).val()==='5'){
-     $('.model-file').css('display','none');
-     $('.model-field-type-radio').css('display','block');
- } else if($(this).val()==='6'){
-     $('.model-file').css('display','none');
-   $('.model-field-type-checkbox').css('display','block');
- }else if($(this).val()==='1'||$(this).val()==='2'||$(this).val()==='3'){
-     $('.model-file').css('display','none');
-     $('.model-fielf-type-default').css('display','block');
- }
- else{
-     $('.model-file').css('display','none');
-
- }
+    var key=$(this).val();
+$.get('http://www.yuncms.com/admin/model/get_model_attr',function(data){
+    var Obj=JSON.parse(data);
+    var mtype='model-field-type-'+Obj[key];
+    if(key==='1'||key==='2'||key==='3'){
+        $('.model-file').css('display','none');
+        $('.model-fielf-type-default').css('display','block');
+    }else{
+        $('.model-file').css('display','none');
+        $('.'+mtype).css('display','block');
+    }
+},'json');
 });
 
 $(function(){
-    if($('.model-field-type').val()==='4'){
-        $('.model-file').css('display','none');
-        $('.model-field-type-select').css('display','block');
-    } else if($('.model-field-type').val()==='5'){
-        $('.model-file').css('display','none');
-        $('.model-field-type-radio').css('display','block');
-    } else if($('.model-field-type').val()==='6'){
-        $('.model-file').css('display','none');
-        $('.model-field-type-checkbox').css('display','block');
-    }else if($('.model-field-type').val()==='1'||$('.model-field-type').val()==='2'||$('.model-field-type').val()==='3'){
-        $('.model-file').css('display','none');
-        $('.model-fielf-type-default').css('display','block');
-    }
-    else{
-        $('.model-file').css('display','none');
-
+    if($('.model-table-add').css('display')==='block'){
+        var val=$('.model-field-type').val();
+        $.get('http://www.yuncms.com/admin/model/get_model_attr',function(data){
+            var Obj=JSON.parse(data);
+            var mtype='model-field-type-'+Obj[val];
+            if(val==='1'||val==='2'||val==='3'){
+                $('.model-file').css('display','none');
+                $('.model-fielf-type-default').css('display','block');
+            }else{
+                $('.model-file').css('display','none');
+                $('.'+mtype).css('display','block');
+            }
+        },'json');
     }
 });
 //模型添加页面字段子表格删除
