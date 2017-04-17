@@ -26,28 +26,24 @@ class Alidayu
     /**
      * 短信发送接口
      * @access public
-     * @param array $phone 短信信息
+     * @param array $phone 短信参数
      * @return bool
      */
     public function send(array $phone = [], $conf = [])
     {
-        $config = config('phone.alidayu');
+        $config = config('sms.alidayu');
         if (isset($conf) && is_array($conf)) {
             $conf = array_merge($config, $conf);
         } else {
             $conf = $config;
         }
-        $newConf = array_merge(config('phone.base'), $conf);
-
+        $newConf = array_merge(config('sms.base'), $conf);
         $client = new Client(new App($newConf));
         $req = new AlibabaAliqinFcSmsNumSend;
-        $req->setRecNum('18671418772')
-            ->setSmsParam([
-                'number' => rand(100000, 999999)
-            ])
-            ->setSmsFreeSignName('陈前号')
-            ->setSmsTemplateCode($newConf['smsid']);
-
+        $req->setRecNum($phone['sms'])
+            ->setSmsParam($phone)
+            ->setSmsFreeSignName($newConf['signname'])
+            ->setSmsTemplateCode($phone['smsid']);
         $resp = $client->execute($req);
 
         // 返回结果

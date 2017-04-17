@@ -22,6 +22,9 @@ class PhoneValidate extends BasePhoneValidate {
     protected $scene = [
         'alidayu' => [
 
+        ],
+        'setting' => [
+
         ]
     ];
 }

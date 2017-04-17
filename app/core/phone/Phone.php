@@ -37,7 +37,7 @@ class Phone
      */
     public static function init($config = [])
     {
-        $type = isset($config['phoneType']) ? $config['phoneTpe'] : config('phone.base')['phoneType'];
+        $type = isset($config['phoneType']) ? $config['phoneTpe'] : config('sms.base')['phoneType'];
         self::$type = $type;
         $class = false !== strpos($type, '\\') ? $type : '\\app\\core\\phone\\driver\\' . ucwords($type);
         self::$config = $config;
