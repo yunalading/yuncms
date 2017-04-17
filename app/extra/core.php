@@ -43,3 +43,6 @@ define('APP_SITE', 'http://www.yunalading.com');
 
 //模型属性配置文件
 \think\Config::parse(APP_PATH . 'extra' . DS . 'model_attr.json', 'json', 'model_attr');
+
+//短信配置文件
+\think\Config::parse(APP_PATH . 'extra' . DS . 'phone.json', 'json', 'phone');

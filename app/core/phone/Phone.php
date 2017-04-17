@@ -14,6 +14,8 @@ namespace app\core\phone;
 use think\exception\ClassNotFoundException;
 use think\App;
 use think\Log;
+use think\Config;
+use app\admin\validate\PhoneValidate;
 
 /**
  * Class Phone
@@ -35,7 +37,7 @@ class Phone
      */
     public static function init($config = [])
     {
-        $type = isset($config['phoneType']) ? $config['phoneTpe'] : "Alidaye";
+        $type = isset($config['phoneType']) ? $config['phoneTpe'] : config('phone.base')['phoneType'];
         self::$type = $type;
         $class = false !== strpos($type, '\\') ? $type : '\\app\\core\\phone\\driver\\' . ucwords($type);
         self::$config = $config;
@@ -58,11 +60,11 @@ class Phone
         }
         //验证数据
         $param = array_filter($data);
-        $Validate = new {self::$type}Validate();
-        if (!$Validate->check($param, [], self::$type) {
-            $this->error($Validate->getError());
+        $Validate = new phoneValidate();
+        if (!$Validate->check($param, [], strtolower(self::$type))) {
+            throwException($Validate->getError());
             return  false;
         }
-        return self::$driver->send($param);
+        return self::$driver->send($param,self::$config);
     }
 }

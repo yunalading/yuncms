@@ -10,20 +10,14 @@
 // +----------------------------------------------------------------------
 
 
-namespace app\admin\controller;
-use app\core\phone\Phone;
+namespace app\common\validate;
 
-/**
- * Class Sms
- * @package app\admin\controller
- */
-class Sms extends AdminBaseController {
-    /**
-     * @return \think\response\View
-     */
-    public function index() {
-        $smsRes = Phone::send();
-        dump($smsRes);
-        return view();
-    }
+
+class BasePhoneValidate extends BaseValidate {
+    protected $rule = [
+
+    ];
+    protected $message = [
+
+    ];
 }

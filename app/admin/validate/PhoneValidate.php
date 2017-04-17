@@ -10,20 +10,18 @@
 // +----------------------------------------------------------------------
 
 
-namespace app\admin\controller;
-use app\core\phone\Phone;
+namespace app\admin\validate;
+
+use app\common\validate\BasePhoneValidate;
 
 /**
- * Class Sms
- * @package app\admin\controller
+ * Class PhoneValidate
+ * @package app\admin\validate
  */
-class Sms extends AdminBaseController {
-    /**
-     * @return \think\response\View
-     */
-    public function index() {
-        $smsRes = Phone::send();
-        dump($smsRes);
-        return view();
-    }
+class PhoneValidate extends BasePhoneValidate {
+    protected $scene = [
+        'alidayu' => [
+
+        ]
+    ];
 }
