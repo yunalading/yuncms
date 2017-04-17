@@ -2,7 +2,41 @@
 <div class="content-page">
     <div class="am-container">
         <div class="page-title"><h1 class="am-inline">上传设置</h1></div>
+        <div class="edit-form">
+            <div class="am-form-group">
+                <label for="oss-maxSize">文件上传大小限制</label>
+                <div>
+                    <select data-am-selected name="maxSize"  id="oss-maxSize" >
+                        <option value="512KB" >512KB</option>
+                        <option value="1MB" >1MB</option>
+                        <option value="2MB" >2MB</option>
+                        <option value="5MB" >5MB</option>
+                    </select>
+                </div>
+            </div>
 
+            <div class="am-g">
+                <div>允许上传图片后缀</div>
+                <label class="am-checkbox  upload-checkbox-style">
+                    <input type="checkbox" name="allowExts" value="jpg"  checked data-am-ucheck>jpg
+                </label>
+                <label class="am-checkbox  upload-checkbox-style">
+                    <input type="checkbox" name="allowExts" value="gif" checked data-am-ucheck >gif
+                </label>
+                <label class="am-checkbox upload-checkbox-style ">
+                    <input type="checkbox" name="allowExts" value="png"  checked data-am-ucheck>png
+                </label>
+                <label class="am-checkbox upload-checkbox-style">
+                    <input type="checkbox" name="allowExts" value="jpeg" checked data-am-ucheck>jpeg
+                </label>
+                <label class="am-checkbox upload-checkbox-style">
+                    <input type="checkbox" name="allowExts" value="bmp" checked data-am-ucheck>bmp
+                </label>
+                <label class="am-checkbox upload-checkbox-style">
+                    <input type="checkbox" name="allowExts" value="wbmp" checked data-am-ucheck>wbmp
+                </label>
+            </div>
+        </div>
         <div class="tab-control">
         <div data-am-widget="tabs" class="am-tabs am-tabs-default">
             <ul class="am-tabs-nav am-cf">
@@ -13,40 +47,8 @@
             <div class="am-tabs-bd">
                 <div data-tab-panel-0 class="am-tab-panel am-active">
                     <form class="am-form edit-form" method="post" data-am-validator >
-                        <div class="am-form-group">
-                            <label for="server-maxSize">文件上传大小限制</label>
-                            <div>
-                                <select data-am-selected name="maxSize"  id="server-maxSize"  >
-                                    <option value="512KB" >512KB</option>
-                                    <option value="1MB" >1MB</option>
-                                    <option value="2MB" >2MB</option>
-                                    <option value="5MB" >5MB</option>
-                                </select>
-                            </div>
-                        </div>
 
 
-                        <div class="am-g">
-                            <div>允许上传图片后缀</div>
-                            <label class="am-checkbox  upload-checkbox-style">
-                                <input type="checkbox" name="allowExts" value="jpg"  checked data-am-ucheck>jpg
-                            </label>
-                            <label class="am-checkbox  upload-checkbox-style">
-                                <input type="checkbox" name="allowExts" value="gif" checked data-am-ucheck >gif
-                            </label>
-                            <label class="am-checkbox upload-checkbox-style ">
-                                <input type="checkbox" name="allowExts" value="png"  checked data-am-ucheck>png
-                            </label>
-                            <label class="am-checkbox upload-checkbox-style">
-                                <input type="checkbox" name="allowExts" value="jpeg" checked data-am-ucheck>jpeg
-                            </label>
-                            <label class="am-checkbox upload-checkbox-style">
-                                <input type="checkbox" name="allowExts" value="bmp" checked data-am-ucheck>bmp
-                            </label>
-                            <label class="am-checkbox upload-checkbox-style">
-                                <input type="checkbox" name="allowExts" value="wbmp" checked data-am-ucheck>wbmp
-                            </label>
-                        </div>
 
                         <div class="am-form-group">
                             <label for="server-savePath">默认上传路径(目前版本暂不支持修改)</label>
@@ -62,40 +64,6 @@
                 <div data-tab-panel-1 class="am-tab-panel">
                     <form class="am-form edit-form" method="post" data-am-validator >
                         <div class="am-form-group">
-                            <label for="cow-maxSize">文件上传大小限制</label>
-                            <div>
-                                <select data-am-selected name="maxSize"  id="cow-maxSize" >
-                                    <option value="512KB" >512KB</option>
-                                    <option value="1MB" >1MB</option>
-                                    <option value="2MB" >2MB</option>
-                                    <option value="5MB" >5MB</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="am-g">
-                            <div>允许上传图片后缀</div>
-                            <label class="am-checkbox  upload-checkbox-style">
-                                <input type="checkbox" name="allowExts" value="jpg"  checked data-am-ucheck>jpg
-                            </label>
-                            <label class="am-checkbox  upload-checkbox-style">
-                                <input type="checkbox" name="allowExts" value="gif" checked data-am-ucheck >gif
-                            </label>
-                            <label class="am-checkbox upload-checkbox-style ">
-                                <input type="checkbox" name="allowExts" value="png"  checked data-am-ucheck>png
-                            </label>
-                            <label class="am-checkbox upload-checkbox-style">
-                                <input type="checkbox" name="allowExts" value="jpeg" checked data-am-ucheck>jpeg
-                            </label>
-                            <label class="am-checkbox upload-checkbox-style">
-                                <input type="checkbox" name="allowExts" value="bmp" checked data-am-ucheck>bmp
-                            </label>
-                            <label class="am-checkbox upload-checkbox-style">
-                                <input type="checkbox" name="allowExts" value="wbmp" checked data-am-ucheck>wbmp
-                            </label>
-                        </div>
-
-                        <div class="am-form-group">
                             <label for="savePath">默认上传路径(目前版本暂不支持修改)</label>
                             <input type="text" name="savePath   " id="savePath" value="data\/upload\/images\/server" disabled>
                         </div>
@@ -108,42 +76,6 @@
                 </div>
                 <div data-tab-panel-2 class="am-tab-panel ">
                     <form class="am-form edit-form" method="post" data-am-validator >
-                        <div class="am-form-group">
-                            <label for="oss-maxSize">文件上传大小限制</label>
-                            <div>
-                                <select data-am-selected name="maxSize"  id="oss-maxSize" >
-                                    <option value="512KB" >512KB</option>
-                                    <option value="1MB" >1MB</option>
-                                    <option value="2MB" >2MB</option>
-                                    <option value="5MB" >5MB</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="am-g">
-                            <div>允许上传图片后缀</div>
-                            <label class="am-checkbox  upload-checkbox-style">
-                                <input type="checkbox" name="allowExts" value="jpg"  checked data-am-ucheck>jpg
-                            </label>
-                            <label class="am-checkbox  upload-checkbox-style">
-                                <input type="checkbox" name="allowExts" value="gif" checked data-am-ucheck >gif
-                            </label>
-                            <label class="am-checkbox upload-checkbox-style ">
-                                <input type="checkbox" name="allowExts" value="png"  checked data-am-ucheck>png
-                            </label>
-                            <label class="am-checkbox upload-checkbox-style">
-                                <input type="checkbox" name="allowExts" value="jpeg" checked data-am-ucheck>jpeg
-                            </label>
-                            <label class="am-checkbox upload-checkbox-style">
-                                <input type="checkbox" name="allowExts" value="bmp" checked data-am-ucheck>bmp
-                            </label>
-                            <label class="am-checkbox upload-checkbox-style">
-                                <input type="checkbox" name="allowExts" value="wbmp" checked data-am-ucheck>wbmp
-                            </label>
-                        </div>
-
-
-
 
                         <div class="am-form-group">
                         <label for="oss-savePath">默认上传路径(目前版本暂不支持修改)</label>

@@ -28,7 +28,7 @@
         <div class="model-table-add">
             <label>字段类型：</label>
             <div>
-                <select data-am-selected name="attr[type]" class="model-field-type" required>
+                <select data-am-selected name="attr[type]" class="model-field-type" required >
                     <option selected>请选择字段类型</option>
                     {volist name='attr_config' id='attr_config' key="k" }
                         <option value="{$k}">{$attr_config}</option>
@@ -70,6 +70,7 @@
                         </td>
                     </tr>
                 </table>
+                <div class=" am-icon-plus-square am-icon-lg model-field-add-button model-add"></div>
             </div>
             <div class=" model-file model-field-type-radio">
                 <label for="model-field-radio-tips">标题（请输入标题，长度不超过30）</label>
@@ -96,6 +97,7 @@
                         </td>
                     </tr>
                 </table>
+                <div class=" am-icon-plus-square am-icon-lg model-field-add-button model-add"></div>
             </div>
             <div class=" model-file model-field-type-checkbox">
                 <label for="model-field-checkbox-tips">标题（请输入标题，长度不超过30）</label>
@@ -122,6 +124,7 @@
                         </td>
                     </tr>
                 </table>
+                <div class=" am-icon-plus-square am-icon-lg model-field-add-button model-add"></div>
 
             </div>
             <button class="am-btn am-btn-primary button-text-left">提交</button>
