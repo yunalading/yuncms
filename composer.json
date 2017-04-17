@@ -11,7 +11,7 @@
     }
   ],
   "require": {
-    "php": "^7.1.1",
+    "php": "^7.0.15",
     "topthink/framework": "*",
     "overtrue/wechat": "^3.2",
     "hightman/xunsearch": "^1.4",
@@ -19,7 +19,8 @@
     "topthink/think-image": "^1.0",
     "phpmailer/phpmailer": "^5.2",
     "aliyuncs/oss-sdk-php": "^2.2",
-    "qiniu/php-sdk": "^7.1"
+    "qiniu/php-sdk": "^7.1",
+    "flc/alidayu": "^2.0"
   },
   "require-dev": {
     "topthink/think-testing": "^1.0"

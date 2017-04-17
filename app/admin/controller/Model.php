@@ -16,6 +16,7 @@ use app\admin\model\ModelAttrModel;
 use app\admin\model\ModelModel;
 use app\admin\validate\ModelAttrValidate;
 use app\admin\validate\ModelValidate;
+use think\Config;
 
 /**
  * Class Model
@@ -87,7 +88,8 @@ class Model extends AdminBaseController
 
             if ($this->request->isPost()) {
                 //验证数据
-                $param = array_filter($this->post['attr']);
+                $post = $this->post['attr'];
+                $param = array_filter($post[$post[$config[$post['type']]]]);
                 $Validate = new ModelAttrValidate();
                 if (!$Validate->check($param, [], 'update')) {
                     $this->error($Validate->getError());
@@ -106,6 +108,11 @@ class Model extends AdminBaseController
         } else {
             $this->error('该模型不存在!', url('/admin/model'));
         }
+    }
+
+    public function get_model_attr()
+    {
+        return json_encode(Config::get('model_attr'));
     }
 
     /**
