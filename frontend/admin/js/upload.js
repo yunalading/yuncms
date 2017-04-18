@@ -211,8 +211,9 @@ $('.model-field-del').click(function(){
 });
 //模型添加页面根据select选择项切换对应页面显示
 $('.model-field-type').change(function(){
+    var host = window.location.host;
     var key=$(this).val();
-$.get('http://www.yuncms.com/admin/model/get_model_attr',function(data){
+$.get('http://'+host+$(this).data('url'),function(data){
     var Obj=JSON.parse(data);
     var mtype='model-field-type-'+Obj[key];
     if(key==='1'||key==='2'||key==='3'){
@@ -227,8 +228,9 @@ $.get('http://www.yuncms.com/admin/model/get_model_attr',function(data){
 
 $(function(){
     if($('.model-table-add').css('display')==='block'){
+        var hosts = window.location.host;
         var val=$('.model-field-type').val();
-        $.get('http://www.yuncms.com/admin/model/get_model_attr',function(data){
+        $.get('http://'+hosts+$(this).data('url'),function(data){
             var Obj=JSON.parse(data);
             var mtype='model-field-type-'+Obj[val];
             if(val==='1'||val==='2'||val==='3'){
