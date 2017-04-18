@@ -213,33 +213,32 @@ $('.model-field-del').click(function(){
 $('.model-field-type').change(function(){
     var host = window.location.host;
     var key=$(this).val();
-    $.get('http://'+host+$(this).data('url'),function(data){
-        var Obj=JSON.parse(data);
-        var mtype='model-field-type-'+Obj[key];
-        if(key==='1'||key==='2'||key==='3'){
-            $('.model-file').css('display','none');
-            $('.model-fielf-type-default').css('display','block');
-        }else{
-            $('.model-file').css('display','none');
-            $('.'+mtype).css('display','block');
-        }
-    },'json');
+$.get('http://'+host+$(this).data('url'),function(data){
+    var Obj=JSON.parse(data);
+    var mtype='model-field-type-'+Obj[key];
+    if(!$('.model-file').hasClass(mtype)){
+        $('#default').removeClass().addClass('model-file '+mtype );
+        $('.model-file').css('display','none');
+        $('.'+mtype).css('display','block');
+    }
+    $('.model-file').css('display','none');
+    $('.'+mtype).css('display','block');
+},'json');
 });
-
 $(function(){
-    if($('.model-field-type').val()){
+    if($('.model-field-type').val()<=3){
         var hosts = window.location.host;
         var val=$('.model-field-type').val();
         $.get('http://'+hosts+$('.model-field-type').data('url'),function(data){
             var Obj=JSON.parse(data);
             var mtype='model-field-type-'+Obj[val];
-            if(val==='1'||val==='2'||val==='3'){
-                $('.model-file').css('display','none');
-                $('.model-fielf-type-default').css('display','block');
-            }else{
+            if(!$('.model-file').hasClass(mtype)){
+                $('#default').removeClass().addClass('model-file '+mtype );
                 $('.model-file').css('display','none');
                 $('.'+mtype).css('display','block');
             }
+            $('.model-file').css('display','none');
+            $('.'+mtype).css('display','block');
         },'json');
     }
 });
@@ -252,38 +251,53 @@ $('.model-remove').on('click',function(){
     }
 });
 //模型添加页面字段子表格增加
-$('.model-add').on('click', function  (){
-    if($(this).parent().hasClass('model-field-type-select')){
-        var $selectTable=$(this).parent().children('table');
-        $selectTable.append("<tr><td><input type='text'></td><td>----</td><td><input type='text'</td><td><a  class='model-remove' >删除</a></td></tr>");
-        $selectTable.off('click','**').on('click','.model-remove',function(){
-            if(confirm('是否确定删除此项')){
-                $(this).parent().parent().remove();
-            }else{
-                return false;
-            }
-        });
-    }
-    else if($(this).parent().hasClass('model-field-type-radio')){
-        var $radioTable=$(this).parent().children('table');
-        $radioTable.append("<tr> <td><input type='radio' disabled></td><td><input type='text'></td><td>----</td><td><input type='text'</td><td><a  class='model-remove' >删除</a></td></tr>");
-        $radioTable.off('click','**').on('click','.model-remove',function(){
-            if(confirm('是否确定删除此项')){
-                $(this).parent().parent().remove();
-            }else{
-                return false;
-            }
-        });
-    }
-    else if($(this).parent().hasClass('model-field-type-checkbox')){
-        var $checkboxTable=$(this).parent().children('table');
-        $checkboxTable.append("<tr> <td><input type='checkbox' disabled></td><td><input type='text'></td><td>----</td><td><input type='text'</td><td><a  class='model-remove' >删除</a></td></tr>");
-        $checkboxTable.off('click','**').on('click','.model-remove',function(){
-            if(confirm('是否确定删除此项')){
-                $(this).parent().parent().remove();
-            }else{
-                return false;
-            }
-        });
-    }
+$(function(){
+    var selectnum=0;
+    var radionum=0;
+    var checkboxnum=0;
+    $('.model-add').on('click', function  (){
+        if($(this).parent().hasClass('model-field-type-select')){
+            var $selectTable=$(this).parent().children('table');
+            selectnum++;
+            var keyn='select-key-['+selectnum+']';
+            var valn='select-value-['+selectnum+']';
+            $selectTable.append("<tr><td><input type='text' name="+keyn+"></td><td>----</td><td><input type='text' name="+valn+"></td><td><a  class='model-remove' >删除</a></td></tr>");
+            $selectTable.off('click','**').on('click','.model-remove',function(){
+                if(confirm('是否确定删除此项')){
+                    $(this).parent().parent().remove();
+                }else{
+                    return false;
+                }
+            });
+        }
+        else if($(this).parent().hasClass('model-field-type-radio')){
+            var $radioTable=$(this).parent().children('table');
+            radionum++;
+            var keyn='select-key-['+radionum+']';
+            var valn='select-value-['+radionum+']';
+            $radioTable.append("<tr> <td><input type='radio' disabled></td><td><input type='text'  name="+keyn+"></td><td>----</td><td><input type='text' name="+valn+"></td><td><a  class='model-remove' >删除</a></td></tr>");
+            $radioTable.off('click','**').on('click','.model-remove',function(){
+                if(confirm('是否确定删除此项')){
+                    $(this).parent().parent().remove();
+                }else{
+                    return false;
+                }
+            });
+        }
+        else if($(this).parent().hasClass('model-field-type-checkbox')){
+            var $checkboxTable=$(this).parent().children('table');
+            checkboxnum++;
+            var keyn='select-key-['+checkboxnum+']';
+            var valn='select-value-['+checkboxnum+']';
+            $checkboxTable.append("<tr> <td><input type='checkbox' disabled></td><td><input type='text'  name="+keyn+"></td><td>----</td><td><input type='text' name="+valn+"></td><td><a  class='model-remove' >删除</a></td></tr>");
+            $checkboxTable.off('click','**').on('click','.model-remove',function(){
+                if(confirm('是否确定删除此项')){
+                    $(this).parent().parent().remove();
+                }else{
+                    return false;
+                }
+            });
+        }
+    });
+
 });
