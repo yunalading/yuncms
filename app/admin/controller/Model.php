@@ -74,40 +74,83 @@ class Model extends AdminBaseController
 
     public function attr()
     {
+        $model = new ModelAttrModel();
         //判断模型是否存在
+        //dump($this->request);
+        //dump($this->param);
         if (!empty($this->param) && $this->param['id']) {
             $attr = ModelModel::get($this->param['id']);
             if (empty($attr)) {
                 $this->error('该模型不存在!', url('/admin/model'));
             }
-            $model_attr = ModelAttrModel::get(array("model_id" => $this->param['id']));
-            $this->assign('model_attr', $model_attr);
-            //$this->assign('model_id', $this->param['id']);
             $config = config('model_attr');
             $this->assign('attr_config', $config);
+            $model_attr = ModelAttrModel::all(array("model_id" => $this->param['id']));
+            if (!empty($model_attr)) {
+                foreach ($model_attr as &$mm) {
+                    $mm['type'] = $config[$mm['pro_cate']];
+                }
+            }
+            //dump($model_attr);
+            $this->assign('model_attr', $model_attr);
+            $this->assign('model_id', $this->param['id']);
+
             if ($this->request->isPost()) {
                 //验证数据
                 $post = $this->post['attr'];
+                //dump($post);
                 $param = array_filter($post[$config[$post['pro_cate']]]);
+                $param['pro_cate'] = $post['pro_cate'];
+                $param['model_id'] = $this->param['id'];
+                if (in_array($config[$post['pro_cate']], array('raido', 'select', 'checkbox'))) {
+                    $param['pro_value'] = '';
+                    $pro_key = $this->post[$config[$post['pro_cate']] . '-key'];
+                    $pro_value = $this->post[$config[$post['pro_cate']] . '-value'];
+                    foreach ($pro_key as $k => $v) {
+                        $param['pro_value'] .= trim($v) . '|' . trim($pro_value[$k]) . ',';
+                    }
+                    $param['pro_value'] = rtrim($param['pro_value'], ',');
+                }
+                //dump($param);
                 $Validate = new ModelAttrValidate();
                 if (!$Validate->check($param, [], 'update')) {
                     $this->error($Validate->getError());
                 }
                 if (isset($this->param['attr_id']) && $this->param['attr_id']) {
+                    $attr_id = $this->param['attr_id'];
                     $attr_one = ModelAttrModel::get($this->param['attr_id']);
                     $this->assign('attr_one', $attr_one);
                     $where['model_properties_id'] = $this->param['attr_id'];
                     $model->update($param, $where);
                 } else {
-                    $model->create($param);
+                    $create = $model->create($param);
+                    $attr_id = $create->getData('model_properties_id');
                 }
-                $this->success('属性修改成功!', url('/admin/model/attr'), array('id' => $this->param['id'], 'attr_id' => $this->param['attr_id']));
+                //return $this->success('属性修改成功!', url('/admin/model/attr'),array('id'=>$this->param['id']));
+                return $this->redirect(url('/admin/model/attr'), ['id' => $this->param['id']]);
             }
             return view();
         } else {
             $this->error('该模型不存在!', url('/admin/model'));
         }
     }
+
+    /**
+     * 获取模型属性
+     */
+    public function attrupdate()
+    {
+        $model = new ModelAttrModel();
+        $attr_one = ModelAttrModel::get($this->param['attr_id']);
+        $attr_one['type'] = config('model_attr')[$attr_one['pro_cate']];
+        $attr = explode(',', $attr_one['pro_value']);
+        foreach ($attr as &$v) {
+            $v = explode('|', $v);
+        }
+        $attr_one['attr'] = json_encode($attr);
+        return json_encode($attr_one);
+    }
+
 
     /**
      * 配置类型
