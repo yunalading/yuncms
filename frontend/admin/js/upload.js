@@ -227,10 +227,11 @@ $.get('http://'+host+$(this).data('url'),function(data){
 });
 
 $(function(){
-    if($('.model-table-add').css('display')==='block'){
+    if($('.model-field-type').val()){
         var hosts = window.location.host;
         var val=$('.model-field-type').val();
-        $.get('http://'+hosts+$(this).data('url'),function(data){
+
+        $.get('http://'+hosts+$('.model-field-type').data('url'),function(data){
             var Obj=JSON.parse(data);
             var mtype='model-field-type-'+Obj[val];
             if(val==='1'||val==='2'||val==='3'){
