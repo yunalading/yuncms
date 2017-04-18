@@ -16,5 +16,5 @@ namespace app\common\model;
  * @package app\common\model
  */
 abstract class BaseModelAttrModel extends BaseModel {
-    protected $name = 'model_attr';
+    protected $name = 'model_properties';
 }

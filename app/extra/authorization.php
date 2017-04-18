@@ -46,17 +46,6 @@ return [
                 ]
             ]
         ], [
-            'id' => 'member',
-            'name' => '用户',
-            'iconClass' => 'am-icon-users',
-            'submenus' => [
-                [
-                    'id' => 'member-list',
-                    'name' => '用户列表',
-                    'href' => '/admin/member',
-                ]
-            ]
-        ], [
             'id' => 'page',
             'name' => '页面',
             'iconClass' => 'am-icon-circle-o',
@@ -109,17 +98,6 @@ return [
                     'id' => 'guestbook-list',
                     'name' => '留言列表',
                     'href' => '/admin/guestbook'
-                ]
-            ]
-        ], [
-            'id' => 'images',
-            'name' => '图片',
-            'iconClass' => 'am-icon-image',
-            'submenus' => [
-                [
-                    'id' => 'images-list',
-                    'name' => '图片列表',
-                    'href' => '/admin/images'
                 ]
             ]
         ], [

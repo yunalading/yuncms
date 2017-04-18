@@ -1,5 +1,5 @@
 {include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
-<form action="" class="am-form am-g margin-top-buttom-20" data-am-validator="">
+<form action="" class="am-form am-g margin-top-buttom-20" data-am-validator="" method="post">
     <div class="all-width-six">
         <table class="model-table">
             <thead>
@@ -13,14 +13,14 @@
             </thead>
             {volist name='model_attr' id='model_attr'}
             <tr>
-                <td>{$model_attr.tips}</td>
-                <td>{$model_attr.name}</td>
-                <td>{$model_attr.type}</td>
-                <td>{$model_attr.field_value}</td>
+                <td>{$model_attr.pro_name}</td>
+                <td>{$model_attr.pro_key}</td>
+                <td>{$model_attr.pro_cate}</td>
+                <td>{$model_attr.pro_value}</td>
                 <td>
-                    <a href="<?=URL('/admin/model/edit',array('id'=>$model_attr['model_id'],'attr_id'=>$model_attr['id']));?>">修改</a>
+                    <a href="<?=URL('/admin/model/edit',array('id'=>$model_attr['model_id'],'attr_id'=>$model_attr['model_properties_id']));?>">修改</a>
                     <a class="model-field-del"
-                       href="<?=URL('/admin/model/attrdelete',array('id'=>$model_attr['model_id'],'attr_id'=>$model_attr['id']));?>">删除</a>
+                       href="<?=URL('/admin/model/attrdelete',array('id'=>$model_attr['model_id'],'attr_id'=>$model_attr['model_properties_id']));?>">删除</a>
                 </td>
             </tr>
             {/volist}
@@ -28,7 +28,7 @@
         <div class="model-table-add">
             <label>字段类型：</label>
             <div>
-                <select data-am-selected name="attr[type]" class="model-field-type" data-url="<?=URL('/admin/model/get_model_attr');?>" required >
+                <select data-am-selected name="attr[pro_cate]" class="model-field-type" data-url="<?=URL('/admin/model/get_model_attr');?>" required >
                     <option selected>请选择字段类型</option>
                     {volist name='attr_config' id='attr_config' key="k" }
                     <option value="{$k}">{$attr_config}</option>
@@ -37,20 +37,19 @@
             </div>
             <div class="model-file model-fielf-type-default">
                 <label for="model-field-default-tips">标题（请输入字段标题，长度不超过30）</label>
-                <input type="text" name="attr[text][tips]" id="model-field-default-tips" maxlength="30" required {notempty name="attr_one"
-                       }value="{$attr_one.tips}" {/notempty} />
-                <label for="model-field-default-name">字段名（请输入字段名 英文字母开头，长度不超过30）</label>
-                <input type="text" name="attr[text][name]" id="model-field-default-name" maxlength="30" {notempty name="attr_one"
-                       }value="{$attr_one.name}" {/notempty} required/>
+                <input type="text" name="attr[text][pro_name]" id="model-field-default-tips" maxlength="30" required {notempty name="attr_one"
+                       }value="{$attr_one.pro_name}" {/notempty} />
+                <label for="model-field-default-name">字段名（请输入字段名 英文字母，长度不超过30）</label>
+                <input type="text" name="attr[text][pro_key]" id="model-field-default-name" maxlength="30" {notempty name="attr_one"
+                       }value="{$attr_one.pro_key}" {/notempty} required />
             </div>
-
             <div class=" model-file model-field-type-select">
                 <label for="model-field-select-tips">标题（请输入标题，长度不超过30）</label>
-                <input type="text" name="attr[select][tips]" id="model-field-select-tips" maxlength="30" required {notempty name="attr_one"
-                       }value="{$attr_one.tips}" {/notempty} />
+                <input type="text" name="attr[select][pro_name]" id="model-field-select-tips" maxlength="30" required {notempty name="attr_one"
+                       }value="{$attr_one.pro_name}" {/notempty} />
                 <label for="model-field-select-name">字段名（请输入字段名 英文字母开头，长度不超过30）</label>
-                <input type="text" name="attr[select][name]" id="model-field-select-name" maxlength="30" required {notempty name="attr_one"
-                       }value="{$attr_one.name}" {/notempty} />
+                <input type="text" name="attr[select][pro_key]" id="model-field-select-name" maxlength="30" required {notempty name="attr_one"
+                       }value="{$attr_one.pro_key}" {/notempty} />
                 <table class="model-select">
                     <thead>
                     <tr>
@@ -61,11 +60,10 @@
                     </tr>
                     </thead>
                     <tr>
-                        <td><input type="text" name=""/></td>
+                        <td><input type="text" name="" /></td>
                         <td>----</td>
-                        <td><input type="text" name=""/></td>
+                        <td><input type="text" name="" /></td>
                         <td>
-
                             <a class="model-remove">删除</a>
                         </td>
                     </tr>
@@ -74,9 +72,11 @@
             </div>
             <div class=" model-file model-field-type-radio">
                 <label for="model-field-radio-tips">标题（请输入标题，长度不超过30）</label>
-                <input type="text" name="" id="model-field-radio-tips" maxlength="30" required/>
+                <input type="text" name="attr[radio][pro_name]" id="model-field-radio-tips" maxlength="30" required {notempty name="attr_one"
+                       }value="{$attr_one.pro_name}" {/notempty} />
                 <label for="model-field-radio-name">字段名（请输入字段名 英文字母开头，长度不超过30）</label>
-                <input type="text" name="" id="model-field-radio-name" maxlength="30" required/>
+                <input type="text" name="attr[radio][pro_key]" id="model-field-radio-name" maxlength="30" required {notempty name="attr_one"
+                       }value="{$attr_one.pro_key}" {/notempty} />
                 <table class="model-select">
                     <thead>
                     <tr>
@@ -101,9 +101,11 @@
             </div>
             <div class=" model-file model-field-type-checkbox">
                 <label for="model-field-checkbox-tips">标题（请输入标题，长度不超过30）</label>
-                <input type="text" name="" id="model-field-checkbox-tips" maxlength="30" required/>
+                <input type="text" name="attr[checkbox][pro_name]" id="model-field-checkbox-tips" maxlength="30" required {notempty name="attr_one"
+                       }value="{$attr_one.pro_name}" {/notempty} />
                 <label for="model-field-checkbox-name">字段名（请输入字段名 英文字母开头，长度不超过30）</label>
-                <input type="text" name="" id="model-field-checkbox-name" maxlength="30" required/>
+                <input type="text" name="attr[checkbox][pro_key]" id="model-field-checkbox-name" maxlength="30" required {notempty name="attr_one"
+                       }value="{$attr_one.pro_key}" {/notempty} />
                 <table class="model-select">
                     <thead>
                     <tr>
@@ -125,12 +127,12 @@
                     </tr>
                 </table>
                 <div class=" am-icon-plus-square am-icon-lg model-field-add-button model-add"></div>
-
             </div>
+            {notempty name="attr_one"}<input type="hidden" name="attr_id" value="{$attr_one.model_properties_id}">{/notempty}
+            {notempty name="attr_one"}<input type="hidden" name="id" value="{$attr_one.model_id}">{/notempty}
             <button class="am-btn am-btn-primary button-text-left">提交</button>
             <a href="<?=URL('/admin/model/index');?>" class="am-btn am-btn-primary button-text-left">取消</a>
         </div>
-
         <div class="am-icon-plus-square am-icon-lg model-table-button"><span>新增字段</span></div>
     </div>
 </form>

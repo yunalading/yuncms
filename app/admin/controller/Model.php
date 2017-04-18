@@ -85,11 +85,10 @@ class Model extends AdminBaseController
             //$this->assign('model_id', $this->param['id']);
             $config = config('model_attr');
             $this->assign('attr_config', $config);
-
             if ($this->request->isPost()) {
                 //验证数据
                 $post = $this->post['attr'];
-                $param = array_filter($post[$post[$config[$post['type']]]]);
+                $param = array_filter($post[$config[$post['pro_cate']]]);
                 $Validate = new ModelAttrValidate();
                 if (!$Validate->check($param, [], 'update')) {
                     $this->error($Validate->getError());
@@ -97,7 +96,7 @@ class Model extends AdminBaseController
                 if (isset($this->param['attr_id']) && $this->param['attr_id']) {
                     $attr_one = ModelAttrModel::get($this->param['attr_id']);
                     $this->assign('attr_one', $attr_one);
-                    $where['id'] = $this->param['attr_id'];
+                    $where['model_properties_id'] = $this->param['attr_id'];
                     $model->update($param, $where);
                 } else {
                     $model->create($param);
@@ -110,6 +109,9 @@ class Model extends AdminBaseController
         }
     }
 
+    /**
+     * 配置类型
+     */
     public function get_model_attr()
     {
         return json_encode(Config::get('model_attr'));

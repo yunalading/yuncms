@@ -213,24 +213,23 @@ $('.model-field-del').click(function(){
 $('.model-field-type').change(function(){
     var host = window.location.host;
     var key=$(this).val();
-$.get('http://'+host+$(this).data('url'),function(data){
-    var Obj=JSON.parse(data);
-    var mtype='model-field-type-'+Obj[key];
-    if(key==='1'||key==='2'||key==='3'){
-        $('.model-file').css('display','none');
-        $('.model-fielf-type-default').css('display','block');
-    }else{
-        $('.model-file').css('display','none');
-        $('.'+mtype).css('display','block');
-    }
-},'json');
+    $.get('http://'+host+$(this).data('url'),function(data){
+        var Obj=JSON.parse(data);
+        var mtype='model-field-type-'+Obj[key];
+        if(key==='1'||key==='2'||key==='3'){
+            $('.model-file').css('display','none');
+            $('.model-fielf-type-default').css('display','block');
+        }else{
+            $('.model-file').css('display','none');
+            $('.'+mtype).css('display','block');
+        }
+    },'json');
 });
 
 $(function(){
     if($('.model-field-type').val()){
         var hosts = window.location.host;
         var val=$('.model-field-type').val();
-
         $.get('http://'+hosts+$('.model-field-type').data('url'),function(data){
             var Obj=JSON.parse(data);
             var mtype='model-field-type-'+Obj[val];
