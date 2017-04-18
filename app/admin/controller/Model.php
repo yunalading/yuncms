@@ -127,7 +127,8 @@ class Model extends AdminBaseController
                     $attr_id = $create->getData('model_properties_id');
                 }
                 //return $this->success('属性修改成功!', url('/admin/model/attr'),array('id'=>$this->param['id']));
-                return $this->redirect(url('/admin/model/attr'), ['id' => $this->param['id']]);
+                //return $this->redirect(url('/admin/model/attr'), ['id' => $this->param['id']]);
+                return $this->success('属性修改成功!', url('/admin/model'));
             }
             return view();
         } else {
@@ -149,6 +150,26 @@ class Model extends AdminBaseController
         }
         $attr_one['attr'] = json_encode($attr);
         return json_encode($attr_one);
+    }
+    /*
+     * 删除属性
+     */
+    public function attrdelete(){
+        $model = new ModelAttrModel();
+        if (!empty($this->param) && $this->param['id']) {
+            try {
+                if ($model::destroy($this->param['id'], true)) {
+                    $this->success('删除成功!', url('/admin/model'));
+                } else {
+                    $this->error('删除失败!', url('/admin/model'));
+                }
+            } catch (PDOException $e) {
+                Log::error($e);
+                $this->error('删除失败!', url('/admin/model'));
+            }
+        } else {
+            $this->error('参数错误!', url('/admin/model'));
+        }
     }
 
 
