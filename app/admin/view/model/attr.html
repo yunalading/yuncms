@@ -35,7 +35,7 @@
                     {/volist}
                 </select>
             </div>
-            <div class="model-file model-fielf-type-default">
+            <div class="model-file f-default" id="default">
                 <label for="model-field-default-tips">标题（请输入字段标题，长度不超过30）</label>
                 <input type="text" name="attr[text][tips]" id="model-field-default-tips" maxlength="30" required {notempty name="attr_one"
                        }value="{$attr_one.tips}" {/notempty} />
@@ -61,7 +61,7 @@
                     </tr>
                     </thead>
                     <tr>
-                        <td><input type="text" name=""/></td>
+                        <td><input type="text" name="" /></td>
                         <td>----</td>
                         <td><input type="text" name=""/></td>
                         <td>
