@@ -279,7 +279,6 @@ $(function () {
 });
 //模型页面修改按钮时间
 $('.model-field-mod').click(function () {
-
         var type=$(this).data('type');
         var mtype = 'model-field-type-' + type;
         var id = $(this).data('id');
@@ -290,7 +289,6 @@ $('.model-field-mod').click(function () {
         var checkboxsnum = 0;
         var tips='model-field-'+type+'-tips';
         var name='model-field-'+type+'-name';
-
         $.post(url,
             {
                 id: id,
@@ -299,48 +297,48 @@ $('.model-field-mod').click(function () {
             function (data) {
                 var Obj=JSON.parse(data);
                 var arr=JSON.parse(Obj['attr']);
-                var pro_name=JSON.parse(Obj['pro_name']);
-                var pro_key=JSON.parse(Obj['pro_key']);
-                var pro_cate=JSON.parse(Obj['pro_cate']);
+                var pro_name=Obj['pro_name'];
+                var pro_key=Obj['pro_key'];
+                var pro_cate=Obj['pro_cate'];
                 $('.model-table-add').css('display', 'block');
                 $('.model-file').css('display', 'none');
-                $('.' + mtype).css('display', 'block');
+                $('.'+mtype).css('display', 'block');
                 $('#'+tips).val(pro_name);
                 $('#'+name).val(pro_key);
-                //如果类型为select，根据数据读出来的字段项，新增字段的时候需要也是select类型
-                if(type==='select'){
-                    var select=$('.' + mtype).children('table');
-                    select.html(select);
-                    for(var i=0;i<arr.length;i++){
-                        selectsnum++;
-                        var keys = 'select-key[' + selectsnum + ']';
-                        var vals = 'select-value[' + selectsnum + ']';
-                        select.append("<tr><td><input type='text' value="+arr[i][0]+" name=" + keys + " ></td><td>----</td><td><input type='text' value="+arr[i][1]+" name=" + vals + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+                if(arr.length>1){
+                    //如果类型为select，根据数据读出来的字段项，新增字段的时候需要也是select类型
+                    if(type==='select'){
+                        var select=$('.' + mtype).children('table');
+                        select.html(select);
+                        for(var i=0;i<arr.length;i++){
+                            selectsnum++;
+                            var keys = 'select-key[' + selectsnum + ']';
+                            var vals = 'select-value[' + selectsnum + ']';
+                            select.append("<tr><td><input type='text' value="+arr[i][0]+" name=" + keys + " ></td><td>----</td><td><input type='text' value="+arr[i][1]+" name=" + vals + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+                        }
+                    }
+                    //如果类型为radio，根据数据读出来的字段项，新增字段的时候需要也是radio类型
+                    else if(type==='radio'){
+                        var radio=$('.' + mtype).children('table');
+                        radio.html(radio);
+                        for(var j=0;j<arr.length;j++){
+                            radiosnum++;
+                            var keyr = 'radio-key[' + radiosnum + ']';
+                            var valr = 'radio-value[' + radiosnum + ']';
+                            radio.append("<tr> <td><input type='radio' disabled></td><td><input type='text'  value="+arr[j][0]+" name=" + keyr + "></td><td>----</td><td><input type='text' value="+arr[j][1]+" name=" + valr + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+                        }
+                    }
+                    //如果类型为checkbox，根据数据读出来的字段项，新增字段的时候需要也是checkbox类型
+                    else if(type==='checkbox'){
+                        var checkbox=$('.' + mtype).children('table');
+                        checkbox.html(checkbox);
+                        for(var k=0;k<arr.length;k++){
+                            checkboxsnum++;
+                            var keyc = 'checkbox-key[' + checkboxsnum + ']';
+                            var valc = 'checkbox-value[' + checkboxsnum + ']';
+                            checkbox.append("<tr> <td><input type='checkbox' disabled></td><td><input type='text' value="+arr[k][0]+"  name=" + keyc + "></td><td>----</td><td><input type='text' value="+arr[k][1]+" name=" + valc + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+                        }
                     }
                 }
-                //如果类型为radio，根据数据读出来的字段项，新增字段的时候需要也是radio类型
-                else if(type==='radio'){
-                    var radio=$('.' + mtype).children('table');
-                    radio.html(radio);
-                    for(var j=0;j<arr.length;j++){
-                        radiosnum++;
-                        var keyr = 'radio-key[' + radiosnum + ']';
-                        var valr = 'radio-value[' + radiosnum + ']';
-                        radio.append("<tr> <td><input type='radio' disabled></td><td><input type='text'  value="+arr[j][0]+" name=" + keyr + "></td><td>----</td><td><input type='text' value="+arr[j][1]+" name=" + valr + "></td><td><a  class='model-remove' >删除</a></td></tr>");
-                    }
-                }
-                //如果类型为checkbox，根据数据读出来的字段项，新增字段的时候需要也是checkbox类型
-                else if(type==='checkbox'){
-                    var checkbox=$('.' + mtype).children('table');
-                    checkbox.html(checkbox);
-                    for(var k=0;k<arr.length;k++){
-                        checkboxsnum++;
-                        var keyc = 'checkbox-key[' + checkboxsnum + ']';
-                        var valc = 'checkbox-value[' + checkboxsnum + ']';
-                        checkbox.append("<tr> <td><input type='checkbox' disabled></td><td><input type='text' value="+arr[k][0]+"  name=" + keyc + "></td><td>----</td><td><input type='text' value="+arr[k][1]+" name=" + valc + "></td><td><a  class='model-remove' >删除</a></td></tr>");
-                    }
-                }
-
             });
-
 });
