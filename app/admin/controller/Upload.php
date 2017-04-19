@@ -13,7 +13,6 @@
 namespace app\admin\controller;
 
 use app\admin\validate\UploadValidate;
-//use app\core\upload\FileMate;
 use think\Config;
 
 /**
@@ -27,9 +26,9 @@ class Upload extends AdminBaseController
      */
     public function index()
     {
-        $config = config::get('upload.image');
-//        $upload = \app\core\upload\Upload::getInstance(['uploadType' => 'Server']);
-//        echo $upload->upload(null);
+        $config = config::get('upload');
+        //$config['image']['maxSize'] = str_replace('MB','',byteFormat($config['image']['maxSize'],"MB"));
+        $config['image']['ext'] = implode(',',$config['image']['allowExts']);
         $this->assign('config',$config);
         return view();
     }
@@ -39,16 +38,17 @@ class Upload extends AdminBaseController
      */
     public function edit(){
         if ($this->request->isPost()) {
-            $post = $this->post;
+            $post = $this->post['upload'];
             $valiDate = new UploadValidate();
             if (!$valiDate->check($post, [], 'update')) {
                 $this->error($valiDate->getError());
             }
-            $upload = config('upload');
-            unset($post['__token__']);
+            $post['allowExts'] = explode(',',$post['allowExts']);
+//            dump($post);
+//            die();
             //savePath 需要根据网站路径进行处理
-            $config['image'] = $post;
-            $newConfig = array_merge($upload, $config);
+            $config = config::get('upload');
+            $newConfig = array_merge($config,$post);
             writeJsonConfig(APP_PATH . 'extra' . DS . 'upload.json', $newConfig);
             $this->success('操作成功');
         }else{

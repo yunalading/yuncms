@@ -21,7 +21,7 @@ use app\common\validate\BaseUploadValidate;
 class UploadValidate extends BaseUploadValidate {
     protected $scene = [
         'update' => [
-            'uploadType' => 'require|token',
+
         ]
     ];
 }

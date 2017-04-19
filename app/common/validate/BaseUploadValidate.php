@@ -15,9 +15,9 @@ namespace app\common\validate;
 
 class BaseUploadValidate extends BaseValidate {
     protected $rule = [
-        'uploadType' => 'require',
+
     ];
     protected $message = [
-        'uploadType.require' => '请填写上传方式',
+
     ];
 }

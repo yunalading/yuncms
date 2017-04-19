@@ -38,8 +38,9 @@ class Oss extends Upload
         $ossClient=new OssClient($newConf['KeyId'],$newConf['KeySecret'],$newConf['Endpoint']);
         $res = (object)array(); //申明一个空对象返回
         try{
+            $size = ceil($newConf['maxSize']*1048576);
             //$info = $file->validate(['size' => $newConf['maxSize'], 'ext' => $newConf['allowExts']])->move(ROOT_PATH . 'public' . DS . 'data' . DS . 'upload' .DS. 'images' .DS. 'oss');
-            $info = $file->validate(['size' => $newConf['maxSize'], 'ext' => $newConf['allowExts']])->move(ROOT_PATH . 'public' . DS . $newConf['savePath']);
+            $info = $file->validate(['size' => $size, 'ext' => $newConf['allowExts']])->move(ROOT_PATH . 'public' . DS . $newConf['savePath']);
             if (!$info) {
                 $res->info=$file->getError();
                 $res->code=0;

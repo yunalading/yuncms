@@ -1,221 +1,239 @@
 {include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<form class="am-form edit-form" method="post" data-am-validator action="<?=URL('/admin/upload/edit');?>">
 <div class="content-page">
     <div class="am-container">
         <div class="page-title"><h1 class="am-inline">上传设置</h1></div>
+        <div class="am-form-group">
+            <label for="savePath">默认上传方式</label>
+            <div>
+                <select data-am-selected name="upload[image][uploadType]">
+                    <option value="Server">本地服务器</option>
+                    <option value="QiNiu">七牛云存储</option>
+                    <option value="Oss">阿里云OSS</option>
+                </select>
+            </div>
+        </div>
         <div class="edit-form">
             <div class="am-form-group">
-                <label for="oss-maxSize">文件上传大小限制</label>
+                <label>文件上传大小限制</label>
                 <div>
-                    <select data-am-selected name="maxSize"  id="oss-maxSize" >
-                        <option value="512KB" >512KB</option>
-                        <option value="1MB" >1MB</option>
-                        <option value="2MB" >2MB</option>
-                        <option value="5MB" >5MB</option>
-                    </select>
+                    <input type="hidden" name="upload[image][maxSize]"
+                           value="{notempty name='config'}{$config.image.ext}{/notempty}" />
                 </div>
             </div>
-
+            <input type="text" name="upload[image][allowExts]"
+                   value="{notempty name='config'}{$config.image.maxSize}{/notempty}" />
             <div class="am-g">
                 <div>允许上传图片后缀</div>
                 <label class="am-checkbox  upload-checkbox-style">
-                    <input type="checkbox" name="allowExts" value="jpg"  checked data-am-ucheck>jpg
+                    <input type="checkbox" name="allowExts"
+                           value="jpg"  <?php if(in_array('jpg',$config['image']['allowExts'])){ echo "checked";}; ?>
+                    data-am-ucheck>jpg
                 </label>
                 <label class="am-checkbox  upload-checkbox-style">
-                    <input type="checkbox" name="allowExts" value="gif" checked data-am-ucheck >gif
+                    <input type="checkbox" name="allowExts"
+                           value="gif" <?php if(in_array('gif',$config['image']['allowExts'])){ echo "checked";}; ?>
+                    data-am-ucheck >gif
                 </label>
                 <label class="am-checkbox upload-checkbox-style ">
-                    <input type="checkbox" name="allowExts" value="png"  checked data-am-ucheck>png
+                    <input type="checkbox" name="allowExts"
+                           value="png"  <?php if(in_array('png',$config['image']['allowExts'])){ echo "checked";}; ?>
+                    data-am-ucheck>png
                 </label>
                 <label class="am-checkbox upload-checkbox-style">
-                    <input type="checkbox" name="allowExts" value="jpeg" checked data-am-ucheck>jpeg
+                    <input type="checkbox" name="allowExts"
+                           value="jpeg" <?php if(in_array('jpeg',$config['image']['allowExts'])){ echo "checked";}; ?>
+                    data-am-ucheck>jpeg
                 </label>
                 <label class="am-checkbox upload-checkbox-style">
-                    <input type="checkbox" name="allowExts" value="bmp" checked data-am-ucheck>bmp
+                    <input type="checkbox" name="allowExts"
+                           value="bmp" <?php if(in_array('bmp',$config['image']['allowExts'])){ echo "checked";}; ?>
+                    data-am-ucheck>bmp
                 </label>
                 <label class="am-checkbox upload-checkbox-style">
-                    <input type="checkbox" name="allowExts" value="wbmp" checked data-am-ucheck>wbmp
+                    <input type="checkbox" name="allowExts"
+                           value="wbmp" <?php if(in_array('wbmp',$config['image']['allowExts'])){ echo "checked";}; ?>
+                    data-am-ucheck>wbmp
                 </label>
             </div>
         </div>
         <div class="tab-control">
-        <div data-am-widget="tabs" class="am-tabs am-tabs-default">
-            <ul class="am-tabs-nav am-cf">
-                <li class="am-active"><a href="[data-tab-panel-0]">本地服务器</a></li>
-                <li class=""><a href="[data-tab-panel-1]">七牛云存储</a></li>
-                <li class=""><a href="[data-tab-panel-2]">阿里云OSS</a></li>
-            </ul>
-            <div class="am-tabs-bd">
-                <div data-tab-panel-0 class="am-tab-panel am-active">
-                    <form class="am-form edit-form" method="post" data-am-validator >
-
-
-
-                        <div class="am-form-group">
-                            <label for="server-savePath">默认上传路径(目前版本暂不支持修改)</label>
-                            <input type="text" name="savePath   " id="server-savePath" value="data\/upload\/images\/server" disabled>
-                        </div>
-
-                        <div class="am-form-group">
-                            <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
-                        </div>
-                        {:token()}
-                    </form>
-                </div>
-                <div data-tab-panel-1 class="am-tab-panel">
-                    <form class="am-form edit-form" method="post" data-am-validator >
-                        <div class="am-form-group">
-                            <label for="savePath">默认上传路径(目前版本暂不支持修改)</label>
-                            <input type="text" name="savePath   " id="savePath" value="data\/upload\/images\/server" disabled>
-                        </div>
-
-                        <div class="am-form-group">
-                            <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
-                        </div>
-                        {:token()}
-                    </form>
-                </div>
-                <div data-tab-panel-2 class="am-tab-panel ">
-                    <form class="am-form edit-form" method="post" data-am-validator >
-
-                        <div class="am-form-group">
-                        <label for="oss-savePath">默认上传路径(目前版本暂不支持修改)</label>
-                        <input type="text" name="savePath   " id="oss-savePath" value="data\/upload\/images\/server" disabled>
+            <div data-am-widget="tabs" class="am-tabs am-tabs-default">
+                <ul class="am-tabs-nav am-cf">
+                    <li class="am-active"><a href="[data-tab-panel-0]">本地服务器</a></li>
+                    <li class=""><a href="[data-tab-panel-1]">七牛云存储</a></li>
+                    <li class=""><a href="[data-tab-panel-2]">阿里云OSS</a></li>
+                </ul>
+                <div class="am-tabs-bd">
+                    <div data-tab-panel-0 class="am-tab-panel am-active">
+                            <div class="am-form-group">
+                                <label for="server-savePath">默认上传路径(目前版本暂不支持修改)</label>
+                                <input type="text" name="upload[server][savePath]" id="server-savePath"
+                                       value="{notempty name='config'}{$config.server.savePath}{/notempty}" disabled>
+                            </div>
                     </div>
-
-                        <div class="am-form-group">
-                            <label for="KeyId">KeyId</label>
-                            <input type="text" name="" id="KeyId" value="LTAICNwAoZt7lpFl" disabled>
-                        </div>
-
-                        <div class="am-form-group">
-                            <label for="KeySecret">KeySecret</label>
-                            <input type="text" name="" id="KeySecret" value="2ABcBUGmwG8sJ5rz5FLxTVeJCqUtvj" disabled>
-                        </div>
-
-                        <div class="am-form-group">
-                            <label for="Endpoint">Endpoint</label>
-                            <input type="text" name="" id="Endpoint" value="oss-cn-hangzhou-internal.aliyuncs.com" disabled>
-                        </div>
-
-                        <div class="am-form-group">
-                            <label for="Bucket">Bucket</label>
-                            <input type="text" name="" id="Bucket" value="testyuncms" disabled>
-                        </div>
-
-                        <div class="am-form-group">
-                            <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
-                        </div>
-                        {:token()}
-                    </form>
+                    <div data-tab-panel-1 class="am-tab-panel">
+                            <div class="am-form-group">
+                                <label for="savePath">默认上传路径(目前版本暂不支持修改)</label>
+                                <input type="text" name="upload[qiniu][savePath]" id="savePath"
+                                       value="{notempty name='config'}{$config.qiniu.savePath}{/notempty}" disabled>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="KeyId">KeyId</label>
+                                <input type="text" name="upload[qiniu][KeyId]"
+                                       value="{notempty name='config'}{$config.qiniu.KeyId}{/notempty}">
+                            </div>
+                            <div class="am-form-group">
+                                <label for="KeySecret">KeySecret</label>
+                                <input type="text" name="upload[qiniu][KeySecret]"
+                                       value="{notempty name='config'}{$config.qiniu.KeySecret}{/notempty}">
+                            </div>
+                            <div class="am-form-group">
+                                <label for="Endpoint">Endpoint</label>
+                                <input type="text" name="upload[qiniu][Endpoint]" value="{notempty name='config'}{$config.qiniu.Endpoint}{/notempty}" />
+                            </div>
+                            <div class="am-form-group">
+                                <label for="Bucket">Bucket</label>
+                                <input type="text" name="upload[qiniu][Bucket]"  value="{notempty name='config'}{$config.qiniu.Bucket}{/notempty}" />
+                            </div>
+                    </div>
+                    <div data-tab-panel-2 class="am-tab-panel ">
+                            <div class="am-form-group">
+                                <label for="oss-savePath">默认上传路径(目前版本暂不支持修改)</label>
+                                <input type="text" name="upload[oss][savePath]" id="oss-savePath"
+                                       value="{notempty name='config'}{$config.oss.savePath}{/notempty}" disabled>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="KeyId">KeyId</label>
+                                <input type="text" name="upload[oss][KeyId]" id="KeyId"
+                                       value="{notempty name='config'}{$config.oss.KeyId}{/notempty}">
+                            </div>
+                            <div class="am-form-group">
+                                <label for="KeySecret">KeySecret</label>
+                                <input type="text" name="upload[oss][KeySecret]" id="KeySecret"
+                                       value="{notempty name='config'}{$config.oss.KeySecret}{/notempty}">
+                            </div>
+                            <div class="am-form-group">
+                                <label for="Endpoint">Endpoint</label>
+                                <input type="text" name="upload[oss][Endpoint]" id="Endpoint" value="{notempty name='config'}{$config.oss.Endpoint}{/notempty}" />
+                            </div>
+                            <div class="am-form-group">
+                                <label for="Bucket">Bucket</label>
+                                <input type="text" name="upload[oss][Bucket]" id="Bucket" value="{notempty name='config'}{$config.oss.Bucket}{/notempty}" />
+                            </div>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
 
+        <div class="am-form-group">
+            <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
+        </div>
+        {:token()}
 
-       <!-- <form class="am-form edit-form" method="post" data-am-validator >
-            &lt;!&ndash;<div class="am-form-group">
-                <label for="uploadType">上传类型</label>
-                <div>
-                    <select data-am-selected name="uploadType"  id="uploadType" placeholder="请选择主题" required>
-                        <option value="Server" >网站服务器</option>
-                        <option value="QiNiu" >七牛云存储</option>
-                        <option value="Oss" >阿里云OSS</option>
-                    </select>
-                </div>
-            </div>&ndash;&gt;
-            <div class="am-form-group">
-                <label for="maxSize">文件上传大小限制</label>
-                <div>
-                    <select data-am-selected name="maxSize"  id="maxSize" placeholder="请选择限制大小" >
-                        <option value="512KB" >512KB</option>
-                        <option value="1MB" >1MB</option>
-                        <option value="2MB" >2MB</option>
-                    </select>
-                </div>
-            </div>
+        <!-- <form class="am-form edit-form" method="post" data-am-validator >
+             &lt;!&ndash;<div class="am-form-group">
+                 <label for="uploadType">上传类型</label>
+                 <div>
+                     <select data-am-selected name="uploadType"  id="uploadType" placeholder="请选择主题" required>
+                         <option value="Server" >网站服务器</option>
+                         <option value="QiNiu" >七牛云存储</option>
+                         <option value="Oss" >阿里云OSS</option>
+                     </select>
+                 </div>
+             </div>&ndash;&gt;
+             <div class="am-form-group">
+                 <label for="maxSize">文件上传大小限制</label>
+                 <div>
+                     <select data-am-selected name="maxSize"  id="maxSize" placeholder="请选择限制大小" >
+                         <option value="512KB" >512KB</option>
+                         <option value="1MB" >1MB</option>
+                         <option value="2MB" >2MB</option>
+                     </select>
+                 </div>
+             </div>
 
-                <div class="am-g">
-                <div>允许上传图片后缀</div>
-                    <label class="am-checkbox  upload-checkbox-style">
-                        <input type="checkbox" name="allowExts" value="jpg"  checked data-am-ucheck>jpg
+                 <div class="am-g">
+                 <div>允许上传图片后缀</div>
+                     <label class="am-checkbox  upload-checkbox-style">
+                         <input type="checkbox" name="allowExts" value="jpg"  checked data-am-ucheck>jpg
+                      </label>
+                     <label class="am-checkbox  upload-checkbox-style">
+                     <input type="checkbox" name="allowExts" value="gif" checked data-am-ucheck >gif
+                 </label>
+                 <label class="am-checkbox upload-checkbox-style ">
+                     <input type="checkbox" name="allowExts" value="png"  checked data-am-ucheck>png
+                 </label>
+                 <label class="am-checkbox upload-checkbox-style">
+                     <input type="checkbox" name="allowExts" value="jpeg" checked data-am-ucheck>jpeg
+                 </label>
+                     <label class="am-checkbox upload-checkbox-style">
+                         <input type="checkbox" name="allowExts" value="bmp" checked data-am-ucheck>bmp
                      </label>
-                    <label class="am-checkbox  upload-checkbox-style">
-                    <input type="checkbox" name="allowExts" value="gif" checked data-am-ucheck >gif
-                </label>
-                <label class="am-checkbox upload-checkbox-style ">
-                    <input type="checkbox" name="allowExts" value="png"  checked data-am-ucheck>png
-                </label>
-                <label class="am-checkbox upload-checkbox-style">
-                    <input type="checkbox" name="allowExts" value="jpeg" checked data-am-ucheck>jpeg
-                </label>
-                    <label class="am-checkbox upload-checkbox-style">
-                        <input type="checkbox" name="allowExts" value="bmp" checked data-am-ucheck>bmp
-                    </label>
-                    <label class="am-checkbox upload-checkbox-style">
-                        <input type="checkbox" name="allowExts" value="wbmp" checked data-am-ucheck>wbmp
-                    </label>
-                </div>
+                     <label class="am-checkbox upload-checkbox-style">
+                         <input type="checkbox" name="allowExts" value="wbmp" checked data-am-ucheck>wbmp
+                     </label>
+                 </div>
 
 
 
 
-            <div class="am-form-group">
-                <label for="savePath">默认上传路径(目前版本暂不支持修改)</label>
-                <input type="text" name="savePath   " id="savePath" value="data\/upload\/images\/server" disabled>
-            </div>
-            <div class="am-form-group">
-                <label for="isThumb">默认是否生成缩略图</label>
-                <div>
-                    <input type="checkbox" name="isThumb" id="isThumb" value="1" data-am-switch data-size="xs" data-on-text="关闭" data-off-text="开启">
-                </div>
-            </div>
+             <div class="am-form-group">
+                 <label for="savePath">默认上传路径(目前版本暂不支持修改)</label>
+                 <input type="text" name="savePath   " id="savePath" value="data\/upload\/images\/server" disabled>
+             </div>
+             <div class="am-form-group">
+                 <label for="isThumb">默认是否生成缩略图</label>
+                 <div>
+                     <input type="checkbox" name="isThumb" id="isThumb" value="1" data-am-switch data-size="xs" data-on-text="关闭" data-off-text="开启">
+                 </div>
+             </div>
 
-            <div class="am-form-group">
-                <label for="thumbPrefix">生成缩略图的图片后缀</label>
-                <div>
-                    <select data-am-selected name="thumbPrefix"  id="thumbPrefix" placeholder="请选择限制大小" required>
-                        <option value="jpg" >jpg</option>
-                        <option value="gif" >gif</option>
-                        <option value="png" >png</option>
-                        <option value="jpeg" >jpeg</option>
-                    </select>
-                </div>
-            </div>
+             <div class="am-form-group">
+                 <label for="thumbPrefix">生成缩略图的图片后缀</label>
+                 <div>
+                     <select data-am-selected name="thumbPrefix"  id="thumbPrefix" placeholder="请选择限制大小" required>
+                         <option value="jpg" >jpg</option>
+                         <option value="gif" >gif</option>
+                         <option value="png" >png</option>
+                         <option value="jpeg" >jpeg</option>
+                     </select>
+                 </div>
+             </div>
 
-            <div class="am-form-group">
-                <label for="thumbMaxWidth">设置缩略图的最大宽度</label>
-                <input class="type-number-style" type="number" name="thumbMaxWidth" id="thumbMaxWidth" maxlength="3" required><span class="unit-position">px</span>
-            </div>
+             <div class="am-form-group">
+                 <label for="thumbMaxWidth">设置缩略图的最大宽度</label>
+                 <input class="type-number-style" type="number" name="thumbMaxWidth" id="thumbMaxWidth" maxlength="3" required><span class="unit-position">px</span>
+             </div>
 
-            <div class="am-form-group">
-                <label for="thumbMaxHeight">设置缩略图的最大高度</label>
-                <input  class="type-number-style" type="number" name="thumbMaxHeight" id="thumbMaxHeight"  maxlength="3" required><span class="unit-position">px</span>
-            </div>
+             <div class="am-form-group">
+                 <label for="thumbMaxHeight">设置缩略图的最大高度</label>
+                 <input  class="type-number-style" type="number" name="thumbMaxHeight" id="thumbMaxHeight"  maxlength="3" required><span class="unit-position">px</span>
+             </div>
 
-            <div class="am-form-group">
-                <label for="thumbRemoveOrigin ">是否删除原图</label>
-                <div>
-                    <input type="checkbox" name="thumbRemoveOrigin " id="thumbRemoveOrigin " value="1" checked data-am-switch data-size="xs" data-on-text="关闭" data-off-text="开启">
-                </div>
-            </div>
+             <div class="am-form-group">
+                 <label for="thumbRemoveOrigin ">是否删除原图</label>
+                 <div>
+                     <input type="checkbox" name="thumbRemoveOrigin " id="thumbRemoveOrigin " value="1" checked data-am-switch data-size="xs" data-on-text="关闭" data-off-text="开启">
+                 </div>
+             </div>
 
-            <div class="am-form-group">
-                <label for="isWater">是否给缩略图添加水印</label>
-                <div>
-                    <input type="checkbox" name="isWater" id="isWater" value="1" data-am-switch data-size="xs" data-on-text="关闭" data-off-text="开启">
-                </div>
-            </div>
--->
+             <div class="am-form-group">
+                 <label for="isWater">是否给缩略图添加水印</label>
+                 <div>
+                     <input type="checkbox" name="isWater" id="isWater" value="1" data-am-switch data-size="xs" data-on-text="关闭" data-off-text="开启">
+                 </div>
+             </div>
+ -->
 
-           <!-- <div class="am-form-group">
-                <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
-            </div>
-            {:token()}
-        </form>
+        <!-- <div class="am-form-group">
+             <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
+         </div>
+         {:token()}
+     </form>
 -->
 
     </div>
 </div>
-
+</form>
 {include file="footer" /}

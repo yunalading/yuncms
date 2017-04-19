@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/static/common/editor/css/editormd.css"/>
 <div class="content-page">
 
-    <form class="am-g  am-form margin-top-buttom-20"  data-am-validator enctype="multipart/form-data" method="post">
+    <form class="am-g  am-form margin-top-buttom-20" data-am-validator enctype="multipart/form-data" method="post">
         <div class="am-form-group all-width">
             <label>上级栏目</label>
             <select id="cate-parent-num" name="content[category_id]" maxlength="200" required>
@@ -17,14 +17,15 @@
         <div class="am-form-group all-width">
             <label>标题</label>
             <input type="text" name="content[title]" {notempty name="content" } value="{$content.title}" {/notempty}>
-
         </div>
         <div class="am-form-group all-width">
             <div class="add-img-backgound">
                 <label for="content-cover">内容封面:</label>
                 <input class="inputfile-hide" type="file" name="uploadimages" id="content-cover" {notempty
                        name="content" } value="{$content.cover}" {/notempty}>
-                <br><img class="button-text-left input-img-maxsize" src="{notempty name='content'}{$content.cover|get_image_url=###}{/notempty}" id="content-img"><label
+                <br><img class="button-text-left input-img-maxsize"
+                         src="{notempty name='content'}{$content.cover|get_image_url=###}{/notempty}"
+                         id="content-img"><label
                 for="content-cover" class="add-img-btn">
                 <div class="am-icon-plus-square am-icon-lg add-img-div"></div>
             </label><br>
@@ -62,7 +63,7 @@
         <div class="am-form-group  all-width">
             <label>SEO关键字</label>
             <input type="text" name="content[seo_key]" maxlength="200" placeholder="请输入SEO关键字"
-                   {notempty name="content"} value="{$content.seo_key}" {/notempty} />
+                   {notempty name="content" } value="{$content.seo_key}" {/notempty} />
         </div>
         <!--<div class="am-form-group all-width">-->
         <!--<label for="content-seo-desc">SEO描述</label>-->
@@ -98,6 +99,5 @@
 
         });
     });
-
 </script>
 {include file="footer" /}
