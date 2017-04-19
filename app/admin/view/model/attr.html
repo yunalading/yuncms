@@ -19,7 +19,8 @@
                 <!--<td>{$model_attr.pro_value}</td>-->
                 <td>
                     <span class="model-field-mod" data-type="{$model_attr.type}" data-id="{$model_attr['model_id']}"  data-url="<?=URL('/admin/model/attrupdate')?>" data-attr-id="{$model_attr['model_properties_id']}" href="<?=URL('/admin/model/attr',array('id'=>$model_attr['model_id'],'attr_id'=>$model_attr['model_properties_id']));?>">修改</span>
-                    <a class="model-field-del" href="<?=URL('/admin/model/attrdelete',array('id'=>$model_attr['model_properties_id']));?>">删除</a>
+                    <span class="model-field-del"
+                          href="<?=URL('/admin/model/attrdelete',array('id'=>$model_attr['model_id'],'attr_id'=>$model_attr['model_properties_id']));?>">删除</span>
                 </td>
             </tr>
             {/volist}
@@ -27,19 +28,37 @@
         <div class="model-table-add">
             <label>字段类型：</label>
             <div>
-                <select data-am-selected name="attr[pro_cate]" class="model-field-type" data-url="<?=URL('/admin/model/get_model_attr');?>" required >
-                    <option selected>请选择字段类型</option>
+                <select data-am-selected name="attr[pro_cate]" class="model-field-type" id="model-field-type" data-url="<?=URL('/admin/model/get_model_attr');?>" required >
+                    <option >请选择字段类型</option>
                     {volist name='attr_config' id='attr_config' key="k" }
                     <option value="{$k}">{$attr_config}</option>
                     {/volist}
                 </select>
             </div>
-            <div class="model-file f-default" id="default">
-                <label for="model-field-default-tips">标题（请输入字段标题，长度不超过30）</label>
-                <input type="text" name="attr[text][pro_name]" id="model-field-default-tips" maxlength="30" required {notempty name="attr_one"
+            <div class="model-file model-field-type-text">
+                <label for="model-field-text-tips">标题（请输入字段标题，长度不超过30）</label>
+                <input type="text" name="attr[text][pro_name]" id="model-field-text-tips" maxlength="30" required {notempty name="attr_one"
                        }value="{$attr_one.pro_name}" {/notempty} />
-                <label for="model-field-default-name">字段名（请输入字段名 英文字母，长度不超过30）</label>
-                <input type="text" name="attr[text][pro_key]" id="model-field-default-name" maxlength="30" {notempty name="attr_one"
+                <label for="model-field-text-name">字段名（请输入字段名 英文字母，长度不超过30）</label>
+                <input type="text" name="attr[text][pro_key]" id="model-field-text-name" maxlength="30" {notempty name="attr_one"
+                       }value="{$attr_one.pro_key}" {/notempty} required />
+            </div>
+
+            <div class="model-file model-field-type-file">
+                <label for="model-field-file-tips">标题（请输入字段标题，长度不超过30）</label>
+                <input type="text" name="attr[text][pro_name]" id="model-field-file-tips" maxlength="30" required {notempty name="attr_one"
+                       }value="{$attr_one.pro_name}" {/notempty} />
+                <label for="model-field-file-name">字段名（请输入字段名 英文字母，长度不超过30）</label>
+                <input type="text" name="attr[text][pro_key]" id="model-field-file-name" maxlength="30" {notempty name="attr_one"
+                       }value="{$attr_one.pro_key}" {/notempty} required />
+            </div>
+
+            <div class="model-file model-field-type-textarea" >
+                <label for="model-field-textarea-tips">标题（请输入字段标题，长度不超过30）</label>
+                <input type="text" name="attr[text][pro_name]" id="model-field-textarea-tips" maxlength="30" required {notempty name="attr_one"
+                       }value="{$attr_one.pro_name}" {/notempty} />
+                <label for="model-field-textarea-name">字段名（请输入字段名 英文字母，长度不超过30）</label>
+                <input type="text" name="attr[text][pro_key]" id="model-field-textarea-name" maxlength="30" {notempty name="attr_one"
                        }value="{$attr_one.pro_key}" {/notempty} required />
             </div>
             <div class=" model-file model-field-type-select">
