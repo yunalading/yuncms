@@ -170,19 +170,7 @@ $('.am-table td').each(function () {
 
     });
 });
-//上传设置里验证信息自定义
 
-//   利用cookie给文章编辑器传值
-/*$('.content-md-edit').click(function(){
- var tds= $(this).parent().parent().parent().parent().children();
- var title=tds.eq(2).text();
- var intro=tds.eq(3).text();
- var content=tds.eq(4).text();
- var ckey='title,intro,comment';
- document.cookie= ckey+"="+title+","+intro+","+content;
-
-
- });*/
 //短信配置选择服务商显示对应页面
 $(function () {
     $('#msgserver-brand').change(function () {
@@ -214,27 +202,17 @@ $('.model-field-type').change(function () {
     $.get('http://' + host + $(this).data('url'), function (data) {
         var Obj = JSON.parse(data);
         var mtype = 'model-field-type-' + Obj[key];
-        if (!$('.model-file').hasClass(mtype)) {
-            $('#default').removeClass().addClass('model-file ' + mtype);
-            $('.model-file').css('display', 'none');
-            $('.' + mtype).css('display', 'block');
-        }
         $('.model-file').css('display', 'none');
         $('.' + mtype).css('display', 'block');
     }, 'json');
 });
 $(function () {
-    if ($('.model-field-type').val() <= 3) {
+    if ($('.model-field-type').val()){
         var hosts = window.location.host;
         var val = $('.model-field-type').val();
         $.get('http://' + hosts + $('.model-field-type').data('url'), function (data) {
             var Obj = JSON.parse(data);
             var mtype = 'model-field-type-' + Obj[val];
-            if (!$('.model-file').hasClass(mtype)) {
-                $('#default').removeClass().addClass('model-file ' + mtype);
-                $('.model-file').css('display', 'none');
-                $('.' + mtype).css('display', 'block');
-            }
             $('.model-file').css('display', 'none');
             $('.' + mtype).css('display', 'block');
         }, 'json');
@@ -257,9 +235,9 @@ $(function () {
         if ($(this).parent().hasClass('model-field-type-select')) {
             var $selectTable = $(this).parent().children('table');
             selectnum++;
-            var keyn = 'select-key[' + selectnum + ']';
-            var valn = 'select-value[' + selectnum + ']';
-            $selectTable.append("<tr><td><input type='text' name=" + keyn + "></td><td>----</td><td><input type='text' name=" + valn + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+            var keys = 'select-key[' + selectnum + ']';
+            var vals = 'select-value[' + selectnum + ']';
+            $selectTable.append("<tr><td><input type='text' name=" + keys + "></td><td>----</td><td><input type='text' name=" + vals + "></td><td><a  class='model-remove' >删除</a></td></tr>");
             $selectTable.off('click', '**').on('click', '.model-remove', function () {
                 if (confirm('是否确定删除此项')) {
                     $(this).parent().parent().remove();
@@ -271,9 +249,9 @@ $(function () {
         else if ($(this).parent().hasClass('model-field-type-radio')) {
             var $radioTable = $(this).parent().children('table');
             radionum++;
-            var keyn = 'radio-key[' + radionum + ']';
-            var valn = 'radio-value[' + radionum + ']';
-            $radioTable.append("<tr> <td><input type='radio' disabled></td><td><input type='text'  name=" + keyn + "></td><td>----</td><td><input type='text' name=" + valn + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+            var keyr = 'radio-key[' + radionum + ']';
+            var valr = 'radio-value[' + radionum + ']';
+            $radioTable.append("<tr> <td><input type='radio' disabled></td><td><input type='text'  name=" + keyr + "></td><td>----</td><td><input type='text' name=" + valr + "></td><td><a  class='model-remove' >删除</a></td></tr>");
             $radioTable.off('click', '**').on('click', '.model-remove', function () {
                 if (confirm('是否确定删除此项')) {
                     $(this).parent().parent().remove();
@@ -285,9 +263,9 @@ $(function () {
         else if ($(this).parent().hasClass('model-field-type-checkbox')) {
             var $checkboxTable = $(this).parent().children('table');
             checkboxnum++;
-            var keyn = 'checkbox-key[' + checkboxnum + ']';
-            var valn = 'checkbox-value[' + checkboxnum + ']';
-            $checkboxTable.append("<tr> <td><input type='checkbox' disabled></td><td><input type='text'  name=" + keyn + "></td><td>----</td><td><input type='text' name=" + valn + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+            var keyc = 'checkbox-key[' + checkboxnum + ']';
+            var valc = 'checkbox-value[' + checkboxnum + ']';
+            $checkboxTable.append("<tr> <td><input type='checkbox' disabled></td><td><input type='text'  name=" + keyc + "></td><td>----</td><td><input type='text' name=" + valc + "></td><td><a  class='model-remove' >删除</a></td></tr>");
             $checkboxTable.off('click', '**').on('click', '.model-remove', function () {
                 if (confirm('是否确定删除此项')) {
                     $(this).parent().parent().remove();
@@ -301,18 +279,54 @@ $(function () {
 });
 //模型页面修改按钮时间
 $('.model-field-mod').click(function () {
-    var mtype = 'model-field-type-' + $(this).data('type');
+    var type=$(this).data('type');
+    var mtype = 'model-field-type-' + type;
     var id = $(this).data('id');
     var attr_id = $(this).data('attr-id');
     var url = $(this).data('url');
+    var selectsnum = 0;
+    var radiosnum = 0;
+    var checkboxsnum = 0;
     $.post(url,
         {
             id: id,
             attr_id: attr_id
         },
         function (data) {
-            //console.log(data);
+            var Obj=JSON.parse(data);
+            var arr=JSON.parse(Obj['attr']);
             $('.model-table-add').css('display', 'block');
+            $('.model-file').css('display', 'none');
             $('.' + mtype).css('display', 'block');
+            //如果类型为select，根据数据读出来的字段项，新增字段的时候需要也是select类型
+            if(type==='select'){
+                var select=$('.' + mtype).children('table');
+                for(var i=0;i<arr.length;i++){
+                    selectsnum++;
+                    var keys = 'select-key[' + selectsnum + ']';
+                    var vals = 'select-value[' + selectsnum + ']';
+                    select.append("<tr><td><input type='text' value="+arr[i][0]+" name=" + keys + " ></td><td>----</td><td><input type='text' value="+arr[i][1]+" name=" + vals + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+                }
+            }
+            //如果类型为radio，根据数据读出来的字段项，新增字段的时候需要也是radio类型
+            else if(type==='radio'){
+                var radio=$('.' + mtype).children('table');
+                for(var j=0;j<arr.length;j++){
+                    radiosnum++;
+                    var keyr = 'radio-key[' + radiosnum + ']';
+                    var valr = 'radio-value[' + radiosnum + ']';
+                    radio.append("<tr> <td><input type='radio' disabled></td><td><input type='text'  value="+arr[j][0]+" name=" + keyr + "></td><td>----</td><td><input type='text' value="+arr[j][1]+" name=" + valr + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+                }
+            }
+            //如果类型为checkbox，根据数据读出来的字段项，新增字段的时候需要也是checkbox类型
+            else if(type==='checkbox'){
+                var checkbox=$('.' + mtype).children('table');
+                for(var k=0;k<arr.length;k++){
+                    checkboxsnum++;
+                    var keyc = 'checkbox-key[' + checkboxsnum + ']';
+                    var valc = 'checkbox-value[' + checkboxsnum + ']';
+                    checkbox.append("<tr> <td><input type='checkbox' disabled></td><td><input type='text' value="+arr[k][0]+"  name=" + keyc + "></td><td>----</td><td><input type='text' value="+arr[k][1]+" name=" + valc + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+                }
+            }
         });
 });
