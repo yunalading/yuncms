@@ -14,6 +14,7 @@ namespace app\admin\controller;
 use app\admin\model\ModelModel;
 use app\admin\model\PageModel;
 use app\admin\validate\PageValidate;
+use app\core\upload\Upload;
 
 /**
  * Class Page
@@ -45,8 +46,19 @@ class Page extends AdminBaseController {
             if (!$Validate->check($param, [], 'update')) {
                 $this->error($Validate->getError());
             }
-            if (!key_exists('cover', $param)) {
-                $param['cover'] = '';
+//            if (!key_exists('cover', $param)) {
+//                $param['cover'] = '';
+//            }
+            $file = request()->file('uploadimages');
+            if($file && $file!=NULL){
+                $upload = Upload::getInstance($file);
+                if($upload->code == 1){
+                    if($upload->pathUrl){
+                        $param['cover'] = $upload->pathUrl;
+                    }
+                }else{
+                    return $this->error($upload->msg);
+                }
             }
             if (isset($this->param['id']) && $this->param['id']) {
                 $action_name = '修改';

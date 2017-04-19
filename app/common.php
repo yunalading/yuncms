@@ -40,6 +40,18 @@ function themes() {
     return $dirs;
 }
 
+/*
+ * 获取图片地址
+ */
+function get_image_url($path){
+   $config = \think\Config::get('upload.image');
+   if($config['uploadType'] == 'Server'){
+       return DS.$path;
+   }else{
+       return $path;
+   }
+}
+
 /**
  * PHP 的字节格式化函数：byteFormat
  * echo byteFormat(1073741824, "B", 0) . "\n";

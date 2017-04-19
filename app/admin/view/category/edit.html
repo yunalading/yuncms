@@ -15,9 +15,9 @@
     </div>
     <div class="am-form-group all-width">
         <label for="cate-seo-url">SEOurl:</label>
-        <input type="text" name="category[seo_url]" id="cate-seo-url" maxlength="200" minlength="3"
-               placeholder="请输入SEOurl" required {notempty name="category"
-               } value="{$category.seo_title}" {/notempty}>
+        <input type="text" name="category[seo_url]" id="cate-seo-url" maxlength="200"
+               placeholder="请输入SEOurl" {notempty name="category"
+               } value="{$category.seo_url}" {/notempty}>
     </div>
     <div class="am-form-group all-width">
         <label for="cate-seo-key">SEO关键字</label>
@@ -28,14 +28,16 @@
     <div class="am-form-group all-width">
         <label for="cate-seo-desc">SEO描述</label>
         <textarea name="category[seo_desc]" id="cate-seo-desc" maxlength="200" placeholder="请输入SEO描述">{notempty name="category"
-                } {$category.seo_desc} {/notempty}</textarea>
+                }{$category.seo_desc}{/notempty}</textarea>
     </div>
     <div class="am-form-group all-width">
         <label for="cate-parent-num">选择一个上级分类</label>
         <select id="cate-parent-num" name="category[parent_category_id]" maxlength="200" required>
+            <option value="0">顶级分类</option>
             {volist name='cate' id='cate'}
             <option value="{$cate.category_id}" {notempty name="category"
-                    } {if condition="$category.parent_category_id == $cate.category_id"}selected{/if} {/notempty}>{$cate.category_name}</option>
+                    } {if condition="$category.parent_category_id == $cate.category_id" }selected{
+            /if} {/notempty}>{$cate.category_name}</option>
             {/volist}
         </select>
         <span class="am-form-caret"></span>
@@ -45,20 +47,20 @@
         <select id="cate-model-num" name="category[model_id]" maxlength="200" required>
             {volist name='module' id='module'}
             <option value="{$module.model_id}" {notempty name="category"
-                    } {if condition="$category.model_id == $module.model_id"}selected{/if} {/notempty}>{$module.model_name}</option>
+                    } {if condition="$category.model_id == $module.model_id" } selected {/if} {/notempty}>{$module.model_name}</option>
             {/volist}
         </select>
         <span class="am-form-caret"></span>
     </div>
     <div class="am-form-group all-width">
         <label for="cate-tmp-list">请输入列表页模板</label>
-        <textarea name="category[list_template]" id="cate-tmp-list" placeholder="请输入列表页模板" maxlength="200" required> {notempty name="category"
-                } {$category.list_template} {/notempty} </textarea>
+        <textarea name="category[list_template]" id="cate-tmp-list" placeholder="请输入列表页模板" maxlength="200" required>{notempty name="category"
+                }{$category.list_template}{/notempty}</textarea>
     </div>
     <div class="am-form-group all-width">
         <label for="cate-tmp-detail">请输入详情页模板</label>
-        <textarea name="category[info_template]" id="cate-tmp-detail" placeholder="请输入详情页模板" maxlength="200" required> {notempty name="category"
-                } {$category.info_template} {/notempty} </textarea>
+        <textarea name="category[info_template]" id="cate-tmp-detail" placeholder="请输入详情页模板" maxlength="200" required>{notempty name="category"
+                }{$category.info_template}{/notempty} </textarea>
     </div>
     <div class="am-form-group all-width">
         <label for="cate-seo-url">排序:</label>

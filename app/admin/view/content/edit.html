@@ -2,86 +2,87 @@
 <link rel="stylesheet" href="/static/common/editor/css/editormd.css"/>
 <div class="content-page">
 
-        <form class="am-g  am-form margin-top-buttom-20" method="post" data-am-validator>
-            <div class="am-form-group all-width">
-                <label>上级栏目</label>
-                <select id="cate-parent-num" name="content[category_id]" maxlength="200" required>
-                    {volist name='cate' id='cate'}
-                    <option value="{$cate.category_id}" {notempty name="content"
-                            } {if condition="$content.category_id == $cate.category_id" }selected{
-                    /if} {/notempty}>{$cate.category_name}</option>
-                    {/volist}
-                </select>
-                <span class="am-form-caret"></span>
-            </div>
-            <div class="am-form-group all-width">
-                <label>标题</label>
-                <input type="text" name="content[title]" {notempty name="content" } value="{$content.title}" {/notempty}>
+    <form class="am-g  am-form margin-top-buttom-20"  data-am-validator enctype="multipart/form-data" method="post">
+        <div class="am-form-group all-width">
+            <label>上级栏目</label>
+            <select id="cate-parent-num" name="content[category_id]" maxlength="200" required>
+                {volist name='cate' id='cate'}
+                <option value="{$cate.category_id}" {notempty name="content"
+                        } {if condition="$content.category_id == $cate.category_id" }selected{
+                /if} {/notempty}>{$cate.category_name}</option>
+                {/volist}
+            </select>
+            <span class="am-form-caret"></span>
+        </div>
+        <div class="am-form-group all-width">
+            <label>标题</label>
+            <input type="text" name="content[title]" {notempty name="content" } value="{$content.title}" {/notempty}>
 
+        </div>
+        <div class="am-form-group all-width">
+            <div class="add-img-backgound">
+                <label for="content-cover">内容封面:</label>
+                <input class="inputfile-hide" type="file" name="uploadimages" id="content-cover" {notempty
+                       name="content" } value="{$content.cover}" {/notempty}>
+                <br><img class="button-text-left input-img-maxsize" src="{notempty name='content'}{$content.cover|get_image_url=###}{/notempty}" id="content-img"><label
+                for="content-cover" class="add-img-btn">
+                <div class="am-icon-plus-square am-icon-lg add-img-div"></div>
+            </label><br>
             </div>
-            <div class="am-form-group all-width">
-                <div class="add-img-backgound">
-                    <label for="content-cover">内容封面:</label>
-                    <input class="inputfile-hide" type="file" name="content[cover]" id="content-cover" required>
-                    <br><img class="button-text-left input-img-maxsize" src="" id="content-img"><label
-                    for="content-cover" class="add-img-btn">
-                    <div class="am-icon-plus-square am-icon-lg add-img-div"></div>
-                </label><br>
-                </div>
-            </div>
-            <div class="am-form-group all-width">
-                <label>简介</label>
-                <textarea name="content[intro]">{notempty name="content"
+        </div>
+
+        <div class="am-form-group all-width">
+            <label>简介</label>
+            <textarea name="content[intro]">{notempty name="content"
                             } {$content.intro} {/notempty}</textarea>
-                <div></div>
-            </div>
-            <div class="am-form-group all-width">
-                <label>内容</label>
-                <div class="editor-position-display">
-                    <div id="test-editormd">
+            <div></div>
+        </div>
+        <div class="am-form-group all-width">
+            <label>内容</label>
+            <div class="editor-position-display">
+                <div id="test-editormd">
                         <textarea name="content[content]" style="display:none;" id="ts">{notempty name="content"
                             } {$content.content} {/notempty}</textarea>
-                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="am-form-group all-width">
-                <label>SEO标题:</label>
-                <input type="text" name="content[seo_title]"  maxlength="200"
-                       placeholder="请输入SEO标题" {notempty name="content"
-                       } value="{$content.seo_title}" {/notempty}>
-            </div>
-            <div class="am-form-group all-width">
-                <label >SEOurl</label>
-                <input type="text" name="content[seo_url]" maxlength="200" minlength="3"
-                       placeholder="请输入SEOurl" required {notempty name="content"
-                       } value="{$content.seo_url}" {/notempty}>
-            </div>
-            <div class="am-form-group  all-width">
-                <label >SEO关键字</label>
-                <input type="text" name="contentn[seo_key]"  maxlength="200" placeholder="请输入SEO关键字"
-                       {notempty name="content"
-                       } value="{$content.seo_key}" {/notempty}>
-            </div>
-            <!--<div class="am-form-group all-width">-->
-                <!--<label for="content-seo-desc">SEO描述</label>-->
-                <!--<textarea name="content[seo_desc]" id="content-seo-desc" maxlength="200"-->
-                          <!--placeholder="请输入SEO描述">{notempty name="content"-->
-                       <!--} {$content.seo_desc} {/notempty}</textarea>-->
-            <!--</div>-->
-            <!--<div class="am-form-group">-->
-                <!--<label>阅读量</label>-->
-                <!--<input type="text" disabled name="content[read_number]" {notempty name="content"-->
-                       <!--} value="{$content.read_number}" {/notempty}>-->
-            <!--</div>-->
+        <div class="am-form-group all-width">
+            <label>SEO标题:</label>
+            <input type="text" name="content[seo_title]" maxlength="200"
+                   placeholder="请输入SEO标题" {notempty name="content"
+                   } value="{$content.seo_title}" {/notempty}>
+        </div>
+        <div class="am-form-group all-width">
+            <label>SEOurl</label>
+            <input type="text" name="content[seo_url]" maxlength="200" minlength="3"
+                   placeholder="请输入SEOurl" required {notempty name="content"
+                   } value="{$content.seo_url}" {/notempty} />
+        </div>
+        <div class="am-form-group  all-width">
+            <label>SEO关键字</label>
+            <input type="text" name="content[seo_key]" maxlength="200" placeholder="请输入SEO关键字"
+                   {notempty name="content"} value="{$content.seo_key}" {/notempty} />
+        </div>
+        <!--<div class="am-form-group all-width">-->
+        <!--<label for="content-seo-desc">SEO描述</label>-->
+        <!--<textarea name="content[seo_desc]" id="content-seo-desc" maxlength="200"-->
+        <!--placeholder="请输入SEO描述">{notempty name="content"-->
+        <!--} {$content.seo_desc} {/notempty}</textarea>-->
+        <!--</div>-->
+        <!--<div class="am-form-group">-->
+        <!--<label>阅读量</label>-->
+        <!--<input type="text" disabled name="content[read_number]" {notempty name="content"-->
+        <!--} value="{$content.read_number}" {/notempty}>-->
+        <!--</div>-->
         {notempty name="content"} <input type="hidden" name="id" value="{$content.content_id}"> {/notempty}
-            <div class="am-form-group  all-width">
-        <button class="am-btn am-btn-primary am-radius " type="submit">提交</button>
-            </div>
-        </form>
+        <div class="am-form-group  all-width">
+            <button class="am-btn am-btn-primary am-radius " type="submit">提交</button>
+        </div>
+    </form>
 
 
-    </div>
+</div>
 </div>
 <script src="/static/common/jquery/jquery.min.js"></script>
 <script src="/static/common/editor/editormd.js"></script>

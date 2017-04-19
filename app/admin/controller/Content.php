@@ -15,6 +15,7 @@ use app\admin\model\CategoryModel;
 use app\admin\model\ContentModel;
 use app\admin\model\ModelModel;
 use app\admin\validate\ContentValidate;
+use app\core\upload\Upload;
 
 /**
  * Class Content
@@ -51,6 +52,17 @@ class Content extends AdminBaseController
             $Validate = new ContentValidate();
             if (!$Validate->check($param, [], 'update')) {
                 $this->error($Validate->getError());
+            }
+            $file = request()->file('uploadimages');
+            if($file && $file!=NULL){
+                $upload = Upload::getInstance($file);
+                if($upload->code == 1){
+                    if($upload->pathUrl){
+                        $param['cover'] = $upload->pathUrl;
+                    }
+                }else{
+                    return $this->error($upload->msg);
+                }
             }
             if (isset($this->param['id']) && $this->param['id']) {
                 $action_name = '修改';

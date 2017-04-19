@@ -19,7 +19,7 @@
         <div class="add-img-backgound">
         <label for="ad-slide-cover">封面：</label>
         <input class=" inputfile-hide" type="file" id="ad-slide-cover" name="uploadimg" maxlength="200" required {notempty name="adimages"} value="{$adimages.cover}" {/notempty}>
-        <br><img class="input-img-maxsize" src="{notempty name="adimages"} /{$adimages.cover} {/notempty}" id="ad-slide-cover-img"><label for="ad-slide-cover" class="add-img-btn"><span class="am-icon-plus-square am-icon-lg add-img-div"></span></label>
+        <br><img class="input-img-maxsize" src="{notempty name="adimages"} {$adimages.cover|get_image_url=###} {/notempty}" id="ad-slide-cover-img"><label for="ad-slide-cover" class="add-img-btn"><span class="am-icon-plus-square am-icon-lg add-img-div"></span></label>
         </div>
     </div>
     <!--<div class="am-form-group all-width">-->

@@ -57,6 +57,17 @@ class Email extends AdminBaseController
             if (!$validate->check($send, [], 'send')) {
                 $this->error($validate->getError());
             }
+            $file = request()->file('uploadimages');
+            if($file && $file!=NULL){
+                $upload = Upload::getInstance($file);
+                if($upload->code == 1){
+                    if($upload->pathUrl){
+                        $send['filepath'] = $upload->pathUrl;
+                    }
+                }else{
+                    return $this->error($upload->msg);
+                }
+            }
             $res = $this->sendEmail($send);
             if($res['code']>0){
                 $this->success($res['msg']);
