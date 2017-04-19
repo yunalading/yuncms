@@ -303,6 +303,8 @@ $('.model-field-mod').click(function () {
                 $('.model-table-add').css('display', 'block');
                 $('.model-file').css('display', 'none');
                 $('.'+mtype).css('display', 'block');
+                $('.model-field-type').find('option').eq(pro_cate).attr('selected', true).trigger('changed.selected.amui');
+
                 $('#'+tips).val(pro_name);
                 $('#'+name).val(pro_key);
                 if(arr.length>1){
