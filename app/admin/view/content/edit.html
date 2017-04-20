@@ -15,6 +15,36 @@
             <span class="am-form-caret"></span>
         </div>
         <div class="am-form-group all-width">
+            <label >
+            <input type="radio" name="sex" value="man">男
+            </label>
+            <label >
+            <input type="radio" name="sex" value="woman">女
+            </label>
+            <label>
+            <input type="radio" name="sex" value="secret">保密
+            </label>
+        </div>
+        <div class="am-form-group all-width">
+            <label>
+            <input type="checkbox" name="hobby" value="football">足球
+            </label>
+            <label>
+            <input type="checkbox" name="hobby" value="movie">电影
+            </label>
+                <label>
+            <input type="checkbox" name="hobby" value="game">游戏
+                </label>
+        </div>
+
+        <div class="am-form-group all-width">
+            <div id="event"></div>
+            <div>
+                <button type="button" id="callBack">上传结果</button>
+                <div id="fileResult"></div>
+            </div>
+        </div>
+        <div class="am-form-group all-width">
             <label>标题</label>
             <input type="text" name="content[title]" {notempty name="content" } value="{$content.title}" {/notempty}>
         </div>

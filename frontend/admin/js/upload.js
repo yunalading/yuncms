@@ -297,13 +297,15 @@ $('.model-field-mod').click(function () {
             function (data) {
                 var Obj=JSON.parse(data);
                 var arr=JSON.parse(Obj['attr']);
+                var sss=JSON.stringify(arr);
                 var pro_name=Obj['pro_name'];
                 var pro_key=Obj['pro_key'];
                 var pro_cate=Obj['pro_cate'];
                 $('.model-table-add').css('display', 'block');
                 $('.model-file').css('display', 'none');
                 $('.'+mtype).css('display', 'block');
-                $('.model-field-type').find('option').eq(pro_cate).attr('selected', true).trigger('changed.selected.amui');
+                $('.model-field-type').find('option').eq(pro_cate).attr('selected', true);
+                $('.model-field-type').trigger('changed.selected.amui');
                 $('#'+tips).val(pro_name);
                 $('#'+name).val(pro_key);
                 if(arr.length>1){
@@ -342,4 +344,27 @@ $('.model-field-mod').click(function () {
                     }
                 }
             });
+});
+//初始化jquery 多文件插件
+$(function(){
+    $('#event').AmazeuiUpload({url : '/static/lib/docs/demo.json'});
+
+});
+
+//maxFiles: 50, // 单次上传的数量
+// maxFileSize: 10, // 单个文件允许的大小
+// (M) multiThreading: false, // true为同时上传false为队列上传
+// useDefTemplate: true, //是否使用表格模式 dropType: false,
+// 是否允许拖拽 pasteType: false //是否允许粘贴 });
+// upload.init(); //对象初始化 upload.destory();
+// 对象销毁 upload.setResult(); //置入已上传的对象
+// upload.selectResult(); //获取当前已经完成上传的对象
+
+
+//upload上传select与选项卡联动
+$('.upload-option').change(function(){
+    var ttype='.am-tab-'+$(this).val();
+    $('.am-tabs-nav').find('li').removeClass('am-active');
+    $('.am-tab-panel').removeClass('am-active');
+   $(ttype).addClass('am-active');
 });

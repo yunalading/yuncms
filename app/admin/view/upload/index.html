@@ -6,7 +6,7 @@
         <div class="am-form-group">
             <label for="savePath">默认上传方式</label>
             <div>
-                <select data-am-selected name="upload[image][uploadType]">
+                <select data-am-selected name="upload[image][uploadType]"class="upload-option">
                     <option value="Server">本地服务器</option>
                     <option value="QiNiu">七牛云存储</option>
                     <option value="Oss">阿里云OSS</option>
@@ -16,10 +16,10 @@
         <div class="edit-form">
             <div class="am-form-group">
                 <label>文件上传大小限制</label>
-                <div>
+
                     <input type="text" name="upload[image][maxSize]"
-                           value="{notempty name='config'}{$config.image.maxSize}{/notempty}" /> MB
-                </div>
+                           value="{notempty name='config'}{$config.image.maxSize}{/notempty}" /> <span>MB</span>
+
             </div>
             <input type="hidden" name="upload[image][allowExts]"
                    value="{notempty name='config'}{$config.image.ext}{/notempty}" />
@@ -60,19 +60,19 @@
         <div class="tab-control">
             <div data-am-widget="tabs" class="am-tabs am-tabs-default">
                 <ul class="am-tabs-nav am-cf">
-                    <li class="am-active"><a href="[data-tab-panel-0]">本地服务器</a></li>
-                    <li class=""><a href="[data-tab-panel-1]">七牛云存储</a></li>
-                    <li class=""><a href="[data-tab-panel-2]">阿里云OSS</a></li>
+                    <li class="am-tab-Server am-active"><a href="[data-tab-panel-0]">本地服务器</a></li>
+                    <li class="am-tab-QiNiu"><a href="[data-tab-panel-1]">七牛云存储</a></li>
+                    <li class="am-tab-Oss"><a href="[data-tab-panel-2]">阿里云OSS</a></li>
                 </ul>
                 <div class="am-tabs-bd">
-                    <div data-tab-panel-0 class="am-tab-panel am-active">
+                    <div data-tab-panel-0 class="am-tab-panel  am-tab-Server am-active">
                             <div class="am-form-group">
                                 <label for="server-savePath">默认上传路径(目前版本暂不支持修改)</label>
                                 <input type="text" name="upload[server][savePath]" id="server-savePath"
                                        value="{notempty name='config'}{$config.server.savePath}{/notempty}" disabled>
                             </div>
                     </div>
-                    <div data-tab-panel-1 class="am-tab-panel">
+                    <div data-tab-panel-1 class="am-tab-panel am-tab-QiNiu">
                             <div class="am-form-group">
                                 <label for="savePath">默认上传路径(目前版本暂不支持修改)</label>
                                 <input type="text" name="upload[qiniu][savePath]" id="savePath"
@@ -97,7 +97,7 @@
                                 <input type="text" name="upload[qiniu][Bucket]"  value="{notempty name='config'}{$config.qiniu.Bucket}{/notempty}" />
                             </div>
                     </div>
-                    <div data-tab-panel-2 class="am-tab-panel ">
+                    <div data-tab-panel-2 class="am-tab-panel am-tab-Oss">
                             <div class="am-form-group">
                                 <label for="oss-savePath">默认上传路径(目前版本暂不支持修改)</label>
                                 <input type="text" name="upload[oss][savePath]" id="oss-savePath"

@@ -1,0 +1,39 @@
+1.方法
+  .Upload('init');
+  初始化插件
+
+  .Upload('selectResult');
+  获取上传结果
+
+2.选项
+  名称       类型      默认            描述
+ url         Sting                     后端交互url
+maxfiles     int          2            最大上传文件数
+maxfilessize int          2            最大文件大小限制
+dynamic      function  defaultDynmaic  动态调度上传信息
+error        function  alert(error)    反馈错误信息
+multithreading boolean  true           是否并行上传
+type         array                     文件类型限制
+dragenter    function                  拖放进入事件
+dragleave    function                  拖放离开事件
+dragover     function                  拖放落入事件
+drop         function                  拖放主事件
+dropDefa     function                  拖放主事件结束
+enterDefa    function                  拖放进入事件结束
+leaveDefa    function                  拖放离开事件结束
+overDefa     function                  拖放落入事件结束
+useDefTemplate boolean   true          是否启用Table模式
+tpl          function                  模版定义
+setImageTpl  function                  设置图形模版事件
+setOtherTpl  function                  设置其他模版事件
+complete     function                  设置上传完毕事件
+fileStore    function                  扩展事件，暂无实现
+fileCallback  array                    文件上传结果记录
+stageChange  function                  上传状态变化事件
+Knowntype    array                     识别类型定义，用于Card模式自定义文件类型图片
+selectMultiple boolean    true         是否允许多个文件上传
+
+
+3.自定义事件
+   暂无
+  
