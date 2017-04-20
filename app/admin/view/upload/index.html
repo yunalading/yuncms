@@ -17,12 +17,12 @@
             <div class="am-form-group">
                 <label>文件上传大小限制</label>
                 <div>
-                    <input type="hidden" name="upload[image][maxSize]"
-                           value="{notempty name='config'}{$config.image.ext}{/notempty}" />
+                    <input type="text" name="upload[image][maxSize]"
+                           value="{notempty name='config'}{$config.image.maxSize}{/notempty}" /> MB
                 </div>
             </div>
-            <input type="text" name="upload[image][allowExts]"
-                   value="{notempty name='config'}{$config.image.maxSize}{/notempty}" />
+            <input type="hidden" name="upload[image][allowExts]"
+                   value="{notempty name='config'}{$config.image.ext}{/notempty}" />
             <div class="am-g">
                 <div>允许上传图片后缀</div>
                 <label class="am-checkbox  upload-checkbox-style">
