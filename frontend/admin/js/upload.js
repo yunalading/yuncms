@@ -368,3 +368,18 @@ $('.upload-option').change(function(){
     $('.am-tab-panel').removeClass('am-active');
    $(ttype).addClass('am-active');
 });
+//upload上传页面复选框存值到input
+$(function(){
+    function jqchk(){ //jquery获取复选框值
+        var chk_value =[];
+        $('input[name="allowExts"]:checked').each(function(){
+            chk_value.push($(this).val());
+        });
+        $('.checkbox-value-container').val(chk_value);
+
+    }
+    $('input[name="allowExts"]').click(function(){
+        jqchk();
+    });
+});
+
