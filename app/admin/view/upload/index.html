@@ -20,7 +20,7 @@
                     <input type="text" name="upload[image][maxSize]"
                            value="{notempty name='config'}{$config.image.maxSize}{/notempty}"/> <span class="upload-mb">MB</span>
                 </div>
-                <input type="hidden" name="upload[image][allowExts]"
+                <input type="text" name="upload[image][allowExts]"
                        value="{notempty name='config'}{$config.image.ext}{/notempty}" class="checkbox-value-container" />
                 <div class="am-g">
                     <div>允许上传图片后缀</div>
