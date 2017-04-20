@@ -297,7 +297,7 @@ $('.model-field-mod').click(function () {
             function (data) {
                 var Obj=JSON.parse(data);
                 var arr=JSON.parse(Obj['attr']);
-                var sss=JSON.stringify(arr);
+
                 var pro_name=Obj['pro_name'];
                 var pro_key=Obj['pro_key'];
                 var pro_cate=Obj['pro_cate'];

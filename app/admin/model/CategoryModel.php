@@ -21,7 +21,7 @@ use app\common\model\BaseCategoryModel;
  */
 class CategoryModel extends BaseCategoryModel {
     public $arr;
-    private $fields = "category_id,category_name,parent_category_id,seo_title,seo_key,seo_url,update_time,create_time";
+    private $fields = "category_id,model_id,category_name,parent_category_id,seo_title,seo_key,seo_url,update_time,create_time";
     /**
      * 获取所有的栏目
      */

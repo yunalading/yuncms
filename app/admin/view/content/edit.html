@@ -4,25 +4,23 @@
 
     <form class="am-g  am-form margin-top-buttom-20" data-am-validator enctype="multipart/form-data" method="post">
         <div class="am-form-group all-width">
-            <label>上级栏目</label>
-            <select id="cate-parent-num" name="content[category_id]" maxlength="200" required>
+            <label>所属栏目</label>
+            <select id="cate-parent-num" name="content[category_id]" maxlength="200"  onchange="get_model_pro();"  required>
                 {volist name='cate' id='cate'}
-                <option value="{$cate.category_id}" {notempty name="content"
-                        } {if condition="$content.category_id == $cate.category_id" }selected{
-                /if} {/notempty}>{$cate.category_name}</option>
+                <option value="{$cate.category_id}" data-model="{$cate.model_id}" {notempty name="content" } {if condition="$content.category_id == $cate.category_id" }selected  {/if} {/notempty}>{$cate.category_name}</option>
                 {/volist}
             </select>
             <span class="am-form-caret"></span>
         </div>
         <div class="am-form-group all-width">
             <label >
-            <input type="radio" name="sex" value="man">男
+            <input type="radio" name="pro[sex]" value="man">男
             </label>
             <label >
-            <input type="radio" name="sex" value="woman">女
+            <input type="radio" name="pro[sex]" value="woman">女
             </label>
             <label>
-            <input type="radio" name="sex" value="secret">保密
+            <input type="radio" name="pro[sex]" value="secret">保密
             </label>
         </div>
         <div class="am-form-group all-width">
@@ -131,3 +129,60 @@
     });
 </script>
 {include file="footer" /}
+
+
+<script type="text/javascript">
+
+    alert("{$action_name}");
+
+    $(function(){
+        var model_id = $("#cate-parent-num").find("option:selected").attr("data-model");
+        model_pro_info(model_id);
+    });
+
+    function get_model_pro(){
+        var model_id =  $("#cate-parent-num option:checked").data("model");
+        model_pro_info(model_id);
+    }
+
+    function model_pro_info(model_id){
+        var urls = "{:url('admin/content/get_module_pro')}";
+        $.ajax( {
+            url:urls,
+            data:{
+                model_id:model_id
+            },
+            type:'post',
+            cache:false,
+            dataType:'json',
+            success:function(datas) {
+                //console.log(datas);
+                if(datas['code'] == 1){
+                    if(datas['info'].length>0){
+                        console.log(datas['info']);
+                        //循环输出标签……
+                        for(var i=0,len=datas['info'].length;i<len;i++) {
+                            if(datas['info'][i]['type'] == 'text'){
+
+                            }else if(datas['info'][i]['type'] == 'file'){
+
+                            }
+
+
+
+
+
+                        }
+                    }
+                }else {
+                    alert(datas['msg']);
+                }
+            },
+            error : function() {
+                alert("异常！");
+            }
+        });
+    }
+
+
+</script>

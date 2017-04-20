@@ -45,6 +45,7 @@
     <div class="am-form-group all-width">
         <label for="cate-model-num">选择模型</label>
         <select id="cate-model-num" name="category[model_id]" maxlength="200" required>
+            <option value="0">默认模型</option>
             {volist name='module' id='module'}
             <option value="{$module.model_id}" {notempty name="category"
                     } {if condition="$category.model_id == $module.model_id" } selected {/if} {/notempty}>{$module.model_name}</option>
