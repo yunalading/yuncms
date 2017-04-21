@@ -11,6 +11,7 @@
 
 
 namespace app\admin\controller;
+use app\admin\model\ArticleProModel;
 use app\admin\model\CategoryModel;
 use app\admin\model\ContentModel;
 use app\admin\model\ModelModel;
@@ -105,11 +106,24 @@ class Content extends AdminBaseController
         $where['model_id'] = $param['model_id'];
         $data = $attrModel->where($where)->select();
         if(!empty($data)){
+            $articleModel = new ArticleProModel();
             foreach($data as &$v){
                 $v['type'] = config('model_attr')[$v['pro_cate']];
                 //如果有属性值可以在此处查询出来
-                $v['value'] = '';
-
+                if($param['article_id']>0){
+                    $where['article_id'] = $param['article_id'];
+                    $where['type'] = $param['type'];
+                    $where['model_properties_id'] = $v['model_properties_id'];
+                    $article = ContentModel::get($where);
+                    if($article && !empty($article)){
+                        $v['value'] = $article['value'];
+                    }else{
+                        $v['value'] = '';
+                    }
+                    unset($where);
+                }else{
+                    $v['value'] = '';
+                }
             }
         }
         $res['msg'] = "获取模型的属性字段成功!";

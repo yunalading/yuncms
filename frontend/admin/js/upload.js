@@ -289,6 +289,7 @@ $('.model-field-mod').click(function () {
         var checkboxsnum = 0;
         var tips='model-field-'+type+'-tips';
         var name='model-field-'+type+'-name';
+        $('#attr_id').val(attr_id);
         $.post(url,
             {
                 id: id,
@@ -297,17 +298,19 @@ $('.model-field-mod').click(function () {
             function (data) {
                 var Obj=JSON.parse(data);
                 var arr=JSON.parse(Obj['attr']);
+
                 var pro_name=Obj['pro_name'];
                 var pro_key=Obj['pro_key'];
                 var pro_cate=Obj['pro_cate'];
                 $('.model-table-add').css('display', 'block');
                 $('.model-file').css('display', 'none');
                 $('.'+mtype).css('display', 'block');
+
                 $('.model-field-type').find('option').eq(pro_cate).attr('selected', true);
                 $('.model-field-type').trigger('changed.selected.amui');
+
                 $('#'+tips).val(pro_name);
                 $('#'+name).val(pro_key);
-                console.log(Obj);
                 if(arr.length>1){
                     //如果类型为select，根据数据读出来的字段项，新增字段的时候需要也是select类型
                     if(type==='select'){
@@ -372,7 +375,9 @@ $(function () {
     $('.am-tabs-nav').find('li').click(function () {
         var indexs = $(this).index();
         $('.upload-option').find('option').each(function(){
+
             $(this).attr('selected',false);
+
         });
         $('.upload-option').find('option').eq(indexs).attr('selected', true);
         $('.upload-option').trigger('changed.selected.amui');
@@ -394,25 +399,3 @@ $(function(){
     });
 });
 
-
-/*
-
-function get_model_pro_html(data){
-    //循环输出标签……
-    var str = '';
-    for(var i=0,len=datas['info'].length;i<len;i++) {
-        if (data[i]['type'] == 'text') {
-             str+='<div class="am-form-group all-width">';
-             str+='      <label>'+data['pro_name']+'</label>';
-             str+='       <input type="text" name="pro['+data['pro_key']+']" value="'+data['value']+'">';
-             str+='</div>';
-        } else if (data[i]['type'] == 'file') {
-
-        }
-    }
-    return str;
-}
-
-
-
-}*/
