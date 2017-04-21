@@ -13,26 +13,31 @@
             <span class="am-form-caret"></span>
         </div>
         <div class="am-form-group all-width">
+            <div id="html_pro" class="html_pro_style">
+            </div>
+        </div>
+
+        <div class="am-form-group all-width">
             <label >
-            <input type="radio" name="pro[sex]" value="man">男
+                <input type="radio" name="pro[sex]" value="man">男
             </label>
             <label >
-            <input type="radio" name="pro[sex]" value="woman">女
+                <input type="radio" name="pro[sex]" value="woman">女
             </label>
             <label>
-            <input type="radio" name="pro[sex]" value="secret">保密
+                <input type="radio" name="pro[sex]" value="secret">保密
             </label>
         </div>
         <div class="am-form-group all-width">
             <label>
-            <input type="checkbox" name="hobby" value="football">足球
+                <input type="checkbox" name="hobby" value="football">足球
             </label>
             <label>
-            <input type="checkbox" name="hobby" value="movie">电影
+                <input type="checkbox" name="hobby" value="movie">电影
             </label>
-                <label>
-            <input type="checkbox" name="hobby" value="game">游戏
-                </label>
+            <label>
+                <input type="checkbox" name="hobby" value="game">游戏
+            </label>
         </div>
 
         <div class="am-form-group all-width">
@@ -54,7 +59,7 @@
                 <br><img class="button-text-left input-img-maxsize"
                          src="{notempty name='content'}{$content.cover|get_image_url=###}{/notempty}"
                          id="content-img"><label
-                for="content-cover" class="add-img-btn">
+                    for="content-cover" class="add-img-btn">
                 <div class="am-icon-plus-square am-icon-lg add-img-div"></div>
             </label><br>
             </div>
@@ -95,9 +100,7 @@
         </div>
 
 
-        <div id="html_pro">
 
-        </div>
 
         <!--<div class="am-form-group all-width">-->
         <!--<label for="content-seo-desc">SEO描述</label>-->
@@ -139,7 +142,7 @@
 
 <script type="text/javascript">
 
-   /* alert("{$action_name}");*/
+    /* alert("{$action_name}");*/
 
     $(function(){
         var model_id = $("#cate-parent-num").find("option:selected").attr("data-model");
@@ -153,20 +156,31 @@
 
     function model_pro_info(model_id){
         var urls = "{:url('admin/content/get_module_pro')}";
+        var article_id;
+        if($("input[name='id']").val()){
+            article_id=$("input[name='id']").val();
+        }else{
+            article_id=0;
+        }
         $.ajax( {
             url:urls,
             data:{
-                model_id:model_id
+                model_id:model_id,
+                type:1,
+                article_id:article_id
             },
             type:'post',
             cache:false,
             dataType:'json',
             success:function(datas) {
-                console.log(datas);
                 if(datas['code'] == 1){
                     if(datas['info'].length>0){
                         console.log(datas['info']);
+                        var aa=datas['info'];
+                        alert(JSON.stringify(aa[0]));
+                        alert((aa[0]['pro_name']));
                         var html_pro = get_model_pro_html(datas['info']);
+                      alert(html_pro);
                         $('#html_pro').html(html_pro);
                     }
                 }else {
@@ -177,6 +191,67 @@
                 alert("异常！");
             }
         });
+    }
+    function get_model_pro_html(data){
+        //循环输出标签……
+        var str ='';
+
+        for(var i=0;i<data.length;i++) {
+            if (data[i]['type'] === 'text') {
+                str +='<div class="am-form-group all-width">'+'<label>标题</label>'+'<input disabled type="text" value='+data[i]['pro_name']+'>'+'<label>字段名</label>'+'<input disabled type="text"  value="'+data[i]['pro_key']+'">'+'</div>';
+            }
+            else if (data[i]['type'] == 'file') {
+                str +='<div class="am-form-group all-width">'+'<label>标题</label>'+'<input disabled type="text" value='+data[i]['pro_name']+'>'+'<label>字段名</label>'+'<input disabled type="text"  value="'+data[i]['pro_key']+'">'+'</div>';
+            } else if(data[i]['type'] == 'textarea'){
+                str +='<div class="am-form-group all-width">'+'<label>标题</label>'+'<input disabled type="text" value='+data[i]['pro_name']+'>'+'<label>字段名</label>'+'<input disabled type="text"  value="'+data[i]['pro_key']+'">'+'</div>';
+            }
+            else if(data[i]['type'] == 'select'){
+                var selectaa = data[i]['pro_value'] ;
+                var selectbb=selectaa.split(',');
+                var selectttxt ='';
+                if(selectbb) {
+                    for (var k = 0; k < selectbb.length; k++) {
+                        var sel = selectbb[k].split('|');
+                        selectttxt += '<tr><td><input disabled type="text" value="' + sel[0] + '"></td><td>----</td><td><input disabled type="text" value="' + sel[1] + '"></td></tr>';
+                    }
+                }
+                    str +='<div class="am-form-group all-width">'+'<label>标题</label>'+'<input disabled type="text" value='+data[i]['pro_name']+'>'+'<label>字段名</label>'+'<input disabled type="text"  value="'+data[i]['pro_key']+'">'+'</div>';
+                    str +='<div >' +'<table><thead><tr><th>字段的显示内容</th><th></th><th>字段的值（数据表中此字段的值）</th></tr></thead><tbody>'+selectttxt+'</tbody></table>'+'</div>';
+
+
+            }
+            else if(data[i]['type'] == 'radio'){
+                var radioaa = data[i]['pro_value'] ;
+                var radiobb=radioaa.split(',');
+                var radiottxt ='';
+                if(radiobb){
+                    for(var l=0;l<radiobb.length;l++) {
+                        var rad=  radiobb[l].split('|');
+                        radiottxt +='<tr><td><input type="radio" disabled></td><td><input disabled type="text" value="'+rad[0]+'"></td><td>----</td><td><input disabled type="text" value="'+rad[1]+'"></td></tr>';
+                    }
+
+                    str +='<div class="am-form-group all-width">'+'<label>标题</label>'+'<input disabled type="text" value='+data[i]['pro_name']+'>'+'<label>字段名</label>'+'<input disabled type="text"  value="'+data[i]['pro_key']+'">'+'</div>';
+                    str +='<div >' +'<table><thead><tr><th>字段的显示内容</th><th></th><th>字段的值（数据表中此字段的值）</th></tr></thead><tbody>'+radiottxt+'</tbody></table>'+'</div>';
+
+                }
+            }
+            else if(data[i]['type'] == 'checkbox'){
+                var checkboxaa = data[i]['pro_value'] ;
+                var checkboxbb=checkboxaa.split(',');
+                var checkboxttxt ='';
+                if(checkboxbb){
+                    for(var l=0;l<checkboxbb.length;l++) {
+                        var che=  checkboxbb[l].split('|');
+                        checkboxttxt +='<tr><td><input type="checkbox" disabled></td><td><input disabled type="text" value="'+che[0]+'"></td><td>----</td><td><input disabled type="text" value="'+che[1]+'"></td></tr>';
+                    }
+
+                    str +='<div class="am-form-group all-width">'+'<label>标题</label>'+'<input disabled type="text" value='+data[i]['pro_name']+'>'+'<label>字段名</label>'+'<input disabled type="text"  value="'+data[i]['pro_key']+'">'+'</div>';
+                    str +='<div >' +'<table><thead><tr><th>字段的显示内容</th><th></th><th>字段的值（数据表中此字段的值）</th></tr></thead><tbody>'+checkboxttxt+'</tbody></table>'+'</div>';
+
+                }
+            }
+        }
+        return str;
     }
 
 
