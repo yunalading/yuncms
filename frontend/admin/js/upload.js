@@ -289,6 +289,7 @@ $('.model-field-mod').click(function () {
         var checkboxsnum = 0;
         var tips='model-field-'+type+'-tips';
         var name='model-field-'+type+'-name';
+        $('#attr_id').val(attr_id);
         $.post(url,
             {
                 id: id,
@@ -304,8 +305,10 @@ $('.model-field-mod').click(function () {
                 $('.model-table-add').css('display', 'block');
                 $('.model-file').css('display', 'none');
                 $('.'+mtype).css('display', 'block');
+
                 $('.model-field-type').find('option').eq(pro_cate).attr('selected', true);
                 $('.model-field-type').trigger('changed.selected.amui');
+
                 $('#'+tips).val(pro_name);
                 $('#'+name).val(pro_key);
                 if(arr.length>1){
@@ -368,6 +371,19 @@ $('.upload-option').change(function(){
     $('.am-tab-panel').removeClass('am-active');
    $(ttype).addClass('am-active');
 });
+$(function () {
+    $('.am-tabs-nav').find('li').click(function () {
+        var indexs = $(this).index();
+        $('.upload-option').find('option').each(function(){
+
+            $(this).attr('selected',false);
+
+        });
+        $('.upload-option').find('option').eq(indexs).attr('selected', true);
+        $('.upload-option').trigger('changed.selected.amui');
+    });
+});
+
 //upload上传页面复选框存值到input
 $(function(){
     function jqchk(){ //jquery获取复选框值

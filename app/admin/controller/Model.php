@@ -98,7 +98,6 @@ class Model extends AdminBaseController
             if ($this->request->isPost()) {
                 //验证数据
                 $post = $this->post['attr'];
-                //dump($post);
                 $param = array_filter($post[$config[$post['pro_cate']]]);
                 $param['pro_cate'] = $post['pro_cate'];
                 $param['model_id'] = $this->param['id'];
@@ -111,23 +110,35 @@ class Model extends AdminBaseController
                     }
                     $param['pro_value'] = rtrim($param['pro_value'], ',');
                 }
-                //dump($param);
+
                 $Validate = new ModelAttrValidate();
                 if (!$Validate->check($param, [], 'update')) {
                     $this->error($Validate->getError());
                 }
-                if (isset($this->param['attr_id']) && $this->param['attr_id']) {
-                    $attr_id = $this->param['attr_id'];
-                    $attr_one = ModelAttrModel::get($this->param['attr_id']);
+                //同一个模型不允许有相同的key
+                $where['pro_key'] = $param['pro_key'];
+                $where['model_id'] = $param['model_id'];
+                if (isset($this->post['attr_id']) && $this->post['attr_id']) {
+                    $where['model_properties_id'] = array('neq',$this->post['attr_id']);
+                }
+                $attr_validate = ModelAttrModel::get($where);
+                unset($where);
+                if(!empty($attr_validate)){
+                    $this->error($param['pro_key']."字段已经存在！");
+                }
+                if (isset($this->post['attr_id']) && $this->post['attr_id']) {
+                    $attr_id = $this->post['attr_id'];
+                    $attr_one = ModelAttrModel::get($this->post['attr_id']);
                     $this->assign('attr_one', $attr_one);
-                    $where['model_properties_id'] = $this->param['attr_id'];
+                    $where['model_properties_id'] = $this->post['attr_id'];
                     $model->update($param, $where);
+                    //其它有属性值的文章里面的值执行清空操作？
                 } else {
                     $create = $model->create($param);
                     $attr_id = $create->getData('model_properties_id');
                 }
-                //return $this->success('属性修改成功!', url('/admin/model/attr'),array('id'=>$this->param['id']));
-                //return $this->redirect(url('/admin/model/attr'), ['id' => $this->param['id']]);
+                //return $this->success('属性修改成功!', url('/admin/model/attr'),array('id'=>$this->post['attr_id']));
+                //return $this->redirect(url('/admin/model/attr'), ['id' => $this->post['attr_id']]);
                 return $this->success('属性修改成功!', url('/admin/model'));
             }
             return view();
