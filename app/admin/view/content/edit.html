@@ -93,6 +93,12 @@
             <input type="text" name="content[seo_key]" maxlength="200" placeholder="请输入SEO关键字"
                    {notempty name="content" } value="{$content.seo_key}" {/notempty} />
         </div>
+
+
+        <div id="html_pro">
+
+        </div>
+
         <!--<div class="am-form-group all-width">-->
         <!--<label for="content-seo-desc">SEO描述</label>-->
         <!--<textarea name="content[seo_desc]" id="content-seo-desc" maxlength="200"-->
@@ -133,7 +139,7 @@
 
 <script type="text/javascript">
 
-    alert("{$action_name}");
+   /* alert("{$action_name}");*/
 
     $(function(){
         var model_id = $("#cate-parent-num").find("option:selected").attr("data-model");
@@ -156,23 +162,12 @@
             cache:false,
             dataType:'json',
             success:function(datas) {
-                //console.log(datas);
+                console.log(datas);
                 if(datas['code'] == 1){
                     if(datas['info'].length>0){
                         console.log(datas['info']);
-                        //循环输出标签……
-                        for(var i=0,len=datas['info'].length;i<len;i++) {
-                            if(datas['info'][i]['type'] == 'text'){
-
-                            }else if(datas['info'][i]['type'] == 'file'){
-
-                            }
-
-
-
-
-
-                        }
+                        var html_pro = get_model_pro_html(datas['info']);
+                        $('#html_pro').html(html_pro);
                     }
                 }else {
                     alert(datas['msg']);

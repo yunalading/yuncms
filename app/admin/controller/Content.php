@@ -108,7 +108,7 @@ class Content extends AdminBaseController
             foreach($data as &$v){
                 $v['type'] = config('model_attr')[$v['pro_cate']];
                 //如果有属性值可以在此处查询出来
-
+                $v['value'] = '';
 
             }
         }
