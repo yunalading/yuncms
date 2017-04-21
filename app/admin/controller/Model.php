@@ -53,6 +53,16 @@ class Model extends AdminBaseController
             if (!$Validate->check($param, [], 'update')) {
                 $this->error($Validate->getError());
             }
+            //同一个模型不允许有相同的key
+            $where['model_name'] = $param['model_name'];
+            if (isset($this->param['id']) && $this->param['id']) {
+                $where['model_id'] = array('neq',$this->param['id']);
+            }
+            $model_row = ModelModel::get($where);
+            unset($where);
+            if(!empty($model_row)){
+                $this->error($param['model_name']."字段已经存在！");
+            }
             if (isset($this->param['id']) && $this->param['id']) {
                 $action_name = '修改';
                 $where['model_id'] = $this->param['id'];
@@ -101,7 +111,7 @@ class Model extends AdminBaseController
                 $param = array_filter($post[$config[$post['pro_cate']]]);
                 $param['pro_cate'] = $post['pro_cate'];
                 $param['model_id'] = $this->param['id'];
-                if (in_array($config[$post['pro_cate']], array('raido', 'select', 'checkbox'))) {
+                if (in_array($config[$post['pro_cate']], array('radio', 'select', 'checkbox'))) {
                     $param['pro_value'] = '';
                     $pro_key = $this->post[$config[$post['pro_cate']] . '-key'];
                     $pro_value = $this->post[$config[$post['pro_cate']] . '-value'];
@@ -110,7 +120,6 @@ class Model extends AdminBaseController
                     }
                     $param['pro_value'] = rtrim($param['pro_value'], ',');
                 }
-
                 $Validate = new ModelAttrValidate();
                 if (!$Validate->check($param, [], 'update')) {
                     $this->error($Validate->getError());

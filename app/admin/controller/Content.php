@@ -16,6 +16,7 @@ use app\admin\model\CategoryModel;
 use app\admin\model\ContentModel;
 use app\admin\model\ModelModel;
 use app\admin\validate\ContentValidate;
+use app\admin\validate\ModelAttrValidate;
 use app\core\upload\Upload;
 use app\admin\model\ModelAttrModel;
 use think\Config;
@@ -68,17 +69,56 @@ class Content extends AdminBaseController
                     return $this->error($upload->msg);
                 }
             }
-            if (isset($this->param['id']) && $this->param['id']) {
+            if(isset($this->post['pro'])){
+                $pro = array_filter($this->post['pro']);
+                $ProValidate = new ModelAttrValidate();
+                if (!$ProValidate->check($pro, [], 'contentupdate')) {
+                    $this->error($ProValidate->getError());
+                }
+            }
+            $attrModel = new ModelAttrModel();
+            $articleModel = new ArticleProModel();
+            if (isset($this->param['id']) && $this->param['id']>0) {
                 //属性值由于换栏目引发的改变需要删除原来的属性再添加此属性值
-
+                if(isset($pro) && !empty($pro)){
+                    //属性值表也需要修改
+                    $article_pro['article_id'] = $this->param['id'];
+                    $article_pro['type'] = 1;
+                    $cate = $models::get(array('category_id'=>$param['category_id']));
+                    foreach($pro as $key=>$vv){
+                        $attr_row_one = $attrModel::get(array('model_id'=>$cate['model_id'],'pro_key'=>$key));
+                        if(!empty($attr_row_one)){
+                            $article_pro['model_properties_id'] = $attr_row_one['model_properties_id'];
+                            $article_pro['value'] = $vv;
+                            $where['model_properties_id'] = $attr_row_one['model_properties_id'];
+                            $where['article_id'] = $article_pro['article_id'];
+                            $articleModel->update($article_pro,$where);
+                            unset($where);
+                        }
+                    }
+                }
                 $action_name = '修改';
                 $where['content_id'] = $this->param['id'];
                 $model->update($param, $where);
             } else {
-                //属性值表也需要添加
-
                 $param['push_time'] = time();
-                $model->create($param);
+                $create = $model->create($param);
+                $art_id = $create->getData('content_id');
+                //通过栏目查询出所有的属性值
+                $cate = $models::get(array('category_id'=>$param['category_id']));
+                if(isset($pro) && !empty($pro)){
+                    //属性值表也需要添加
+                    $article_pro['article_id'] = $art_id;
+                    $article_pro['type'] = 1;
+                    foreach($pro as $key=>$vv){
+                        $attr_row_one = $attrModel::get(array('model_id'=>$cate['model_id'],'pro_key'=>$key));
+                        if(!empty($attr_row_one)){
+                            $article_pro['model_properties_id'] = $attr_row_one['model_properties_id'];
+                            $article_pro['value'] = $vv;
+                            $articleModel->create($article_pro);
+                        }
+                    }
+                }
             }
             $this->success($action_name . '成功!', url('/admin/content'));
         } else {
@@ -105,6 +145,7 @@ class Content extends AdminBaseController
         $attrModel = new ModelAttrModel();
         $where['model_id'] = $param['model_id'];
         $data = $attrModel->where($where)->select();
+        unset($where);
         if(!empty($data)){
             $articleModel = new ArticleProModel();
             foreach($data as &$v){
@@ -114,7 +155,7 @@ class Content extends AdminBaseController
                     $where['article_id'] = $param['article_id'];
                     $where['type'] = $param['type'];
                     $where['model_properties_id'] = $v['model_properties_id'];
-                    $article = ContentModel::get($where);
+                    $article = ArticleProModel::get($where);
                     if($article && !empty($article)){
                         $v['value'] = $article['value'];
                     }else{

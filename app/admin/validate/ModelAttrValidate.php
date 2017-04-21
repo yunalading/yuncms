@@ -22,6 +22,9 @@ class ModelAttrValidate extends BaseModelAttrValidate {
     protected $scene = [
         'update' => [
 
+        ],
+        'contentupdate' => [
+
         ]
     ];
 }

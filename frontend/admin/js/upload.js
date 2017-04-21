@@ -161,7 +161,6 @@ $(".admin-info-sex-edit").click(function () {
 $('.am-table td').each(function () {
     $(this).click(function () {
         var $width = ($(this).css('width'));
-
         if ($(this).css('white-space') === 'nowrap') {
             $(this).css({'width': $width, 'white-space': 'normal', 'word-break': 'break-all'});
         } else {
@@ -207,7 +206,7 @@ $('.model-field-type').change(function () {
     }, 'json');
 });
 $(function () {
-    if ($('.model-field-type').val()){
+    if ($('.model-field-type').val()) {
         var hosts = window.location.host;
         var val = $('.model-field-type').val();
         $.get('http://' + hosts + $('.model-field-type').data('url'), function (data) {
@@ -279,78 +278,75 @@ $(function () {
 });
 //模型页面修改按钮时间
 $('.model-field-mod').click(function () {
-        var type=$(this).data('type');
-        var mtype = 'model-field-type-' + type;
-        var id = $(this).data('id');
-        var attr_id = $(this).data('attr-id');
-        var url = $(this).data('url');
-        var selectsnum = 0;
-        var radiosnum = 0;
-        var checkboxsnum = 0;
-        var tips='model-field-'+type+'-tips';
-        var name='model-field-'+type+'-name';
-        $('#attr_id').val(attr_id);
-        $.post(url,
-            {
-                id: id,
-                attr_id: attr_id
-            },
-            function (data) {
-                var Obj=JSON.parse(data);
-                var arr=JSON.parse(Obj['attr']);
-
-                var pro_name=Obj['pro_name'];
-                var pro_key=Obj['pro_key'];
-                var pro_cate=Obj['pro_cate'];
-                $('.model-table-add').css('display', 'block');
-                $('.model-file').css('display', 'none');
-                $('.'+mtype).css('display', 'block');
-
-                $('.model-field-type').find('option').eq(pro_cate).attr('selected', true);
-                $('.model-field-type').trigger('changed.selected.amui');
-
-                $('#'+tips).val(pro_name);
-                $('#'+name).val(pro_key);
-                if(arr.length>1){
-                    //如果类型为select，根据数据读出来的字段项，新增字段的时候需要也是select类型
-                    if(type==='select'){
-                        var select=$('.' + mtype).children('table');
-                        select.html(select);
-                        for(var i=0;i<arr.length;i++){
-                            selectsnum++;
-                            var keys = 'select-key[' + selectsnum + ']';
-                            var vals = 'select-value[' + selectsnum + ']';
-                            select.append("<tr><td><input type='text' value="+arr[i][0]+" name=" + keys + " ></td><td>----</td><td><input type='text' value="+arr[i][1]+" name=" + vals + "></td><td><a  class='model-remove' >删除</a></td></tr>");
-                        }
-                    }
-                    //如果类型为radio，根据数据读出来的字段项，新增字段的时候需要也是radio类型
-                    else if(type==='radio'){
-                        var radio=$('.' + mtype).children('table');
-                        radio.html(radio);
-                        for(var j=0;j<arr.length;j++){
-                            radiosnum++;
-                            var keyr = 'radio-key[' + radiosnum + ']';
-                            var valr = 'radio-value[' + radiosnum + ']';
-                            radio.append("<tr> <td><input type='radio' disabled></td><td><input type='text'  value="+arr[j][0]+" name=" + keyr + "></td><td>----</td><td><input type='text' value="+arr[j][1]+" name=" + valr + "></td><td><a  class='model-remove' >删除</a></td></tr>");
-                        }
-                    }
-                    //如果类型为checkbox，根据数据读出来的字段项，新增字段的时候需要也是checkbox类型
-                    else if(type==='checkbox'){
-                        var checkbox=$('.' + mtype).children('table');
-                        checkbox.html(checkbox);
-                        for(var k=0;k<arr.length;k++){
-                            checkboxsnum++;
-                            var keyc = 'checkbox-key[' + checkboxsnum + ']';
-                            var valc = 'checkbox-value[' + checkboxsnum + ']';
-                            checkbox.append("<tr> <td><input type='checkbox' disabled></td><td><input type='text' value="+arr[k][0]+"  name=" + keyc + "></td><td>----</td><td><input type='text' value="+arr[k][1]+" name=" + valc + "></td><td><a  class='model-remove' >删除</a></td></tr>");
-                        }
+    var type = $(this).data('type');
+    var mtype = 'model-field-type-' + type;
+    var id = $(this).data('id');
+    var attr_id = $(this).data('attr-id');
+    var url = $(this).data('url');
+    var selectsnum = 0;
+    var radiosnum = 0;
+    var checkboxsnum = 0;
+    var tips = 'model-field-' + type + '-tips';
+    var name = 'model-field-' + type + '-name';
+    $('#attr_id').val(attr_id);
+    $.post(url,
+        {
+            id: id,
+            attr_id: attr_id
+        },
+        function (data) {
+            var Obj = JSON.parse(data);
+            var arr = JSON.parse(Obj['attr']);
+            var pro_name = Obj['pro_name'];
+            var pro_key = Obj['pro_key'];
+            var pro_cate = Obj['pro_cate'];
+            $('.model-table-add').css('display', 'block');
+            $('.model-file').css('display', 'none');
+            $('.' + mtype).css('display', 'block');
+            $('.model-field-type').find('option').eq(pro_cate).attr('selected', true);
+            $('.model-field-type').trigger('changed.selected.amui');
+            $('#' + tips).val(pro_name);
+            $('#' + name).val(pro_key);
+            if (arr.length > 1) {
+                //如果类型为select，根据数据读出来的字段项，新增字段的时候需要也是select类型
+                if (type === 'select') {
+                    var select = $('.' + mtype).children('table');
+                    select.html(select);
+                    for (var i = 0; i < arr.length; i++) {
+                        selectsnum++;
+                        var keys = 'select-key[' + selectsnum + ']';
+                        var vals = 'select-value[' + selectsnum + ']';
+                        select.append("<tr><td><input type='text' value=" + arr[i][0] + " name=" + keys + " ></td><td>----</td><td><input type='text' value=" + arr[i][1] + " name=" + vals + "></td><td><a  class='model-remove' >删除</a></td></tr>");
                     }
                 }
-            });
+                //如果类型为radio，根据数据读出来的字段项，新增字段的时候需要也是radio类型
+                else if (type === 'radio') {
+                    var radio = $('.' + mtype).children('table');
+                    radio.html(radio);
+                    for (var j = 0; j < arr.length; j++) {
+                        radiosnum++;
+                        var keyr = 'radio-key[' + radiosnum + ']';
+                        var valr = 'radio-value[' + radiosnum + ']';
+                        radio.append("<tr> <td><input type='radio' disabled></td><td><input type='text'  value=" + arr[j][0] + " name=" + keyr + "></td><td>----</td><td><input type='text' value=" + arr[j][1] + " name=" + valr + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+                    }
+                }
+                //如果类型为checkbox，根据数据读出来的字段项，新增字段的时候需要也是checkbox类型
+                else if (type === 'checkbox') {
+                    var checkbox = $('.' + mtype).children('table');
+                    checkbox.html(checkbox);
+                    for (var k = 0; k < arr.length; k++) {
+                        checkboxsnum++;
+                        var keyc = 'checkbox-key[' + checkboxsnum + ']';
+                        var valc = 'checkbox-value[' + checkboxsnum + ']';
+                        checkbox.append("<tr> <td><input type='checkbox' disabled></td><td><input type='text' value=" + arr[k][0] + "  name=" + keyc + "></td><td>----</td><td><input type='text' value=" + arr[k][1] + " name=" + valc + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+                    }
+                }
+            }
+        });
 });
 //初始化jquery 多文件插件
-$(function(){
-    $('#event').AmazeuiUpload({url : '/static/lib/docs/demo.json'});
+$(function () {
+    $('#event').AmazeuiUpload({url: '/static/lib/docs/demo.json'});
 
 });
 
@@ -365,19 +361,17 @@ $(function(){
 
 
 //upload上传select与选项卡联动
-$('.upload-option').change(function(){
-    var ttype='.am-tab-'+$(this).val();
+$('.upload-option').change(function () {
+    var ttype = '.am-tab-' + $(this).val();
     $('.am-tabs-nav').find('li').removeClass('am-active');
     $('.am-tab-panel').removeClass('am-active');
-   $(ttype).addClass('am-active');
+    $(ttype).addClass('am-active');
 });
 $(function () {
     $('.am-tabs-nav').find('li').click(function () {
         var indexs = $(this).index();
-        $('.upload-option').find('option').each(function(){
-
-            $(this).attr('selected',false);
-
+        $('.upload-option').find('option').each(function () {
+            $(this).attr('selected', false);
         });
         $('.upload-option').find('option').eq(indexs).attr('selected', true);
         $('.upload-option').trigger('changed.selected.amui');
@@ -385,17 +379,19 @@ $(function () {
 });
 
 //upload上传页面复选框存值到input
-$(function(){
-    function jqchk(){ //jquery获取复选框值
-        var chk_value =[];
-        $('input[name="allowExts"]:checked').each(function(){
+$(function () {
+    function jqchk() { //jquery获取复选框值
+        var chk_value = [];
+        $('input[name="allowExts"]:checked').each(function () {
             chk_value.push($(this).val());
         });
         $('.checkbox-value-container').val(chk_value);
-
     }
-    $('input[name="allowExts"]').click(function(){
+
+    $('input[name="allowExts"]').click(function () {
         jqchk();
     });
 });
+
+
 
