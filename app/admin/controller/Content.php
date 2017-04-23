@@ -92,7 +92,14 @@ class Content extends AdminBaseController
                             $article_pro['value'] = $vv;
                             $where['model_properties_id'] = $attr_row_one['model_properties_id'];
                             $where['article_id'] = $article_pro['article_id'];
-                            $articleModel->update($article_pro,$where);
+                            $attr_row_ones = $articleModel::get($where);
+                            if(!empty($attr_row_ones)){
+                                $articleModel->update($article_pro,$where);
+                            }else{
+                                //删除以前的属性值
+                                $articleModel::destroy($where);
+                                $articleModel->create($article_pro);
+                            }
                             unset($where);
                         }
                     }
@@ -115,7 +122,18 @@ class Content extends AdminBaseController
                         if(!empty($attr_row_one)){
                             $article_pro['model_properties_id'] = $attr_row_one['model_properties_id'];
                             $article_pro['value'] = $vv;
-                            $articleModel->create($article_pro);
+                            $where['model_properties_id'] = $attr_row_one['model_properties_id'];
+                            $where['article_id'] = $article_pro['article_id'];
+                            $attr_row_ones = $articleModel::get($where);
+                            if(!empty($attr_row_ones)){
+                                $articleModel->update($article_pro,$where);
+                            }else{
+                                //删除以前的属性值
+                                $articleModel::destroy($where);
+                                $articleModel->create($article_pro);
+                            }
+                            unset($where);
+                            //$articleModel->create($article_pro);
                         }
                     }
                 }

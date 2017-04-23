@@ -11,8 +11,11 @@
 
 
 namespace app\admin\controller;
+use app\admin\model\ArticleProModel;
+use app\admin\model\ModelAttrModel;
 use app\admin\model\ModelModel;
 use app\admin\model\PageModel;
+use app\admin\validate\ModelAttrValidate;
 use app\admin\validate\PageValidate;
 use app\core\upload\Upload;
 
@@ -60,12 +63,68 @@ class Page extends AdminBaseController {
                     return $this->error($upload->msg);
                 }
             }
-            if (isset($this->param['id']) && $this->param['id']) {
+            if(isset($this->post['pro'])){
+                $pro = array_filter($this->post['pro']);
+                $ProValidate = new ModelAttrValidate();
+                if (!$ProValidate->check($pro, [], 'contentupdate')) {
+                    $this->error($ProValidate->getError());
+                }
+            }
+            $attrModel = new ModelAttrModel();
+            $articleModel = new ArticleProModel();
+            if (isset($this->param['id']) && $this->param['id']>0) {
+                if(isset($pro) && !empty($pro)){
+                    //属性值表也需要修改
+                    $article_pro['article_id'] = $this->param['id'];
+                    $article_pro['type'] = 2;
+                    foreach($pro as $key=>$vv){
+                        $attr_row_one = $attrModel::get(array('model_id'=>$param['model_id'],'pro_key'=>$key));
+                        if(!empty($attr_row_one)){
+                            $article_pro['model_properties_id'] = $attr_row_one['model_properties_id'];
+                            $article_pro['value'] = $vv;
+                            $where['model_properties_id'] = $attr_row_one['model_properties_id'];
+                            $where['article_id'] = $article_pro['article_id'];
+                            $attr_row_ones = $articleModel::get($where);
+                            if(!empty($attr_row_ones)){
+                                $articleModel->update($article_pro,$where);
+                            }else{
+                                //删除以前的属性值
+                                $articleModel::destroy($where);
+                                $articleModel->create($article_pro);
+                            }
+                            unset($where);
+                        }
+                    }
+                }
                 $action_name = '修改';
                 $where['page_id'] = $this->param['id'];
                 $model->update($param, $where);
             } else {
-                $model->create($param);
+                $create = $model->create($param);
+                $art_id = $create->getData('page_id');
+                if(isset($pro) && !empty($pro)){
+                    //属性值表也需要添加
+                    $article_pro['article_id'] = $art_id;
+                    $article_pro['type'] = 2;
+                    foreach($pro as $key=>$vv){
+                        $attr_row_one = $attrModel::get(array('model_id'=>$param['model_id'],'pro_key'=>$key));
+                        if(!empty($attr_row_one)){
+                            $article_pro['model_properties_id'] = $attr_row_one['model_properties_id'];
+                            $article_pro['value'] = $vv;
+                            $where['model_properties_id'] = $attr_row_one['model_properties_id'];
+                            $where['article_id'] = $article_pro['article_id'];
+                            $attr_row_ones = $articleModel::get($where);
+                            if(!empty($attr_row_ones)){
+                                $articleModel->update($article_pro,$where);
+                            }else{
+                                //删除以前的属性值
+                                $articleModel::destroy($where);
+                                $articleModel->create($article_pro);
+                            }
+                            unset($where);
+                        }
+                    }
+                }
             }
             $this->success($action_name . '成功!', url('/admin/page'));
         } else {

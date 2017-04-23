@@ -10,10 +10,8 @@
     <div class="am-form-group all-width">
         <div class="add-img-backgound">
             <label>页面封面:</label>
-            <input class="inputfile-hide" type="file" name="uploadimages" id="page-cover" {notempty
-                   name="pages" } value="{$pages.cover}" {/notempty}>
-            <br><img class="button-text-left input-img-maxsize"
-                     src="{notempty name='pages'}{$pages.cover|get_image_url=###}{/notempty}" id="page-img"><label
+            <input class="inputfile-hide" type="file" name="uploadimages" id="page-cover" {notempty name="pages" } value="{$pages.cover}" {/notempty}>
+            <br><img class="button-text-left input-img-maxsize" src="{notempty name='pages'}{$pages.cover|get_image_url=###}{/notempty}" id="page-img"><label
             for="page-cover" class="add-img-btn">
             <div class="am-icon-plus-square am-icon-lg add-img-div"></div>
         </label><br>
@@ -21,20 +19,17 @@
     </div>
 
     <div class="am-form-group all-width">
-        <label for="cate-model-num">选择模型</label>
+        <label>选择模型</label>
         <select  name="page[model_id]" maxlength="200" id="cate-parent-num" required data-url="<?=URL('/admin/model/get_model_attr');?>" onchange="get_model_pro();">
             {volist name='module' id='module'}
-            <option value="{$module.model_id}" data-model="{$module.model_id}" {notempty name="pages"
-                    } {if condition="$pages.model_id == $module.model_id" } selected {/if} {/notempty}>{$module.model_name}</option>
+            <option value="{$module.model_id}" data-model="{$module.model_id}" {notempty name="pages" } {if condition="$pages.model_id == $module.model_id" } selected {/if} {/notempty}>{$module.model_name}</option>
             {/volist}
         </select>
         <span class="am-form-caret"></span>
     </div>
 
-
     <div id="html_pro" class="html_pro_style">
     </div>
-
 
     <div class="am-form-group all-width">
         <label for="page-intro">页面简介:</label>
