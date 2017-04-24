@@ -78,17 +78,17 @@
                                        value="{notempty name='config'}{$config.qiniu.savePath}{/notempty}" disabled>
                             </div>
                             <div class="am-form-group">
-                                <label for="KeyId">KeyId</label>
+                                <label for="KeyId">QiNiuAccessKey</label>
                                 <input type="text" name="upload[qiniu][KeyId]"
                                        value="{notempty name='config'}{$config.qiniu.KeyId}{/notempty}">
                             </div>
                             <div class="am-form-group">
-                                <label for="KeySecret">KeySecret</label>
+                                <label for="KeySecret">QiNiuSecretKey</label>
                                 <input type="text" name="upload[qiniu][KeySecret]"
                                        value="{notempty name='config'}{$config.qiniu.KeySecret}{/notempty}">
                             </div>
                             <div class="am-form-group">
-                                <label for="Endpoint">Endpoint</label>
+                                <label for="Endpoint">外链默认域名</label>
                                 <input type="text" name="upload[qiniu][Endpoint]"
                                        value="{notempty name='config'}{$config.qiniu.Endpoint}{/notempty}"/>
                             </div>
