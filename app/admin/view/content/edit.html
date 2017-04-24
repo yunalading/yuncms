@@ -1,8 +1,6 @@
 {include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
 <link rel="stylesheet" href="/static/common/editor/css/editormd.css"/>
-<label class="am-checkbox">
-    <input type="checkbox" value="" data-am-ucheck> 没有选中
-</label>
+
 <div class="content-page">
 
     <form class="am-g  am-form margin-top-buttom-20" data-am-validator enctype="multipart/form-data" method="post">
@@ -32,8 +30,8 @@
 
 
         <div id="html_pro" class="html_pro_style">
+
         </div>
-        <div >
 
         <div class="am-form-group all-width">
             <div class="add-img-backgound">
@@ -224,16 +222,19 @@
                 }
             }
             else if (data[i]['type'] == 'checkbox') {
+                console.log(data[i]['model_properties_id']
+                );
                 str +='<div class="am-form-group all-width">';
-
+                str+='<label>'+data[i]['pro_name']+'</label><br>';
                 var checkboxaa = data[i]['pro_value'];
                 var checkboxbb = checkboxaa.split(',');
                 if (checkboxbb) {
                     for (var l = 0; l < checkboxbb.length; l++) {
                         var che = checkboxbb[l].split('|');
                         //checkboxttxt += '<tr><td><input type="checkbox" disabled></td><td><input disabled type="text" value="' + che[0] + '"></td><td>----</td><td><input disabled type="text" value="' + che[1] + '"></td></tr>';
-                        console.log(data[i]);
-                        str+='<label class="am-checkbox-inline" onclick="getcheckvalue('+data[i]['model_properties_id']+');"><input type="checkbox" data-am-ucheck value="'+che[1]+'"';
+
+
+                        str+='<label class="am-checkbox-inline" onclick="getcheckvalue('+data[i]['model_properties_id']+');"><input type="checkbox" data-am-ucheck class="checkboxval'+data[i]['model_properties_id']+'""  value="'+che[1]+'"';
                         if(data[i]['value'] == che[1]){
                             str += ' checked ';
                         }
@@ -242,7 +243,7 @@
                     }
                 }
                 str +='</div>';
-                str += '<input type="text" id="checkboxval'+data[i]['model_properties_id']+'" name="pro['+data[i]['pro_key']+']" value="'+data[i]['value']+'" ></div>';
+                str += '<input type="hidden" id="checkboxval'+data[i]['model_properties_id']+'" name="pro['+data[i]['pro_key']+']" value="'+data[i]['value']+'" ></div>';
 
             }
         }
@@ -251,15 +252,16 @@
 
     }
     function getcheckvalue(id) {
+        var checkdata = [];
         function check() {
-            var checkdata = [];
-            $(':checkbox:checked').each(function () {
+            $('.checkboxval'+id+':checked').each(function () {
                 checkdata.push($(this).val());
             });
             $('#checkboxval'+id).val(checkdata);
         }
-        $(':checkbox').click(function () {
+        check();
+       /* $(':checkbox').click(function () {
             check();
-        });
+        });*/
     }
 </script>
