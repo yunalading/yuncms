@@ -1,24 +1,8 @@
 {include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
 <div class="content-page">
     <div class="am-container">
-
         <div class="page-title"><h1 class="am-inline">评论列表</h1>
-
-
         </div>
-        <form class="am-form-inline search-form">
-            {:token()}
-            <div class="am-form-group">
-                <select data-am-selected placeholder="选择分类">
-                    <option value="all">选择分类</option>
-                    <option value="a">未分类</option>
-                </select>
-            </div>
-            <div class="am-form-group">
-                <input type="text" class="am-form-field" name="am-form-field" placeholder="关键词">
-            </div>
-            <button type="submit" class="am-btn am-btn-default"><i class="am-icon-search"></i></button>
-        </form>
         <table class="am-table">
             <thead>
             <tr>
@@ -34,41 +18,26 @@
             </tr>
             </thead>
             <tbody>
+            {volist name='list' id='comment'}
             <tr>
-                <td><a target="_blank" href="#">世界您好</a></td>
-                <td><a href="#">admin</a></td>
-                <td><a href="#">未分类</a></td>
-                <td>--</td>
-                <td>50</td>
-                <td><a href="#">5</a></td>
-                <td>2017-1-18 15:43:26</td>
-                <td><a href="#">未发布</a></td>
+                <td><a target="_blank" href="#">{$comment.content_comment_id}</a></td>
+                <td><a href="#">{$comment.content_id}</a></td>
+                <td><a href="#">{$comment.member_id}</a></td>
+                <td>{$comment.avatar}</td>
+                <td>{$comment.nickname}</td>
+                <td><a href="#">{$comment.phone}</a></td>
+                <td>{$comment.email}</td>
+                <td><a href="#">{$comment.comment_content}</a></td>
                 <td>
                     <div class="am-btn-group am-btn-group-xs">
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                        <!--<a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>-->
+                        <a href="<?=URL('/admin/comment/remove',array('id'=>$comment['content_comment_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td><a target="_blank" href="#">Gulp常用配置</a></td>
-                <td><a href="#">hukei</a></td>
-                <td><a href="#">Gulp</a></td>
-                <td><a href="#">gulp</a>、<a href="#">nodejs</a></td>
-                <td>50</td>
-                <td><a href="#">20</a></td>
-                <td>2017-1-28 15:43:26</td>
-                <td><a href="#">已发布</a></td>
-                <td>
-                    <div class="am-btn-group am-btn-group-xs">
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
-                    </div>
-                </td>
-            </tr>
+            {/volist}
             </tbody>
         </table>
-
         <ul class="am-pagination am-pagination-right ">
             <li class="am-disabled"><a href="#">&laquo;</a></li>
             <li class="am-active"><a href="#">1</a></li>
@@ -78,8 +47,6 @@
             <li><a href="#">5</a></li>
             <li><a href="#">&raquo;</a></li>
         </ul>
-
     </div>
-
 </div>
 {include file="footer" /}
