@@ -1,3 +1,4 @@
+INSERT INTO `yc_users` VALUES ('1', null, null, null, 'admin', '0b77520f93de693bdab0060746e38165', '68527761@qq.com', '18671418772', '68527761', '0', '127.0.0.1', '0', '0', null, null, '0');
 INSERT INTO `yc_area` VALUES
   (1, '北京', 0, 0, 1, '华北'),
   (2, '天津', 0, 0, 1, '华北'),

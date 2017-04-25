@@ -46,10 +46,10 @@ return [
             'path' => ROOT_PATH . 'runtime'
         ], [
             'name' => 'database',
-            'path' => ROOT_PATH . 'app' . DS . 'database.php'
+            'path' => ROOT_PATH . 'app' . DS . 'extra' . DS .'database.json'
         ], [
             'name' => 'app',
-            'path' => ROOT_PATH . 'app' . DS . 'extra' . DS . 'app.php'
+            'path' => ROOT_PATH . 'app' . DS . 'extra' . DS . 'app.json'
         ], [
             'name' => 'data',
             'path' => ROOT_PATH . 'public' . DS . 'data'
