@@ -15,6 +15,7 @@ namespace app\install\controller;
 use app\core\install\Install;
 use app\install\model\UserModel;
 use app\install\validate\InstallFormValidate;
+use think\Log;
 
 /**
  * Class Complete
@@ -80,7 +81,7 @@ class Step4 extends InstallWizard {
         $userModel = UserModel::get(1);
         $userModel->save(['username' => $config['app']['username'], 'password' => $userModel->createPassWord($config['app']['password'])]);
         //演示数据
-        Install::initDemo();
+        //Install::initDemo();
         //写入安装锁
         Install::writeInstallLock();
         //返回安装成功信息

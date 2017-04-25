@@ -136,6 +136,7 @@
 
     //循环输出标签……
     function get_model_pro_html(data) {
+        //console.log(data[i]['model_properties_id']);
         var str = '';
         for (var i = 0; i < data.length; i++) {
             if (data[i]['type'] === 'text') {
@@ -187,8 +188,6 @@
                 }
             }
             else if (data[i]['type'] == 'checkbox') {
-                console.log(data[i]['model_properties_id']
-                );
                 str +='<div class="am-form-group all-width">';
                 str+='<label>'+data[i]['pro_name']+'</label><br>';
                 var checkboxaa = data[i]['pro_value'];
@@ -196,25 +195,19 @@
                 if (checkboxbb) {
                     for (var l = 0; l < checkboxbb.length; l++) {
                         var che = checkboxbb[l].split('|');
-                        //checkboxttxt += '<tr><td><input type="checkbox" disabled></td><td><input disabled type="text" value="' + che[0] + '"></td><td>----</td><td><input disabled type="text" value="' + che[1] + '"></td></tr>';
-
-
                         str+='<label class="am-checkbox-inline" onclick="getcheckvalue('+data[i]['model_properties_id']+');"><input type="checkbox" data-am-ucheck class="checkboxval'+data[i]['model_properties_id']+'""  value="'+che[1]+'"';
-                        if(data[i]['value'] == che[1]){
+                        var check = data[i]['value'].split(',');
+                        if(data[i]['value'].toString().indexOf(che[1]) > -1) {
                             str += ' checked ';
                         }
                         str+='>'+che[0]+'</label>';
-
                     }
                 }
                 str +='</div>';
                 str += '<input type="hidden" id="checkboxval'+data[i]['model_properties_id']+'" name="pro['+data[i]['pro_key']+']" value="'+data[i]['value']+'" ></div>';
-
             }
         }
         return str;
-
-
     }
     function getcheckvalue(id) {
         var checkdata = [];
