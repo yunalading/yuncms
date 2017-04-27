@@ -48,7 +48,7 @@ CREATE TABLE `yc_area` (
   `area_deep` int(11) DEFAULT NULL COMMENT '地区深度',
   `area_region` varchar(20) DEFAULT NULL COMMENT '大区名称',
   PRIMARY KEY (`area_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='区域表';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='区域表';
 
 DROP TABLE IF EXISTS `yc_article_properties`;
 CREATE TABLE `yc_article_properties` (
@@ -61,7 +61,7 @@ CREATE TABLE `yc_article_properties` (
   `update_time` int(11) DEFAULT NULL COMMENT '更新时间',
   `create_time` int(11) NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='内容属性表';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='内容属性表';
 
 DROP TABLE IF EXISTS `yc_category`;
 CREATE TABLE `yc_category` (
@@ -84,7 +84,7 @@ CREATE TABLE `yc_category` (
   UNIQUE KEY `category_unique` (`seo_url`),
   KEY `FK_CATEGORY_MODEL` (`model_id`),
   CONSTRAINT `FK_CATEGORY_MODEL` FOREIGN KEY (`model_id`) REFERENCES `yc_model` (`model_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='类别表';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='类别表';
 
 DROP TABLE IF EXISTS `yc_comments`;
 CREATE TABLE `yc_comments` (
