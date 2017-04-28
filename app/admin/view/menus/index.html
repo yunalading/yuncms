@@ -1,0 +1,45 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<div class="content-page">
+    <div class="am-container">
+        <div class="page-title"><h1 class="am-inline">菜单列表</h1>
+            <a href="<?= URL('/admin/menus/update');?>" class="am-btn am-btn-primary am-btn-xs am-radius">
+                <i class="am-icon am-icon-edit"></i>添加菜单
+            </a>
+        </div>
+        <table class="am-table">
+            <thead>
+            <tr>
+                <th>菜单名称</th>
+                <th>菜单值</th>
+                <th>导航标识</th>
+                <th>菜单分类</th>
+                <th>上级菜单</th>
+                <th>排序</th>
+                <th>添加时间</th>
+                <th width="100">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {volist name='list' id='menus'}
+            <tr>
+                <td>{$menus.menu_name}</td>
+                <td>{$menus.menu_value}</td>
+                <td>{$menus.nav_key}</td>
+                <td>{$menus.menu_type}</td>
+                <td>{$menus.parent_menu_id}</td>
+                <td>{$menus.menu_sort}</td>
+                <td>{$menus.create_time}</td>
+                <td>
+                    <div class="am-btn-group am-btn-group-xs">
+                        <a href="<?= URL('/admin/menus/update',array('id'=>$menus['menu_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
+                        <a href="<?= URL('/admin/menus/remove',array('id'=>$menus['menu_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                    </div>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+        {$page}
+    </div>
+</div>
+{include file="footer" /}

@@ -19,14 +19,22 @@
         <span class="am-form-caret"></span>
     </div>
 
+    <div class="am-form-group all-width">
+        <label>标签</label>
+        <select id="cate-parent-num" name="page[tag_id]" maxlength="200" required>
+            {volist name='tag' id='tag'}
+            <option value="{$tag.tag_id}"  {notempty name="pages" } {if condition="$pages.tag_id == $tag.tag_id" } selected {/if} {/notempty}>{$tag.tag_name}</option>
+            {/volist}
+        </select>
+        <span class="am-form-caret"></span>
+    </div>
+
     <div id="html_pro" class="html_pro_style">
     </div>
 
     <div class="am-form-group all-width">
         <label for="page-intro">页面简介:</label>
-        <textarea name="page[intro]" id="page-intro" maxlength="500" placeholder="请输入页面简介">{notempty
-               name="pages"
-               } {$pages.intro} {/notempty}</textarea>
+        <textarea name="page[intro]" id="page-intro" maxlength="500" placeholder="请输入页面简介">{notempty name="pages"} {$pages.intro} {/notempty}</textarea>
     </div>
 
     <div class="am-form-group all-width">

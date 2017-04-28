@@ -46,6 +46,16 @@ return [
                 ]
             ]
         ], [
+            'id' => 'memeber',
+            'name' => '前台用户',
+            'submenus' => [
+                [
+                    'id' => 'member-list',
+                    'name' => '用户列表',
+                    'href' => '/admin/member'
+                ]
+            ]
+        ],[
             'id' => 'page',
             'name' => '页面',
             'iconClass' => 'am-icon-circle-o',
@@ -132,6 +142,10 @@ return [
                     'id' => 'nav-manager',
                     'name' => '导航管理',
                     'href' => '/admin/nav'
+                ], [
+                    'id' => 'menus-manager',
+                    'name' => '菜单管理',
+                    'href' => '/admin/menus'
                 ], [
                     'id' => 'email-config',
                     'name' => '邮件配置',
