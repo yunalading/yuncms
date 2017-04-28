@@ -1,5 +1,7 @@
 INSERT INTO `yc_users` VALUES ('1', null, '超级管理员', null, 'admin', '0b77520f93de693bdab0060746e38165', '68527761@qq.com', '18671418772', '68527761', '0', '127.0.0.1', '0', '0', null, null, '0');
 INSERT INTO `yc_model` VALUES ('1', '默认', '0', null, '1493097912', '1493097912');
+INSERT INTO `yc_category` (`category_id`, `model_id`, `seo_title`, `seo_url`, `seo_key`, `seo_desc`, `category_name`, `list_template`, `info_template`, `category_sort`, `parent_category_id`, `delete_time`, `update_time`, `create_time`, `del_lock`) VALUES
+(1, 1, 'yuncms', 'yuncms', 'yuncms', 'yuncms', '默认分类', 'list.html', 'iinfo.html ', 1, 0, NULL, 1493282519, 1493282519, 0);
 INSERT INTO `yc_area` VALUES
   (1, '北京', 0, 0, 1, '华北'),
   (2, '天津', 0, 0, 1, '华北'),
