@@ -307,7 +307,8 @@ $('.model-field-mod').click(function () {
             $('.model-field-type').trigger('changed.selected.amui');
             $('#' + tips).val(pro_name);
             $('#' + name).val(pro_key);
-            if (arr.length > 1) {
+            console.log(arr);
+            if (arr.length > 0) {
                 //如果类型为select，根据数据读出来的字段项，新增字段的时候需要也是select类型
                 if (type === 'select') {
                     var select = $('.' + mtype).children('table');

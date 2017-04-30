@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: jabber <2898117012@qq.com>
+// | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 
 
@@ -14,7 +14,10 @@ namespace app\admin\controller;
 
 use app\common\controller\BaseController;
 use app\common\model\BaseUserModel;
+use app\core\rbac\Access;
+use app\core\rbac\Role;
 use think\Log;
+use think\Config;
 
 /**
  * Class AdminBaseController
@@ -41,12 +44,19 @@ abstract class AdminBaseController extends BaseController {
             if (BaseUserModel::isLogin()) {
                 //验证权限
                 Log::debug('验证验证权限');
-
+                $role_id = Role::get_role();
+                $access_list = Access::get_access($role_id);
+                $url = str_replace('.'.Config::get('url_html_suffix'),'',parent::getCurrentAccess());
+                //echo $url;
+                if (!in_array($url, Config("nocheck"))) {
+                    if (!in_array($url, $access_list)) {
+                        $this->error('无访问权限!');
+                    }
+                }
             } else {
                 //去登录
                 $this->redirect(url('/admin/user/login'));
             }
         }
     }
-
 }
