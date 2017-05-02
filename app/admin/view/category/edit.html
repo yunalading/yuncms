@@ -1,33 +1,33 @@
 {include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
-<form class="am-form am-g margin-top-buttom-20" data-am-validatorb method="post">
+<form class="am-form am-g margin-top-buttom-20" data-am-validator method="post">
     {:token()}
     <div class="am-form-group all-width">
         <label for="cate-name">分类名称:</label>
         <input type="text" name="category[category_name]" id="cate-name" maxlength="20" minlength="3"
-               placeholder="请输入分类名称" required {notempty name="category"
+                required {notempty name="category"
                }value="{$category.category_name}" {/notempty}>
     </div>
     <div class="am-form-group all-width">
         <label for="cate-seo-title">SEO标题:</label>
-        <input type="text" name="category[seo_title]" id="cate-seo-title" maxlength="200" placeholder="请输入SEO标题"
+        <input type="text" name="category[seo_title]" id="cate-seo-title" maxlength="200"
                {notempty name="category"
                }value="{$category.seo_title}" {/notempty} >
     </div>
     <div class="am-form-group all-width">
-        <label for="cate-seo-url">SEOurl:</label>
-        <input type="text" name="category[seo_url]" id="cate-seo-url" maxlength="200"
-               placeholder="请输入SEOurl" {notempty name="category"
+        <label for="cate-seo-url">SEOURL:</label>
+        <input type="text" name="category[seo_url]" id="cate-seo-url" maxlength="200" required
+                {notempty name="category"
                } value="{$category.seo_url}" {/notempty}>
     </div>
     <div class="am-form-group all-width">
         <label for="cate-seo-key">SEO关键字</label>
-        <input type="text" name="category[seo_key]" id="cate-seo-key" maxlength="200" placeholder="请输入SEO关键字" {notempty
+        <input type="text" name="category[seo_key]" id="cate-seo-key" maxlength="200"  {notempty
                name="category"
                } value="{$category.seo_key}" {/notempty}>
     </div>
     <div class="am-form-group all-width">
         <label for="cate-seo-desc">SEO描述</label>
-        <textarea name="category[seo_desc]" id="cate-seo-desc" maxlength="200" placeholder="请输入SEO描述">{notempty name="category"
+        <textarea name="category[seo_desc]" id="cate-seo-desc" maxlength="200" >{notempty name="category"
                 }{$category.seo_desc}{/notempty}</textarea>
     </div>
     <div class="am-form-group all-width">
@@ -54,18 +54,18 @@
     </div>
     <div class="am-form-group all-width">
         <label for="cate-tmp-list">请输入列表页模板</label>
-        <textarea name="category[list_template]" id="cate-tmp-list" placeholder="请输入列表页模板" maxlength="200" required>{notempty name="category"
+        <textarea name="category[list_template]" id="cate-tmp-list"  maxlength="200" required>{notempty name="category"
                 }{$category.list_template}{/notempty}</textarea>
     </div>
     <div class="am-form-group all-width">
         <label for="cate-tmp-detail">请输入详情页模板</label>
-        <textarea name="category[info_template]" id="cate-tmp-detail" placeholder="请输入详情页模板" maxlength="200" required>{notempty name="category"
-                }{$category.info_template}{/notempty} </textarea>
+        <textarea name="category[info_template]" id="cate-tmp-detail" maxlength="200" required>{notempty name="category"
+                }{$category.info_template}{/notempty}</textarea>
     </div>
     <div class="am-form-group all-width">
         <label for="cate-seo-url">排序:</label>
         <input type="text" name="category[category_sort]" id="cate-category_sort" maxlength="200" minlength="1"
-               placeholder="请输入栏目排序" required {notempty name="category"
+                required {notempty name="category"
                } value="{$category.category_sort}" {/notempty}>
     </div>
     {notempty name="category"} <input type="hidden" name="id" value="{$category.category_id}"> {/notempty}
