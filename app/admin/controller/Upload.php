@@ -28,7 +28,7 @@ class Upload extends AdminBaseController
     {
         $config = config::get('upload');
         //$config['image']['maxSize'] = str_replace('MB','',byteFormat($config['image']['maxSize'],"MB"));
-        $config['image']['ext'] = implode(',',$config['image']['allowExts']);
+        $config['image']['ext'] = explode(',',$config['image']['allowExts']);
         $this->assign('config',$config);
         return view();
     }
@@ -43,11 +43,15 @@ class Upload extends AdminBaseController
             if (!$valiDate->check($post, [], 'update')) {
                 $this->error($valiDate->getError());
             }
-            $post['allowExts'] = explode(',',$post['allowExts']);
-//            dump($post);
-//            die();
+            unset($post['allowExts']);
             //savePath 需要根据网站路径进行处理
             $config = config::get('upload');
+            if (!key_exists('savePath', $post['qiniu'])) {
+                $post['qiniu']['savePath'] = $config['qiniu']['savePath'];
+            }
+            if (!key_exists('savePath', $post['oss'])) {
+                $post['oss']['savePath'] = $config['oss']['savePath'];
+            }
             $newConfig = array_merge($config,$post);
             writeJsonConfig(APP_PATH . 'extra' . DS . 'upload.json', $newConfig);
             $this->success('操作成功');

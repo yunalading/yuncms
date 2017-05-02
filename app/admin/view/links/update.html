@@ -2,11 +2,11 @@
 <div class="content-page">
     <div class="am-container">
         <div class="page-title"><h1 class="am-inline">{$action_name}友情链接</h1></div>
-        <form class="am-form edit-form" method="post" action="<?= URL('/admin/links/update');?>" data-am-validator>
+        <form class="am-form edit-form" method="post" action="<?=URL('/admin/links/update');?>" enctype="multipart/form-data" data-am-validator>
             <div class="am-form-group am-form-file">
                 <button type="button" class="am-btn am-btn-primary am-btn-sm">
                     <i class="am-icon-cloud-upload"></i> 选择链接图标</button>
-                <input type="file">
+                <input type="file" name="uploadimg" />
             </div>
             <div class="am-form-group">
                 <label>链接名称<span>(请填写常量值)</span></label>

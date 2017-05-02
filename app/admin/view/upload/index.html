@@ -21,37 +21,37 @@
                            value="{notempty name='config'}{$config.image.maxSize}{/notempty}"/> <span class="upload-mb">MB</span>
                 </div>
                 <input type="hidden" name="upload[image][allowExts]"
-                       value="{notempty name='config'}{$config.image.ext}{/notempty}" class="checkbox-value-container" />
+                       value="{notempty name='config'}{$config.image.allowExts}{/notempty}" class="checkbox-value-container" />
                 <div class="am-g">
                     <div>允许上传图片后缀</div>
                     <label class="am-checkbox  upload-checkbox-style">
                         <input type="checkbox" name="allowExts"
-                               value="jpg" <?php if(in_array('jpg',$config['image']['allowExts'])){ echo "checked";}; ?>
+                               value="jpg" <?php if(in_array('jpg',$config['image']['ext'])){ echo "checked";}; ?>
                         data-am-ucheck>jpg
                     </label>
                     <label class="am-checkbox  upload-checkbox-style">
                         <input type="checkbox" name="allowExts"
-                               value="gif" <?php if(in_array('gif',$config['image']['allowExts'])){ echo "checked";}; ?>
+                               value="gif" <?php if(in_array('gif',$config['image']['ext'])){ echo "checked";}; ?>
                         data-am-ucheck >gif
                     </label>
                     <label class="am-checkbox upload-checkbox-style ">
                         <input type="checkbox" name="allowExts"
-                               value="png" <?php if(in_array('png',$config['image']['allowExts'])){ echo "checked";}; ?>
+                               value="png" <?php if(in_array('png',$config['image']['ext'])){ echo "checked";}; ?>
                         data-am-ucheck >png
                     </label>
                     <label class="am-checkbox upload-checkbox-style">
                         <input type="checkbox" name="allowExts"
-                               value="jpeg"<?php if(in_array('jpeg',$config['image']['allowExts'])){ echo "checked";}; ?>
+                               value="jpeg"<?php if(in_array('jpeg',$config['image']['ext'])){ echo "checked";}; ?>
                         data-am-ucheck>jpeg
                     </label>
                     <label class="am-checkbox upload-checkbox-style">
                         <input type="checkbox" name="allowExts"
-                               value="bmp"<?php if(in_array('bmp',$config['image']['allowExts'])){ echo "checked";}; ?>
+                               value="bmp"<?php if(in_array('bmp',$config['image']['ext'])){ echo "checked";}; ?>
                         data-am-ucheck>bmp
                     </label>
                     <label class="am-checkbox upload-checkbox-style">
                         <input type="checkbox" name="allowExts"
-                               value="wbmp" <?php if(in_array('wbmp',$config['image']['allowExts'])){ echo "checked";}; ?>
+                               value="wbmp" <?php if(in_array('wbmp',$config['image']['ext'])){ echo "checked";}; ?>
                         data-am-ucheck>wbmp
                     </label>
                 </div>
@@ -73,8 +73,8 @@
                         </div>
                         <div data-tab-panel-1 class="am-tab-panel am-tab-QiNiu">
                             <div class="am-form-group">
-                                <label for="savePath">默认上传路径(目前版本暂不支持修改)</label>
-                                <input type="text" name="upload[qiniu][savePath]" id="savePath"
+                                <label for="qiniu-savePath">默认上传路径(目前版本暂不支持修改)</label>
+                                <input type="text" name="upload[qiniu][savePath]" id="qiniu-savePath"
                                        value="{notempty name='config'}{$config.qiniu.savePath}{/notempty}" disabled>
                             </div>
                             <div class="am-form-group">

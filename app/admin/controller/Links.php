@@ -15,6 +15,7 @@ namespace app\admin\controller;
 use app\admin\model\LinkModel;
 use app\admin\validate\LinksValidate;
 use app\common\model\BaseLinkModel;
+use app\core\upload\Upload;
 
 /**
  * Class Links
@@ -49,6 +50,17 @@ class Links extends AdminBaseController {
                 $this->error($Validate->getError());
             }
             unset($param['__token__']);
+            $file = request()->file('uploadimg');
+            if($file && $file!=NULL){
+                $upload = Upload::getInstance($file);
+                if($upload->code == 1){
+                    if($upload->pathUrl){
+                        $param['link_logo'] = $upload->pathUrl;
+                    }
+                }else{
+                    $this->error($upload->msg);
+                }
+            }
             $model->saveAll([$param])[0];
             $this->success($action_name.'成功!', url('/admin/links'));
 
