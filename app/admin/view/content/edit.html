@@ -36,7 +36,7 @@
         <div class="am-form-group all-width">
             <div class="add-img-backgound">
                 <label for="content-cover">内容封面:</label>
-                <input class="inputfile-hide" type="file" name="uploadimages" id="content-cover" {notempty
+                <input class="inputfile-hide" required type="file" name="uploadimages" id="content-cover" {notempty
                        name="content" } value="{$content.cover}" {/notempty}>
                 <br><img class="button-text-left input-img-maxsize"
                          src="{notempty name='content'}{$content.cover|get_image_url=###}{/notempty}"
@@ -75,18 +75,18 @@
         <div class="am-form-group all-width">
             <label>SEO标题:</label>
             <input type="text" name="content[seo_title]" maxlength="200"
-                   placeholder="请输入SEO标题" {notempty name="content"
+                    {notempty name="content"
                    } value="{$content.seo_title}" {/notempty}>
         </div>
         <div class="am-form-group all-width">
             <label>SEOurl</label>
             <input type="text" name="content[seo_url]" maxlength="200" minlength="3"
-                   placeholder="请输入SEOurl" required {notempty name="content"
+                    required {notempty name="content"
                    } value="{$content.seo_url}" {/notempty} />
         </div>
         <div class="am-form-group  all-width">
             <label>SEO关键字</label>
-            <input type="text" name="content[seo_key]" maxlength="200" placeholder="请输入SEO关键字"
+            <input type="text" name="content[seo_key]" maxlength="200"
                    {notempty name="content" } value="{$content.seo_key}" {/notempty} />
         </div>
 

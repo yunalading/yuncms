@@ -3,7 +3,7 @@
     <div class="am-form-group all-width">
         <label for="page-title">页面标题:</label>
         <input type="text" name="page[title]" id="page-title" maxlength="50" minlength="3"
-               placeholder="请输入页面标题（至少 3 个字符）" required {notempty
+                required {notempty
                name="pages"
                } value="{$pages.title}" {/notempty}>
     </div>
@@ -34,13 +34,13 @@
 
     <div class="am-form-group all-width">
         <label for="page-intro">页面简介:</label>
-        <textarea name="page[intro]" id="page-intro" maxlength="500" placeholder="请输入页面简介">{notempty name="pages"} {$pages.intro} {/notempty}</textarea>
+        <textarea required  name="page[intro]" id="page-intro" maxlength="500" >{notempty name="pages"} {$pages.intro} {/notempty}</textarearequired>
     </div>
 
     <div class="am-form-group all-width">
         <div class="add-img-backgound">
             <label>页面封面:</label>
-            <input class="inputfile-hide" type="file" name="uploadimages" id="page-cover" {notempty name="pages" } value="{$pages.cover}" {/notempty}>
+            <input  required class="inputfile-hide" type="file" name="uploadimages" id="page-cover" {notempty name="pages" } value="{$pages.cover}" {/notempty}>
             <br><img class="button-text-left input-img-maxsize" src="{notempty name='pages'}{$pages.cover|get_image_url=###}{/notempty}" id="page-img"><label
                 for="page-cover" class="add-img-btn">
             <div class="am-icon-plus-square am-icon-lg add-img-div"></div>
@@ -49,38 +49,38 @@
     </div>
     <div class="am-form-group all-width">
         <label for="page-seo-title">SEO标题:</label>
-        <input type="text" name="page[seo_title]" id="page-seo-title" maxlength="200" placeholder="请输入SEO标题" {notempty
+        <input type="text" name="page[seo_title]" id="page-seo-title" maxlength="200"  {notempty
                name="pages"
                } value="{$pages.seo_title}" {/notempty}>
     </div>
     <div class="am-form-group all-width">
         <label for="page-seo-url">SEOurl</label>
-        <input type="text" name="page[seo_url]" id="page-seo-url" maxlength="200" minlength="3" placeholder="请输入SEOurl"
+        <input type="text" name="page[seo_url]" id="page-seo-url" maxlength="200" minlength="3"
                required {notempty
                name="pages"
                } value="{$pages.seo_url}" {/notempty}>
     </div>
     <div class="am-form-group all-width">
         <label>SEO关键字</label>
-        <input type="text" name="page[seo_key]" id="page[seo_key]" maxlength="200" placeholder="请输入SEO关键字" {notempty
+        <input type="text" name="page[seo_key]" id="page[seo_key]" maxlength="200"  {notempty
                name="pages"
                } value="{$pages.seo_key}" {/notempty}>
     </div>
     <div class="am-form-group all-width">
         <label for="page-seo-desc">SEO描述</label>
-        <textarea name="page[seo_desc]" id="page-seo-desc" maxlength="200" placeholder="请输入SEO描述">{notempty
+        <textarea name="page[seo_desc]" id="page-seo-desc" maxlength="200">{notempty
                name="pages"
                } {$pages.seo_url} {/notempty}</textarea>
     </div>
     <div class="am-form-group all-width">
         <label for="page-content">页面内容</label>
-        <textarea name="page[content]" id="page-content" placeholder="请输入页面内容">{notempty
+        <textarea name="page[content]" id="page-content" >{notempty
                 name="pages"
                 } {$pages.content} {/notempty}</textarea>
     </div>
     <div class="am-form-group all-width">
         <label for="page-temp">页面模板</label>
-        <textarea name="page[template]" id="page-temp" maxlength="200" minlength="3" placeholder="请输入页面模板" required>{notempty
+        <textarea name="page[template]" id="page-temp" maxlength="200" minlength="3" required>{notempty
                 name="pages"
                 } {$pages.template} {/notempty}</textarea>
     </div>
