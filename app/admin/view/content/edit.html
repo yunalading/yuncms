@@ -48,9 +48,18 @@
         </div>
 
         <div class="am-form-group all-width">
+            <label>标签</label>
+            <select id="cate-parent-num" name="content[tag_id]" maxlength="200" required>
+                {volist name='tag' id='tag'}
+                <option value="{$tag.tag_id}"  {notempty name="content" } {if condition="$content.tag_id == $tag.tag_id" } selected {/if} {/notempty}>{$tag.tag_name}</option>
+                {/volist}
+            </select>
+            <span class="am-form-caret"></span>
+        </div>
+
+        <div class="am-form-group all-width">
             <label>简介</label>
-            <textarea name="content[intro]">{notempty name="content"
-                            } {$content.intro} {/notempty}</textarea>
+            <textarea name="content[intro]">{notempty name="content"} {$content.intro} {/notempty}</textarea>
             <div></div>
         </div>
         <div class="am-form-group all-width">

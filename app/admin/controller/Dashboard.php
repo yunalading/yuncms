@@ -13,6 +13,7 @@
 namespace app\admin\controller;
 use app\admin\validate\UserValidate;
 use app\admin\model\UserModel;
+use app\core\rbac\Access;
 use think\Log;
 
 
@@ -25,7 +26,9 @@ class Dashboard extends AdminBaseController {
      * @return \think\response\View
      */
     public function index() {
-        $this->assign('menus',json_encode(config('authorization')));
+        //$auth_config = config('authorization');
+        $auth_config = Access::get_user_auth();
+        $this->assign('menus',json_encode($auth_config));
         return view();
     }
 

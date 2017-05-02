@@ -87,7 +87,6 @@ class Model extends AdminBaseController
         $model = new ModelAttrModel();
         //判断模型是否存在
         //dump($this->request);
-        //dump($this->param);
         if (!empty($this->param) && $this->param['id']) {
             $attr = ModelModel::get($this->param['id']);
             if (empty($attr)) {

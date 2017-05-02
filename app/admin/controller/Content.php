@@ -15,6 +15,7 @@ use app\admin\model\ArticleProModel;
 use app\admin\model\CategoryModel;
 use app\admin\model\ContentModel;
 use app\admin\model\ModelModel;
+use app\admin\model\TagModel;
 use app\admin\validate\ContentValidate;
 use app\admin\validate\ModelAttrValidate;
 use app\core\upload\Upload;
@@ -50,6 +51,9 @@ class Content extends AdminBaseController
         $models = new CategoryModel();
         $cate = $models->putCateOut();
         $this->assign('cate', $cate);
+        $tagModule = new TagModel();
+        $tag = TagModel::all();
+        $this->assign('tag', $tag);
         $model = new ContentModel();
         if ($this->request->isPost()) {
             //验证数据
@@ -109,6 +113,7 @@ class Content extends AdminBaseController
                 $model->update($param, $where);
             } else {
                 $param['push_time'] = time();
+                $param['user_id'] = session('user.user_id');
                 $create = $model->create($param);
                 $art_id = $create->getData('content_id');
                 //通过栏目查询出所有的属性值

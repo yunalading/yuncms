@@ -79,7 +79,7 @@ class Step4 extends InstallWizard {
         Install::writeConfig();
         //配置管理员账号
         $userModel = UserModel::get(1);
-        $userModel->save(['username' => $config['app']['username'], 'password' => $userModel->createPassWord($config['app']['password'])]);
+        $userModel->save(['username' => $config['app']['username'], 'password' => $userModel->createPassWord($config['app']['password']),'create_time' => time()]);
         //演示数据
         //Install::initDemo();
         //写入安装锁

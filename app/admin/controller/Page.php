@@ -15,6 +15,7 @@ use app\admin\model\ArticleProModel;
 use app\admin\model\ModelAttrModel;
 use app\admin\model\ModelModel;
 use app\admin\model\PageModel;
+use app\admin\model\TagModel;
 use app\admin\validate\ModelAttrValidate;
 use app\admin\validate\PageValidate;
 use app\core\upload\Upload;
@@ -41,6 +42,9 @@ class Page extends AdminBaseController {
         $module = new ModelModel();
         $module = ModelModel::all();
         $this->assign('module', $module);
+        $tagModule = new TagModel();
+        $tag = TagModel::all();
+        $this->assign('tag', $tag);
         $model = new PageModel();
         if ($this->request->isPost()) {
             //验证数据

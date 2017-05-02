@@ -8,18 +8,20 @@
 // +----------------------------------------------------------------------
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
-namespace app\core\rbac;
-
-use app\admin\model\UserModel;
-use think\Session;
 
 
-class Role {
-        /*
-         * 获取当前登录用户的角色
-         */
-        public static function get_role(){
-            $user_id = session('user.user_id');
-            return UserModel::get($user_id)['role_id'];
-        }
+namespace app\admin\validate;
+
+use app\common\validate\BaseMenusValidate;
+
+/**
+ * Class MenusValidate
+ * @package app\admin\validate
+ */
+class MenusValidate extends BaseMenusValidate {
+    protected $scene = [
+        'update' => [
+
+        ]
+    ];
 }

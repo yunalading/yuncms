@@ -8,18 +8,11 @@
 // +----------------------------------------------------------------------
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
-namespace app\core\rbac;
-
-use app\admin\model\UserModel;
-use think\Session;
-
-
-class Role {
-        /*
-         * 获取当前登录用户的角色
-         */
-        public static function get_role(){
-            $user_id = session('user.user_id');
-            return UserModel::get($user_id)['role_id'];
-        }
-}
+/**
+ * 配置要求检查配置
+ */
+return [
+    DS."admin".DS."dashboard".DS."index",
+    DS."admin".DS."user".DS."login",
+    DS."admin".DS."user".DS."logout",
+];
