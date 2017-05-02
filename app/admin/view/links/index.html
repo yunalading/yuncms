@@ -30,7 +30,7 @@
             {volist name='list' id='link'}
             <tr>
                 <td>{$link.link_name}</td>
-                <td><img src="{$link.link_logo}"></td>
+                <td><img src="{$link.link_logo|get_image_url=###}"></td>
                 <td>{$link.link_href}</td>
                 <td>{$link.link_target}</td>
                 <td>{$link.link_is_home?'是':'否'}</td>

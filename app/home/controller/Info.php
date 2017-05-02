@@ -8,15 +8,6 @@
 // +----------------------------------------------------------------------
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
-namespace app\home\controller;
 
-class Index extends HomeBaseController {
-    /**
-     * @return \think\response\View
-     */
-    public function index() {
-        $category = get_cate_list();
 
-        return view('/index');
-    }
-}
+

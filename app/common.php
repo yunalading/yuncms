@@ -30,10 +30,32 @@ function themes() {
     if (is_dir($dir_path)) {
         $dir = opendir($dir_path);
         while (($file = readdir($dir)) !== false) {
-            if ($file == '.' || $file == '..') {
+            //过滤读取的目录
+            if ($file == '.' || $file == '..' || substr($file, 0, 1) == '.') {
                 continue;
             }
             $dirs[] = $file;
+        }
+        closedir($dir);
+    }
+    return $dirs;
+}
+
+/**
+ * 获取模板列表
+ * @return array
+ */
+function template() {
+    $dirs = array();
+    $dir_path = APP_PATH . 'home' . DS . 'view' . DS .config("app.theme");
+    if (is_dir($dir_path)) {
+        $dir = opendir($dir_path);
+        while (($file = readdir($dir)) !== false) {
+            //过滤读取的目录
+            if ($file == '.' || $file == '..' || substr($file, 0, 1) == '.') {
+                continue;
+            }
+            $dirs[] = str_replace('.'.config('url_html_suffix'),'',$file);
         }
         closedir($dir);
     }

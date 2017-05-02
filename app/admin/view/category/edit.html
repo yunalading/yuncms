@@ -53,14 +53,27 @@
         <span class="am-form-caret"></span>
     </div>
     <div class="am-form-group all-width">
-        <label for="cate-tmp-list">请输入列表页模板</label>
-        <textarea name="category[list_template]" id="cate-tmp-list"  maxlength="200" required>{notempty name="category"
-                }{$category.list_template}{/notempty}</textarea>
+        <label>列表页模板</label>
+        <select name="category[list_template]" maxlength="200" required>
+            <option value="">请选择模板</option>
+            {volist name='template_list' id='template_list'}
+            <option value="{$template_list}" {notempty name="category" } {if condition="$category.list_template == $template_list" }selected{/if} {/notempty}>{$template_list}.{$Think.config.url_html_suffix}</option>
+            {/volist}
+        </select>
+        <!--<textarea name="category[list_template]" id="cate-tmp-list"  maxlength="200" required>{notempty name="category"-->
+                <!--}{$category.list_template}{/notempty}</textarea>-->
     </div>
+
     <div class="am-form-group all-width">
-        <label for="cate-tmp-detail">请输入详情页模板</label>
-        <textarea name="category[info_template]" id="cate-tmp-detail" maxlength="200" required>{notempty name="category"
-                }{$category.info_template}{/notempty}</textarea>
+        <label>详情页模板</label>
+        <select name="category[info_template]" maxlength="200" required>
+            <option value="">请选择模板</option>
+            {volist name='template_info' id='template_info'}
+            <option value="{$template_info}" {notempty name="category" } {if condition="$category.info_template == $template_info" }selected{/if} {/notempty}>{$template_info}.{$Think.config.url_html_suffix}</option>
+            {/volist}
+        </select>
+        <!--<textarea name="category[info_template]" id="cate-tmp-detail" maxlength="200" required>{notempty name="category"-->
+                <!--}{$category.info_template}{/notempty}</textarea>-->
     </div>
     <div class="am-form-group all-width">
         <label for="cate-seo-url">排序:</label>

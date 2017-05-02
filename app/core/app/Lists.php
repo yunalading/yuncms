@@ -8,15 +8,22 @@
 // +----------------------------------------------------------------------
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
-namespace app\home\controller;
 
-class Index extends HomeBaseController {
-    /**
-     * @return \think\response\View
-     */
-    public function index() {
-        $category = get_cate_list();
 
-        return view('/index');
+namespace app\core\app;
+use app\home\model\CategoryModel;
+
+class Lists extends BaseApp {
+
+    /*
+    * 添加修改栏目
+    */
+    public static function getCateList() {
+        $model = new CategoryModel();
+        $cate = $model->putCateOut();
+        return json($cate);
     }
+
+
+
 }

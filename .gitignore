@@ -10,3 +10,5 @@
 /.buildpath
 /composer.lock
 /public/data/install.lock
+/app/home/view/yuncms
+/public/static/home/yuncms

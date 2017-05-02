@@ -34,7 +34,7 @@
 
     <div class="am-form-group all-width">
         <label for="page-intro">页面简介:</label>
-        <textarea required  name="page[intro]" id="page-intro" maxlength="500" >{notempty name="pages"} {$pages.intro} {/notempty}</textarearequired>
+        <textarea required  name="page[intro]" id="page-intro" maxlength="500" >{notempty name="pages"} {$pages.intro} {/notempty}</textarea required>
     </div>
 
     <div class="am-form-group all-width">
@@ -79,12 +79,15 @@
                 } {$pages.content} {/notempty}</textarea>
     </div>
     <div class="am-form-group all-width">
-        <label for="page-temp">页面模板</label>
-        <textarea name="page[template]" id="page-temp" maxlength="200" minlength="3" required>{notempty
-                name="pages"
-                } {$pages.template} {/notempty}</textarea>
+        <label>页面模板</label>
+        <select name="page[template]" maxlength="200" required>
+            <option value="">请选择模板</option>
+            {volist name='template_info' id='template_info'}
+            <option value="{$template_info}" {notempty name="pages"}  {if condition="$pages.template == $template_info" }selected{/if}  {/notempty} >{$template_info}.{$Think.config.url_html_suffix}</option>
+            {/volist}
+        </select>
     </div>
-    <input type="hidden" name="id" value="{notempty name="pages"} {$pages.page_id} {/notempty}">
+    <input type="hidden" name="id" value="{notempty name='pages'} {$pages.page_id} {/notempty}">
     <button class="am-btn am-btn-primary button-text-left">{$action_name}页面</button>
     {:token()}
 </form>

@@ -6,5 +6,13 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: jabber <2898117012@qq.com>
+// | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
+
+/*
+ * 获取栏目列表
+ */
+function get_cate_list(){
+    $category = new \app\core\app\Lists();
+    dump(Lists::getCateList());
+}

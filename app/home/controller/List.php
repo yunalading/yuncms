@@ -8,15 +8,28 @@
 // +----------------------------------------------------------------------
 // | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
-namespace app\home\controller;
 
-class Index extends HomeBaseController {
+
+namespace app\home\controller;
+use app\home\model\CategoryModel;
+
+
+/**
+ * Class Category
+ * @package app\admin\controller
+ */
+
+class List extends HomeBaseController {
     /**
      * @return \think\response\View
      */
     public function index() {
-        $category = get_cate_list();
-
-        return view('/index');
+        //获取所有栏目
+        $model = new CategoryModel();
+        $category = $model->putCateOut();
+        $this->assign('category', $category);
+        return view();
     }
+
+
 }

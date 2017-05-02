@@ -37,6 +37,7 @@ class Page extends AdminBaseController {
         return view();
     }
     public function edit(){
+        $this->assign('template_info', template());
         $action_name = '添加';
         //模型列表，选择模型
         $module = new ModelModel();
