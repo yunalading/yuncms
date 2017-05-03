@@ -19,8 +19,7 @@
                 <!--<td>{$model_attr.pro_value}</td>-->
                 <td>
                     <a class="model-field-mod" data-type="{$model_attr.type}" data-id="{$model_attr['model_id']}"  data-url="<?=URL('/admin/model/attrupdate')?>" data-attr-id="{$model_attr['model_properties_id']}">修改</a>
-                    <a class="model-field-del"
-                          href="<?=URL('/admin/model/attrdelete',array('id'=>$model_attr['model_id'],'attr_id'=>$model_attr['model_properties_id']));?>">删除</a>
+                    <a class="model-field-del"  href="<?=URL('/admin/model/attrdelete',array('id'=>$model_attr['model_id'],'attr_id'=>$model_attr['model_properties_id']));?>">删除</a>
                 </td>
             </tr>
             {/volist}
