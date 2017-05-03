@@ -132,7 +132,7 @@ return [
         ], [
             'id' => 'memeber',
             'name' => '前台用户',
-            'iconClass' => 'am-icon-member-o',
+            'iconClass' => 'am-icon-group',
             'submenus' => [
                 [
                     'id' => 'member-list',
