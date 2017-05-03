@@ -175,9 +175,9 @@ class Model extends AdminBaseController
      */
     public function attrdelete(){
         $model = new ModelAttrModel();
-        if (!empty($this->param) && $this->param['id']) {
+        if (!empty($this->param) && $this->param['attr_id']) {
             try {
-                if ($model::destroy($this->param['id'], true)) {
+                if ($model::destroy($this->param['arrt_id'], true)) {
                     $this->success('删除成功!', url('/admin/model'));
                 } else {
                     $this->error('删除失败!', url('/admin/model'));

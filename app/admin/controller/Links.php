@@ -61,9 +61,14 @@ class Links extends AdminBaseController {
                     $this->error($upload->msg);
                 }
             }
-            $model->saveAll([$param])[0];
+            if(isset($this->param['id']) && intval($this->param['id'])>0){
+                $action_name = '修改';
+                $where['link_id'] = intval($this->param['id']);
+                $model->update($param,$where);
+            }else{
+                $model->create($param);
+            }
             $this->success($action_name.'成功!', url('/admin/links'));
-
         } else {
             if (!empty($this->param) && $this->param['id']) {
                 $link = LinkModel::get($this->param['id']);

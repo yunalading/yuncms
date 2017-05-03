@@ -7,7 +7,7 @@
             <div class="am-form-group">
                 <label>文化程度名称<span>(请填写常量值)</span></label>
                 <input type="text" name="edu[edu_level_name]" required  {notempty name="edu_level"}value="{$edu_level.edu_level_name}"{/notempty}>
-                {notempty name="edu_level"}<input type="hidden" name="id" required placeholder="请输入链接名称" value="{$edu_level.edu_level_id}">{/notempty}
+                {notempty name="edu_level"}<input type="hidden" name="id" required  value="{$edu_level.edu_level_id}">{/notempty}
             </div>
 
             <div class="am-form-group">

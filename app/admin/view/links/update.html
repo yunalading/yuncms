@@ -34,6 +34,7 @@
                 <label>排序<span></span></label>
                 <input type="text" name="link[link_sort]" value="{$link['link_sort']?$link['link_sort']:0}">
             </div>
+            {notempty name="link"}<input type="hidden" name="id" required  value="{$link.link_id}">{/notempty}
             <div class="am-form-group">
                 <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
             </div>

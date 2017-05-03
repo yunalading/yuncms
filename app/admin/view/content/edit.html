@@ -36,7 +36,7 @@
         <div class="am-form-group all-width">
             <div class="add-img-backgound">
                 <label for="content-cover">内容封面:</label>
-                <input class="inputfile-hide" required type="file" name="uploadimages" id="content-cover" {notempty
+                <input class="inputfile-hide" type="file" name="uploadimages" id="content-cover" {notempty
                        name="content" } value="{$content.cover}" {/notempty}>
                 <br><img class="button-text-left input-img-maxsize"
                          src="{notempty name='content'}{$content.cover|get_image_url=###}{/notempty}"
