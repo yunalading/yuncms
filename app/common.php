@@ -104,3 +104,10 @@ function byteFormat($bytes, $unit = "", $decimals = 2) {
     }
     return sprintf('%.' . $decimals . 'f' . $unit, $value);
 }
+
+/**
+ * 对象转数组打印(调试用)
+ */
+function dd($obj){
+    dump(json_decode(json_encode($obj),true));
+}

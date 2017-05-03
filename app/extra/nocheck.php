@@ -12,8 +12,9 @@
  * 配置要求检查配置
  */
 return [
-    DS."admin".DS."dashboard".DS."index",
-    DS."admin".DS."user".DS."login",
-    DS."admin".DS."user".DS."logout",
-    DS."admin".DS."content".DS."get_module_pro",
+    "/admin/dashboard/index",
+    "/admin/user/login",
+    "/admin/user/logout",
+    "/admin/content/get_module_pro",
+    "/admin/model/get_model_attr",
 ];

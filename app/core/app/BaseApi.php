@@ -11,18 +11,9 @@
 
 
 namespace app\core\app;
-use app\home\model\CategoryModel;
 
-class Lists extends BaseApp {
+class BaseApi {
 
-    /*
-    * 添加修改栏目
-    */
-    public static function getCateList() {
-        $model = new CategoryModel();
-        $cate = $model->putCateOut();
-        return json($cate);
-    }
 
 
 

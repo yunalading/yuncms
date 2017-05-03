@@ -11,10 +11,29 @@
 
 
 namespace app\core\app;
+use app\home\model\CategoryModel;
+use app\home\model\LinkModel;
 
-class BaseApp {
+class Api extends BaseApi {
+
+    /*
+    * 获取栏目
+    */
+    public static function getCateList($default) {
+        $model = new CategoryModel();
+        $cate = $model->putCateOut($default);
+        return $cate;
+    }
 
 
+    /*
+    * 获取友情链接
+    */
+    public static function getLinkList() {
+        $linkModel = new LinkModel();
+        $link = $linkModel::all();
+        return $link;
+    }
 
 
 }

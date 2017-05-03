@@ -11,6 +11,7 @@
 
 
 namespace app\home\controller;
+use app\home\controller\HomeBaseController;
 use app\home\model\CategoryModel;
 
 
@@ -19,15 +20,14 @@ use app\home\model\CategoryModel;
  * @package app\admin\controller
  */
 
-class List extends HomeBaseController {
+class Lists extends HomeBaseController {
     /**
      * @return \think\response\View
      */
     public function index() {
         //获取所有栏目
-        $model = new CategoryModel();
-        $category = $model->putCateOut();
-        $this->assign('category', $category);
+        dump($this->param);
+        die();
         return view();
     }
 
