@@ -7,7 +7,7 @@ var $ = require('jquery');
         // 增加多个正则
         $.AMUI.validator.patterns = $.extend($.AMUI.validator.patterns, {
             colorHex: /^(#([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))?$/,
-            latter:/^[A-Za-z0-9]+$/
+            latter:/^[a-zA-Z 0-9]+$/
         });
         // 增加单个正则
         $.AMUI.validator.patterns.yourpattern = /^your$/;
@@ -196,20 +196,12 @@ $('.model-table-button').click(function () {
 
 //模型添加页面字段删除事件处理程序
 $('.model-field-del').click(function () {
+    if (confirm('是否确定删除此项')) {
+        $(this).parent().parent().remove();
+    } else {
+        return false;
+    }
 
-    var remove=$(this).parent().parent();
-    $('#my-confirm').modal({
-        relatedTarget: this,
-        onConfirm: function(options) {
-            remove.remove();
-            $('#model-submit').click();
-
-        },
-        // closeOnConfirm: false,
-        onCancel: function() {
-            return false;
-        }
-    });
 });
 //模型添加页面根据select选择项切换对应页面显示
 $('.model-field-type').change(function () {
@@ -236,22 +228,12 @@ $(function () {
 });
 //模型添加页面字段子表格删除
 $('.model-remove').on('click', function () {
-    var remove=$(this).parent().parent();
-    $('#my-confirm').modal({
-        relatedTarget: this,
-        onConfirm: function(options) {
-            remove.remove();
-        },
-        // closeOnConfirm: false,
-        onCancel: function() {
-            return false;
-        }
-    });
-    /*    if (confirm('是否确定删除此项')) {
+    if (confirm('是否确定删除此项')) {
      $(this).parent().parent().remove();
+     $
      } else {
      return false;
-     }*/
+     }
 });
 
 $(function () {
@@ -303,40 +285,21 @@ $(function () {
                     if (type === 'select') {
                         var select= $('.' + mtype).children('table');
                         select.html(selects);
+
                         for (var i = 0; i < arr.length; i++) {
                             selectsnum++;
                             var keys = 'select-key[' + selectsnum + ']';
                             var vals = 'select-value[' + selectsnum + ']';
-                            select.append("<tr><td><input type='text' value=" + arr[i][0] + " name=" + keys + " ></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' class='js-pattern-latter' placeholder='请使用英文字符开头，可以带数字' value=" + arr[i][1] + " name=" + vals + "></td><td><a  class='model-remove' >删除</a></td></tr>");
-                            (function($) {
-                                if ($.AMUI && $.AMUI.validator) {
-                                    // 增加多个正则
-                                    $.AMUI.validator.patterns = $.extend($.AMUI.validator.patterns, {
-                                        colorHex: /^(#([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))?$/,
-                                        latter:/^[A-Za-z0-9]+$/
-                                    });
-                                    // 增加单个正则
-                                    $.AMUI.validator.patterns.yourpattern = /^your$/;
-                                }
-                            })(window.jQuery);
-
+                            select.append("<tr><td><input type='text' required value='"+ arr[i][0] +"'  name=" + keys + " ></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' required  value='" + arr[i][1] + "' name=" + vals + "></td><td><a  class='model-remove' >删除</a></td></tr>");
                             select.off('click', '**').on('click', '.model-remove', function () {
+                                if (confirm('是否确定删除此项')) {
+                                    $(this).parent().parent().remove();
+                                } else {
+                                    return false;
 
-                                var removes=$(this).parent().parent();
-                                alert(removes.html());
-                                $('#my-confirm').modal({
-                                    relatedTarget: this,
-                                    onConfirm: function(options) {
-                                        alert(removes.html());
-                                        removes.remove();
-                                    },
-                                    // closeOnConfirm: false,
-                                    onCancel: function() {
-                                        return false;
-                                    }
-                                });
+                                }
                             });
-                        }
+                            }
 
                     }
                     //如果类型为radio，根据数据读出来的字段项，新增字段的时候需要也是radio类型
@@ -347,7 +310,7 @@ $(function () {
                             radiosnum++;
                             var keyr = 'radio-key[' + radiosnum + ']';
                             var valr = 'radio-value[' + radiosnum + ']';
-                            radio.append("<tr> <td></td><td><input type='text'  value=" + arr[j][0] + " name=" + keyr + "></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' class='js-pattern-latter' placeholder='请使用英文字符开头，可以带数字' value=" + arr[j][1] + " name=" + valr + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+                            radio.append("<tr> <td></td><td><input type='text' required  value='" + arr[j][0] + "' name=" + keyr + "></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' required  value='" + arr[j][1] + "' name=" + valr + "></td><td><a  class='model-remove' >删除</a></td></tr>");
                             radio.off('click', '**').on('click', '.model-remove', function () {
                                 if (confirm('是否确定删除此项')) {
                                     $(this).parent().parent().remove();
@@ -365,7 +328,7 @@ $(function () {
                             checkboxsnum++;
                             var keyc = 'checkbox-key[' + checkboxsnum + ']';
                             var valc = 'checkbox-value[' + checkboxsnum + ']';
-                            checkbox.append("<tr> <td></td><td><input type='text' value=" + arr[k][0] + "  name=" + keyc + "></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text'  class='js-pattern-latter' placeholder='请使用英文字符开头，可以带数字' value=" + arr[k][1] + " name=" + valc + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+                            checkbox.append("<tr> <td></td><td><input type='text' required value='" + arr[k][0] + "'  name=" + keyc + "></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' required   value='"+ arr[k][1] + "' name=" + valc + "></td><td><a  class='model-remove' >删除</a></td></tr>");
                             checkbox.off('click', '**').on('click', '.model-remove', function () {
                                 if (confirm('是否确定删除此项')) {
                                     $(this).parent().parent().remove();
@@ -385,34 +348,25 @@ $(function () {
         if ($(this).parent().hasClass('model-field-type-select')) {
             var $selectTable = $(this).parent().children('table');
             selectsnum++;
-            alert(selectsnum);
             var keys = 'select-key[' + selectsnum + ']';
             var vals = 'select-value[' + selectsnum + ']';
-            $selectTable.append("<tr><td><input type='text' name=" + keys + "></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' class='js-pattern-latter' placeholder='请使用英文字符开头，可以带数字' name=" + vals + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+            $selectTable.append("<tr><td><input type='text' required name=" + keys + "></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' required  name=" + vals + "></td><td><a  class='model-remove' >删除</a></td></tr>");
             $selectTable.off('click', '**').on('click', '.model-remove', function () {
-
-                $('#my-confirm').modal({
-                    relatedTarget: this,
-                    onConfirm: function(options) {
-                        var $link = $(this.relatedTarget).prev('a');
-                        var msg = $link.length ? '你要删除的链接 ID 为 ' + $link.data('id') :
-                            '确定了，但不知道要整哪样';
-                        alert(msg);
-                    },
-                    // closeOnConfirm: false,
-                    onCancel: function() {
-                        alert('算求，不弄了');
-                    }
-                });
+                if (confirm('是否确定删除此项')) {
+                    $(this).parent().parent().remove();
+                } else {
+                    return false;
+                }
             });
+            }
 
-        }
+
         else if ($(this).parent().hasClass('model-field-type-radio')) {
             var $radioTable = $(this).parent().children('table');
             radiosnum++;
             var keyr = 'radio-key[' + radiosnum + ']';
             var valr = 'radio-value[' + radiosnum + ']';
-            $radioTable.append("<tr> <td><td><input type='text'  name=" + keyr + "></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' class='js-pattern-latter' placeholder='请使用英文字符开头，可以带数字' name=" + valr + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+            $radioTable.append("<tr> <td><td><input type='text' required name=" + keyr + "></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' required  name=" + valr + "></td><td><a  class='model-remove' >删除</a></td></tr>");
             $radioTable.off('click', '**').on('click', '.model-remove', function () {
                 if (confirm('是否确定删除此项')) {
                     $(this).parent().parent().remove();
@@ -427,7 +381,7 @@ $(function () {
             checkboxsnum++;
             var keyc = 'checkbox-key[' + checkboxsnum + ']';
             var valc = 'checkbox-value[' + checkboxsnum + ']';
-            $checkboxTable.append("<tr> <td></td><td><input type='text'  name=" + keyc + "></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' class='js-pattern-latter' placeholder='请使用英文字符开头，可以带数字' name=" + valc + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+            $checkboxTable.append("<tr> <td></td><td><input type='text' required name=" + keyc + "></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' required  name=" + valc + "></td><td><a  class='model-remove' >删除</a></td></tr>");
             $checkboxTable.off('click', '**').on('click', '.model-remove', function () {
                 if (confirm('是否确定删除此项')) {
                     $(this).parent().parent().remove();

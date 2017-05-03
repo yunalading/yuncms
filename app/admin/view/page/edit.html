@@ -133,6 +133,7 @@
                     if (datas['info'].length > 0) {
                         /* console.log(datas['info']);*/
                         var html_pro = get_model_pro_html(datas['info']);
+                        console.log(datas['info']);
                         $('#html_pro').html(html_pro);
                     }
                 } else {
@@ -197,6 +198,7 @@
                         str+='>'+rad[0]+'</label>';
                     }
                 }
+                str +='</div>';
             }
             else if (data[i]['type'] == 'checkbox') {
                 str +='<div class="am-form-group all-width">';
