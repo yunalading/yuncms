@@ -290,7 +290,7 @@ $(function () {
                             selectsnum++;
                             var keys = 'select-key[' + selectsnum + ']';
                             var vals = 'select-value[' + selectsnum + ']';
-                            select.append("<tr><td><input type='text' value=" + arr[i][0] + " name=" + keys + " ></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' class='js-pattern-latter' placeholder='请使用英文字符开头，可以带数字' value=" + arr[i][1] + " name=" + vals + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+                            select.append("<tr><td><input type='text' required value='"+ arr[i][0] +"'  name=" + keys + " ></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' required class='js-pattern-latter' placeholder='请使用英文字符开头，可以带数字' value='" + arr[i][1] + "' name=" + vals + "></td><td><a  class='model-remove' >删除</a></td></tr>");
                             select.off('click', '**').on('click', '.model-remove', function () {
                                 if (confirm('是否确定删除此项')) {
                                     $(this).parent().parent().remove();
@@ -310,7 +310,7 @@ $(function () {
                             radiosnum++;
                             var keyr = 'radio-key[' + radiosnum + ']';
                             var valr = 'radio-value[' + radiosnum + ']';
-                            radio.append("<tr> <td></td><td><input type='text'  value=" + arr[j][0] + " name=" + keyr + "></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' class='js-pattern-latter' placeholder='请使用英文字符开头，可以带数字' value=" + arr[j][1] + " name=" + valr + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+                            radio.append("<tr> <td></td><td><input type='text' required  value='" + arr[j][0] + "' name=" + keyr + "></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' required class='js-pattern-latter' placeholder='请使用英文字符开头，可以带数字' value='" + arr[j][1] + "' name=" + valr + "></td><td><a  class='model-remove' >删除</a></td></tr>");
                             radio.off('click', '**').on('click', '.model-remove', function () {
                                 if (confirm('是否确定删除此项')) {
                                     $(this).parent().parent().remove();
@@ -328,7 +328,7 @@ $(function () {
                             checkboxsnum++;
                             var keyc = 'checkbox-key[' + checkboxsnum + ']';
                             var valc = 'checkbox-value[' + checkboxsnum + ']';
-                            checkbox.append("<tr> <td></td><td><input type='text' value=" + arr[k][0] + "  name=" + keyc + "></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text'  class='js-pattern-latter' placeholder='请使用英文字符开头，可以带数字' value=" + arr[k][1] + " name=" + valc + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+                            checkbox.append("<tr> <td></td><td><input type='text' required value='" + arr[k][0] + "'  name=" + keyc + "></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' required  class='js-pattern-latter' placeholder='请使用英文字符开头，可以带数字' value='"+ arr[k][1] + "' name=" + valc + "></td><td><a  class='model-remove' >删除</a></td></tr>");
                             checkbox.off('click', '**').on('click', '.model-remove', function () {
                                 if (confirm('是否确定删除此项')) {
                                     $(this).parent().parent().remove();
@@ -348,10 +348,9 @@ $(function () {
         if ($(this).parent().hasClass('model-field-type-select')) {
             var $selectTable = $(this).parent().children('table');
             selectsnum++;
-            alert(selectsnum);
             var keys = 'select-key[' + selectsnum + ']';
             var vals = 'select-value[' + selectsnum + ']';
-            $selectTable.append("<tr><td><input type='text' name=" + keys + "></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' class='js-pattern-latter' placeholder='请使用英文字符开头，可以带数字' name=" + vals + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+            $selectTable.append("<tr><td><input type='text' required name=" + keys + "></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' required class='js-pattern-latter' placeholder='请使用英文字符开头，可以带数字' name=" + vals + "></td><td><a  class='model-remove' >删除</a></td></tr>");
             $selectTable.off('click', '**').on('click', '.model-remove', function () {
                 if (confirm('是否确定删除此项')) {
                     $(this).parent().parent().remove();
@@ -367,7 +366,7 @@ $(function () {
             radiosnum++;
             var keyr = 'radio-key[' + radiosnum + ']';
             var valr = 'radio-value[' + radiosnum + ']';
-            $radioTable.append("<tr> <td><td><input type='text'  name=" + keyr + "></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' class='js-pattern-latter' placeholder='请使用英文字符开头，可以带数字' name=" + valr + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+            $radioTable.append("<tr> <td><td><input type='text' required name=" + keyr + "></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' required class='js-pattern-latter' placeholder='请使用英文字符开头，可以带数字' name=" + valr + "></td><td><a  class='model-remove' >删除</a></td></tr>");
             $radioTable.off('click', '**').on('click', '.model-remove', function () {
                 if (confirm('是否确定删除此项')) {
                     $(this).parent().parent().remove();
@@ -382,7 +381,7 @@ $(function () {
             checkboxsnum++;
             var keyc = 'checkbox-key[' + checkboxsnum + ']';
             var valc = 'checkbox-value[' + checkboxsnum + ']';
-            $checkboxTable.append("<tr> <td></td><td><input type='text'  name=" + keyc + "></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' class='js-pattern-latter' placeholder='请使用英文字符开头，可以带数字' name=" + valc + "></td><td><a  class='model-remove' >删除</a></td></tr>");
+            $checkboxTable.append("<tr> <td></td><td><input type='text' required name=" + keyc + "></td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><input type='text' required class='js-pattern-latter' placeholder='请使用英文字符开头，可以带数字' name=" + valc + "></td><td><a  class='model-remove' >删除</a></td></tr>");
             $checkboxTable.off('click', '**').on('click', '.model-remove', function () {
                 if (confirm('是否确定删除此项')) {
                     $(this).parent().parent().remove();
