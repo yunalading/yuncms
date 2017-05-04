@@ -230,7 +230,7 @@ return [
                             'href' => '/admin/nav/remove'
                         ], [
                             'name' => '添加/编辑',
-                            'href' => '/admin/nav/update'
+                            'href' => '/admin/nav/edit'
                         ]
                     ]
                 ], [

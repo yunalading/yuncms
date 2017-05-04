@@ -18,7 +18,7 @@ use app\home\model\CategoryModel;
 
 
 /**
- * Class Category
+ * Class Lists
  * @package app\admin\controller
  */
 
@@ -51,18 +51,21 @@ class Lists extends HomeBaseController {
             }
             $this->assign('attrs', $attrs);
             unset($this->param['category_id']);
-            dd($this->param);
+            //dd($this->param);
             //根据栏目获取所有文章
             $articleModel = new ContentModel();
-            $where['category_id'] = $cid;
+            //unset($where);
             //有属性值选择提交过来
-//            if(isset($this->param)){
-//                $list = $articleModel->where($where)->field('content_id,category_id,category_id,cover')->paginate();
-//            }else{
-//                $list = $articleModel->where($where)->field('a.content_id,a.category_id,a.cover,g.model_id')->alias('a')->join('__CATEGORY__ c','a.category_id = g.category_id')->paginate();
-//            }
-            $list = $articleModel->alias('a')->where(['a.category_id'=>$cid])->field('a.content_id,a.category_id,a.cover,c.model_id,')->join('__CATEGORY__ c','a.category_id = c.category_id')->paginate();
-//            ->join('__MODEL_PROPERTIES__ p','c.model_id = p.model_id')
+            if(isset($this->param) && !empty($this->param)){
+                $where['a.category_id'] = $cid;
+                foreach($this->param as $k=>$pp){
+                    //$where['ap.value'] = $pp;
+                }
+                $list = $articleModel->alias('a')->where($where)->group('a.content_id')->field('a.content_id,a.category_id,a.cover,c.model_id,p.model_properties_id,p.pro_name,ap.value')->join('__CATEGORY__ c','a.category_id = c.category_id')->join('__MODEL_PROPERTIES__ p','c.model_id = p.model_id')->join('__ARTICLE_PROPERTIES__ ap','a.content_id = ap.article_id')->paginate();
+            }else{
+                $where['category_id'] = $cid;
+                $list = $articleModel->where($where)->field('content_id,category_id,category_id,cover')->paginate();
+            }
             $page = $list->render();
             $this->assign('list', $list);
             $this->assign('page', $page);

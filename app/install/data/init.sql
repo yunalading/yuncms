@@ -40,7 +40,7 @@ INSERT INTO `yc_role_access` (`user_role_access_id`, `role_id`, `access`) VALUES
 (33, 1, '/admin/system/general.html'),
 (34, 1, '/admin/nav/index.html'),
 (35, 1, '/admin/nav/remove.html'),
-(36, 1, '/admin/nav/update.html'),
+(36, 1, '/admin/nav/edit.html'),
 (37, 1, '/admin/menus/index.html'),
 (38, 1, '/admin/menus/remove.html'),
 (39, 1, '/admin/menus/update.html'),
