@@ -25,6 +25,7 @@ class Index extends HomeBaseController {
         $article_one = get_article_list(6);
         $this->assign('article_one',$article_one);
         //dd($article_one);
-        return view('/index');
+        $template ='index';
+        return $this->show($template);
     }
 }
