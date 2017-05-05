@@ -30,8 +30,11 @@
 </head>
 <body>
 <header class="header">
+    <?php
+            //栏目列表
+            $category = get_cate_list(['2','3','4','5']);
+    ?>
     <div class="header-container am-cf ">
-
         <div class="header-logo-div">
             <div class="pull-left">
                 <a class="header-logo">
@@ -45,12 +48,11 @@
             <button class="am-show-sm-only am-collapsed font f-btn" data-am-collapse="{target: '.header-nav'}">
                 &#xe68b;</button>
         </div>
-
         <nav>
             <ul class="header-nav am-collapse" style="height: 0px;">
-                <li class="on"><a href="<?= URL('/index');?>">首页</a></li>
+                <li {if(!isset($cid)) || $cid<1} class="on" {/if}><a href="<?=URL('/index');?>">首页</a></li>
                 {volist name="category" id="category"}
-                <li><a href="{$category.category_id|get_cate_url=###}">{$category.category_name}</a></li>
+                <li {notempty name="cid"} {if($category.category_id == $cid)} class="on" {/if}{/notempty}><a href="{$category.category_id|get_cate_url=###}">{$category.category_name}</a></li>
                 {/volist}
             </ul>
         </nav>
@@ -59,3 +61,4 @@
 
 </div>
 </header>
+

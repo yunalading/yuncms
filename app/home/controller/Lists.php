@@ -28,12 +28,6 @@ class Lists extends HomeBaseController {
      * @return \think\response\View
      */
     public function index() {
-        //栏目列表
-        $category = get_cate_list(['2','3','4','5']);
-        $this->assign('category',$category);
-        //友情链接列表
-        $link = get_link_list();
-        $this->assign('link',$link);
         $template = '';
         if(isset($this->param['category_id']) && $this->param['category_id']>0){
             $categoryModel = new CategoryModel();
