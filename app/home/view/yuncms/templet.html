@@ -1,0 +1,74 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+
+<div class="templet_banner">
+    <img src="/static/home/yuncms/images/templet_bj.jpg"/>
+    <span data-am-scrollspy="{animation:'slide-left'}">免费海量精美网站风格,满足您的不同建站需求</span>
+</div>
+<div class="templet_category">
+    <div class="cms-g">
+        {notempty name="attrs.styles"}
+            {volist name="attrs.styles.values" id="styles" key="k"}
+            <span  {$styles|get_attr_value|get_select_on=###,$selects,'styles','class="attrs on"'}  onclick="select_attr(this);" data-attr-value="{$styles|get_attr_value=###}">{$styles|get_attr_key=###}
+            <input type="hidden" value="{$styles|get_attr_value=###}" id="styles_{$k}" /></span>
+            {/volist}
+        {/notempty}
+    </div>
+</div>
+<div class="templet_color">
+    <div class="cms-g">
+        {notempty name="attrs.tone"}
+        {volist name="attrs.tone.values" id="tone" key="k"}
+        <span class="{$tone|get_attr_value=###} {$tone|get_attr_value|get_select_on=###,$selects,'tone','attrs on'}"  onclick="select_attr(this);" data-attr-value="{$styles|get_attr_value=###}">
+            <input type="hidden" value="{$tone|get_attr_value=###}" id="tone_{$k}" /></span>
+        {/volist}
+        {/notempty}
+    </div>
+</div>
+<div class="templet_list">
+    <div class="cms-g">
+        {volist name='list' id='lists'}
+        <div class="am-u-sm-6 am-u-md-4 am-u-lg-3">
+            <a href="{$lists.content_id|get_info_url=###}"><img src="{$lists.cover|get_image_url=###}"/></a>
+            <div class="templet_list_div">
+                <span class="am-hide-sm">编号：{$lists.number}</span>
+                <a href="{$lists.content_id|get_info_url=###}">预览</a>
+                <!--<a href="#">制作</a>-->
+            </div>
+        </div>
+        {/volist}
+    </div>
+</div>
+<div class="page">
+    <div class="cms-g">
+        {$page}
+    </div>
+</div>
+{include file="footer" /}
+
+
+
+<script type="text/javascript">
+    /* <?=URL('home/lists/index',array('styles'=>1,'tone'=>'f_bc1','category_id'=>$cid));?> */
+    function select_attr(el){
+        //alert(el.getElementsByTagName('input')[0].value);
+        var attrs = document.getElementsByClassName('attrs');
+        var attr_array = [];
+        for(var i=0,len=attrs.length;i<len;i++){
+            //alert(attrs[i].className);
+            if(jshasClass(attrs[i],'on') == true){
+                //alert(attrs[i].getElementsByTagName('input')[0].value);
+                alert(attrs[i].getAttribute('data-attr-value');
+                //attr_array.push(attrs[i].getElementsByTagName('input')[0].value);
+            }
+        }
+        alert(attr_array);
+
+
+    }
+
+    function jshasClass(elem, cls) {
+        cls = cls || '';
+        if (cls.replace(/\s/g, '').length == 0) return false; //当cls没有参数时，返回false
+        return new RegExp(' ' + cls + ' ').test(' ' + elem.className + ' ');
+    }
+</script>
