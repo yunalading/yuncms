@@ -30,8 +30,8 @@
             <div id="model-table-add-1">
                 <select data-am-selected name="attr[pro_cate]" class="model-field-type" data-url="<?=URL('/admin/model/get_model_attr');?>" required >
                     <option >请选择字段类型</option>
-                    {volist name='attr_config' id='attr_config' key="k" }
-                    <option value="{$k}">{$attr_config}</option>
+                    {volist name='attr_config' id='attr_config' }
+                    <option value="{$key}">{$attr_config}</option>
                     {/volist}
                 </select>
             </div>

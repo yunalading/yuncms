@@ -19,6 +19,10 @@
         <span class="am-form-caret"></span>
     </div>
 
+    <div id="html_pro" class="html_pro_style">
+    </div>
+
+
     <div class="am-form-group all-width">
         <label>标签</label>
         <select id="cate-parent-num" name="page[tag_id]" maxlength="200" required>
@@ -29,8 +33,6 @@
         <span class="am-form-caret"></span>
     </div>
 
-    <div id="html_pro" class="html_pro_style">
-    </div>
 
     <div class="am-form-group all-width">
         <label for="page-intro">页面简介:</label>
@@ -107,6 +109,7 @@
 
     function get_model_pro() {
         var model_id = $("#cate-parent-num option:checked").data("model");
+        $('#html_pro').html('');
         model_pro_info(model_id);
     }
 
