@@ -81,3 +81,18 @@ function get_attr_key($str){
     $strs = explode('|',$str);
     return  $strs[0];
 }
+
+/*
+ * 多属性值获取选中状态
+ * @param $attr 属性值
+ * @param $selects 默认选中的属性数组
+ * @param $key 当前属性值的name标识
+ * @$class 选中属性输出的class样式
+ */
+function get_select_on($attr,$selects,$key,$class){
+    if(isset($selects[$key]) && $selects[$key] == $attr){
+        return $class;
+    }else{
+        return '';
+    }
+}

@@ -37,4 +37,6 @@ abstract class HomeBaseController extends BaseController {
     public function show($template){
         return $this->fetch(APP_PATH.request()->module().DS.'view'.DS.config('app.theme').DS.$template.'.'.config('url_html_suffix'));
     }
+
+
 }

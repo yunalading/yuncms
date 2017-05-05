@@ -39,18 +39,24 @@ class Info extends HomeBaseController
         $template = '';
         if (isset($this->param['article_id']) && $this->param['article_id'] > 0) {
             $articleModel = new ContentModel();
-            $article_one = $articleModel->get(intval($this->param['article_id']));
+            $article = $articleModel->get(intval($this->param['article_id']));
             $categoryModel = new CategoryModel();
-            $cid = $article_one['category_id'];
+            $cid = $article['category_id'];
             $category_one = $categoryModel->get($cid);
-            $this->assign('article_one',$article_one);
+            $this->assign('article',$article);
             $this->assign('category_one',$category_one);
             $template = $category_one['info_template'];
             //属性值
             $articleProModel = new ArticleProModel();
-            $attrs = $articleProModel::all(array("article_id" => intval($this->param['article_id'])));
-            $this->assign('attrs', $attrs);
-            dd($attrs);
+            $where['a.article_id'] = intval($this->param['article_id']);
+            $article['category_name'] = $category_one['category_name'];
+            $attrs = $articleProModel->alias('a')->where($where)->field('a.*,p.model_properties_id,p.pro_name,p.pro_key,p.model_id,p.pro_value')->join('__MODEL_PROPERTIES__ p','p.model_properties_id = a.model_properties_id')->select();
+            if(!empty($attrs)){
+                foreach($attrs as $v){
+                    $article[$v['pro_key']] = $v['value'];
+                }
+            }
+            //dd($article);
         }else{
             $this->error('请先选择要查看的内容!');
         }
