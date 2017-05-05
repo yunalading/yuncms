@@ -135,11 +135,13 @@
 
     $(function () {
         var model_id = $("#cate-parent-num").find("option:selected").attr("data-model");
+
         model_pro_info(model_id);
     });
 
     function get_model_pro() {
         var model_id = $("#cate-parent-num option:checked").data("model");
+        $('#html_pro').html('');
         model_pro_info(model_id);
     }
 
