@@ -44,26 +44,24 @@
 {include file="footer" /}
 
 
-
 <script type="text/javascript">
-    /* <?=URL('home/lists/index',array('styles'=>1,'tone'=>'f_bc1','category_id'=>$cid));?> */
-    function select_attr(){
+    function select_attr(el){
+        var cur_key = el.getAttribute('attr_key');
+        var cur_val = el.getAttribute('attr_value');
         var attrs = document.getElementsByClassName('attrs');
-        var str = '{';
+        var str = '';
         for(var i=0,len=attrs.length;i<len;i++){
             if(jshasClass(attrs[i],'on') == true){
                 var attr_key = attrs[i].getAttribute('attr_key');
                 var attr_val = attrs[i].getAttribute('attr_value');
-                str += '"'+attr_key+'":'+attr_val+',';
+                if(attr_key == cur_key){
+                    attr_val = cur_val;
+                }
+                str += '/'+attr_key+'/'+attr_val;
             }
         }
-        str += '"category_id":'+{$cid};
-//        if(str.substr(str.length-1,1) == ','){
-//            str = str.substr(0,str.length-1);
-//        }
-        str +='}';
-        alert(str);
-        window.location.href = "<?=URL('home/lists/index',["+str+"]);?>";
+        str +='/category_id/'+{$cid};
+        window.location.href = "/home/lists/index"+str;
     }
 
     function jshasClass(elem, cls) {
@@ -71,6 +69,5 @@
         if (cls.replace(/\s/g, '').length == 0) return false; //当cls没有参数时，返回false
         return new RegExp(' ' + cls + ' ').test(' ' + elem.className + ' ');
     }
-
-
 </script>
+

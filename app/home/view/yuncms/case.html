@@ -10,7 +10,7 @@
         <ul>
             {notempty name="attrs.anli"}
             {volist name="attrs.anli.values" id="anli" key="k"}
-            <li {$anli|get_attr_value|get_select_on=###,$selects,'anli','class="attrs on"'} onclick="select_attr(this);" data-attr-value="{$anli|get_attr_value=###}" ><a href="#">{$anli|get_attr_key=###}</a><input type="hidden" value="{$anli|get_attr_value=###}" id="anli_{$k}" /></li>
+            <li {$anli|get_attr_value|get_select_on=###,$selects,'anli','class="attrs on"'} onclick="select_attr(this);" attr_key="anli" attr_value="{$anli|get_attr_value=###}" ><a href="#">{$anli|get_attr_key=###}</a><input type="hidden" value="{$anli|get_attr_value=###}" id="anli_{$k}" /></li>
             {/volist}
             {/notempty}
         </ul>
@@ -59,3 +59,30 @@
 
 
 {include file="footer" /}
+
+<script type="text/javascript">
+    function select_attr(el){
+        var cur_key = el.getAttribute('attr_key');
+        var cur_val = el.getAttribute('attr_value');
+        var attrs = document.getElementsByClassName('attrs');
+        var str = '';
+        for(var i=0,len=attrs.length;i<len;i++){
+            if(jshasClass(attrs[i],'on') == true){
+                var attr_key = attrs[i].getAttribute('attr_key');
+                var attr_val = attrs[i].getAttribute('attr_value');
+                if(attr_key == cur_key){
+                    attr_val = cur_val;
+                }
+                str += '/'+attr_key+'/'+attr_val;
+            }
+        }
+        str +='/category_id/'+{$cid};
+        window.location.href = "/home/lists/index"+str;
+    }
+
+    function jshasClass(elem, cls) {
+        cls = cls || '';
+        if (cls.replace(/\s/g, '').length == 0) return false; //当cls没有参数时，返回false
+        return new RegExp(' ' + cls + ' ').test(' ' + elem.className + ' ');
+    }
+</script>
