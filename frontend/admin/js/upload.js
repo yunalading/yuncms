@@ -6,8 +6,12 @@ var $ = require('jquery');
     if ($.AMUI && $.AMUI.validator) {
         // 增加多个正则
         $.AMUI.validator.patterns = $.extend($.AMUI.validator.patterns, {
-            colorHex: /^(#([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))?$/,
-            latter:/^[a-zA-Z 0-9]+$/
+            //英文数字正则
+            latter:/^[a-zA-Z 0-9]+$/,
+            //手机号码正则
+            phone:/^1(3|4|5|7|8)\d{9}$/,
+            //QQ正则
+            qq:/^\d{5,12}$/
         });
         // 增加单个正则
         $.AMUI.validator.patterns.yourpattern = /^your$/;
@@ -198,6 +202,7 @@ $('.model-table-button').click(function () {
 $('.model-field-del').click(function () {
     if (confirm('是否确定删除此项')) {
         $(this).parent().parent().remove();
+
     } else {
         return false;
     }

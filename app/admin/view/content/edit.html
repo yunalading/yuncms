@@ -14,7 +14,7 @@
         </div>-->
         <div class="am-form-group all-width">
             <label>标题</label>
-            <input type="text" name="content[title]" {notempty name="content" } value="{$content.title}" {/notempty}>
+            <input type="text" required name="content[title]" {notempty name="content" } value="{$content.title}" {/notempty}>
         </div>
 
 
@@ -59,14 +59,14 @@
 
         <div class="am-form-group all-width">
             <label>简介</label>
-            <textarea name="content[intro]">{notempty name="content"} {$content.intro} {/notempty}</textarea>
+            <textarea required name="content[intro]">{notempty name="content"} {$content.intro} {/notempty}</textarea>
             <div></div>
         </div>
         <div class="am-form-group all-width">
             <label>内容</label>
             <div class="editor-position-display">
                 <div id="test-editormd">
-                        <textarea name="content[content]" style="display:none;" id="ts">{notempty name="content"
+                        <textarea required name="content[content]" style="display:none;" id="ts">{notempty name="content"
                             } {$content.content} {/notempty}</textarea>
                 </div>
             </div>
