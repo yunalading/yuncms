@@ -8,8 +8,7 @@
     <div class="cms-g">
         {notempty name="attrs.styles"}
             {volist name="attrs.styles.values" id="styles" key="k"}
-            <span  {$styles|get_attr_value|get_select_on=###,$selects,'styles','class="attrs on"'}  onclick="select_attr(this);" data-attr-value="{$styles|get_attr_value=###}">{$styles|get_attr_key=###}
-            <input type="hidden" value="{$styles|get_attr_value=###}" id="styles_{$k}" /></span>
+            <span  {$styles|get_attr_value|get_select_on=###,$selects,'styles','class="attrs on"'}  onclick="select_attr(this);" attr_key="styles" attr_value="{$styles|get_attr_value=###}">{$styles|get_attr_key=###}</span>
             {/volist}
         {/notempty}
     </div>
@@ -18,8 +17,7 @@
     <div class="cms-g">
         {notempty name="attrs.tone"}
         {volist name="attrs.tone.values" id="tone" key="k"}
-        <span class="{$tone|get_attr_value=###} {$tone|get_attr_value|get_select_on=###,$selects,'tone','attrs on'}"  onclick="select_attr(this);" data-attr-value="{$styles|get_attr_value=###}">
-            <input type="hidden" value="{$tone|get_attr_value=###}" id="tone_{$k}" /></span>
+        <span class="{$tone|get_attr_value=###} {$tone|get_attr_value|get_select_on=###,$selects,'tone','attrs on'}"  onclick="select_attr(this);" attr_key="tone" attr_value="{$tone|get_attr_value=###}"></span>
         {/volist}
         {/notempty}
     </div>
@@ -49,21 +47,23 @@
 
 <script type="text/javascript">
     /* <?=URL('home/lists/index',array('styles'=>1,'tone'=>'f_bc1','category_id'=>$cid));?> */
-    function select_attr(el){
-        //alert(el.getElementsByTagName('input')[0].value);
+    function select_attr(){
         var attrs = document.getElementsByClassName('attrs');
-        var attr_array = [];
+        var str = '{';
         for(var i=0,len=attrs.length;i<len;i++){
-            //alert(attrs[i].className);
             if(jshasClass(attrs[i],'on') == true){
-                //alert(attrs[i].getElementsByTagName('input')[0].value);
-                alert(attrs[i].getAttribute('data-attr-value');
-                //attr_array.push(attrs[i].getElementsByTagName('input')[0].value);
+                var attr_key = attrs[i].getAttribute('attr_key');
+                var attr_val = attrs[i].getAttribute('attr_value');
+                str += '"'+attr_key+'":'+attr_val+',';
             }
         }
-        alert(attr_array);
-
-
+        str += '"category_id":'+{$cid};
+//        if(str.substr(str.length-1,1) == ','){
+//            str = str.substr(0,str.length-1);
+//        }
+        str +='}';
+        alert(str);
+        window.location.href = "<?=URL('home/lists/index',["+str+"]);?>";
     }
 
     function jshasClass(elem, cls) {
@@ -71,4 +71,6 @@
         if (cls.replace(/\s/g, '').length == 0) return false; //当cls没有参数时，返回false
         return new RegExp(' ' + cls + ' ').test(' ' + elem.className + ' ');
     }
+
+
 </script>
