@@ -34,27 +34,27 @@ class Server extends Upload
         }
         $newConf = array_merge(config('upload.image'), $conf);
         $res = (object)array(); //申明一个空对象返回
-        //try{
+        try{
             $size = ceil($newConf['maxSize']*1048576);
             $info = $file->validate(['size' => $size, 'ext' => $newConf['allowExts']])->move(ROOT_PATH . 'public' . DS . $newConf['savePath']);
-            if (!$info) {
+            if (!is_object($info)) {
                 $res->info=$file->getError();
                 $res->code=0;
                 $res->msg="验证失败!";
-                return $res;
+            }else{
+                $res->pathUrl =  $newConf['savePath'] .DS. $info->getSaveName();
+                $res->info=$info;
+                $res->code=1;
+                $res->msg="上传成功!";
             }
-            $res->pathUrl =  $newConf['savePath'] .DS. $info->getSaveName();
-            $res->info=$info;
-            $res->code=1;
-            $res->msg="上传成功!";
-//        } catch(\Exception $e) {
-//            //如果出错这里返回报错信息
-//            //return $e;
-//            $res->info=$e->getMessage();
-//            $res->code=0;
-//            $res->msg="上传失败!";
-//            return $res;
-//        }
+        } catch(\Exception $e) {
+            //如果出错这里返回报错信息
+            //return $e;
+            $res->info=$e->getMessage();
+            $res->code=0;
+            $res->msg="上传失败!";
+            return $res;
+        }
         return $res;
     }
 }
