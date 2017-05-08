@@ -36,7 +36,7 @@ class QiNiu extends Upload
         }
         $newConf = array_merge(config('upload.image'), $conf);
         $res = (object)array(); //申明一个空对象返回
-        try {
+        //try {
             $size = ceil($newConf['maxSize']*1048576);
             $info = $file->validate(['size' => $size, 'ext' => $newConf['allowExts']])->move(ROOT_PATH . 'public' . DS . $newConf['savePath']);
             if (!$info) {
@@ -65,12 +65,12 @@ class QiNiu extends Upload
                 $res->code = 1;
                 $res->msg = "七牛上传成功!";
             }
-        } catch (\Exception $e) {
-            $res->info = $e->getMessage();
-            $res->code = 0;
-            $res->msg = "上传失败!";
-            return $res;
-        }
+//        } catch (\Exception $e) {
+//            $res->info = $e->getMessage();
+//            $res->code = 0;
+//            $res->msg = "上传失败!";
+//            return $res;
+//        }
         return $res;
     }
 
