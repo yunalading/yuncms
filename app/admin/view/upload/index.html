@@ -7,9 +7,9 @@
                 <label for="savePath">默认上传方式</label>
                 <div>
                     <select data-am-selected name="upload[image][uploadType]" class="upload-option">
-                        <option value="Server">本地服务器</option>
-                        <option value="QiNiu">七牛云存储</option>
-                        <option value="Oss">阿里云OSS</option>
+                        <option value="Server" {notempty name="config.image" } {if condition="$config.image.uploadType == 'Server'" } selected {/if} {/notempty}>本地服务器</option>
+                        <option value="QiNiu" {notempty name="config.image" } {if condition="$config.image.uploadType == 'QiNiu'" } selected {/if} {/notempty}>七牛云存储</option>
+                        <option value="Oss" {notempty name="config.image"} {if condition="$config.image.uploadType == 'Oss'" } selected {/if} {/notempty}>阿里云OSS</option>
                     </select>
                 </div>
             </div>
@@ -59,9 +59,9 @@
             <div class="tab-control">
                 <div class="am-tabs am-tabs-default" id="am-tabs-style"  data-am-widget="tabs">
                     <ul class="am-tabs-nav am-cf">
-                        <li class="am-tab-Server am-active"><a href="[data-tab-panel-0]">本地服务器</a></li>
-                        <li class="am-tab-QiNiu"><a href="[data-tab-panel-1]">七牛云存储</a></li>
-                        <li class="am-tab-Oss"><a href="[data-tab-panel-2]">阿里云OSS</a></li>
+                        <li class="am-tab-Server {notempty name="config.image"} {if condition="$config.image.uploadType == 'Server'" } am-active {/if} {/notempty} "><a href="[data-tab-panel-0]">本地服务器</a></li>
+                        <li class="am-tab-QiNiu" {notempty name="config.image"} {if condition="$config.image.uploadType == 'QiNiu'" } am-active {/if} {/notempty} ><a href="[data-tab-panel-1]">七牛云存储</a></li>
+                        <li class="am-tab-Oss" {notempty name="config.image"} {if condition="$config.image.uploadType == 'Oss'" } am-active {/if} {/notempty} ><a href="[data-tab-panel-2]">阿里云OSS</a></li>
                     </ul>
                     <div class="am-tabs-bd">
                         <div data-tab-panel-0 class="am-tab-panel  am-tab-Server am-active">
