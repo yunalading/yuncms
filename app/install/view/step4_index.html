@@ -61,6 +61,7 @@
             dataType: 'json',
             success: function (res) {
                 //console.log(res);
+                //return false;
                 if (res['code'] == 1) {
                     redirect("<?= url('/install/complete/index')?>");
                 } else {

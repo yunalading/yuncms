@@ -426,6 +426,10 @@ $('.upload-option').change(function () {
     $(ttype).addClass('am-active');
 });
 $(function () {
+    var ttype = '.am-tab-' + $('.upload-option').val();
+    $('.am-tabs-nav').find('li').removeClass('am-active');
+    $('.am-tab-panel').removeClass('am-active');
+    $(ttype).addClass('am-active');
     $('.am-tabs-nav').find('li').click(function () {
         var indexs = $(this).index();
         $('.upload-option').find('option').each(function () {

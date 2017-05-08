@@ -262,19 +262,6 @@ CREATE TABLE `yc_model` (
   UNIQUE KEY `model_unique` (`model_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='模型表';
 
-DROP TABLE IF EXISTS `yc_model_attr`;
-CREATE TABLE `yc_model_attr` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL DEFAULT '' COMMENT '变量英文标识',
-  `type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '类型',
-  `model_id` int(11) unsigned DEFAULT '0' COMMENT '对应model表的model_id',
-  `tips` varchar(50) NOT NULL DEFAULT '' COMMENT '字段中文说明',
-  `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
-  `update_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '修改时间',
-  `field_value` text COMMENT '类型值(如field_type值为"radio"时field_value可设为 "1|开启,0|关闭")',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='模型属性值';
-
 DROP TABLE IF EXISTS `yc_model_properties`;
 CREATE TABLE `yc_model_properties` (
   `model_properties_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '模型属性编号',

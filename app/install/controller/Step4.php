@@ -16,6 +16,8 @@ use app\core\install\Install;
 use app\install\model\UserModel;
 use app\install\validate\InstallFormValidate;
 use think\Log;
+use think\Cookie;
+use think\Session;
 
 /**
  * Class Complete
@@ -81,7 +83,9 @@ class Step4 extends InstallWizard {
         $userModel = UserModel::get(1);
         $userModel->save(['username' => $config['app']['username'], 'password' => $userModel->createPassWord($config['app']['password']),'create_time' => time()]);
         //演示数据
-        //Install::initDemo();
+        if( session('install_mode') =='demo'){
+            Install::initDemo();
+        }
         //写入安装锁
         Install::writeInstallLock();
         //返回安装成功信息
