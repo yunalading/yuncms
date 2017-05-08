@@ -15,6 +15,7 @@ use think\Exception;
 use app\core\upload\Upload;
 use Qiniu\Storage\UploadManager;
 use Qiniu\Auth;
+use think\File;
 
 /**
  * Class Oss

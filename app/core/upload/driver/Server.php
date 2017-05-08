@@ -12,6 +12,7 @@
 namespace app\core\upload\driver;
 
 use app\core\upload\Upload;
+use think\File;
 use think\Exception;
 
 /**
@@ -35,7 +36,6 @@ class Server extends Upload
         $res = (object)array(); //申明一个空对象返回
         try{
             $size = ceil($newConf['maxSize']*1048576);
-            //$info = $file->validate(['size' => $newConf['maxSize'], 'ext' => $newConf['allowExts']])->move(ROOT_PATH . 'public' . DS . 'data' . DS . 'upload' .DS. 'images' .DS. 'oss');
             $info = $file->validate(['size' => $size, 'ext' => $newConf['allowExts']])->move(ROOT_PATH . 'public' . DS . $newConf['savePath']);
             if (!$info) {
                 $res->info=$file->getError();
@@ -43,8 +43,6 @@ class Server extends Upload
                 $res->msg="验证失败!";
                 return $res;
             }
-            //$info->getPathname()
-            //$res->pathUrl =  'data' . DS . 'upload' .DS. 'images'  .DS. 'server' .DS. $info->getSaveName();
             $res->pathUrl =  $newConf['savePath'] .DS. $info->getSaveName();
             $res->info=$info;
             $res->code=1;

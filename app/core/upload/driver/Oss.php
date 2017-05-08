@@ -14,6 +14,7 @@ namespace app\core\upload\driver;
 use app\core\upload\Upload;
 use OSS\OssClient;
 use OSS\Core\OssException;
+use think\File;
 
 /**
  * Class Oss
