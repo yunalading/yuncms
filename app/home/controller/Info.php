@@ -20,7 +20,7 @@ use app\home\model\CategoryModel;
 
 /**
  * Class Info
- * @package app\admin\controller
+ * @package app\home\controller
  */
 
 class Info extends HomeBaseController
