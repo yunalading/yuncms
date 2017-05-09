@@ -60,11 +60,11 @@ class Lists extends HomeBaseController
                 foreach ($this->param as $k => $pp) {
                     $where['ap.value'] = $pp;
                 }
-                $list = $articleModel->alias('a')->where($where)->group('a.content_id')->field('a.content_id,a.category_id,a.cover,c.model_id,p.model_properties_id,p.pro_name')->join('__CATEGORY__ c', 'a.category_id = c.category_id')->join('__MODEL_PROPERTIES__ p', 'c.model_id = p.model_id')->join('__ARTICLE_PROPERTIES__ ap', 'a.content_id = ap.article_id')->paginate();
+                $list = $articleModel->alias('a')->where($where)->group('a.content_id')->field('a.*,c.model_id,p.model_properties_id,p.pro_name')->join('__CATEGORY__ c', 'a.category_id = c.category_id')->join('__MODEL_PROPERTIES__ p', 'c.model_id = p.model_id')->join('__ARTICLE_PROPERTIES__ ap', 'a.content_id = ap.article_id')->paginate();
                 $selects = $this->param;
             } else {
                 $where['category_id'] = $cid;
-                $list = $articleModel->where($where)->field('content_id,category_id,cover')->paginate();
+                $list = $articleModel->where($where)->paginate();
                 $selects = $first;
             }
             $this->assign('selects', $selects);
