@@ -148,7 +148,7 @@ return [
     // +----------------------------------------------------------------------
 
     // 异常页面的模板文件
-    'exception_tmpl' => APP_PATH . 'common' . DS . 'view' . DS . 'exceptions.html',
+    'exception_tmpl' => APP_PATH . 'common' . DS . 'view' . DS . 'exception.html',
 
     // 错误显示信息,非调试模式有效
     'error_message' => '页面错误！请稍后再试～',
