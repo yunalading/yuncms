@@ -91,8 +91,6 @@ class Lists extends HomeBaseController {
             $this->assign('page', $page);
             //dd($list);
         }else{
-            dump($this->param);
-            die();
             //所有栏目
             $this->error('请先选择栏目分类!');
             $cid = 0;
