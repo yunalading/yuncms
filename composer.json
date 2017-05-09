@@ -11,7 +11,7 @@
     }
   ],
   "require": {
-    "php": "^7.0.15",
+    "php": "^5.5.9",
     "topthink/framework": "*",
     "overtrue/wechat": "^3.2",
     "hightman/xunsearch": "^1.4",
