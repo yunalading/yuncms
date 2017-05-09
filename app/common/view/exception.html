@@ -1,4 +1,8 @@
 <?php
+    if (!is_writable(ROOT_PATH.'runtime')) {
+        echo ROOT_PATH.'runtime'."目录没有写入权限!";
+        die();
+    }
     if(!function_exists('parse_padding')){
         function parse_padding($source)
         {
