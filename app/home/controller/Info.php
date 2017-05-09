@@ -11,9 +11,9 @@
 
 
 namespace app\home\controller;
-use app\admin\model\ArticleProModel;
-use app\admin\model\ContentModel;
-use app\admin\model\ModelAttrModel;
+use app\home\model\ArticleProModel;
+use app\home\model\ContentModel;
+use app\home\model\ModelAttrModel;
 use app\home\controller\HomeBaseController;
 use app\home\model\CategoryModel;
 
