@@ -13,12 +13,12 @@
 namespace app\home\model;
 
 
-use app\common\model\BaseLinkModel;
+use app\common\model\BaseContentModel;
 
 /**
- * Class LinkModel
+ * Class ContentModel
  * @package app\home\model
  */
-class LinkModel extends BaseLinkModel {
+class ContentModel extends BaseContentModel {
 
 }
