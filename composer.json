@@ -1,5 +1,5 @@
 {
-  "name": "2898117012/yuncms",
+  "name": "yunalading/yuncms",
   "description": "YunCMS",
   "type": "project",
   "license": "Apache-2.0",
@@ -11,7 +11,7 @@
     }
   ],
   "require": {
-    "php": "^5.5.9",
+    "php": ">=5.5.9",
     "topthink/framework": "*",
     "overtrue/wechat": "^3.2",
     "hightman/xunsearch": "^1.4",
