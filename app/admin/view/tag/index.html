@@ -1,3 +1,44 @@
 {include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
-
+<div class="content-page">
+    <div class="am-container">
+        <div class="min-height">
+            <div class="page-title"><h1 class="am-inline">标签列表</h1>
+                <a href="<?= URL('/admin/tag/edit');?>" class="am-btn am-btn-primary am-btn-xs am-radius">
+                    <i class="am-icon am-icon-edit"></i>添加标签
+                </a>
+            </div>
+            <form class="am-form-inline search-form">
+                {:token()}
+                <div class="am-form-group">
+                    <input type="text" class="am-form-field" name="am-form-field" placeholder="关键词">
+                </div>
+                <button type="submit" class="am-btn am-btn-default"><i class="am-icon-search"></i></button>
+            </form>
+            <table class="am-table">
+                <thead>
+                <tr>
+                    <th>标签编号</th>
+                    <th>标签名称</th>
+                    <th>更过操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name='list' id='tag'}
+                <tr>
+                    <td><a href="#">{$tag.tag_id}</a></td>
+                    <td>{$tag.tag_name}</td>
+                    <td>
+                        <div class="am-btn-group am-btn-group-xs">
+                            <a href="<?= URL('/admin/tag/edit',array('id'=>$tag['tag_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
+                            <a href="<?= URL('/admin/tag/remove',array('id'=>$tag['tag_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+        </div>
+        {$page}
+    </div>
+</div>
 {include file="footer" /}

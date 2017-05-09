@@ -1,0 +1,53 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+
+
+<div class="content-page">
+    <div class="am-container">
+        <div class="min-height">
+            <div class="page-title"><h1 class="am-inline">幻灯片广告列表</h1>
+                <a href="<?= URL('/admin/ad/slideedit');?>" class="am-btn am-btn-primary am-btn-xs am-radius">
+                    <i class="am-icon am-icon-edit"></i>添加广告
+                </a>
+                <!--<a href="/index.php/admin/ad/slidedelete" class="am-btn am-btn-default am-btn-xs am-radius">-->
+                    <!--<i class="am-icon-trash"></i>回收站-->
+                <!--</a>-->
+            </div>
+            <form class="am-form-inline search-form">
+                {:token()}
+                <div class="am-form-group">
+                    <input type="text" class="am-form-field" name="keyword" placeholder="关键词">
+                </div>
+                <button type="submit" class="am-btn am-btn-default"><i class="am-icon-search"></i></button>
+            </form>
+            <table class="am-table">
+                <thead>
+                <tr>
+                    <th>幻灯片标识</th>
+                    <th>幻灯片名称</th>
+                    <th>更新时间</th>
+                    <th>创建时间</th>
+                    <th>更多操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name='list' id='adimages'}
+                <tr>
+                    <td>{$adimages.ad_img_key}</td>
+                    <td>{$adimages.title}</td>
+                    <td>{$adimages.update_time}</td>
+                    <td>{$adimages.create_time}</td>
+                    <td>
+                        <div class="am-btn-group am-btn-group-xs">
+                            <a href="<?= URL('/admin/ad/slideedit',array('id'=>$adimages['ad_img_key']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
+                            <a href="<?= URL('/admin/ad/remove',array('id'=>$adimages['ad_img_key'],'style'=>'slide'));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+        </div>
+        {$page}
+    </div>
+</div>
+{include file="footer" /}

@@ -19,7 +19,7 @@ use app\admin\validate\ConstantValidate;
  * @package app\admin\controller
  */
 class Constant extends AdminBaseController {
-    protected $config_path = APP_PATH . 'extra' . DS . 'custom.json';
+    //protected $config_path = APP_PATH .'extra' . DS .'custom.json';
 
     /**
      * 常量列表

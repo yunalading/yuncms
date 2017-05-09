@@ -1,0 +1,36 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<div class="content-page">
+    <div class="am-container">
+        <form class="am-form am-g margin-top-buttom-20"  action="<?= URL('/admin/area/edit');?>" method="post" data-am-validator="">
+            <div class="all-width  am-form-group">
+                <label>地区名称</label>
+                <input type="text" name="area[area_name]"  maxlength="20" {notempty name="area"}value="{$area.area_name}"{/notempty} required>
+            </div>
+            <div class="all-width am-form-group">
+                <label class="area-edit-block">父级地区</label>
+                <select data-am-selected name="area[area_parent_id]"  placeholder="请选择上级地区" required>
+                    <option value="0" >顶级地区</option>
+                    {volist name='area_all' id='area_all'}
+                    <option value="{$area_all.area_id}" {notempty name="area"} {if($area_all.area_id == $area.area_id)} selected {/if} {/notempty}>{$area_all.area_name}</option>
+                    {/volist}
+                </select>
+            </div>
+            <div class="all-width  am-form-group">
+                <label>地区深度</label>
+                <input type="text" name="area[area_deep]"  maxlength="20"  {notempty name="area"}value="{$area.area_deep}"{/notempty} required>
+            </div>
+            <div class="all-width  am-form-group">
+                <label>大区名称</label>
+                <input type="text" name="area[area_region]"  maxlength="200"  {notempty name="area"}value="{$area.area_region}"{/notempty} required>
+            </div>
+            <div class="all-width  am-form-group">
+                <label>地区排序</label>
+                <input type="text" name="area[area_sort]"  maxlength="20"  {notempty name="area"}value="{$area.area_sort}"{/notempty} required>
+            </div>
+            <button class="am-btn am-btn-primary button-text-left">{$action_name}地区</button>
+            {notempty name="area"}<input type="hidden" name="id" required placeholder="请输入链接名称" value="{$area.area_id}">{/notempty}
+            {:token()}
+        </form>
+    </div>
+</div>
+{include file="footer" /}

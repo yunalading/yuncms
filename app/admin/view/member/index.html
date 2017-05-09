@@ -2,13 +2,11 @@
 <div class="content-page">
     <div class="am-container">
         <div class="page-title"><h1 class="am-inline">用户列表</h1>
-            <a href="#" class="am-btn am-btn-default am-btn-xs am-radius">
-                <i class="am-icon-trash"></i>回收站
-            </a>
+
         </div>
         <form class="am-form-inline search-form">
             <div class="am-form-group">
-                <input type="keyword" class="am-form-field" placeholder="关键词">
+                <input type="text" class="am-form-field" placeholder="请输入要搜索的用户名">
             </div>
             <button type="submit" class="am-btn am-btn-default"><i class="am-icon-search"></i></button>
         </form>
@@ -16,57 +14,34 @@
             <thead>
             <tr>
                 <th>用户</th>
+                <th>昵称</th>
                 <th>手机</th>
-                <th>邮件地址</th>
-                <th>内容</th>
-                <th>评论数</th>
-                <th>日期</th>
+                <th>邮箱</th>
                 <th>状态</th>
+                <th>创建时间</th>
                 <th>操作</th>
             </tr>
             </thead>
             <tbody>
+            {volist name='list' id='member'}
             <tr>
-                <td><a target="_blank" href="#">世界您好</a></td>
-                <td><a href="#">admin</a></td>
-                <td><a href="#">未分类</a></td>
-                <td>--</td>
-                <td><a href="#">5</a></td>
-                <td>2017-1-18 15:43:26</td>
-                <td><a href="#">未发布</a></td>
+                <td>{$member.username}</td>
+                <td>{$member.nicename}</td>
+                <td>{$member.phone}</td>
+                <td>{$member.emai}</td>
+                <td>{$member.state}</td>
+                <td>{$member.create_time}</td>
                 <td>
                     <div class="am-btn-group am-btn-group-xs">
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                        <a href="<?=URL('/admin/member/update',array('id'=>$link['link_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
+                        <a href="<?=URL('/admin/member/remove',array('id'=>$link['link_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td><a target="_blank" href="#">Gulp常用配置</a></td>
-                <td><a href="#">hukei</a></td>
-                <td><a href="#">Gulp</a></td>
-                <td><a href="#">gulp</a>、<a href="#">nodejs</a></td>
-                <td><a href="#">20</a></td>
-                <td>2017-1-28 15:43:26</td>
-                <td><a href="#">已发布</a></td>
-                <td>
-                    <div class="am-btn-group am-btn-group-xs">
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
-                        <a href="#" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
-                    </div>
-                </td>
-            </tr>
+            {/volist}
             </tbody>
         </table>
-        <ul class="am-pagination am-pagination-right">
-            <li class="am-disabled"><a href="#">&laquo;</a></li>
-            <li class="am-active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">&raquo;</a></li>
-        </ul>
+        {$page}
     </div>
 </div>
 {include file="footer" /}

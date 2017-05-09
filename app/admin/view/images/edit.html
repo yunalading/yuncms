@@ -1,0 +1,32 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<form class="am-form am-g margin-top-buttom-20" data-am-validator="">
+
+        <!--上传图片区域-->
+    <div class="am-form-group all-width">
+        <div class="add-img-backgound">
+        <label for="image-upload" >上传图片：</label>
+        <input id="image-upload" class="inputfile-hide" type="file" name="image-upload" required>
+        <br><img src="" id="img" class="input-img-maxsize"><label for="image-upload" class="add-img-btn"/><div class="am-icon-plus-square am-icon-lg add-img-div"></div></label><br>
+        </div>
+    </div>
+    <!--图片标题区域-->
+    <div class="am-form-group all-width">
+        <label for="image-title">图片标题：</label>
+        <input type="text" id="image-title" name="image-title" placeholder="请输入图片标题" maxlength="20" required>
+    </div>
+    <!--图片标题地址-->
+    <div class="am-form-group all-width">
+        <label for="image-url">图片地址：</label>
+        <input type="text" id="image-url" name="image-url" placeholder="请输入图片地址" maxlength="255" required>
+    </div>
+    <!--图片描述区域-->
+    <div class="am-form-group all-width">
+        <label for="image-description">图片描述：</label>
+        <textarea  placeholder="请输入图片描述" id="image-description" name="image-description" maxlength="200"></textarea>
+    </div>
+        <button class="am-btn am-btn-primary button-text-left ">提交</button>
+
+</form>
+
+
+{include file="footer" /}

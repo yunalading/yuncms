@@ -1,0 +1,38 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+
+<div class="content-page">
+    <div class="am-container">
+        <form class="am-form edit-form" data-am-validator novalidate="novalidate" method="post">
+            <div class="am-form-group">
+                <label>短信服务商：</label>
+                <div>
+                    <select data-am-selected name="base[phoneType]" id="msgserver-brand" required >
+                        <option value="">test</option>
+                        <option value="Alidayu" {notempty name="sms" } {if($sms.phoneType == 'Alidayu')} selected {/if}{/notempty}>阿里大于</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="msg-settings msg-settings-ali" style="display:block;">
+                <div class="am-form-group">
+                    <label>阿里大于账号:(appkey)</label>
+                    <input type="text" name="alidayu[app_key]" {notempty name="sms" }
+                           value="{$sms.app_key}" {/notempty}>
+                    <label>阿里大于密码:(secretkey)</label>
+                    <input type="password" name="alidayu[app_secret]" {notempty name="sms" }
+                           value="{$sms.app_secret}" {/notempty}>
+                    <label>阿里大于签名:</label>
+                    <input type="text" name="alidayu[signname]" {notempty name="sms" }
+                           value="{$sms.signname}" {/notempty}>
+                </div>
+
+                <div class="am-form-group">
+                    <button class="am-btn am-btn-primary ">确认修改</button>
+                </div>
+            </div>
+            {:token()}
+        </form>
+    </div>
+</div>
+
+{include file="footer" /}

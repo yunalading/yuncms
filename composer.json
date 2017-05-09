@@ -1,5 +1,5 @@
 {
-  "name": "2898117012/yuncms",
+  "name": "yunalading/yuncms",
   "description": "YunCMS",
   "type": "project",
   "license": "Apache-2.0",
@@ -11,12 +11,16 @@
     }
   ],
   "require": {
-    "php": "^5.5.9",
+    "php": ">=5.5.9",
     "topthink/framework": "*",
     "overtrue/wechat": "^3.2",
     "hightman/xunsearch": "^1.4",
     "topthink/think-captcha": "^1.0",
-    "topthink/think-image": "^1.0"
+    "topthink/think-image": "^1.0",
+    "phpmailer/phpmailer": "^5.2",
+    "aliyuncs/oss-sdk-php": "^2.2",
+    "qiniu/php-sdk": "^7.1",
+    "flc/alidayu": "^2.0"
   },
   "require-dev": {
     "topthink/think-testing": "^1.0"

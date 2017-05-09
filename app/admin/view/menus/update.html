@@ -1,0 +1,63 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<div class="content-page">
+    <div class="am-container">
+        <div class="page-title"><h1 class="am-inline">{$action_name}菜单</h1></div>
+        <form class="am-form edit-form" method="post" action="<?=URL('/admin/menus/update');?>" data-am-validator>
+            <div class="am-form-group">
+                <label>菜单名称</label>
+                <input type="text" name="menus[menu_name]" required placeholder="请输入菜单名称" {notempty name="menus"}value="{$menus.menu_name}"{/notempty} />
+            </div>
+            <div class="am-form-group">
+                <label>导航标识</label>
+                <div>
+                    <select data-am-selected name="menus[nav_key]">
+                        {volist name='nav' id='nav'}
+                        <option value="{$nav.nav_key}" {notempty name="menus"} {if condition="$nav.nav_key == $menus['nav_key']"}selected{/if} {/notempty}>{$nav.nav_name}</option>
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+            <div class="am-form-group">
+                <label>菜单分类</label>
+                <div>
+                    <select data-am-selected name="menus[menu_type]">
+                        {volist name='nav_type' id='nav_type' key="k"}
+                        <option value="{$k}" {notempty name="menus"} {if condition="$k == $menus['menu_type']"}selected{/if} {/notempty}>{$nav_type}</option>
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+            <div class="am-form-group">
+                <label>上级菜单</label>
+                <div>
+                    <select data-am-selected name="menus[nav_type]">
+                        <option value="0">顶级菜单</option>
+                        {volist name='menus_all' id='menus_all'}
+                        <option value="{$menus_all.menu_id}" {notempty name="menus"}{if condition="$menus_all['parent_menu_id'] == $menus['parent_menu_id']"}selected{/if}{/notempty} >{$menus_all.menu_name}</option>
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+            <div class="am-form-group">
+                <label>菜单值<span>(请填写菜单值)</span></label>
+                <input type="text" name="menus[menu_value]" required  {notempty name="menus"}value="{$menus.menu_value}"{/notempty}>
+            </div>
+            <div class="am-form-group">
+                <label>打开方式</label>
+                <div>
+                    <input type="checkbox" name="menus[menu_target]" value="1" data-am-switch data-size="xs" data-on-text="在当前页面打开" data-off-text="在新页面打开" {notempty name="menus"}{$menus.menu_target>0?'checked' : '' } {/notempty}>
+                </div>
+            </div>
+            <div class="am-form-group">
+                <label>排序<span></span></label>
+                <input type="text" name="menus[menu_sort]" value="{$menus['menu_sort']?$menus['menu_sort']:100}">
+            </div>
+            {notempty name="menus"} <input type="hidden" name="id" value="{$menus.menu_id}"> {/notempty}
+            <div class="am-form-group">
+                <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
+            </div>
+            {:token()}
+        </form>
+    </div>
+</div>
+{include file="footer" /}

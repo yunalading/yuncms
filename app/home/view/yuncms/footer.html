@@ -1,0 +1,31 @@
+<?php
+            //友情链接列表
+            $link = get_link_list();
+?>
+<footer class="footer">
+    <div class="footer-bj am-hide-md-down">
+        <img src="/static/home/yuncms/images/footer_bj.jpg">
+        <div class="footer-bj-info">
+            <h1>CONTACT US</h1>
+            <h2>Email：{$Think.config.custom.email} 网址：{$Think.config.custom.web} </h2>
+            <h2>{$Think.config.custom.address} 电话：{$Think.config.custom.phone} </h2>
+        </div>
+    </div>
+    <div class="footer-link">
+        <a data-am-smooth-scroll class="am-icon-btn am-icon-arrow-up am-active am-hide-md-down"></a>
+        <div class="cms-g">
+            <h1>
+                友情链接：
+                {volist name="link" id="link"}
+                <span><a href="{$link.link_href}" target="{$link.link_target}">{$link.link_name}</a></span>
+                {/volist}
+            </h1>
+            <h1>申请友情链接请联系QQ：68527761</h1>
+            <h1> {$Think.config.app.icp} </h1>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
+
+

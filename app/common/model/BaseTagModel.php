@@ -16,4 +16,5 @@ namespace app\common\model;
  */
 abstract class BaseTagModel extends BaseModel {
     protected $name = 'tags';
+    protected $autoWriteTimestamp = false;
 }

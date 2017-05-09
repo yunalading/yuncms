@@ -6,6 +6,13 @@
                 <i class="am-icon am-icon-edit"></i>添加链接
             </a>
         </div>
+        <form class="am-form-inline search-form">
+            {:token()}
+            <div class="am-form-group">
+                <input type="text" class="am-form-field" name="am-form-field" placeholder="关键词">
+            </div>
+            <button type="submit" class="am-btn am-btn-default"><i class="am-icon-search"></i></button>
+        </form>
         <table class="am-table">
             <thead>
             <tr>
@@ -23,7 +30,7 @@
             {volist name='list' id='link'}
             <tr>
                 <td>{$link.link_name}</td>
-                <td><img src="{$link.link_logo}"></td>
+                <td><img src="{$link.link_logo|get_image_url=###}"></td>
                 <td>{$link.link_href}</td>
                 <td>{$link.link_target}</td>
                 <td>{$link.link_is_home?'是':'否'}</td>

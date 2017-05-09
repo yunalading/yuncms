@@ -1,0 +1,379 @@
+
+.ad-textarea-width {
+    height: 100px;
+    margin-bottom: 20px;
+}
+form .inputfile-hide {
+    text-indent:-999em;
+    height: 0;
+    width: 0;
+    z-index: -1;
+}
+.input-img-maxsize {
+    max-width: 360px;
+}
+.ad-edit-postion {
+    margin: 50px 0 20px;
+}
+.margin-1p5 {
+    margin: 1.5rem;
+}
+.margin-top-buttom-20 {
+    margin:20px 0;
+}
+
+/*让添加页面的提交按钮有一个左边距*/
+.button-text-left {
+    margin: 1.5rem;
+}
+
+/*图片列表让图片在各自的div中居中显示*/
+.img-center{
+    text-align: center;
+}
+
+/*添加页面中Input宽度*/
+.all-width{
+    width:50%;
+    padding-left: 1.5rem;
+}
+.all-width-six{
+    width:60%;
+    padding-left: 1.5rem;
+   a{
+       cursor:pointer;
+   }
+}
+/*列表的内容居中显示*/
+table th , table td{
+  text-align:center;
+}
+/*管理员信息修改页面*/
+.admin-info{
+    list-style: none;
+    white-space:nowrap;
+    p,span,input{
+        display: inline-block;
+        font-size:2rem;
+
+    }
+    p{
+        width:30%;
+        text-align: center;}
+    span ,textarea{
+        width:60%;
+    }
+    ul{
+        width:60%;
+        display:inline-block;
+        list-style: none;
+        margin:0;
+        padding:0;
+        text-indent:0;
+    }
+    ul li{
+        width:100%;
+        height:100%;
+        font-size:2rem;
+    }
+
+    textarea{
+        overflow:hidden;
+        resize:none;
+        height:200px;
+
+    }
+    input[type="text"]{
+        width:60%;
+
+    }
+    img{
+        width:100px;
+        height:100px;
+        border: 1px solid #333333;
+        display:inline-block;
+    }
+    i{
+        margin-left:20px;
+
+    }
+    label{
+        margin:0 30px;
+    }
+}
+//密码重置表单页面
+.pwd-reset-form{
+    display: none;
+}
+
+    .remove-input{
+        font-size:2rem;
+        color:black;
+        border:none;
+        outline:none;
+        background: none;
+    }
+/*男女选择弹出框样式*/
+.sex-choice{
+    width:300px;
+    height:150px;
+    position:absolute;
+    top:200px;
+    margin-left:400px;
+    display:none;
+    border:1px solid #eee;
+    background: #B0DCE9;
+
+    p{
+        margin-top:1rem;
+        margin-left:2rem;
+        font-size:2rem;
+        color:black;
+    }
+    ul{
+        list-style:none;
+        margin:0;
+        padding:0;
+        text-indent:0;
+        li{
+            height:40px;
+            line-height:40px;
+            label{
+                 width:200px;
+                 text-align:center;
+        }
+        }
+        li:nth-child(2){
+            border-top:1px solid #eee;
+        }
+    }
+    button{
+
+    }
+
+}
+//上传图片美化部分
+.add-img-backgound{
+    border-radius:5px;
+    padding:20px;
+    background: #f8f6f2;
+
+    .add-img-btn{
+        height:180px;
+        width:100px;
+        line-height:180px;
+        border-radius:5px;
+        text-align: center;
+        margin-left:30px;
+        background:#acaba7;
+    }
+    .add-img-btn:hover{
+        opacity: 0.8;
+        cursor: pointer;
+    }
+    .add-img-div{
+        color:#333;
+    }
+    img{
+        display: inline-block;
+    }
+}
+
+//列表内容溢出隐藏
+.am-table {
+    width:100%;
+            td{
+                  white-space:nowrap;
+                   overflow:hidden;
+                   max-width:400px;
+                min-width:100px;
+            }
+}
+.am-table td:last-of-type{
+    min-width:200px;
+}
+.edit-form {
+    .upload-checkbox-style{
+        display:inline-block;
+        margin-right:20px;
+        vertical-align:bottom;
+    }
+
+    .unit-position{
+
+        position:absolute;
+        font-size: 20px;
+    }
+
+}
+.am-form input[type=number]{
+    display:inline-block;
+}
+//邮件配置
+#email-settings{
+
+
+    //邮件发送方式宽度随内容撑开
+    .am-selected{
+        width:auto;
+    }
+    .am-form-group{
+        width:auto;
+
+    }
+    .am-form-group  > input {
+        width:300px;
+        display:inline-block;
+    }
+    .radio-width{
+        width:300px;
+        display:inline-block;
+
+        label{
+            display:inline-block;
+            margin-left:30px;
+        }
+    }
+    //按钮图片右边距
+    i{
+        margin-right:10px;
+    }
+    label{
+        display:block;
+    }
+    .label-right{
+    display:inline-block;
+
+    }
+}
+//短信配置短信服务商切换的时候DIV隐藏
+.msg-settings{
+    display:none;
+}
+.editor-position-display{
+    display:block;
+    margin-left:0;
+    margin-top:20px;
+}
+//地区增加页的父级地区样式
+.area-edit-block{
+    display:block;
+}
+//模型字段列表
+.model-table{
+    margin-top:20px;
+    width:100%;
+    border:1px solid #CCCCCC;
+    td{
+        border-left:1px solid #CCCCCC;
+        border-top:1px solid #CCCCCC;
+        background: #f8f6f2;
+    }
+
+}
+//模型字段添加页面相关样式
+.model-table-button{
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    background: #ccc;
+    span{
+        padding-left:10px;
+    }
+}
+.model-table-button:hover{
+    opacity: 0.8;
+    cursor:pointer;
+}
+.model-table-add{
+    display: none;
+    padding: 20px;
+    font-size: 14px;
+    font-weight: normal;
+    background: #f8f6f2;
+    td{
+        padding:5px 0;
+    }
+}
+.model-select{
+    width:100%;
+}
+.model-file{
+    display:none;
+}
+.model-field-add-button{
+    display: block;
+    text-align: right;
+}
+.model-field-add-button:hover{
+    opacity: 0.8;
+    cursor:pointer;
+}
+.model-add{
+    float:right;
+}
+//邮件配置选项卡样式
+.tab-control{
+    width:60%;
+}
+//短信配置
+.msg-addfile{
+    position: absolute;
+    font-size: 12px;
+    float: left;
+    border: 1px solid #ccc;
+    background: #ff0;
+    margin-left: 5px;
+    z-index: 999;
+    margin-top: -25px;
+    display: none;
+    height: 20px;
+    line-height: 20px;
+}
+//模型页面修改删除按钮样式
+.model-field-mod:hover{
+    opacity:0.8;
+    cursor:pointer;
+    background: #CCCCCC;
+}
+.model-field-del:hover{
+    opacity:0.8;
+    cursor:pointer;
+    background: #CCCCCC;
+}
+.bar {
+    height: 18px;
+    background: green;
+}
+//upload页面MB两字的位置
+.upload-mb-parent{
+    position:relative;
+    .upload-mb{
+        float: right;
+        position: absolute;
+        right: -29px;
+        top: 36px;
+    }
+}
+//upload页面选项卡样式
+#am-tabs-style{
+   margin:0;
+}
+
+//页面页选择模板之后出现的样式
+.html_pro_style{
+    table{
+        width:100%;
+        border-collapse:separate;
+        border-spacing: 0px 5px;
+
+    }
+
+}
+//限制列表页中图片展现的最大尺寸
+td{
+    img{
+        max-width:200px;
+        max-height:150px;
+    }
+}

@@ -1,0 +1,49 @@
+
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+
+
+
+<!--添加幻灯片广告-->
+<form  class="am-form am-g margin-top-buttom-20" id="ad-slide" data-am-validator="" method="post"  enctype="multipart/form-data" action="<?= URL('/admin/ad/slideedit');?>">
+    {:token()}
+    <div class="am-form-group all-width">
+        <h1>{$action_name}幻灯片广告</h1>
+        <label for="ad-slide-name">幻灯名：</label>
+        <input type="text" name="adimages[title]" id="ad-slide-name" max="200" required {notempty name="adimages"}value="{$adimages.title}" disabled {/notempty}>
+    </div>
+    <div class="am-form-group all-width">
+        <label for="ad-slide-ident">幻灯标识：</label>
+        <input type="text" name="adimages[ad_img_key]" id="ad-slide-ident" max="100" required {notempty name="adimages"} value="{$adimages.ad_img_key}" {/notempty} >
+    </div>
+    <div class="am-form-group all-width">
+        <div class="add-img-backgound">
+        <label for="ad-slide-cover">封面：</label>
+        <input class=" inputfile-hide" type="file" id="ad-slide-cover" name="uploadimg" maxlength="200" required {notempty name="adimages"} value="{$adimages.cover}" {/notempty}>
+        <br><img class="input-img-maxsize" src="{notempty name="adimages"} {$adimages.cover|get_image_url=###} {/notempty}" id="ad-slide-cover-img"><label for="ad-slide-cover" class="add-img-btn"><span class="am-icon-plus-square am-icon-lg add-img-div"></span></label>
+        </div>
+    </div>
+    <!--<div class="am-form-group all-width">-->
+        <!--<label for="ad-slide-title">标题：</label>-->
+        <!--<input type="text" name="ad-slide-title" id="ad-slide-title" maxlength="20">-->
+    <!--</div>-->
+    <div class="am-form-group all-width">
+        <label for="ad-slide-link">链接：</label>
+        <input type="text" name="adimages[href]" id="ad-slide-link" maxlength="500" required {notempty name="adimages"} value="{$adimages.href}" {/notempty}>
+    </div>
+    <div class="am-form-group all-width">
+        <label for="ad-slide-desc">描述：</label>
+        <textarea name="adimages[ad_desc]" id="ad-slide-desc" maxlength="200" required>{notempty name="adimages"} {$adimages.ad_desc} {/notempty}</textarea>
+    </div>
+    <div class="am-form-group all-width">
+        <label for="ad-slide-content">内容：</label>
+        <textarea class="ad-textarea-width" name="adimages[content]" id="ad-slide-content"> {notempty name="adimages"} {$adimages.content} {/notempty} </textarea>
+        {notempty name="adimages"}<input type="hidden" name="id"  value="{$adimages.ad_img_key}">{/notempty}
+        <input type="submit" class="am-btn am-btn-primary btn-loading-example" value="提交">
+    </div>
+</form>
+
+
+
+
+
+{include file="footer" /}

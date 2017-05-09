@@ -1,0 +1,91 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+
+
+<div class="content-page">
+    <div class="am-container ">
+        <div class="min-height">
+        <div class="page-title"><h1 class="am-inline">图片列表</h1>
+            <a href="/index.php/admin/images/edit" class="am-btn am-btn-primary am-btn-xs am-radius">
+                <i class="am-icon am-icon-edit"></i>添加图片
+            </a>
+            <a href="/index.php/admin/images/delete" class="am-btn am-btn-default am-btn-xs am-radius">
+                <i class="am-icon-trash"></i>回收站
+            </a>
+        </div>
+        <form class="am-form-inline search-form">
+            <div class="am-form-group">
+                <input type="text" class="am-form-field" placeholder="关键词">
+            </div>
+            <button type="submit" class="am-btn am-btn-default"><i class="am-icon-search"></i></button>
+        </form>
+
+        <form >
+        <div class="am-g">
+            <div>
+            <div class="am-u-lg-2">
+                <a href="#" class="am-thumbnail img-center">
+                    <input type="checkbox" name="item" class="img-box">
+                    <img style="height:200px;" src="图片未加载" alt="" />
+                    <h3 class="am-thumbnail-caption">图片标题 #1</h3>
+                </a>
+            </div>
+            </div>
+            <div>
+            <div class="am-u-lg-2">
+                <a href="#" class="am-thumbnail img-center">
+                    <input type="checkbox" name="item" class="img-box">
+                    <img style="height:200px;" src="图片未加载" alt="" />
+                    <h3 class="am-thumbnail-caption">图片标题 #2</h3>
+                </a>
+            </div>
+            </div>
+            <div>
+            <div class="am-u-lg-2">
+                <a href="#" class="am-thumbnail img-center">
+                    <input type="checkbox" name="item" class="img-box">
+                    <img style="height:200px;" src="图片未加载" alt="" />
+                    <h3 class="am-thumbnail-caption">图片标题 #3</h3>
+                </a>
+            </div>
+            </div>
+            <div>
+            <div class="am-u-lg-2">
+                <a href="#" class="am-thumbnail img-center">
+                    <input type="checkbox" name="item" class="img-box">
+                    <img style="height:200px;" src="图片未加载" alt="" />
+                    <h3 class="am-thumbnail-caption">图片标题 #4</h3>
+                </a>
+            </div>
+            </div>
+            <div>
+            <div class="am-u-lg-2 am-u-end">
+                <a href="#" class="am-thumbnail img-center">
+                    <input type="checkbox" name="item" class="img-box">
+                    <img style="height:200px;" src="图片未加载" alt=""  />
+                    <h3 class="am-thumbnail-caption">图片标题 #5</h3>
+                </a>
+            </div>
+            </div>
+
+        </div>
+        </form>
+    </div>
+
+    <div class="margin-1p5 display-ib">
+    <a href="javascript:" id="allcheck">全选</a>
+    <a href="javascript:" id="notallcheck">全不选</a>
+    <input type="button" value="删除"  id="delete-btn" class="am-btn am-btn-primary">
+    </div>
+    <ul class="am-pagination am-pagination-right ">
+        <li class="am-disabled"><a href="#">&laquo;</a></li>
+        <li class="am-active"><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">&raquo;</a></li>
+    </ul>
+</div>
+
+</div>
+{include file="footer" /}

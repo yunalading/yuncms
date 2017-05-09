@@ -1,8 +1,1 @@
-{
-  "qq": {
-  },
-  "wechat": {
-  },
-  "weibo": {
-  }
-}
+{"qq":{"appid":"aaa","appkey":"bbb","code":"ccc"},"wechat":{"appid":"testwechat","appkey":"testkey","code":"testcode"},"sina":{"appid":"sinaappid","appkey":"sinaappkey","code":"sinaappcode"}}

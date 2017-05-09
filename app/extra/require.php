@@ -46,10 +46,22 @@ return [
             'path' => ROOT_PATH . 'runtime'
         ], [
             'name' => 'database',
-            'path' => ROOT_PATH . 'app' . DS . 'database.php'
+            'path' => ROOT_PATH . 'app' . DS . 'extra' . DS .'database.json'
         ], [
             'name' => 'app',
-            'path' => ROOT_PATH . 'app' . DS . 'extra' . DS . 'app.php'
+            'path' => ROOT_PATH . 'app' . DS . 'extra' . DS . 'app.json'
+        ], [
+            'name' => 'upload',
+            'path' => ROOT_PATH . 'app' . DS . 'extra' . DS . 'upload.json'
+        ], [
+            'name' => 'custom',
+            'path' => ROOT_PATH . 'app' . DS . 'extra' . DS . 'custom.json'
+        ], [
+            'name' => 'sms',
+            'path' => ROOT_PATH . 'app' . DS . 'extra' . DS . 'sms.json'
+        ], [
+            'name' => 'email',
+            'path' => ROOT_PATH . 'app' . DS . 'extra' . DS . 'email.json'
         ], [
             'name' => 'data',
             'path' => ROOT_PATH . 'public' . DS . 'data'

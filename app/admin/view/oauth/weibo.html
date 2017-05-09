@@ -1,0 +1,30 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<div class="content-page">
+    <div class="am-container">
+        <div class="page-title">
+            <h1 class="am-inline">新浪微博</h1>
+        </div>
+        <form  class="am-form edit-form" data-am-validator novalidate="novalidate" method="post">
+            <div class="am-form-group">
+                <label for="sina-appid">APPID：</label>
+                <input type="text" name="sina[appid]" id="sina-appid" required {notempty name="sina" }value="{$sina.appid}" {/notempty} >
+            </div>
+
+            <div class="am-form-group">
+                <label for="sina-appkey">APPkey：</label>
+                <input type="text" name="sina[appkey]" id="sina-appkey" required {notempty name="sina" }value="{$sina.appkey}" {/notempty} >
+            </div>
+
+            <div class="am-form-group">
+                <label for="sina-code">code：</label>
+                <input type="text" name="sina[code]" id="sina-code" required {notempty name="sina" }value="{$sina.code}" {/notempty} >
+            </div>
+
+            <div class="am-form-group">
+                <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{include file="footer" /}

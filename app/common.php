@@ -30,7 +30,8 @@ function themes() {
     if (is_dir($dir_path)) {
         $dir = opendir($dir_path);
         while (($file = readdir($dir)) !== false) {
-            if ($file == '.' || $file == '..') {
+            //过滤读取的目录
+            if ($file == '.' || $file == '..' || substr($file, 0, 1) == '.') {
                 continue;
             }
             $dirs[] = $file;
@@ -38,6 +39,39 @@ function themes() {
         closedir($dir);
     }
     return $dirs;
+}
+
+/**
+ * 获取模板列表
+ * @return array
+ */
+function template() {
+    $dirs = array();
+    $dir_path = APP_PATH . 'home' . DS . 'view' . DS .config("app.theme");
+    if (is_dir($dir_path)) {
+        $dir = opendir($dir_path);
+        while (($file = readdir($dir)) !== false) {
+            //过滤读取的目录
+            if ($file == '.' || $file == '..' || substr($file, 0, 1) == '.') {
+                continue;
+            }
+            $dirs[] = str_replace('.'.config('url_html_suffix'),'',$file);
+        }
+        closedir($dir);
+    }
+    return $dirs;
+}
+
+/*
+ * 获取图片地址
+ */
+function get_image_url($path){
+   $config = \think\Config::get('upload.image');
+   if($config['uploadType'] == 'Server'){
+       return DS.$path;
+   }else{
+       return $path;
+   }
 }
 
 /**
@@ -69,4 +103,11 @@ function byteFormat($bytes, $unit = "", $decimals = 2) {
         $decimals = 2;
     }
     return sprintf('%.' . $decimals . 'f' . $unit, $value);
+}
+
+/**
+ * 对象转数组打印(调试用)
+ */
+function dd($obj){
+    dump(json_decode(json_encode($obj),true));
 }

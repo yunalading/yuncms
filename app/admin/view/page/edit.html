@@ -1,0 +1,240 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<form class="am-form am-g margin-top-buttom-20 " enctype="multipart/form-data" data-am-validator method="post">
+    <div class="am-form-group all-width">
+        <label for="page-title">页面标题:</label>
+        <input type="text" name="page[title]" id="page-title" maxlength="50" minlength="3"
+                required {notempty
+               name="pages"
+               } value="{$pages.title}" {/notempty}>
+    </div>
+
+
+    <div class="am-form-group all-width">
+        <label>选择模型</label>
+        <select  name="page[model_id]" maxlength="200" id="cate-parent-num" required data-url="<?=URL('/admin/model/get_model_attr');?>" onchange="get_model_pro();">
+            {volist name='module' id='module'}
+            <option value="{$module.model_id}" data-model="{$module.model_id}" {notempty name="pages" } {if condition="$pages.model_id == $module.model_id" } selected {/if} {/notempty}>{$module.model_name}</option>
+            {/volist}
+        </select>
+        <span class="am-form-caret"></span>
+    </div>
+
+    <div id="html_pro" class="html_pro_style">
+    </div>
+
+
+    <div class="am-form-group all-width">
+        <label>标签</label>
+        <select id="cate-parent-num" name="page[tag_id]" maxlength="200" required>
+            {volist name='tag' id='tag'}
+            <option value="{$tag.tag_id}"  {notempty name="pages" } {if condition="$pages.tag_id == $tag.tag_id" } selected {/if} {/notempty}>{$tag.tag_name}</option>
+            {/volist}
+        </select>
+        <span class="am-form-caret"></span>
+    </div>
+
+
+    <div class="am-form-group all-width">
+        <label for="page-intro">页面简介:</label>
+        <textarea required  name="page[intro]" id="page-intro" maxlength="500" >{notempty name="pages"} {$pages.intro} {/notempty}</textarea required>
+    </div>
+
+    <div class="am-form-group all-width">
+        <div class="add-img-backgound">
+            <label>页面封面:</label>
+            <input  required class="inputfile-hide" type="file" name="uploadimages" id="page-cover" {notempty name="pages" } value="{$pages.cover}" {/notempty}>
+            <br><img class="button-text-left input-img-maxsize" src="{notempty name='pages'}{$pages.cover|get_image_url=###}{/notempty}" id="page-img"><label
+                for="page-cover" class="add-img-btn">
+            <div class="am-icon-plus-square am-icon-lg add-img-div"></div>
+        </label><br>
+        </div>
+    </div>
+    <div class="am-form-group all-width">
+        <label for="page-seo-title">SEO标题:</label>
+        <input type="text" name="page[seo_title]" id="page-seo-title" maxlength="200"  {notempty
+               name="pages"
+               } value="{$pages.seo_title}" {/notempty}>
+    </div>
+    <div class="am-form-group all-width">
+        <label for="page-seo-url">SEOurl</label>
+        <input type="text" name="page[seo_url]" id="page-seo-url" maxlength="200" minlength="3"
+               required {notempty
+               name="pages"
+               } value="{$pages.seo_url}" {/notempty}>
+    </div>
+    <div class="am-form-group all-width">
+        <label>SEO关键字</label>
+        <input type="text" name="page[seo_key]" id="page[seo_key]" maxlength="200"  {notempty
+               name="pages"
+               } value="{$pages.seo_key}" {/notempty}>
+    </div>
+    <div class="am-form-group all-width">
+        <label for="page-seo-desc">SEO描述</label>
+        <textarea name="page[seo_desc]" id="page-seo-desc" maxlength="200">{notempty
+               name="pages"
+               } {$pages.seo_url} {/notempty}</textarea>
+    </div>
+    <div class="am-form-group all-width">
+        <label for="page-content">页面内容</label>
+        <textarea name="page[content]" id="page-content" >{notempty
+                name="pages"
+                } {$pages.content} {/notempty}</textarea>
+    </div>
+    <div class="am-form-group all-width">
+        <label>页面模板</label>
+        <select name="page[template]" maxlength="200" required>
+            <option value="">请选择模板</option>
+            {volist name='template_info' id='template_info'}
+            <option value="{$template_info}" {notempty name="pages"}  {if condition="$pages.template == $template_info" }selected{/if}  {/notempty} >{$template_info}.{$Think.config.url_html_suffix}</option>
+            {/volist}
+        </select>
+    </div>
+    <input type="hidden" name="id" value="{notempty name='pages'} {$pages.page_id} {/notempty}">
+    <button class="am-btn am-btn-primary button-text-left">{$action_name}页面</button>
+    {:token()}
+</form>
+
+
+{include file="footer" /}
+
+
+<script type="text/javascript">
+
+    /* alert("{$action_name}");*/
+
+    $(function () {
+        var model_id = $("#cate-parent-num").find("option:selected").attr("data-model");
+        model_pro_info(model_id);
+    });
+
+    function get_model_pro() {
+        var model_id = $("#cate-parent-num option:checked").data("model");
+        $('#html_pro').html('  ');
+        model_pro_info(model_id);
+    }
+
+    function model_pro_info(model_id) {
+        var urls = "{:url('admin/content/get_module_pro')}";
+        var article_id;
+        if ($("input[name='id']").val()) {
+            article_id = $("input[name='id']").val();
+        } else {
+            article_id = 0;
+        }
+        $.ajax({
+            url: urls,
+            data: {
+                model_id: model_id,
+                type: 1,
+                article_id: article_id
+            },
+            type: 'post',
+            cache: false,
+            dataType: 'json',
+            success: function (datas) {
+                if (datas['code'] == 1) {
+                    if (datas['info'].length > 0) {
+                        /* console.log(datas['info']);*/
+                        var html_pro = get_model_pro_html(datas['info']);
+                        $('#html_pro').html(html_pro);
+                    }
+                } else {
+                    alert(datas['msg']);
+                }
+            },
+            error: function () {
+                alert("异常！");
+            }
+        });
+    }
+
+    //循环输出标签……
+    function get_model_pro_html(data) {
+        //console.log(data[i]['model_properties_id']);
+        var str = '';
+        for (var i = 0; i < data.length; i++) {
+            if (data[i]['type'] === 'text') {
+                str +='<div class="am-form-group all-width">';
+                str += '<label>'+data[i]['pro_name']+'</label>';
+                str += '<input type="text" name="pro['+data[i]['pro_key']+']" value="'+data[i]['value']+'" />';
+                str +='</div>';
+            }
+            else if (data[i]['type'] == 'file') {
+                //str += '<div class="am-form-group all-width">' + '<label>标题</label>' + '<input disabled type="text" value=' + data[i]['pro_name'] + '>' + '<label>字段名</label>' + '<input disabled type="text"  value="' + data[i]['pro_key'] + '">' + '</div>';
+            } else if (data[i]['type'] == 'textarea') {
+                str +='<div class="am-form-group all-width">';
+                str+='<label for="content-seo-desc">'+data[i]['pro_name']+'</label>';
+                str+='<textarea name="pro['+data[i]['pro_key']+']"  maxlength="200" >'+data[i]['value']+'</textarea>';
+                str +='</div>';
+            }
+            else if (data[i]['type'] == 'select') {
+                str +='<div class="am-form-group all-width">';
+                var selectaa = data[i]['pro_value'];
+                var selectbb = selectaa.split(',');
+                str+='<label>'+data[i]['pro_name']+'</label>';
+                str+='<select name="pro['+data[i]['pro_key']+']" required>';
+                if (selectbb) {
+                    for (var k = 0; k < selectbb.length; k++) {
+                        var sel = selectbb[k].split('|');
+                        str += '<option value="'+sel[1]+'"';
+                        if(data[i]['value'] == sel[1]){
+                            str += ' selected ';
+                        }
+                        str += '>'+sel[0]+'</option>';
+                    }
+                }
+                str+='</select><span class="am-form-caret"></span>';
+                str +='</div>';
+            }
+            else if (data[i]['type'] == 'radio') {
+                str +='<div class="am-form-group all-width">';
+                var radioaa = data[i]['pro_value'];
+                var radiobb = radioaa.split(',');
+                if (radiobb) {
+                    for (var l = 0; l < radiobb.length; l++) {
+                        var rad = radiobb[l].split('|');
+                        str+='<label class="am-radio-inline"><input type="radio" data-am-ucheck name="pro['+data[i]['pro_key']+']" value="'+rad[1]+'" ';
+                        if(data[i]['value'] == rad[1]){
+                            str += ' checked ';
+                        }
+                        str+='>'+rad[0]+'</label>';
+                    }
+                }
+                str +='</div>';
+            }
+            else if (data[i]['type'] == 'checkbox') {
+                str +='<div class="am-form-group all-width">';
+                str+='<label>'+data[i]['pro_name']+'</label><br>';
+                var checkboxaa = data[i]['pro_value'];
+                var checkboxbb = checkboxaa.split(',');
+                if (checkboxbb) {
+                    for (var l = 0; l < checkboxbb.length; l++) {
+                        var che = checkboxbb[l].split('|');
+                        str+='<label class="am-checkbox-inline" onclick="getcheckvalue('+data[i]['model_properties_id']+');"><input type="checkbox" data-am-ucheck class="checkboxval'+data[i]['model_properties_id']+'""  value="'+che[1]+'"';
+                        var check = data[i]['value'].split(',');
+                        if(data[i]['value'].toString().indexOf(che[1]) > -1) {
+                            str += ' checked ';
+                        }
+                        str+='>'+che[0]+'</label>';
+                    }
+                }
+                str +='</div>';
+                str += '<input type="hidden" id="checkboxval'+data[i]['model_properties_id']+'" name="pro['+data[i]['pro_key']+']" value="'+data[i]['value']+'" ></div>';
+            }
+        }
+        return str;
+    }
+    function getcheckvalue(id) {
+        var checkdata = [];
+        function check() {
+            $('.checkboxval'+id+':checked').each(function () {
+                checkdata.push($(this).val());
+            });
+            $('#checkboxval'+id).val(checkdata);
+        }
+        check();
+        /* $(':checkbox').click(function () {
+         check();
+         });*/
+    }
+</script>

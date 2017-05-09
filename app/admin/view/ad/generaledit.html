@@ -1,0 +1,26 @@
+
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+
+
+     <!--添加普通广告-->
+     <form  class="am-form am-g margin-top-buttom-20" id="ad-general" data-am-validator="" method="post" action="<?= URL('/admin/ad/generaledit');?>">
+         {:token()}
+         <div class="am-form-group all-width">
+             <h1>{$action_name}普通广告</h1>
+             <label for="ad-general-ident">普通广告标识：</label><input type="text" name="adtext[ad_text_key]" id="ad-general-ident" maxlength="100" {notempty name="adtext"}value="{$adtext.ad_text_key}" disabled {/notempty} required>
+         </div>
+         <div class="am-form-group all-width">
+             <label for="ad-general-title">标题：</label><input type="text" name="adtext[title]" id="ad-general-title" maxlength="20" {notempty name="adtext"}value="{$adtext.title}"{/notempty} required>
+         </div>
+         <div class="am-form-group all-width">
+             <label for="ad-general-link">链接：</label><input type="text" name="adtext[href]" id="ad-general-link" maxlength="500" {notempty name="adtext"}value="{$adtext.href}"{/notempty} required>
+         </div>
+         <div class="am-form-group all-width">
+         <label for="ad-general-description">描述：</label><textarea class="ad-textarea-width" name="adtext[ad_desc]" id="ad-general-description" maxlength="200">{notempty name="adtext"}{$adtext.ad_desc}{/notempty}</textarea>
+             {notempty name="adtext"}<input type="hidden" name="id" value="{$adtext.ad_text_key}">{/notempty}
+             <input type="submit" class="am-btn am-btn-primary btn-loading-example " value="提交">
+         </div>
+     </form>
+
+
+{include file="footer" /}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>大冶云阿拉丁企业官网</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="alternate icon" type="image/png" href="images/favicon.png">
+    <link rel='icon' href='favicon.ico' type='image/x-ico'/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <link rel="stylesheet" href="/static/home/yuncms/css/default.min.css?t=227"/>
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script type="text/javascript" src="/static/home/yuncms/lib/jquery/jquery.min.js"></script>
+    <!--<![endif]-->
+    <!--[if lte IE 8 ]>
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+    <script src="/static/home/yuncms/lib/amazeui/amazeui.ie8polyfill.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/static/home/yuncms/lib/handlebars/handlebars.min.js"></script>
+    <script type="text/javascript" src="/static/home/yuncms/lib/iscroll/iscroll-probe.js"></script>
+    <script type="text/javascript" src="/static/home/yuncms/lib/amazeui/amazeui.min.js"></script>
+    <script type="text/javascript" src="/static/home/yuncms/lib/raty/jquery.raty.js"></script>
+    <script type="text/javascript" src="/static/home/yuncms/js/main.min.js?t=1"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+<body>
+<header class="header">
+    <?php
+            //栏目列表
+            $category = get_cate_list(['2','3','4','5']);
+    ?>
+    <div class="header-container am-cf ">
+        <div class="header-logo-div">
+            <div class="pull-left">
+                <a class="header-logo">
+                    <img src="/static/home/yuncms/images/logo.png"/>
+                </a>
+                <div class="header-cms-logo am-hide-md-down">
+                    <img src="/static/home/yuncms/images/ycmslogo.png"/>
+                    <span>懂你所需，做你所想</span>
+                </div>
+            </div>
+            <button class="am-show-sm-only am-collapsed font f-btn" data-am-collapse="{target: '.header-nav'}">
+                &#xe68b;</button>
+        </div>
+        <nav>
+            <ul class="header-nav am-collapse" style="height: 0px;">
+                <li {if(!isset($cid)) || $cid<1} class="on" {/if}><a href="<?=URL('/index');?>">首页</a></li>
+                {volist name="category" id="category"}
+                <li {notempty name="cid"} {if($category.category_id == $cid)} class="on" {/if}{/notempty}><a href="{$category.category_id|get_cate_url=###}">{$category.category_name}</a></li>
+                {/volist}
+            </ul>
+        </nav>
+    </div>
+</header>
+
+</div>
+</header>
+

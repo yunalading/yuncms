@@ -2,21 +2,35 @@
 <div class="content-page">
     <div class="am-container">
         <div class="page-title"><h1 class="am-inline">地区列表</h1>
+            <a href="<?= URL('/admin/area/edit');?>" class="am-btn am-btn-primary am-btn-xs am-radius">
+                <i class="am-icon am-icon-edit"></i>添加地区
+            </a>
         </div>
         <table class="am-table">
             <thead>
             <tr>
+                <th>地区编号</th>
                 <th>地区名称</th>
-                <th>排序</th>
-                <th width="100">大区名称</th>
+                <th>地区上一级ID</th>
+                <th>地区深度</th>
+                <th>大区名称</th>
+                <th>操作</th>
             </tr>
             </thead>
             <tbody>
             {volist name='list' id='area'}
             <tr>
+                <td>{$area.area_id}</td>
                 <td>{$area.area_name}</td>
-                <td>{$area.area_sort}</td>
+                <td>{$area.area_parent_id}</td>
+                <td>{$area.area_deep}</td>
                 <td>{$area.area_region}</td>
+                <td>
+                    <div class="am-btn-group am-btn-group-xs">
+                        <a href="<?= URL('/admin/area/edit',array('id'=>$area['area_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
+                        <a href="<?= URL('/admin/area/remove',array('id'=>$area['area_id']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                    </div>
+                </td>
             </tr>
             {/volist}
             </tbody>

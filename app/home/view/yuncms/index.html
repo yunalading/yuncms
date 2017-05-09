@@ -1,0 +1,113 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+
+<?php
+        $article_one = get_article_list(6);
+?>
+<div class="index-download">
+    <div class="index-download-bj am-show-sm-up"></div>
+    <div class="index-download-info">
+        <h1 data-am-scrollspy="{animation:'slide-left'}">YunCMS</h1>
+        <h2 data-am-scrollspy="{animation:'slide-right', delay: 500}">
+            YunCMS是基于ThinkPHP框架的一套CMS系统，方便用户快速建立企业网站，门户网站 </h2>
+        <h2 data-am-scrollspy="{animation:'slide-right', delay: 1000}">个人博客或其他系统的内容管理系统</h2>
+        <div class="index-download-info-a" data-am-scrollspy="{animation:'scale-up', delay: 1500, repeat: false}">
+            <a href="#">开始使用</a>
+            <a href="#">在线演示</a>
+        </div>
+    </div>
+
+
+    <dvi class="index-download-fork">
+        <em><a href="https://github.com/yunalading" target="_blank"><img src="/static/home/yuncms/images/index_banref01.png"/></a></em>
+        <em>
+            <a class="github-button" href="https://github.com/yunalading/yuncms" data-icon="octicon-star"
+               data-style="mega" data-count-href="/yunalading/yuncms/stargazers"
+               data-count-api="/repos/yunalading/yuncms#stargazers_count" data-count-aria-label="# stargazers on GitHub"
+               aria-label="Star yunalading/yuncms on GitHub">Star</a></em>
+        <em>
+            <a class="github-button" href="https://github.com/yunalading/yuncms/fork" data-icon="octicon-repo-forked"
+               data-style="mega" data-count-href="/yunalading/yuncms/network"
+               data-count-api="/repos/yunalading/yuncms#forks_count" data-count-aria-label="# forks on GitHub"
+               aria-label="Fork yunalading/yuncms on GitHub">Fork</a>
+        </em>
+    </dvi>
+    <img src="/static/home/yuncms/images/index-bg.jpg"/>
+</div>
+
+<div class="index-features">
+    <div class="index-features-title">
+        <h1>最强大的特色功能</h1>
+        <h2>做网站就是这么简单</h2>
+    </div>
+    <div class="cms-g">
+        <div class="am-u-sm-6 am-u-md-6 am-u-lg-4">
+            <div class="index-features-item">
+                <img src="/static/home/yuncms/images/1.png"/>
+                <strong>Markdown的内容编辑器</strong>
+                <span>提高内容发布效率</span>
+            </div>
+        </div>
+        <div class="am-u-sm-6 am-u-md-6 am-u-lg-4">
+            <div class="index-features-item">
+                <img src="/static/home/yuncms/images/2.png"/>
+                <strong>Amazeui的前端框架开发</strong>
+                <span>规范视图页面结构</span>
+            </div>
+        </div>
+        <div class="am-u-sm-6 am-u-md-6 am-u-lg-4">
+            <div class="index-features-item">
+                <img src="/static/home/yuncms/images/3.png"/>
+                <strong>分布式架构</strong>
+                <span>提高系统的稳定负载力</span>
+            </div>
+        </div>
+        <div class="am-u-sm-6 am-u-md-6 am-u-lg-4">
+            <div class="index-features-item">
+                <img src="/static/home/yuncms/images/4.png"/>
+                <strong>集成搜索引擎</strong>
+                <span>适用于门户网站建设</span>
+            </div>
+        </div>
+        <div class="am-u-sm-6 am-u-md-6 am-u-lg-4">
+            <div class="index-features-item">
+                <img src="/static/home/yuncms/images/5.png"/>
+                <strong>自定义内容结构</strong>
+                <span>灵活的建立各种展示类网站</span>
+            </div>
+        </div>
+        <div class="am-u-sm-6 am-u-md-6 am-u-lg-4">
+            <div class="index-features-item">
+                <img src="/static/home/yuncms/images/6.png"/>
+                <strong>缓存处理</strong>
+                <span>适当的提高用户的访问速度和系统性能</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="index-computer">
+    <div class="index-computer-title">
+        <h1>快速部署，满足您所有的建站需求</h1>
+        <h2>丰富的建站模板和建站套餐，为您快速搭建网站提供优质服务支持</h2>
+        <img src="/static/home/yuncms/images/index_computer.png" data-am-scrollspy="{animation:'slide-right'}"/>
+    </div>
+</div>
+<div class="index-partner">
+    <h1>合作伙伴</h1>
+    <h2>认真做好每一个项目，为客户创造每一个价值</h2>
+    <div class="cms-g">
+
+        {volist name="article_one" id="article_one" key="k"}
+        <div class="am-u-sm-6 am-u-md-4 am-u-lg-3">
+            <div class="index-partner-div">
+                <img src="{$article_one.cover|get_image_url=###}" data-am-scrollspy="{animation: 'fade', delay: {$k*50-50}}"/>
+            </div>
+        </div>
+        {/volist}
+
+    </div>
+</div>
+
+
+{include file="footer" /}
+

@@ -1,0 +1,101 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<link rel="stylesheet" href="/static/common/editor/css/editormd.css"/>
+<div class="content-page">
+    <div class="am-container">
+        <div class="min-height">
+            <div class="page-title"><h1 class="am-inline">页面列表</h1>
+                <a href="/index.php/admin/page/edit" class="am-btn am-btn-primary am-btn-xs am-radius">
+                    <i class="am-icon am-icon-edit"></i>添加页面
+                </a>
+            </div>
+        </div>
+        <!--编辑表单-->
+        <form class="am-form edit-form" method="post" data-am-validator>
+           <!-- 页面编号-->
+            <div class="am-form-group">
+                <label>页面编号</label>
+                <input type="text" disabled name="" value="">
+            </div>
+          <!--  标题-->
+            <div class="am-form-group">
+                <label>标题</label>
+                <input type="text"  name="page-title" value="">
+                <div></div>
+            </div>
+          <!--  封面-->
+            <div class="am-form-group">
+                <label>封面</label>
+                <input type="text" disabled name="page" value="">
+            </div>
+           <!-- 简介-->
+            <div class="am-form-group">
+                <label>简介</label>
+                <textarea  name="content-intro"></textarea>
+            </div>
+            <!--模板-->
+            <div class="am-form-group">
+                <label>模板</label>
+                <div>
+                <select data-am-selected name="page-tmp"  id="page-tmp"  required>
+                    <option value="page-tmp1" >模板1</option>
+                    <option value="page-tmp2" >模板2</option>
+                    <option value="page-tmp3" >模板3</option>
+                </select>
+                </div>
+            </div>
+           <!-- SEO标题-->
+            <div class="am-form-group">
+                <label>SEO标题</label>
+                <input type="text" disabled name="page" value="">
+            </div>
+            <!--SEOurl-->
+            <div class="am-form-group">
+                <label>SEOurl</label>
+                <input type="text" disabled name="page" value="">
+            </div>
+            <!--SEOkey-->
+            <div class="am-form-group">
+                <label>SEOkey</label>
+                <input type="text" disabled name="page" value="">
+            </div>
+            <!--内容-->
+            <div class="am-form-group">
+                <label>内容</label>
+                <textarea class="editor-preview" style="overflow: visible;"></textarea>
+                <div class="editor-position-display">
+                    <div   id="test-editormd" >
+                        <textarea name="content-content" style="display:none;" id="ts"></textarea>
+                    </div>
+                    <button class="am-btn am-btn-primary am-radius" >确定</button>
+                </div>
+
+            </div>
+           <!-- 阅读量-->
+            <div class="am-form-group">
+                <label>阅读量</label>
+                <input type="text" disabled name="" value="">
+            </div>
+
+        </form>
+
+
+        <button class="am-btn am-btn-primary am-radius" type="submit">提交</button>
+
+    </div>
+</div>
+    <script src="/static/common/jquery/jquery.min.js"></script>
+    <script src="/static/common/editor/editormd.js"></script>
+    <script type="text/javascript">
+        //    调用编辑器
+        var testEditor;
+        $(function() {
+            testEditor = editormd("test-editormd", {
+                width   : "1000px",
+                height  : 640,
+                syncScrolling : "single",
+                path    : "/static/common/editor/lib/"
+
+            });
+        });
+    </script>
+{include file="footer" /}

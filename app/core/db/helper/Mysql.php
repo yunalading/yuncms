@@ -54,6 +54,18 @@ class Mysql extends DbHelper {
     }
 
     public function exeSQL($sql) {
-        return $this->connection()->batchQuery(array_filter(explode(';', $sql)));
+        //$arr = array_filter(explode(';', $sql));//会出现空sql
+        $arr = explode(';', $sql);
+        foreach ($arr as $key=>$value) {
+            if(trim($value) =='' ){
+                unset($arr[$key]);
+            }
+        }
+        try {
+            $res = $this->connection()->batchQuery($arr);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+        return $res;
     }
 }

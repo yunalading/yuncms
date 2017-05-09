@@ -1,0 +1,89 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+<form class="am-form am-g margin-top-buttom-20" data-am-validator method="post">
+    {:token()}
+    <div class="am-form-group all-width">
+        <label for="cate-name">分类名称:</label>
+        <input type="text" name="category[category_name]" id="cate-name" maxlength="20" minlength="3"
+                required {notempty name="category"
+               }value="{$category.category_name}" {/notempty}>
+    </div>
+    <div class="am-form-group all-width">
+        <label for="cate-seo-title">SEO标题:</label>
+        <input type="text" name="category[seo_title]" id="cate-seo-title" maxlength="200"
+               {notempty name="category"
+               }value="{$category.seo_title}" {/notempty} >
+    </div>
+    <div class="am-form-group all-width">
+        <label for="cate-seo-url">SEOURL:</label>
+        <input type="text" name="category[seo_url]" id="cate-seo-url" maxlength="200" required
+                {notempty name="category"
+               } value="{$category.seo_url}" {/notempty}>
+    </div>
+    <div class="am-form-group all-width">
+        <label for="cate-seo-key">SEO关键字</label>
+        <input type="text" name="category[seo_key]" id="cate-seo-key" maxlength="200"  {notempty
+               name="category"
+               } value="{$category.seo_key}" {/notempty}>
+    </div>
+    <div class="am-form-group all-width">
+        <label for="cate-seo-desc">SEO描述</label>
+        <textarea name="category[seo_desc]" id="cate-seo-desc" maxlength="200" >{notempty name="category"
+                }{$category.seo_desc}{/notempty}</textarea>
+    </div>
+    <div class="am-form-group all-width">
+        <label for="cate-parent-num">选择一个上级分类</label>
+        <select id="cate-parent-num" name="category[parent_category_id]" maxlength="200" required>
+            <option value="0">顶级分类</option>
+            {volist name='cate' id='cate'}
+            <option value="{$cate.category_id}" {notempty name="category"
+                    } {if condition="$category.parent_category_id == $cate.category_id" }selected{
+            /if} {/notempty}>{$cate.category_name}</option>
+            {/volist}
+        </select>
+        <span class="am-form-caret"></span>
+    </div>
+    <div class="am-form-group all-width">
+        <label for="cate-model-num">选择模型</label>
+        <select id="cate-model-num" name="category[model_id]" maxlength="200" required>
+            {volist name='module' id='module'}
+            <option value="{$module.model_id}" {notempty name="category"
+                    } {if condition="$category.model_id == $module.model_id" } selected {/if} {/notempty}>{$module.model_name}</option>
+            {/volist}
+        </select>
+        <span class="am-form-caret"></span>
+    </div>
+    <div class="am-form-group all-width">
+        <label>列表页模板</label>
+        <select name="category[list_template]" maxlength="200" required>
+            <option value="">请选择模板</option>
+            {volist name='template_list' id='template_list'}
+            <option value="{$template_list}" {notempty name="category" } {if condition="$category.list_template == $template_list" }selected{/if} {/notempty}>{$template_list}.{$Think.config.url_html_suffix}</option>
+            {/volist}
+        </select>
+        <!--<textarea name="category[list_template]" id="cate-tmp-list"  maxlength="200" required>{notempty name="category"-->
+                <!--}{$category.list_template}{/notempty}</textarea>-->
+    </div>
+
+    <div class="am-form-group all-width">
+        <label>详情页模板</label>
+        <select name="category[info_template]" maxlength="200" required>
+            <option value="">请选择模板</option>
+            {volist name='template_info' id='template_info'}
+            <option value="{$template_info}" {notempty name="category" } {if condition="$category.info_template == $template_info" }selected{/if} {/notempty}>{$template_info}.{$Think.config.url_html_suffix}</option>
+            {/volist}
+        </select>
+        <!--<textarea name="category[info_template]" id="cate-tmp-detail" maxlength="200" required>{notempty name="category"-->
+                <!--}{$category.info_template}{/notempty}</textarea>-->
+    </div>
+    <div class="am-form-group all-width">
+        <label for="cate-seo-url">排序:</label>
+        <input type="text" name="category[category_sort]" id="cate-category_sort" maxlength="200" minlength="1"
+                required {notempty name="category"
+               } value="{$category.category_sort}" {/notempty}>
+    </div>
+    {notempty name="category"} <input type="hidden" name="id" value="{$category.category_id}"> {/notempty}
+    <button class="am-btn am-btn-primary button-text-left">{$action_name}分类</button>
+</form>
+
+
+{include file="footer" /}

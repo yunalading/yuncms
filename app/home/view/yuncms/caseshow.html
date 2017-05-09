@@ -1,0 +1,26 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description=""/}
+
+    
+    <div class="caseshow_banner">
+         <div class="cms-g">
+             <div class="caseshow_banner_left" data-am-scrollspy="{animation:'slide-left'}">
+                 <img src="/static/home/yuncms/images/computer.png" class="caseshow_banner_computer" />
+                 <img src="{$article.cover|get_image_url=###}" class="caseshow_banner_bj" />
+             </div>
+             <div class="caseshow_banner_right" data-am-scrollspy="{animation:'slide-right', delay: 500}">
+                 <span>{$article.title} </span>
+                 <label>分类：{$article.title}</label>
+                 <strong>项目简介：{$article.intro}</strong>
+                 <em><i class="am-hide-sm">你的类似需求</i><a href="#"  data-am-scrollspy="{animation:'scale-up', delay: 1500, repeat: false}">报价:￥{$article.price}</a></em>
+             </div>
+         </div>
+        <div class="caseshow_banner_sanjiao"></div>
+    </div>
+
+    <div class="caseshow_zhanshi">
+        <div class="cms-g">
+            {$article.content}
+        </div>
+    </div>
+
+{include file="footer" /}

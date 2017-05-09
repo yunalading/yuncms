@@ -6,15 +6,17 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: jabber <2898117012@qq.com>
+// | Author: chenqianhao <68527761@qq.com>
 // +----------------------------------------------------------------------
 namespace app\home\controller;
 
 class Index extends HomeBaseController {
+
     /**
      * @return \think\response\View
      */
     public function index() {
-        return view('/index');
+        $template ='index';
+        return $this->show($template);
     }
 }

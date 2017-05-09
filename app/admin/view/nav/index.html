@@ -1,0 +1,48 @@
+{include file="header" title="YunCMS后台管理系统" keywords="" description="" /}
+
+<div class="content-page">
+    <div class="am-container">
+        <div class="page-title"><h1 class="am-inline">导航列表</h1>
+            <a href="<?= URL('admin/nav/edit');?>" class="am-btn am-btn-primary am-btn-xs am-radius">
+                <i class="am-icon am-icon-edit"></i>添加导航
+            </a>
+        </div>
+        <form class="am-form-inline search-form">
+            {:token()}
+            <div class="am-form-group">
+                <input type="keyword" class="am-form-field" placeholder="关键词">
+            </div>
+            <button type="submit" class="am-btn am-btn-default"><i class="am-icon-search"></i></button>
+        </form>
+        <table class="am-table">
+            <thead>
+            <tr>
+                <th>导航标识</th>
+                <th>导航名称</th>
+                <th>更新时间</th>
+                <th>创建时间</th>
+                <th>更过操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {volist name='list' id='nav'}
+            <tr>
+                <td>{$nav.nav_key}</td>
+                <td><a href="#">{$nav.nav_name}</a></td>
+                <td>{$nav.update_time}</td>
+                <td><a href="#">{$nav.create_time}</a></td>
+                <td>
+                    <div class="am-btn-group am-btn-group-xs">
+                        <a href="<?= URL('admin/nav/edit',array('id'=>$nav['nav_key']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-edit"></i></a>
+                        <a href="<?= URL('admin/nav/remove',array('id'=>$nav['nav_key']));?>" class="am-btn am-btn-primary am-radius"><i class="am-icon-trash"></i></a>
+                    </div>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+        {$page}
+    </div>
+</div>
+
+{include file="footer" /}

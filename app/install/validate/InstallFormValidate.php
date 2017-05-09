@@ -14,7 +14,7 @@ namespace app\install\validate;
 
 use app\core\install\FormValidateInterface;
 use app\core\install\Install;
-
+use think\Session;
 class InstallFormValidate implements FormValidateInterface {
     private $config = null;
 
@@ -32,6 +32,11 @@ class InstallFormValidate implements FormValidateInterface {
         $dbDate = $this->config['db'];
         $appDate = $this->config['app'];
         $flag = $dbValidate->check($dbDate, [], 'install') && $appValidate->check($appDate, [], 'install');
+        if( session('install_mode') =='demo'){
+            $this->config['app']['theme'] = 'yuncms';
+        }else{
+            $this->config['app']['theme'] = 'default';
+        }
         if ($flag) {
             //保存安装表单
             Install::saveConfig($this->config);
