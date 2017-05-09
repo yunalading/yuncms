@@ -83,7 +83,7 @@ class Step4 extends InstallWizard {
         $userModel = UserModel::get(1);
         $userModel->save(['username' => $config['app']['username'], 'password' => $userModel->createPassWord($config['app']['password']),'create_time' => time()]);
         //演示数据
-        if( session('install_mode') =='demo'){
+        if(session('install_mode') && session('install_mode') == 'demo'){
             Install::initDemo();
         }
         //写入安装锁
