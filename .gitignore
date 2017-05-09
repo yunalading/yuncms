@@ -8,5 +8,4 @@
 /.settings
 /.project
 /.buildpath
-/composer.lock
 /public/data/install.lock
