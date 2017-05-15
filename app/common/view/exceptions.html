@@ -1,8 +1,4 @@
 <?php
-    if (!is_writable(ROOT_PATH.'runtime')) {
-        echo ROOT_PATH.'runtime'."目录没有写入权限!";
-        die();
-    }
     if(!function_exists('parse_padding')){
         function parse_padding($source)
         {
@@ -337,7 +333,9 @@
     </div>
     <?php } else { ?>
     <div class="exception">
-        <script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8" homePageUrl="/" homePageName="返回到首页"></script>
+        <script type="text/javascript">
+            document.write('<a href="/">回到首页</a>');
+        </script>
     </div>
     <?php } ?>
     
