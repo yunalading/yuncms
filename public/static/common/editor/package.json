@@ -37,7 +37,7 @@
   "_requiredBy": [
     "#DEV:/"
   ],
-  "_resolved": "https://registry.npm.taobao.org/editor.md/download/editor.md-1.5.0.tgz",
+  "_resolved": "https://registry.npmmirror.com/editor.md/download/editor.md-1.5.0.tgz",
   "_shasum": "6fe636a88a39b85613f53eee6ecb7b7348ab23bf",
   "_shrinkwrap": null,
   "_spec": "editor.md@^1.5.0",
@@ -73,7 +73,7 @@
     "shasum": "6fe636a88a39b85613f53eee6ecb7b7348ab23bf",
     "size": 2522074,
     "noattachment": false,
-    "tarball": "http://registry.npm.taobao.org/editor.md/download/editor.md-1.5.0.tgz"
+    "tarball": "https://registry.npmmirror.com/editor.md/download/editor.md-1.5.0.tgz"
   },
   "gitHead": "af08536772e34f6ef95870bb4cfd85d09bf1c932",
   "homepage": "https://github.com/pandao/editor.md",
